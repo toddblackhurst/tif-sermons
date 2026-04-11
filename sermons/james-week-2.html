@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>James 1:12–27 | TIF Sermon Translations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Asul:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dark-blue: #1b2327;
+      --extra-dark-blue: #121b20;
+      --light-blue: #27b7d8;
+      --white: #ffffff;
+      --text: #333333;
+      --bg-light: #f7fbfc;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Asap', Arial, sans-serif; color: var(--text); background: var(--white); line-height: 1.75; }
+    .header { background: var(--extra-dark-blue); padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .header-brand { display: flex; align-items: center; gap: 12px; }
+    .header-logo-mark { width: 40px; height: 40px; background: var(--light-blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Asul', sans-serif; font-weight: 700; color: white; font-size: 1rem; flex-shrink: 0; }
+    .header-name { font-family: 'Asul', sans-serif; color: white; font-size: 1rem; font-weight: 700; line-height: 1.2; }
+    .header-sub { color: rgba(255,255,255,0.55); font-size: 0.78rem; margin-top: 2px; }
+    .header-links { display: flex; gap: 20px; align-items: center; }
+    .header-link { color: rgba(255,255,255,0.55); font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
+    .header-link:hover { color: var(--light-blue); }
+    .header-link.active { color: var(--light-blue); font-weight: 600; }
+    .lang-bar { background: var(--dark-blue); padding: 14px 32px; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .lang-label { color: rgba(255,255,255,0.4); font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; margin-right: 4px; }
+    .lang-btn { background: transparent; border: 1.5px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.65); padding: 7px 22px; border-radius: 100px; cursor: pointer; font-family: 'Asap', sans-serif; font-size: 0.88rem; font-weight: 500; transition: all 0.2s ease; white-space: nowrap; }
+    .lang-btn.active { background: var(--light-blue); border-color: var(--light-blue); color: white; font-weight: 600; }
+    .lang-btn:hover:not(.active) { border-color: var(--light-blue); color: white; }
+    .sermon-hero { background: linear-gradient(150deg, var(--dark-blue) 0%, #1a3040 100%); color: white; padding: 56px 32px 48px; text-align: center; }
+    .hero-series { display: inline-block; font-size: 0.72rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--light-blue); margin-bottom: 14px; font-weight: 600; }
+    .hero-title { font-family: 'Asul', sans-serif; font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 700; line-height: 1.25; margin-bottom: 18px; }
+    .hero-scripture { font-size: 1rem; color: rgba(255,255,255,0.75); margin-bottom: 24px; font-style: italic; }
+    .hero-meta { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .hero-meta-item { background: rgba(255,255,255,0.1); border-radius: 100px; padding: 5px 14px; font-size: 0.8rem; color: rgba(255,255,255,0.7); }
+    .hero-divider { width: 48px; height: 3px; background: var(--light-blue); margin: 28px auto 0; border-radius: 2px; }
+    .content-outer { max-width: 820px; margin: 0 auto; padding: 48px 32px 72px; }
+    .lang-content { display: none; }
+    .lang-content.active { display: block; }
+    .sermon-text { font-size: 1.05rem; line-height: 1.85; }
+    .sermon-text p { margin-bottom: 1.5rem; }
+    .sermon-text .scripture-block { background: var(--bg-light); border-left: 4px solid var(--light-blue); padding: 16px 22px; margin: 28px 0; border-radius: 0 6px 6px 0; font-style: italic; font-weight: 500; color: var(--dark-blue); font-size: 1rem; line-height: 1.7; }
+    .scripture-ref { display: block; margin-top: 8px; font-style: normal; font-weight: 700; font-size: 0.82rem; color: var(--light-blue); letter-spacing: 0.5px; }
+    .footer { background: var(--extra-dark-blue); color: rgba(255,255,255,0.45); text-align: center; padding: 28px 24px; font-size: 0.8rem; line-height: 1.7; }
+    .footer a { color: var(--light-blue); text-decoration: none; }
+    .footer strong { color: rgba(255,255,255,0.75); }
+    @media (max-width: 600px) {
+      .header { padding: 14px 20px; flex-direction: column; gap: 8px; text-align: center; }
+      .header-links { justify-content: center; }
+      .lang-bar { padding: 12px 16px; }
+      .sermon-hero { padding: 36px 20px 32px; }
+      .content-outer { padding: 32px 20px 56px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-brand">
+    <div class="header-logo-mark">TIF</div>
+    <div>
+      <div class="header-name">Taichung International Fellowship</div>
+      <div class="header-sub">台中國際團契 · Persekutuan Internasional Taichung</div>
+    </div>
+  </div>
+  <div class="header-links">
+    <a href="index.html" class="header-link">Current Sermon</a>
+    <a href="archive.html" class="header-link active">Sermon Archive</a>
+  </div>
+</header>
+
+<nav class="lang-bar" role="navigation" aria-label="Language selection">
+  <span class="lang-label">Read in:</span>
+  <button class="lang-btn active" onclick="setLang('en')" aria-pressed="true">English</button>
+  <button class="lang-btn" onclick="setLang('zh')" aria-pressed="false">繁體中文</button>
+  <button class="lang-btn" onclick="setLang('id')" aria-pressed="false">Bahasa Indonesia</button>
+</nav>
+
+<section class="sermon-hero">
+  <span class="hero-series">Series: James — Week 2</span>
+  <h1 class="hero-title" id="hero-title">New Desires</h1>
+  <p class="hero-scripture" id="hero-scripture">James 1:12–27</p>
+  <div class="hero-meta">
+    <span class="hero-meta-item">Todd Blackhurst</span>
+    <span class="hero-meta-item">March 23, 2026</span>
+    <span class="hero-meta-item">TIF North &amp; South</span>
+  </div>
+  <div class="hero-divider"></div>
+</section>
+
+<main class="content-outer">
+
+  <!-- ─── ENGLISH ─── -->
+  <article class="lang-content active" id="content-en" lang="en">
+    <div class="sermon-text">
+      <p>Last week we learned a new math. The world's math says suffering is subtraction. James taught us that suffering and trials, when they test your faith, is actually addition. You don't lose or become less — you become more, complete and mature.</p>
+      <p>We learned that the way to deal with suffering and trials isn't just struggling or fighting through. It's looking to Jesus, the wisdom of God. He is what we need when we suffer. Not a way out.</p>
+      <p>Last week we talked about the resources Jesus provides when things happen to us. This week he's going to give us the resources we need for what is happening <em>inside</em> of us. Which means the biggest problem in our life is not our circumstances, it's not our suffering. It's not the people around us. Our biggest problem is us.</p>
+
+      <div class="scripture-block">
+        Blessed is the one who endures trials, because when he has stood the test he will receive the crown of life that God has promised to those who love him.
+        <span class="scripture-ref">James 1:12</span>
+      </div>
+
+      <p>After teaching us about trials and suffering, he gives us an amazing promise. For those who endure their trials — you receive a crown of life. There's a reward for endurance, which means our trials have a purpose. God is using them to do something great in and for us. But we need to know something. What's the difference between a trial and a temptation?</p>
+
+      <div class="scripture-block">
+        No one undergoing a trial should say, "I am being tempted by God," since God is not tempted by evil, and he himself doesn't tempt anyone. But each person is tempted when he is drawn away and enticed by his own evil desire. Then after desire has conceived, it gives birth to sin, and when sin is fully grown, it gives birth to death.
+        <span class="scripture-ref">James 1:13–15</span>
+      </div>
+
+      <p>God does test you. But He does not tempt you. Here's the difference. A test is meant to <em>reveal</em> what is already inside you and give you the experience you need to become something more than what you were. A temptation <em>exploits</em> what's already inside of you and is meant to destroy you. God does the first. He never does the second.</p>
+      <p>And then James tells us the reason temptation has such great power in our lives. It's because of our own evil desires. Your own. Not someone else's. Not the culture's. Not the devil's. Now, James is not denying that those things exist or contribute, but he's saying that when those other things come into play, they grab us because there's something inside us that grabs back.</p>
+      <p>Now, look at the picture he gives us. Conception and birth. Desire conceives. It gives birth to sin. And sin, when it's fully grown, gives birth to death.</p>
+      <p>Do you know anything about the cuckoo bird? You can find them here in Taiwan. They don't raise their own children. Instead, it sneaks into another bird's nest and lays its egg among the host's eggs. The host bird usually can't tell. So it sits on that egg, keeps it warm, protects it. But the cuckoo chick hatches first, and it's immediately aggressive — it pushes the other eggs or chicks out of the nest. And the host bird thinks it's their baby. So now the host bird is feeding a parasite that is actually destroying their future.</p>
+      <p>The world, our flesh, and the devil. Cuckoo birds. They lay eggs in our lives. And because sin has broken us, we don't recognize this bad egg and we take it as our own. We desire it. We protect it. Justify it. Feed it. Give it what it needs to survive. And it grows. And too late we realize we are feeding an alien parasite that is destroying our lives and our future.</p>
+      <p>Let me show you how this can work in our lives.</p>
+      <p>This is particularly for parents, but kids should listen too. As parents, we want our children to do well. That's not a bad thing, it's love. I think every parent in this room wants their kid to flourish.</p>
+      <p>But what happens when a good desire gets twisted by sin? Your child comes home with a bad exam result. Or they get cut from the sports team. Or they act out in public. And something happens inside you that goes beyond disappointment for them. You get disappointed. You get angry.</p>
+      <p>And you tell yourself it's because you care about their future. But sinful desire takes that good thing and their performance becomes your performance. Their score is your score. Their success is evidence that you are a good parent. So you push. Maybe not harshly. Maybe with the language of encouragement. More tutoring. More practice. Higher standards. And your child learns something in those moments that you never said out loud and never intended: that your love has conditions attached to it. That they are valuable to you when they are succeeding.</p>
+      <p>That's not just a character flaw or a misstep in parenting. Their success has become your savior — an idol you use to rescue you, the thing you rely on to tell you you're enough. And you are slowly sacrificing your child and your relationship with your child on that altar. Twenty years from now, they will be adults who cannot rest. Who will never feel like they are enough no matter what they achieve.</p>
+      <p>Let me try one more example. You just want some peace. You want some rest. So you do things to protect your time and your peace. Again, that's not a bad thing. Sometimes it's survival.</p>
+      <p>It starts small. You don't volunteer for things because you're busy — and you are busy. You pull back from a friendship that's become draining — and it is draining. You stop checking in on a person who's struggling because honestly you don't have the capacity right now — and you don't.</p>
+      <p>Every single decision, taken on its own, is reasonable. Justified. Even seems wise. But zoom out. And you start to notice the pattern. The relationships in your life have been quietly organized around a question: what does this cost me? The people who are easy to be around, you keep close. The people who need too much, you manage the distance. And when someone's crisis lands at the wrong moment, you feel something — not compassion, but a low-level resentment that they need something from you right now.</p>
+      <p>You call it wisdom. Sometimes you call it boundaries. But if you're honest, there's a flatness to your relationships. Nobody is getting the real you because the real you is being conserved for something. You're just not sure what. And you've been calling it self-care.</p>
+      <p>Here's the hard truth. When you and I sin, it's not because we're weak. It's because in that moment, we want something more than we want God. We are not victims of temptation. We are willing participants because something inside us is broken by sin.</p>
+
+      <div class="scripture-block">
+        Don't be deceived, my dear brothers and sisters. Every good and perfect gift is from above, coming down from the Father of lights, who does not change like shifting shadows. By his own choice, he gave us birth through the word of truth, so that we would be a kind of firstfruits of his creatures.
+        <span class="scripture-ref">James 1:16–18</span>
+      </div>
+
+      <p>So James warns us: don't be deceived, because temptation and your sinful desire will outright lie to you. They will tell you that God is keeping something good from you. It's the oldest lie in the book. Literally. It's the first thing the serpent said to Eve in the garden: "Did God really say...?" In other words, "Is God really good? Is he really for you?"</p>
+      <p>And James says, no. Stop. Don't be deceived. Let me tell you what God is actually like.</p>
+      <p>Every good and perfect gift is from above. A good gift isn't just something of value. It's chosen by someone who knows you. They've thought about you specifically. They've paid attention. The gift is personal — it carries the intent of the giver with it. When you know the giver loves you, when you trust their character — you can even receive things you'd otherwise push away. Even hard things. Even things that hurt.</p>
+      <p>Think about the last time you received some criticism. If it came from someone you know really loved you, really cared about you, then I bet at some point you realized it was a gift. When you trust the giver, you can receive a trial as a gift, even when it's painful, because you know the intent behind it is good.</p>
+      <p>But when you don't know or don't trust the giver — when you're unsure of their motives, when you suspect there might be a catch — you can't receive it. Not really. You hold the gift at arm's length. You look for the angle. And what was sent in love gets misread as something else. You end up rejecting the very thing that was meant for your good.</p>
+      <p>Verse 18: By his own choice, he gave us birth through the word of truth, so that we would be a kind of firstfruits of his creatures.</p>
+      <p>James has told us that desire gives birth to sin, and sin gives birth to death. And now he shows us God's answer — God's greatest gift to us. God gives us a <em>new birth</em> through his word. On the cross, Jesus absorbed the penalty for all the sin we have given birth to and defeated death so that we could have a new birth. The way you receive this new birth is through the word of truth — the truth about Jesus revealed in the Bible. He has revealed himself to us so we can know him, and his revelation is Jesus Christ. I want you to know Jesus today. He's God's greatest gift.</p>
+
+      <div class="scripture-block">
+        My dear brothers and sisters, understand this: Everyone should be quick to listen, slow to speak, and slow to anger, for human anger does not accomplish God's righteousness. Therefore, ridding yourselves of all moral filth and the evil that is so prevalent, humbly receive the implanted word, which is able to save your souls.
+        <span class="scripture-ref">James 1:19–21</span>
+      </div>
+
+      <p>James isn't giving us a list of things to do. He's helping us to actually hear what he's saying. Most of us, when we hear something that sounds hard or difficult or that we just don't want to believe, we don't listen — we start talking, either internally or with others. And we get angry. And when we do those things — we miss what God wants to do in our life. Let the word of God speak to you. The implanted word can only do its work in someone who's listening, quiet and humble.</p>
+
+      <div class="scripture-block">
+        But be doers of the word and not hearers only, deceiving yourselves. Because if anyone is a hearer of the word and not a doer, he is like someone looking at his own face in a mirror. For he looks at himself, goes away, and immediately forgets what kind of person he was. But the one who looks intently into the perfect law of freedom and perseveres in it, and is not a forgetful hearer but a doer who acts, this person will be blessed in what he does.
+        <span class="scripture-ref">James 1:22–25</span>
+      </div>
+
+      <p>In ancient times, it was actually pretty rare to see yourself. Mirrors were expensive and not common. The only place a regular person might see themselves was in a pool of still water — their reflection on the surface.</p>
+      <p>So when James talks about a man looking in a mirror and then walking away and immediately forgetting what he looks like, he's describing someone who for a moment sees the truth about themselves and then just… walks away from it.</p>
+      <p>He's asking us to look intently into the law of freedom — that's God's word. When we look intently into the Bible, what do we see? Who do we see? Jesus. He's asking us to look intently at Jesus and be changed and transformed. And when you see Jesus — really see him — it changes you.</p>
+
+      <div class="scripture-block">
+        If anyone thinks he is religious and doesn't bridle his tongue but deceives his heart, his religion is worthless. Pure and undefiled religion before God the Father is this: to look after orphans and widows in their distress and to keep oneself unstained by the world.
+        <span class="scripture-ref">James 1:26–27</span>
+      </div>
+
+      <p>James says the result of seeing clearly is that it transforms you. You will produce fruit. And here's the evidence: it changes your speech and your relationships.</p>
+      <p>Now, if we read this out of context, James is just giving us more things to add to our spiritual to-do list. Care for the vulnerable. Keep yourself clean. Try harder. But actually, he's showing us what happens when the word — the perfect law of freedom — begins to do its work in our lives.</p>
+      <p>Some Christians try to avoid all temptation. They stay away from the world, they try to control their flesh, they pray against the devil. Which are not necessarily bad things. But what about the evil desire that is still inside of you because of sin? You need something that can destroy the sinful desire, because even if you do your best, you won't be able to avoid the outside temptations.</p>
+      <p>An old Scottish pastor named Thomas Chalmers preached a famous sermon called "The Expulsive Power of a New Affection." His argument was simple but profound. You cannot defeat the sinful desire that lives inside by just trying harder not to want it. You can only defeat it by wanting something else more. A new affection doesn't just compete with the old one — it pushes it out.</p>
+      <p>And that's exactly what James is telling us. God gave us a new birth through the word of truth. Not a new set of rules. Not better willpower. A new birth. A new life with new desires.</p>
+      <p>So let me go back to our two examples. The parent who needs their child to succeed. Why does that desire have such a grip on you? Because somewhere deep down, you need evidence that you are enough. But the gospel says the verdict is already in. Before your child took their first exam. Before you made your first parenting decision. God looked at you — not at your performance, not at your child's performance — and He said, "This one is mine. I chose this one. I gave this one new birth."</p>
+      <p>When that verdict gets deep enough into your heart — when you not only believe, but you <em>receive</em> that your identity was settled at the cross — something happens. The grip loosens. Not because you stop caring about your child. You actually care more. But the desperation is gone. You can let your child fail because their failure no longer says anything about your worth or theirs. You're free to actually love them instead of using them. That's the expulsive power of a new affection. The old desire doesn't just get managed. It gets displaced.</p>
+      <p>And the person who is carefully managing their relational energy — conserving themselves. Why? Because deep down, you believe that if you give too much, there won't be enough left for you. You are your own supply. But look at what God did. Verse 18 — by his own choice, he gave us birth. He didn't calculate the cost first. He didn't check if we were worth the investment. He spent everything. The cross was the most expensive act of generosity in the history of the universe, and he didn't hold anything back. When you know — really know — that you are loved by someone who will never run out, who does not change, who has already given you the most costly gift imaginable — you stop hoarding. Not because you grit your teeth and force yourself to be generous. But because you're no longer afraid of running empty. You have a source that won't run out.</p>
+      <p>That's how the implanted word works. That's what knowing Jesus does. That sinful desire gets displaced with a new desire.</p>
+      <p>Why do we have this sin issue? Because we are orphans. In the garden of Eden, we orphaned ourselves. We rejected our Father's love and said, we'll live life on our own.</p>
+      <p><em>Pure and undefiled religion before God the Father is this: to look after orphans and widows.</em> Isn't that what God did? He came after us.</p>
+      <p>We read those words "look after" and it sounds like, you know, send a Christmas box. Or sponsor a child. None of which is bad by the way. But that's not what it means. These words mean a deliberate, costly move toward vulnerable people that results in real, personal care.</p>
+      <p>Does that sound like anything? Deliberate. Costly. Move toward. Real personal care. Why? So you would never be forsaken. Never alone and never without a place in His family. He was abandoned so you could be adopted. Forever loved without end.</p>
+    </div>
+  </article>
+
+  <!-- ─── TRADITIONAL CHINESE 繁體中文 ─── -->
+  <article class="lang-content" id="content-zh" lang="zh-TW">
+    <div class="sermon-text">
+      <p>上週我們學到了一種新的算術。世界的算術說苦難是減法。雅各教導我們，苦難與試煉，當它考驗你的信心的時候，其實是加法。你不會失去或變得更少——你會成長、完備、成熟。</p>
+      <p>我們學到，面對苦難與試煉的方式，不只是掙扎或硬撐過去，而是仰望耶穌——神的智慧。祂是我們受苦時所需要的，而不是一條出路。</p>
+      <p>上週我們談到的是，當外在的事情臨到我們身上時，耶穌所提供的資源。這週，他要給我們應對<em>內在</em>所發生之事所需要的資源。這意味著，我們生命中最大的問題，不是我們的處境，不是我們的苦難，不是我們周圍的人。我們最大的問題是我們自己。</p>
+
+      <div class="scripture-block">
+        忍受試探的人是有福的，因為他經過試驗以後，必得生命的冠冕；這是主應許給那些愛他之人的。
+        <span class="scripture-ref">雅各書 1:12</span>
+      </div>
+
+      <p>在教導我們關於試煉與苦難之後，他給了我們一個美好的應許：對那些忍受試煉的人——你們必得生命的冠冕。忍耐是有獎賞的，這意味著我們的試煉是有目的的。神正在使用它們，在我們裡面、為我們成就偉大的事。但我們需要弄清楚一件事——試煉與試探有什麼區別？</p>
+
+      <div class="scripture-block">
+        人被試探，不可說：「我是被神試探」；因為神不能被惡試探，他也不試探人。但各人被試探，乃是被自己的私慾牽引誘惑的。私慾既懷了胎，就生出罪來；罪既長成，就生出死來。
+        <span class="scripture-ref">雅各書 1:13–15</span>
+      </div>
+
+      <p>神確實會考驗你，但祂不試探你。以下是這兩者的區別。考驗的目的是<em>揭露</em>你內心本來就有的東西，並給你成為更多的經歷。試探則是<em>利用</em>你內心本來就有的東西，目的是要毀滅你。神做前者，祂絕不做後者。</p>
+      <p>然後雅各告訴我們，為什麼試探在我們生命中有如此巨大的力量——因為我們自己的私慾。是我們自己的，不是別人的，不是文化的，不是魔鬼的。雅各並不是在否認那些東西的存在或影響，他是在說，當那些外在的東西發揮作用的時候，它們之所以能抓住我們，是因為我們內心裡有什麼東西在回應它。</p>
+      <p>現在，看看他給我們的這個畫面：懷胎與出生。私慾懷胎，生出罪來；罪既長成，就生出死來。</p>
+      <p>你對杜鵑鳥有什麼了解嗎？在台灣可以看到牠們。杜鵑不自己養育孩子，而是偷偷潛入另一隻鳥的巢，把自己的蛋混在宿主的蛋中間。宿主鳥通常看不出來，所以牠就坐在那顆蛋上，為它保溫，保護它。但杜鵑雛鳥會先孵化，而且它立刻就具有攻擊性——它把其他的蛋或雛鳥從巢中推出去。宿主鳥以為那是牠自己的寶寶。所以現在宿主鳥正在養活一個寄生蟲，而那個寄生蟲其實正在毀滅它的未來。</p>
+      <p>這個世界、我們的肉體，還有魔鬼——都是杜鵑鳥。它們在我們的生命中下蛋。而因為罪已經使我們破損，我們認不出那顆壞蛋，反而把它當成我們自己的。我們渴望它，保護它，為它辯護，餵養它，給它所需要的一切讓它存活。然後它越長越大。等我們意識到的時候，已經太晚了——我們一直在養活一個正在毀滅我們生命與未來的寄生蟲。</p>
+      <p>讓我展示這在我們生活中是怎麼運作的。這特別是對父母說的，但孩子們也應該聽。身為父母，我們希望孩子做得好。這不是壞事，這是愛。我相信在座每一位父母都希望孩子能夠蓬勃成長。</p>
+      <p>但當一個好的渴望被罪扭曲之後，會發生什麼？你的孩子帶著一個糟糕的考試成績回家，或者他被球隊淘汰，或者他在公共場合出了醜。這時你內心有什麼東西在動，那不只是替他們失望，而是你自己的失望，你的憤怒。</p>
+      <p>你告訴自己，這是因為你在乎他們的未來。但罪的私慾已經把那個好事扭曲了——他們的表現變成了你的表現。他們的分數就是你的分數，他們的成功是你是個好父母的證明。於是你施壓。也許不是粗暴地，也許用的是鼓勵的語言。更多補習、更多練習、更高的標準。然後你的孩子在那些時刻學到了一件你從未說出口、也從未有意傳達的事：你的愛是有條件的，他們只有在成功的時候才對你有價值。</p>
+      <p>這不只是性格缺陷或教養失誤。他們的成功已經成了你的救主——一個你用來拯救自己、告訴自己「我已經足夠了」的偶像。而你正在慢慢地把你的孩子和你與孩子的關係，獻祭在那個祭壇上。二十年後，他們會是無法休息的成年人，無論取得多少成就，都永遠覺得自己不夠好。</p>
+      <p>讓我再試一個例子。你只是想要一些平靜，想要一些休息。所以你做一些事情來保護你的時間和平靜。同樣，這不是壞事，有時候這是生存所需。</p>
+      <p>一開始很小。你不去做志工，因為你很忙——你確實很忙。你從一段令你精疲力竭的友誼中退出——它確實令你精疲力竭。你停止關心一個正在掙扎的人，因為坦白說你現在沒有能力——你確實沒有。</p>
+      <p>每一個單獨看來的決定，都是合理的、有道理的，甚至看起來是智慧的。但拉遠來看，你開始注意到這個模式。你生命中的人際關係被悄悄地圍繞著一個問題組織起來：這對我的代價是多少？那些相處起來輕鬆的人，你與他們保持親密。那些需求太多的人，你管理著距離。而當某人的危機在不對的時機到來，你感受到的不是憐憫，而是一種低迴的怨恨——他們怎麼現在需要我。</p>
+      <p>你稱之為智慧，有時候稱之為界限。但如果你誠實，你的人際關係是平板的。沒有人得到真正的你，因為真正的你正在被保留著，為了某件事——你只是不確定是什麼。你一直稱之為自我照顧。</p>
+      <p>這是一個艱難的真相：當你我犯罪的時候，不是因為我們軟弱。而是因為在那一刻，我們渴望某樣東西超過渴望神。我們不是試探的受害者，我們是自願的參與者，因為我們內心有某樣東西被罪破損了。</p>
+
+      <div class="scripture-block">
+        我親愛的弟兄們，不要自欺。各樣美善的恩賜和各樣全備的賞賜都是從上頭來的，從眾光之父那裡降下來的；在他並沒有改變，也沒有轉動的影兒。他按自己的旨意，用真道生了我們，叫我們在他所造的萬物中好像初熟的果子。
+        <span class="scripture-ref">雅各書 1:16–18</span>
+      </div>
+
+      <p>所以雅各警告我們：不要自欺，因為試探和你的私慾會明目張膽地對你說謊。它們會告訴你，神在把某樣美好的東西藏起來不讓你得到。這是世界上最古老的謊言，真的是字面意義上的最古老。這是那條蛇對夏娃說的第一句話：「神真的說了嗎……？」換句話說：「神真的是好的嗎？祂真的是站在你那邊的嗎？」</p>
+      <p>雅各說：不對，停下來。不要自欺。讓我告訴你神實際上是怎樣的。</p>
+      <p>各樣美善的恩賜和各樣全備的賞賜都是從上頭來的。一份好的禮物，不只是某樣有價值的東西——它是由一個認識你的人所選擇的。他們特別為你著想，他們注意過你。禮物是個人化的，它承載著送禮者的心意。當你知道送禮的人愛你、信任他們的品格，你甚至可以接受那些你本來會推開的東西，甚至是艱難的、讓你痛苦的東西。</p>
+      <p>想想你上一次接受批評是什麼時候。如果那是來自一個你知道真心愛你、真正在乎你的人，我相信你在某個時刻意識到那是一份禮物。當你信任送禮的人，你就能把試煉當作禮物接受，即使它是痛苦的，因為你知道背後的意圖是好的。</p>
+      <p>但如果你不認識或不信任送禮的人——你不確定他們的動機，你懷疑可能有什麼條件——你就無法真正接受它。你把那份禮物放在一臂之外。你去尋找那個角度。而那本是以愛送出的禮物，就被誤讀為別的東西，你最終拒絕了那個本來是為你好的東西。</p>
+      <p>第18節：「他按自己的旨意，用真道生了我們。」雅各告訴我們私慾生出罪，罪生出死。現在他向我們展示神的回答——神賜給我們最偉大的禮物。神藉著祂的話語賜給我們一個<em>新生命</em>。在十字架上，耶穌擔當了我們所有罪所當受的刑罰，並勝過了死亡，讓我們可以得到新生命。接受這個新生命的方式，是藉著真理的道——那就是聖經裡所揭示的關於耶穌的真理。祂啟示了自己，讓我們可以認識祂，而祂的啟示就是耶穌基督。我希望你今天認識耶穌。祂是神最偉大的禮物。</p>
+
+      <div class="scripture-block">
+        我親愛的弟兄們，這是你們所知道的，但各人要快快地聽，慢慢地說，慢慢地動怒；因為人的怒氣並不成就神的義。所以，你們要脫去一切的污穢和盈餘的邪惡，存溫柔的心領受那所栽種的道，就是能救你們靈魂的道。
+        <span class="scripture-ref">雅各書 1:19–21</span>
+      </div>
+
+      <p>雅各並不是在給我們一張待辦清單，他是在幫助我們真正聽進他說的話。我們大多數人，當聽到某件聽起來很難、很困難，或我們就是不想相信的事，就不再繼續聽，開始說話——不管是在心裡還是對別人——然後就動怒了。當我們這樣做，就錯過了神想在我們生命中做的事。讓神的話對你說話。那所栽種的道，只能在一個願意聆聽、安靜、謙遜的人裡面做工。</p>
+
+      <div class="scripture-block">
+        只是你們要行道，不要單單聽道，自己欺哄自己。因為聽道而不行道的，就像人對著鏡子看自己本來的面目，看見，走後，隨即忘了他的相貌如何。惟有詳細察看那全備、使人自由之律法的，並且時常如此，這人既不是聽了就忘，乃是實在行出來，就在他所行的事上必然得福。
+        <span class="scripture-ref">雅各書 1:22–25</span>
+      </div>
+
+      <p>在古代，看見自己其實是相當罕見的事。鏡子很貴，不是普通人能有的東西。普通人唯一可能看到自己的地方，是一汪靜水的水面——他們自己的倒影。</p>
+      <p>所以當雅各說到一個人對著鏡子看，然後轉身離開、立刻就忘了自己的面貌，他是在描述一個有那麼一刻看到了關於自己的真相，然後就……走開了的人。</p>
+      <p>他是在要我們仔細察看那使人自由的律法——那就是神的話語。當我們仔細察看聖經，我們看見什麼？我們看見誰？耶穌。他是在要我們仔細凝視耶穌，讓我們被改變與更新。而當你真正看見耶穌——真的看見祂——你就被改變了。</p>
+
+      <div class="scripture-block">
+        若有人自以為虔誠，卻不勒住他的舌頭，反欺哄自己的心，這人的虔誠是虛的。在神我們的父面前，那清潔沒有玷污的虔誠，就是看顧在患難中的孤兒寡婦，並且保守自己不沾染世俗。
+        <span class="scripture-ref">雅各書 1:26–27</span>
+      </div>
+
+      <p>雅各說，清晰看見的結果，是你被改變了。你會結出果子。結果的證據是什麼？你的言語和你的人際關係都被改變了。</p>
+      <p>如果我們斷章取義來讀這段，雅各只不過是在給我們的屬靈待辦清單再加幾件事——關顧弱勢群體、保守自己、更努力嘗試。但其實，他是在向我們展示，當那使人自由的律法——神的話語——開始在我們生命中做工時，會發生什麼事。</p>
+      <p>有些基督徒試圖迴避所有的試探。他們遠離世界，努力管住肉體，向魔鬼禱告。這些不一定是壞事。但那個因為罪而仍然在你心裡的邪惡私慾呢？你需要某樣能夠摧毀那個私慾的東西，因為就算你盡了全力，你也無法避免外在的試探。</p>
+      <p>一位名叫湯瑪斯·查爾默斯（Thomas Chalmers）的蘇格蘭老牧師，曾講過一篇著名的講道，題目是〈新的感情的驅逐力量〉（The Expulsive Power of a New Affection）。他的論點簡單卻深刻：你無法靠著更努力地「不去渴望」那個罪的私慾來擊敗它。你只能靠著更渴望另一樣東西來擊敗它。一種新的感情不只是與舊的競爭——它把舊的驅逐出去。</p>
+      <p>這正是雅各告訴我們的。神藉著真理的道給了我們新生命。不是一套新的規則，不是更好的意志力——而是新生命。有著新渴望的新生命。</p>
+      <p>讓我回到我們的兩個例子。那個需要孩子成功的父母——為什麼那個渴望對你有如此強烈的控制？因為在你內心深處，你需要證明你已經足夠了。但福音說，那個判決已經宣告了。在你的孩子參加第一次考試之前，在你做出第一個教養決定之前。神看著你——不是看你的表現，不是看你孩子的表現——祂說：「這一個是我的，我揀選了這一個，我賜給這一個新生命。」</p>
+      <p>當那個判決深入你的心——當你不只是相信，而是<em>接受</em>你的身份認同是在十字架上被確定的——某件事就發生了。那個控制鬆開了。不是因為你不再在乎孩子，你實際上更在乎了。但那種絕望消失了。你可以讓孩子失敗，因為他們的失敗不再對你或他們的價值說任何話。你自由了，可以真正地愛他們，而不是利用他們。這就是新感情的驅逐力量。舊的渴望不只是被管理，它被取代了。</p>
+      <p>而那個謹慎管理自己的人際關係能量的人——為什麼？因為在你內心深處，你相信如果你給得太多，就不會剩下足夠的給自己。你是你自己的供應。但看看神做了什麼。第18節說——「他按自己的旨意，用真道生了我們。」祂沒有先計算代價，沒有先評估我們是否值得這份投資。祂花了一切。十字架是宇宙歷史上最昂貴的慷慨行動，而祂沒有留下任何保留。當你真正知道——真的知道——你被一個永遠不會枯竭、不會改變、已經給了你所能想像的最昂貴禮物的人所愛，你就停止囤積了。不是因為你咬緊牙關強迫自己慷慨，而是因為你不再害怕耗盡。你有一個不會枯竭的源頭。</p>
+      <p>這就是那所栽種的道的運作方式，這就是認識耶穌所帶來的改變——那個罪的私慾被一個新的渴望所取代。</p>
+      <p>為什麼我們有這個罪的問題？因為我們是孤兒。在伊甸園裡，我們讓自己成了孤兒。我們拒絕了天父的愛，說：我們自己過日子。</p>
+      <p><em>「在神我們的父面前，那清潔沒有玷污的虔誠，就是看顧在患難中的孤兒寡婦。」</em>神不正是這樣做的嗎？祂來尋找我們。</p>
+      <p>我們讀到「看顧」這個詞，會想到就是寄個聖誕禮盒，或者認養一個孩子——那些都不是壞事。但這不是這個詞的意思。這些詞的意思是，刻意地、代價高昂地，主動靠近脆弱的人，帶來真實的、個人的照顧。</p>
+      <p>這聽起來像什麼？刻意的。代價高昂的。主動靠近。真實的個人照顧。為什麼？為了讓你永遠不會被遺棄，永遠不再孤單，永遠在祂的家中有一席之地。祂被遺棄了，為的是讓你能被收養。被永遠地愛，沒有止境。</p>
+    </div>
+  </article>
+
+  <!-- ─── BAHASA INDONESIA ─── -->
+  <article class="lang-content" id="content-id" lang="id">
+    <div class="sermon-text">
+      <p>Minggu lalu kita belajar matematika baru. Matematika dunia berkata penderitaan adalah pengurangan. Yakobus mengajarkan kita bahwa penderitaan dan pencobaan, ketika menguji imanmu, sebenarnya adalah pertambahan. Kamu tidak kehilangan atau menjadi lebih sedikit — kamu menjadi lebih, sempurna dan matang.</p>
+      <p>Kita belajar bahwa cara menghadapi penderitaan dan pencobaan bukan hanya dengan berjuang atau memaksakan diri melewatinya. Melainkan dengan memandang kepada Yesus — hikmat Allah. Dialah yang kita butuhkan saat menderita, bukan jalan keluar.</p>
+      <p>Minggu lalu kita berbicara tentang sumber daya yang Yesus sediakan ketika sesuatu terjadi <em>pada</em> kita. Minggu ini dia akan memberikan kita sumber daya yang kita butuhkan untuk apa yang terjadi di <em>dalam</em> kita. Artinya, masalah terbesar dalam hidup kita bukan keadaan kita, bukan penderitaan kita, bukan orang-orang di sekitar kita. Masalah terbesar kita adalah diri kita sendiri.</p>
+
+      <div class="scripture-block">
+        Berbahagialah orang yang bertahan dalam pencobaan, sebab apabila ia sudah tahan uji, ia akan menerima mahkota kehidupan yang dijanjikan Allah kepada barangsiapa yang mengasihi Dia.
+        <span class="scripture-ref">Yakobus 1:12</span>
+      </div>
+
+      <p>Setelah mengajarkan kita tentang pencobaan dan penderitaan, dia memberikan kita janji yang luar biasa. Bagi mereka yang bertahan dalam pencobaan — kamu akan menerima mahkota kehidupan. Ada hadiah bagi ketekunan, yang berarti pencobaan kita punya tujuan. Allah sedang menggunakannya untuk melakukan sesuatu yang besar dalam diri kita dan bagi kita. Tapi kita perlu tahu sesuatu: apa perbedaan antara ujian dan godaan?</p>
+
+      <div class="scripture-block">
+        Apabila seorang dicobai, janganlah ia berkata: "Pencobaan ini datang dari Allah!" Sebab Allah tidak dapat dicobai oleh yang jahat, dan Ia sendiri tidak mencobai siapapun. Tetapi tiap-tiap orang dicobai oleh keinginannya sendiri, karena ia diseret dan dipikat olehnya. Dan apabila keinginan itu telah dibuahi, ia melahirkan dosa; dan apabila dosa itu sudah matang, ia melahirkan maut.
+        <span class="scripture-ref">Yakobus 1:13–15</span>
+      </div>
+
+      <p>Allah memang menguji kamu. Tapi Dia tidak menggoda kamu. Inilah perbedaannya. Ujian bertujuan untuk <em>mengungkapkan</em> apa yang sudah ada di dalam dirimu dan memberikanmu pengalaman yang kamu butuhkan untuk menjadi lebih dari sebelumnya. Godaan <em>mengeksploitasi</em> apa yang sudah ada di dalam dirimu dan bertujuan untuk menghancurkanmu. Allah melakukan yang pertama. Dia tidak pernah melakukan yang kedua.</p>
+      <p>Dan kemudian Yakobus memberitahu kita mengapa godaan memiliki kuasa yang begitu besar dalam hidup kita. Karena keinginan jahat kita sendiri. Milikmu sendiri. Bukan milik orang lain, bukan milik budaya, bukan milik iblis. Yakobus tidak menyangkal bahwa hal-hal itu ada atau berkontribusi, tapi dia mengatakan bahwa ketika hal-hal lain itu berperan, mereka bisa menangkap kita karena ada sesuatu di dalam diri kita yang ikut meraih balik.</p>
+      <p>Sekarang, lihat gambaran yang dia berikan kepada kita. Konsepsi dan kelahiran. Keinginan mengandung. Melahirkan dosa. Dan dosa, ketika sudah matang, melahirkan maut.</p>
+      <p>Apakah kamu tahu tentang burung tekukur atau burung parasit (cuckoo)? Kamu bisa menemukannya di Taiwan. Mereka tidak membesarkan anak-anak mereka sendiri. Sebaliknya, mereka menyelinap ke sarang burung lain dan bertelur di antara telur-telur induk semang. Induk semang biasanya tidak bisa membedakannya. Jadi dia mengerami telur itu, menghangatkannya, melindunginya. Tapi anak burung cuckoo menetas lebih dulu, dan langsung agresif — ia mendorong telur atau anak-anak burung lainnya keluar dari sarang. Dan induk semang mengira itu adalah bayinya sendiri. Jadi kini induk semang sedang memberi makan parasit yang sebenarnya sedang menghancurkan masa depannya.</p>
+      <p>Dunia, daging kita, dan iblis. Burung-burung cuckoo. Mereka bertelur dalam hidup kita. Dan karena dosa telah merusak kita, kita tidak mengenali telur buruk itu dan kita menganggapnya milik kita sendiri. Kita menginginkannya. Melindunginya. Membenarkannya. Memberinya makan. Memberinya apa yang dibutuhkan untuk bertahan. Dan ia tumbuh. Dan ketika terlambat kita sadar bahwa kita selama ini memberi makan parasit asing yang sedang menghancurkan hidup dan masa depan kita.</p>
+      <p>Izinkan saya menunjukkan bagaimana ini bisa terjadi dalam kehidupan kita. Ini khususnya untuk para orang tua, tapi anak-anak juga harus mendengar. Sebagai orang tua, kita ingin anak-anak kita berhasil. Itu bukan hal yang buruk, itu adalah kasih. Saya pikir setiap orang tua di ruangan ini ingin anaknya berkembang.</p>
+      <p>Tapi apa yang terjadi ketika keinginan yang baik diputarbalikkan oleh dosa? Anakmu pulang dengan hasil ujian yang buruk. Atau dia tidak lolos seleksi tim olahraga. Atau dia berkelakuan buruk di depan umum. Dan sesuatu terjadi di dalam dirimu yang melampaui rasa kecewa untuknya. Kamu kecewa. Kamu marah.</p>
+      <p>Dan kamu berkata pada dirimu sendiri itu karena kamu peduli dengan masa depan mereka. Tapi keinginan yang berdosa mengambil hal yang baik itu dan menjadikan prestasi mereka sebagai prestasimu. Nilai mereka adalah nilaimu. Keberhasilan mereka adalah bukti bahwa kamu adalah orang tua yang baik. Jadi kamu menekan. Mungkin tidak dengan kasar. Mungkin dengan bahasa dorongan. Lebih banyak les, lebih banyak latihan, standar yang lebih tinggi. Dan anakmu belajar sesuatu dalam momen-momen itu yang tidak pernah kamu katakan dengan lantang dan tidak pernah kamu maksudkan: bahwa kasihmu punya syarat. Bahwa mereka berharga bagimu ketika mereka berhasil.</p>
+      <p>Itu bukan sekadar kekurangan karakter atau kesalahan dalam pengasuhan. Keberhasilan mereka telah menjadi juru selamatmu — sebuah berhala yang kamu gunakan untuk menyelamatkan dirimu, hal yang kamu andalkan untuk memberitahumu bahwa kamu sudah cukup. Dan kamu perlahan-lahan sedang mengorbankan anakmu dan hubunganmu dengan anakmu di atas mezbah itu. Dua puluh tahun dari sekarang, mereka akan menjadi orang dewasa yang tidak bisa beristirahat, yang tidak pernah merasa cukup bagaimanapun yang mereka capai.</p>
+      <p>Izinkan saya mencoba satu contoh lagi. Kamu hanya ingin sedikit ketenangan, sedikit istirahat. Jadi kamu melakukan hal-hal untuk melindungi waktu dan ketenanganmu. Sekali lagi, itu bukan hal yang buruk. Kadang itu soal bertahan hidup.</p>
+      <p>Dimulai dari hal kecil. Kamu tidak menjadi sukarelawan karena kamu sibuk — dan memang kamu sibuk. Kamu menarik diri dari persahabatan yang mulai menguras energi — dan memang menguras. Kamu berhenti menghubungi seseorang yang sedang berjuang karena jujur saja kamu tidak punya kapasitas sekarang — dan memang tidak punya.</p>
+      <p>Setiap keputusan, dilihat secara individual, masuk akal. Beralasan. Bahkan terlihat bijak. Tapi mundur selangkah. Dan kamu mulai memperhatikan polanya. Hubungan dalam hidupmu telah diam-diam diorganisir di sekitar sebuah pertanyaan: apa biayanya bagi saya? Orang-orang yang mudah diajak bergaul, kamu jaga dekat. Orang-orang yang butuh terlalu banyak, kamu kelola jaraknya. Dan ketika krisis seseorang datang di saat yang salah, kamu merasakan sesuatu — bukan belas kasihan, melainkan rasa kesal yang samar bahwa mereka membutuhkan sesuatu darimu sekarang.</p>
+      <p>Kamu menyebutnya kebijaksanaan. Kadang kamu menyebutnya batasan. Tapi jika jujur, ada kedataran dalam hubunganmu. Tidak ada yang mendapatkan kamu yang sejati karena kamu yang sejati sedang disimpan untuk sesuatu. Kamu hanya tidak yakin untuk apa. Dan kamu telah menyebutnya perawatan diri.</p>
+      <p>Inilah kebenaran yang berat. Ketika kamu dan saya berdosa, bukan karena kita lemah. Melainkan karena pada saat itu, kita menginginkan sesuatu lebih dari kita menginginkan Allah. Kita bukan korban godaan. Kita adalah peserta yang bersedia karena ada sesuatu di dalam diri kita yang rusak oleh dosa.</p>
+
+      <div class="scripture-block">
+        Saudara-saudaraku yang kekasih, janganlah sesat! Setiap pemberian yang baik dan setiap anugerah yang sempurna, datangnya dari atas, diturunkan dari Bapa segala terang; pada-Nya tidak ada perubahan atau bayangan karena pertukaran. Atas kehendak-Nya sendiri Ia telah menjadikan kita oleh firman kebenaran, supaya kita pada tingkat yang tertentu menjadi anak sulung di antara semua ciptaan-Nya.
+        <span class="scripture-ref">Yakobus 1:16–18</span>
+      </div>
+
+      <p>Jadi Yakobus memperingatkan kita: jangan sesat, karena godaan dan keinginan jahatmu akan berbohong terang-terangan kepadamu. Mereka akan memberitahumu bahwa Allah menyembunyikan sesuatu yang baik darimu. Itu adalah kebohongan tertua dalam sejarah. Secara harfiah. Itu adalah hal pertama yang dikatakan ular kepada Hawa di taman: "Apakah benar Allah berfirman...?" Dengan kata lain, "Apakah Allah benar-benar baik? Apakah Dia benar-benar ada untuk kamu?"</p>
+      <p>Dan Yakobus berkata: tidak. Berhenti. Jangan sesat. Biarkan saya memberitahumu bagaimana Allah sebenarnya.</p>
+      <p>Setiap pemberian yang baik dan setiap anugerah yang sempurna, datangnya dari atas. Hadiah yang baik bukan sekadar sesuatu yang berharga — hadiah itu dipilih oleh seseorang yang mengenalmu. Mereka telah memikirkanmu secara khusus. Mereka memperhatikanmu. Hadiah itu bersifat pribadi — ia membawa niat si pemberi. Ketika kamu tahu pemberi hadiah itu mencintaimu, ketika kamu memercayai karakternya — kamu bahkan bisa menerima hal-hal yang biasanya kamu tolak. Bahkan hal-hal yang sulit. Bahkan yang menyakitkan.</p>
+      <p>Ingat terakhir kali kamu menerima kritik. Jika itu datang dari seseorang yang kamu tahu benar-benar mengasihimu, benar-benar peduli padamu, saya yakin pada suatu saat kamu menyadari bahwa itu adalah hadiah. Ketika kamu percaya kepada pemberi hadiah, kamu bisa menerima pencobaan sebagai hadiah, bahkan ketika itu menyakitkan, karena kamu tahu niat di baliknya adalah baik.</p>
+      <p>Tapi ketika kamu tidak mengenal atau tidak memercayai pemberinya — ketika kamu tidak yakin dengan motifnya, ketika kamu mencurigai ada syaratnya — kamu tidak bisa benar-benar menerimanya. Kamu memegang hadiah itu dari jarak jauh. Kamu mencari-cari maksud tersembunyi. Dan apa yang dikirimkan dengan kasih disalahartikan sebagai sesuatu yang lain. Kamu akhirnya menolak hal yang dimaksudkan untuk kebaikanmu.</p>
+      <p>Ayat 18: Atas kehendak-Nya sendiri Ia telah menjadikan kita oleh firman kebenaran. Yakobus telah memberitahu kita bahwa keinginan melahirkan dosa, dan dosa melahirkan maut. Dan kini dia menunjukkan jawaban Allah kepada kita — hadiah terbesar Allah bagi kita. Allah memberikan kita <em>kelahiran baru</em> melalui firman-Nya. Di kayu salib, Yesus menanggung hukuman untuk semua dosa yang kita lahirkan dan mengalahkan maut sehingga kita bisa mendapatkan kelahiran baru. Cara menerima kelahiran baru ini adalah melalui firman kebenaran — kebenaran tentang Yesus yang dinyatakan dalam Alkitab. Dia telah menyatakan diri-Nya agar kita bisa mengenal-Nya, dan wahyu-Nya adalah Yesus Kristus. Saya ingin kamu mengenal Yesus hari ini. Dialah hadiah terbesar Allah.</p>
+
+      <div class="scripture-block">
+        Hai saudara-saudara yang kukasihi, ingatlah hal ini: setiap orang hendaklah cepat untuk mendengar, tetapi lambat untuk berkata-kata, dan juga lambat untuk marah; sebab amarah manusia tidak mengerjakan kebenaran di hadapan Allah. Sebab itu buanglah segala sesuatu yang kotor dan kejahatan yang begitu banyak itu dan terimalah dengan lemah lembut firman yang tertanam di dalam hatimu, yang berkuasa menyelamatkan jiwamu.
+        <span class="scripture-ref">Yakobus 1:19–21</span>
+      </div>
+
+      <p>Yakobus tidak sedang memberikan kita daftar hal yang harus dilakukan. Dia sedang membantu kita benar-benar mendengar apa yang dia katakan. Kebanyakan dari kita, ketika mendengar sesuatu yang terdengar sulit, menyulitkan, atau yang tidak ingin kita percayai, tidak mendengarkan — kita langsung berbicara, entah secara internal atau kepada orang lain. Dan kita marah. Ketika kita melakukan itu — kita melewatkan apa yang Allah ingin lakukan dalam hidup kita. Biarkan firman Allah berbicara kepadamu. Firman yang tertanam itu hanya bisa bekerja dalam diri seseorang yang mendengarkan, tenang, dan rendah hati.</p>
+
+      <div class="scripture-block">
+        Tetapi hendaklah kamu menjadi pelaku firman dan bukan hanya pendengar saja; sebab jika tidak demikian kamu menipu diri sendiri. Sebab jika seorang hanya mendengar firman saja dan tidak melakukannya, ia adalah seumpama seorang yang sedang mengamat-amati mukanya yang sebenarnya di depan cermin. Baru saja ia memandang dirinya, ia sudah pergi atau ia segera lupa bagaimana rupanya. Tetapi barangsiapa meneliti hukum yang sempurna, yaitu hukum yang memerdekakan orang, dan ia bertekun di dalamnya, jadi bukan pendengar yang pelupa, melainkan pelaku yang bekerja, ia akan berbahagia oleh perbuatannya.
+        <span class="scripture-ref">Yakobus 1:22–25</span>
+      </div>
+
+      <p>Di zaman kuno, melihat diri sendiri sebenarnya cukup langka. Cermin mahal dan tidak umum. Satu-satunya tempat orang biasa mungkin bisa melihat dirinya adalah di permukaan air yang tenang — pantulannya di permukaan.</p>
+      <p>Jadi ketika Yakobus berbicara tentang seseorang yang melihat cermin lalu pergi dan segera lupa bagaimana rupanya, dia sedang menggambarkan seseorang yang untuk sesaat melihat kebenaran tentang dirinya sendiri, lalu begitu saja… pergi.</p>
+      <p>Dia meminta kita untuk meneliti dengan seksama hukum yang memerdekakan — itulah firman Allah. Ketika kita meneliti dengan seksama Alkitab, apa yang kita lihat? Siapa yang kita lihat? Yesus. Dia meminta kita untuk menatap Yesus dengan seksama dan diubah serta diperbarui. Dan ketika kamu melihat Yesus — benar-benar melihat-Nya — kamu berubah.</p>
+
+      <div class="scripture-block">
+        Jikalau ada seorang menganggap dirinya beribadah, tetapi tidak mengekang lidahnya, ia menipu dirinya sendiri, maka sia-sialah ibadahnya. Ibadah yang murni dan yang tak bercacat di hadapan Allah, Bapa kita, ialah mengunjungi yatim piatu dan janda-janda dalam kesusahan mereka, dan menjaga supaya dirinya sendiri tidak dicemarkan oleh dunia.
+        <span class="scripture-ref">Yakobus 1:26–27</span>
+      </div>
+
+      <p>Yakobus berkata hasil dari melihat dengan jernih adalah kamu diubah. Kamu akan berbuah. Dan inilah buktinya: perkataan dan hubunganmu berubah.</p>
+      <p>Sekarang, beberapa orang Kristen berusaha menghindari semua godaan. Mereka menjauh dari dunia, mencoba mengendalikan daging mereka, berdoa melawan iblis. Yang mana bukan hal yang salah. Tapi bagaimana dengan keinginan jahat yang masih ada di dalam dirimu karena dosa? Kamu membutuhkan sesuatu yang bisa menghancurkan keinginan yang berdosa itu, karena bahkan jika kamu melakukan yang terbaik, kamu tidak akan bisa menghindari godaan dari luar.</p>
+      <p>Seorang pendeta Skotlandia tua bernama Thomas Chalmers pernah berkhotbah dalam sebuah khotbah terkenal berjudul "The Expulsive Power of a New Affection" (Kuasa Pengusiran dari Kasih Sayang yang Baru). Argumennya sederhana namun mendalam. Kamu tidak bisa mengalahkan keinginan berdosa yang ada di dalam hanya dengan berusaha lebih keras untuk tidak menginginkannya. Kamu hanya bisa mengalahkannya dengan menginginkan sesuatu yang lain lebih banyak. Kasih sayang yang baru tidak hanya bersaing dengan yang lama — ia mengusirnya.</p>
+      <p>Dan itulah persis yang Yakobus katakan kepada kita. Allah memberi kita kelahiran baru melalui firman kebenaran. Bukan seperangkat aturan baru. Bukan kemauan yang lebih kuat. Kelahiran baru. Kehidupan baru dengan keinginan-keinginan baru.</p>
+      <p>Jadi izinkan saya kembali ke dua contoh kita. Orang tua yang membutuhkan anaknya untuk berhasil. Mengapa keinginan itu mencengkeram kamu dengan begitu kuat? Karena di suatu tempat jauh di dalam hati, kamu membutuhkan bukti bahwa kamu sudah cukup. Tapi Injil berkata verdiknya sudah ada. Sebelum anakmu mengikuti ujian pertama. Sebelum kamu membuat keputusan pengasuhan pertama. Allah memandangmu — bukan prestasimu, bukan prestasi anakmu — dan Dia berkata, "Ini milik-Ku. Aku memilih yang ini. Aku memberikan yang ini kelahiran baru."</p>
+      <p>Ketika verdikt itu cukup dalam masuk ke dalam hatimu — ketika kamu tidak hanya percaya, tapi benar-benar <em>menerima</em> bahwa identitasmu telah ditetapkan di kayu salib — sesuatu terjadi. Cengkeraman itu melepas. Bukan karena kamu berhenti peduli pada anakmu. Kamu justru lebih peduli. Tapi rasa putus asa itu hilang. Kamu bisa membiarkan anakmu gagal karena kegagalan mereka tidak lagi mengatakan apapun tentang nilai dirimu atau mereka. Kamu bebas untuk benar-benar mengasihi mereka alih-alih menggunakan mereka. Itulah kuasa pengusiran dari kasih sayang yang baru. Keinginan yang lama tidak sekadar dikelola. Ia digantikan.</p>
+      <p>Dan orang yang dengan hati-hati mengelola energi relasionalnya — menghemat diri sendiri. Mengapa? Karena di suatu tempat dalam hati, kamu percaya bahwa jika kamu memberi terlalu banyak, tidak akan ada yang tersisa untukmu. Kamu adalah sumber persediaanmu sendiri. Tapi lihatlah apa yang Allah lakukan. Ayat 18 — atas kehendak-Nya sendiri Ia telah menjadikan kita. Dia tidak menghitung biayanya terlebih dahulu. Dia tidak memeriksa apakah kita layak mendapat investasi itu. Dia mengeluarkan segalanya. Salib adalah tindakan kemurahan hati yang paling mahal dalam sejarah alam semesta, dan Dia tidak menahan apapun. Ketika kamu tahu — benar-benar tahu — bahwa kamu dikasihi oleh seseorang yang tidak pernah kehabisan, yang tidak berubah, yang sudah memberikan hadiah paling mahal yang bisa dibayangkan — kamu berhenti menimbun. Bukan karena kamu menggigit gigi dan memaksa dirimu untuk murah hati. Tapi karena kamu tidak lagi takut kehabisan. Kamu punya sumber yang tidak pernah habis.</p>
+      <p>Begitulah cara firman yang tertanam bekerja. Begitulah yang dilakukan oleh mengenal Yesus. Keinginan yang berdosa itu digantikan oleh keinginan yang baru.</p>
+      <p>Mengapa kita punya masalah dosa ini? Karena kita adalah yatim piatu. Di taman Eden, kita meyatimkan diri kita sendiri. Kita menolak kasih Bapa dan berkata, kita akan hidup sendiri.</p>
+      <p><em>Ibadah yang murni dan yang tak bercacat di hadapan Allah, Bapa kita, ialah mengunjungi yatim piatu dan janda-janda.</em> Bukankah itulah yang Allah lakukan? Dia datang mengejar kita.</p>
+      <p>Kita membaca kata-kata "mengunjungi" dan terkesan seperti, ya, kirim kotak Natal. Atau sponsori seorang anak. Yang tentu bukan hal yang buruk. Tapi bukan itu artinya. Kata-kata ini berarti gerakan yang disengaja, berbiaya tinggi menuju orang-orang yang rentan yang menghasilkan kepedulian yang nyata dan personal.</p>
+      <p>Apakah itu kedengarannya seperti sesuatu? Disengaja. Berbiaya tinggi. Bergerak menuju. Kepedulian yang nyata dan personal. Mengapa? Supaya kamu tidak pernah ditinggalkan. Tidak pernah sendirian dan tidak pernah tanpa tempat dalam keluarga-Nya. Dia ditinggalkan supaya kamu bisa diadopsi. Dikasihi selamanya, tanpa akhir.</p>
+    </div>
+  </article>
+
+</main>
+
+<footer class="footer">
+  <strong>Taichung International Fellowship</strong><br>
+  TIF North: Morrison Academy, Beitun · TIF South: SYME, Xitun<br>
+  <a href="https://taichunginternationalfellowship.org">taichunginternationalfellowship.org</a> · +886 437 007 933
+  <br><br>
+  <span style="font-size:0.72rem;">
+    Translations generated for the benefit of our Mandarin and Indonesian-speaking congregation members.<br>
+    經文翻譯為繁體中文，以服務我們說中文的會眾。Terjemahan tersedia dalam Bahasa Indonesia untuk jemaat kami.<br><br>
+    <a href="archive.html">← Back to Sermon Archive</a> · Last updated: April 11, 2026
+  </span>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+    });
+    const content = document.getElementById('content-' + lang);
+    if (content) content.classList.add('active');
+    const buttons = document.querySelectorAll('.lang-btn');
+    const langIndex = { en: 0, zh: 1, id: 2 };
+    const idx = langIndex[lang];
+    if (buttons[idx]) {
+      buttons[idx].classList.add('active');
+      buttons[idx].setAttribute('aria-pressed', 'true');
+    }
+    const titles = { en: 'New Desires', zh: '新的渴望', id: 'Keinginan Baru' };
+    const scriptures = { en: 'James 1:12–27', zh: '雅各書 1:12-27', id: 'Yakobus 1:12–27' };
+    document.getElementById('hero-title').textContent = titles[lang] || titles.en;
+    document.getElementById('hero-scripture').textContent = scriptures[lang] || scriptures.en;
+    document.documentElement.lang = lang === 'zh' ? 'zh-TW' : lang;
+  }
+</script>
+</body>
+</html>
