@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sermon Archive | TIF Sermon Translations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Asul:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dark-blue: #1b2327;
+      --extra-dark-blue: #121b20;
+      --light-blue: #27b7d8;
+      --white: #ffffff;
+      --text: #333333;
+      --bg-light: #f7fbfc;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Asap', Arial, sans-serif; color: var(--text); background: var(--white); line-height: 1.75; }
+    .header { background: var(--extra-dark-blue); padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .header-brand { display: flex; align-items: center; gap: 12px; }
+    .header-logo-mark { width: 40px; height: 40px; background: var(--light-blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Asul', sans-serif; font-weight: 700; color: white; font-size: 1rem; flex-shrink: 0; }
+    .header-name { font-family: 'Asul', sans-serif; color: white; font-size: 1rem; font-weight: 700; line-height: 1.2; }
+    .header-sub { color: rgba(255,255,255,0.55); font-size: 0.78rem; margin-top: 2px; }
+    .header-links { display: flex; gap: 20px; align-items: center; }
+    .header-link { color: rgba(255,255,255,0.55); font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
+    .header-link:hover { color: var(--light-blue); }
+    .header-link.active { color: var(--light-blue); font-weight: 600; }
+    /* HERO */
+    .archive-hero {
+      background: linear-gradient(150deg, var(--dark-blue) 0%, #1a3040 100%);
+      color: white; padding: 56px 32px 48px; text-align: center;
+    }
+    .hero-eyebrow { display: inline-block; font-size: 0.72rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--light-blue); margin-bottom: 14px; font-weight: 600; }
+    .hero-title { font-family: 'Asul', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.2; margin-bottom: 14px; }
+    .hero-sub { color: rgba(255,255,255,0.65); font-size: 1rem; max-width: 520px; margin: 0 auto; }
+    .hero-divider { width: 48px; height: 3px; background: var(--light-blue); margin: 28px auto 0; border-radius: 2px; }
+    /* ARCHIVE CONTENT */
+    .archive-outer { max-width: 860px; margin: 0 auto; padding: 56px 32px 80px; }
+    .current-banner {
+      background: var(--light-blue);
+      color: white;
+      border-radius: 10px;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 52px;
+      flex-wrap: wrap;
+    }
+    .current-banner-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; opacity: 0.85; margin-bottom: 4px; }
+    .current-banner-title { font-family: 'Asul', sans-serif; font-size: 1.1rem; font-weight: 700; }
+    .current-banner-meta { font-size: 0.85rem; opacity: 0.9; margin-top: 2px; }
+    .current-banner-btn {
+      background: white;
+      color: var(--dark-blue);
+      text-decoration: none;
+      font-family: 'Asap', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 100px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    /* SERIES */
+    .series-section { margin-bottom: 52px; }
+    .series-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--bg-light);
+    }
+    .series-badge {
+      background: var(--dark-blue);
+      color: var(--light-blue);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .series-title { font-family: 'Asul', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--dark-blue); }
+    .series-count { color: #888; font-size: 0.85rem; margin-left: auto; white-space: nowrap; }
+    /* SERMON CARD */
+    .sermon-card {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      border: 1.5px solid #e8eff2;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      transition: box-shadow 0.18s, border-color 0.18s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .sermon-card:hover { border-color: var(--light-blue); box-shadow: 0 4px 18px rgba(39,183,216,0.12); }
+    .sermon-card-accent { width: 5px; background: var(--light-blue); flex-shrink: 0; }
+    .sermon-card-body { padding: 18px 22px; flex: 1; }
+    .card-week { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--light-blue); font-weight: 700; margin-bottom: 5px; }
+    .card-title { font-family: 'Asul', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--dark-blue); margin-bottom: 5px; }
+    .card-scripture { font-size: 0.88rem; color: #666; font-style: italic; margin-bottom: 10px; }
+    .card-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .card-date { font-size: 0.78rem; color: #888; }
+    .lang-badge {
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .lang-pill {
+      background: #e8f7fb;
+      color: var(--dark-blue);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 100px;
+      letter-spacing: 0.5px;
+    }
+    .sermon-card-arrow {
+      display: flex;
+      align-items: center;
+      padding: 0 18px;
+      color: #ccc;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .sermon-card:hover .sermon-card-arrow { color: var(--light-blue); }
+    /* FOOTER */
+    .footer { background: var(--extra-dark-blue); color: rgba(255,255,255,0.45); text-align: center; padding: 28px 24px; font-size: 0.8rem; line-height: 1.7; }
+    .footer a { color: var(--light-blue); text-decoration: none; }
+    .footer strong { color: rgba(255,255,255,0.75); }
+    @media (max-width: 600px) {
+      .header { padding: 14px 20px; flex-direction: column; gap: 8px; text-align: center; }
+      .header-links { justify-content: center; }
+      .archive-hero { padding: 36px 20px 32px; }
+      .archive-outer { padding: 32px 20px 56px; }
+      .current-banner { flex-direction: column; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-brand">
+    <div class="header-logo-mark">TIF</div>
+    <div>
+      <div class="header-name">Taichung International Fellowship</div>
+      <div class="header-sub">台中國際團契 · Persekutuan Internasional Taichung</div>
+    </div>
+  </div>
+  <div class="header-links">
+    <a href="index.html" class="header-link">Current Sermon</a>
+    <a href="archive.html" class="header-link active">Sermon Archive</a>
+  </div>
+</header>
+
+<!-- ARCHIVE HERO -->
+<section class="archive-hero">
+  <span class="hero-eyebrow">Taichung International Fellowship</span>
+  <h1 class="hero-title">Sermon Archive</h1>
+  <p class="hero-sub">Every sermon in English, Traditional Chinese (繁體中文), and Bahasa Indonesia — organized by series.</p>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- ARCHIVE CONTENT -->
+<main class="archive-outer">
+
+  <!-- CURRENT SERMON BANNER -->
+  <div class="current-banner">
+    <div>
+      <div class="current-banner-label">This Sunday · James — Week 3</div>
+      <div class="current-banner-title">No Favorites / 不偏待人 / Tanpa Pilih Kasih</div>
+      <div class="current-banner-meta">James 2:1–13 · April 12, 2026 · Todd Blackhurst</div>
+    </div>
+    <a href="index.html" class="current-banner-btn">Read Now →</a>
+  </div>
+
+  <!-- JAMES SERIES -->
+  <section class="series-section" id="james">
+    <div class="series-header">
+      <span class="series-badge">Series</span>
+      <span class="series-title">James: Faith That Works</span>
+      <span class="series-count">3 messages · 2026</span>
+    </div>
+
+    <a href="sermons/james-week-3.html" class="sermon-card">
+      <div class="sermon-card-accent"></div>
+      <div class="sermon-card-body">
+        <div class="card-week">Week 3</div>
+        <div class="card-title">No Favorites / 不偏待人 / Tanpa Pilih Kasih</div>
+        <div class="card-scripture">James 2:1–13</div>
+        <div class="card-meta">
+          <span class="card-date">April 12, 2026</span>
+          <span class="lang-badge">
+            <span class="lang-pill">EN</span>
+            <span class="lang-pill">中文</span>
+            <span class="lang-pill">ID</span>
+          </span>
+        </div>
+      </div>
+      <div class="sermon-card-arrow">›</div>
+    </a>
+
+    <a href="sermons/james-week-2.html" class="sermon-card">
+      <div class="sermon-card-accent"></div>
+      <div class="sermon-card-body">
+        <div class="card-week">Week 2</div>
+        <div class="card-title">New Desires / 新的渴望 / Keinginan Baru</div>
+        <div class="card-scripture">James 1:12–27</div>
+        <div class="card-meta">
+          <span class="card-date">March 23, 2026</span>
+          <span class="lang-badge">
+            <span class="lang-pill">EN</span>
+            <span class="lang-pill">中文</span>
+            <span class="lang-pill">ID</span>
+          </span>
+        </div>
+      </div>
+      <div class="sermon-card-arrow">›</div>
+    </a>
+
+    <a href="sermons/james-week-1.html" class="sermon-card">
+      <div class="sermon-card-accent"></div>
+      <div class="sermon-card-body">
+        <div class="card-week">Week 1</div>
+        <div class="card-title">New Math / 新的算術 / Matematika Baru</div>
+        <div class="card-scripture">James 1:1–11</div>
+        <div class="card-meta">
+          <span class="card-date">March 16, 2026</span>
+          <span class="lang-badge">
+            <span class="lang-pill">EN</span>
+            <span class="lang-pill">中文</span>
+            <span class="lang-pill">ID</span>
+          </span>
+        </div>
+      </div>
+      <div class="sermon-card-arrow">›</div>
+    </a>
+  </section>
+
+  <!-- COMING SOON NOTE -->
+  <div style="text-align:center; padding: 32px 0; color: #aaa; font-size: 0.88rem; border-top: 1px solid #eee; margin-top: 8px;">
+    <p>More series coming soon — Malachi, 1 Corinthians, and earlier series will be added as they are translated.</p>
+    <p style="margin-top:8px; font-size:0.78rem;">若您希望本網站提供更多系列的講道翻譯，歡迎聯繫我們。</p>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <strong>Taichung International Fellowship</strong><br>
+  TIF North: Morrison Academy, Beitun · TIF South: SYME, Xitun<br>
+  <a href="https://taichunginternationalfellowship.org">taichunginternationalfellowship.org</a> · +886 437 007 933
+  <br><br>
+  <span style="font-size:0.72rem;">
+    Translations generated for the benefit of our Mandarin and Indonesian-speaking congregation members.<br>
+    經文翻譯為繁體中文，以服務我們說中文的會眾。Terjemahan tersedia dalam Bahasa Indonesia untuk jemaat kami.
+  </span>
+</footer>
+
+</body>
+</html>
