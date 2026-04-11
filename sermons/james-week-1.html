@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>James 1:1–11 | TIF Sermon Translations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Asul:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dark-blue: #1b2327;
+      --extra-dark-blue: #121b20;
+      --light-blue: #27b7d8;
+      --white: #ffffff;
+      --text: #333333;
+      --bg-light: #f7fbfc;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Asap', Arial, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.75;
+    }
+    .header {
+      background: var(--extra-dark-blue);
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .header-brand { display: flex; align-items: center; gap: 12px; }
+    .header-logo-mark {
+      width: 40px; height: 40px;
+      background: var(--light-blue);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Asul', sans-serif; font-weight: 700;
+      color: white; font-size: 1rem; flex-shrink: 0;
+    }
+    .header-name { font-family: 'Asul', sans-serif; color: white; font-size: 1rem; font-weight: 700; line-height: 1.2; }
+    .header-sub { color: rgba(255,255,255,0.55); font-size: 0.78rem; margin-top: 2px; }
+    .header-links { display: flex; gap: 20px; align-items: center; }
+    .header-link { color: rgba(255,255,255,0.55); font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
+    .header-link:hover { color: var(--light-blue); }
+    .header-link.active { color: var(--light-blue); font-weight: 600; }
+    .lang-bar {
+      background: var(--dark-blue);
+      padding: 14px 32px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; flex-wrap: wrap;
+    }
+    .lang-label { color: rgba(255,255,255,0.4); font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; margin-right: 4px; }
+    .lang-btn {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.65);
+      padding: 7px 22px; border-radius: 100px; cursor: pointer;
+      font-family: 'Asap', sans-serif; font-size: 0.88rem; font-weight: 500;
+      transition: all 0.2s ease; white-space: nowrap;
+    }
+    .lang-btn.active { background: var(--light-blue); border-color: var(--light-blue); color: white; font-weight: 600; }
+    .lang-btn:hover:not(.active) { border-color: var(--light-blue); color: white; }
+    .sermon-hero {
+      background: linear-gradient(150deg, var(--dark-blue) 0%, #1a3040 100%);
+      color: white; padding: 56px 32px 48px; text-align: center;
+    }
+    .hero-series { display: inline-block; font-size: 0.72rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--light-blue); margin-bottom: 14px; font-weight: 600; }
+    .hero-title { font-family: 'Asul', sans-serif; font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 700; line-height: 1.25; margin-bottom: 18px; }
+    .hero-scripture { font-size: 1rem; color: rgba(255,255,255,0.75); margin-bottom: 24px; font-style: italic; }
+    .hero-meta { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .hero-meta-item { background: rgba(255,255,255,0.1); border-radius: 100px; padding: 5px 14px; font-size: 0.8rem; color: rgba(255,255,255,0.7); }
+    .hero-divider { width: 48px; height: 3px; background: var(--light-blue); margin: 28px auto 0; border-radius: 2px; }
+    .content-outer { max-width: 820px; margin: 0 auto; padding: 48px 32px 72px; }
+    .lang-content { display: none; }
+    .lang-content.active { display: block; }
+    .sermon-text { font-size: 1.05rem; line-height: 1.85; }
+    .sermon-text p { margin-bottom: 1.5rem; }
+    .sermon-text .scripture-block {
+      background: var(--bg-light); border-left: 4px solid var(--light-blue);
+      padding: 16px 22px; margin: 28px 0; border-radius: 0 6px 6px 0;
+      font-style: italic; font-weight: 500; color: var(--dark-blue);
+      font-size: 1rem; line-height: 1.7;
+    }
+    .scripture-ref { display: block; margin-top: 8px; font-style: normal; font-weight: 700; font-size: 0.82rem; color: var(--light-blue); letter-spacing: 0.5px; }
+    .footer {
+      background: var(--extra-dark-blue); color: rgba(255,255,255,0.45);
+      text-align: center; padding: 28px 24px; font-size: 0.8rem; line-height: 1.7;
+    }
+    .footer a { color: var(--light-blue); text-decoration: none; }
+    .footer strong { color: rgba(255,255,255,0.75); }
+    @media (max-width: 600px) {
+      .header { padding: 14px 20px; flex-direction: column; gap: 8px; text-align: center; }
+      .header-links { justify-content: center; }
+      .lang-bar { padding: 12px 16px; }
+      .sermon-hero { padding: 36px 20px 32px; }
+      .content-outer { padding: 32px 20px 56px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-brand">
+    <div class="header-logo-mark">TIF</div>
+    <div>
+      <div class="header-name">Taichung International Fellowship</div>
+      <div class="header-sub">台中國際團契 · Persekutuan Internasional Taichung</div>
+    </div>
+  </div>
+  <div class="header-links">
+    <a href="index.html" class="header-link">Current Sermon</a>
+    <a href="archive.html" class="header-link active">Sermon Archive</a>
+  </div>
+</header>
+
+<!-- LANGUAGE TOGGLE -->
+<nav class="lang-bar" role="navigation" aria-label="Language selection">
+  <span class="lang-label">Read in:</span>
+  <button class="lang-btn active" onclick="setLang('en')" aria-pressed="true">English</button>
+  <button class="lang-btn" onclick="setLang('zh')" aria-pressed="false">繁體中文</button>
+  <button class="lang-btn" onclick="setLang('id')" aria-pressed="false">Bahasa Indonesia</button>
+</nav>
+
+<!-- SERMON HERO -->
+<section class="sermon-hero">
+  <span class="hero-series">Series: James — Week 1</span>
+  <h1 class="hero-title" id="hero-title">New Math</h1>
+  <p class="hero-scripture" id="hero-scripture">James 1:1–11</p>
+  <div class="hero-meta">
+    <span class="hero-meta-item" id="meta-speaker">Todd Blackhurst</span>
+    <span class="hero-meta-item" id="meta-date">March 16, 2026</span>
+    <span class="hero-meta-item">TIF North &amp; South</span>
+  </div>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- CONTENT AREA -->
+<main class="content-outer">
+
+  <!-- ─── ENGLISH ─── -->
+  <article class="lang-content active" id="content-en" lang="en">
+    <div class="sermon-text">
+      <p>Before we get to it, let me say a word about this book. Because for a lot of us, James can feel like the most uncomfortable letter in the New Testament.</p>
+      <p>It is relentlessly practical. James doesn't open with a long doctrinal section. He doesn't write a bunch of beautiful theology before he gets to the application. He leads with the application. What does your faith look like? What does it produce? How are you treating the poor? What are you doing with your tongue? Does your prayer life actually go anywhere?</p>
+      <p>Now, the truth is, some people really like this. Some of you have been waiting for someone to just tell you what to do.</p>
+      <p>And some of you are already a little nervous. You are worried that you are going to get another list of things to do that you are just going to fail at doing.</p>
+      <p>I want to say this right up front: the danger with James, and why so many people misread him, is that it is very easy to take this letter and turn it into a list of things you need to do better. And if you do that, you will walk away from this series feeling like you failed a test. Every. Single. Week.</p>
+      <p>That is not what James is doing. James is not giving you a self-improvement program. One thing we are going to see is that James is helping us align ourselves with Jesus. He wants our hearts to have an undivided devotion to Jesus.</p>
+      <p>And the first thing he wants to talk about is suffering. Because when you suffer, your devotion gets challenged. Suffering exposes the idolatry that lives deep inside. And James wants to help us get rid of that idolatry so we are singularly devoted to Jesus Christ.</p>
+
+      <div class="scripture-block">
+        James, a servant of God and of the Lord Jesus Christ: To the twelve tribes dispersed abroad. Greetings. Consider it a great joy, my brothers and sisters, whenever you experience various trials, because you know that the testing of your faith produces endurance. And let endurance have its full effect, so that you may be mature and complete, lacking nothing.
+        <span class="scripture-ref">James 1:1–4</span>
+      </div>
+
+      <p>James is writing to Jewish Christians scattered across the Roman world. These are not people having a mild inconvenience. Some have been driven from their homes. Some are navigating poverty, social exclusion, and real pressure to give up on following Christ.</p>
+      <p>Notice the two words, "various trials" — what that means is something like tests, pressure, things that strain you to the breaking point. And he says, Consider it a GREAT joy when you experience these things.</p>
+      <p>Now, if you're sitting here and you're not a Christian, or you're not sure what you believe, let's be honest. That sounds absolutely insane. Consider it joy when your life falls apart? That sounds like the kind of thing a religious person says to someone else who is suffering while they sit in comfort. So before you tune me out, let me show you what James is actually doing. He's not asking you to feel happy. He's asking you to do math.</p>
+      <p>That word "consider" is doing a lot of work. It is not an emotional command. He's asking us to think. To change our minds and believe something to be true.</p>
+      <p>What I mean by that is we are always calculating the cost when bad or good things happen to us. Most of the time we consider good things to be an addition or even multiplication. But when something bad or negative happens, it's a subtraction or division. Suffering in particular is really bad. Something has been taken from you. You perceive that you will be less than you were.</p>
+      <p>James is telling us, that's the world's math. We need new math.</p>
+      <p>And he tells us why. The testing of your faith produces endurance — the ability to stay standing under weight. Not just surviving, but holding up without giving in. And endurance has a result: you don't become less than you were, you become more than you can imagine. Mature and complete, lacking nothing.</p>
+      <p>Now, let me be honest about something. Most of us hear that and think, okay, so if I just hang on long enough, things will get easier. We treat suffering like a tunnel. You just keep walking and eventually you come out the other side into the sunlight. But here's the thing. Life doesn't usually get easier. Talk to anyone who's been around for a while and they'll tell you. The challenges get bigger, not smaller. You don't graduate from hard things.</p>
+      <p>But here's what James is actually promising, and it's better than what you think you want. He's not saying the weight gets lighter. He's saying you become someone who can carry more. The person who has let endurance do its full work isn't someone whose life got simpler. They're someone who can stand in a storm that would have destroyed them ten years ago, and they're still standing. Not because they're tougher. Because they're rooted in something deeper.</p>
+      <p>That only happens through tests. Specifically tests of our faith. This isn't about just getting better at suffering — it's about growing in trusting. Suffering by itself doesn't make you stronger. Suffering by itself can make you bitter, cynical, or numb. Ask anyone who's been through something terrible without faith. They didn't come out refined. They came out scorched.</p>
+      <p>So what does that mean? Simply put, it's when God puts us into a situation where we have to answer the question: Do you trust and value me more than this? These tests cause us to feel our own helplessness. Our inability to fix it, to solve it, to get out, to save ourselves. Only then does our faith get tested so that we ultimately rely on God alone.</p>
+      <p>Let me share something from my own life. Many years ago I served for a short time at a church where things were very unhealthy. Dysfunctional doesn't even really begin to describe it. At the time, all I could think about was what I was losing. It was a very long four years that I prayed and prayed for God to bring an end to. When He finally did, I thought the next church that I went to was heavenly. At first. And then I found it was dysfunctional also. The situations were so broken that I couldn't fix them. And actually I realized that I was so broken that I couldn't fix myself. Only then did I begin to rely on God alone — and I pray that continues.</p>
+      <p>James is asking us to use a different kind of math. One from above, not the world. The trials you are trying to avoid are given to subtract things from our life — the hidden idols we are using instead of God. And they add to our lives by giving us more and more of Christ.</p>
+      <p>Now, let me show you something really wonderful. Some people think the way to get through trouble is by working harder. Trying harder. Doing more. But that is not the answer James gives us.</p>
+
+      <div class="scripture-block">
+        Now if any of you lacks wisdom, he should ask God — who gives to all generously and ungrudgingly — and it will be given to him.
+        <span class="scripture-ref">James 1:5</span>
+      </div>
+
+      <p>This verse is specific. The wisdom God promises here is given freely when we are suffering. And let me ask you — why would you need wisdom when you are suffering? Because most of us, when we are suffering, don't understand and we even lose the ability to think clearly. So James tells us: when you are suffering, God has a special promise for you. Ask him for wisdom and He will give it to you freely.</p>
+
+      <div class="scripture-block">
+        But let him ask in faith without doubting. For the doubter is like the surging sea, driven and tossed by the wind. That person should not expect to receive anything from the Lord, being double-minded and unstable in all his ways.
+        <span class="scripture-ref">James 1:6–8</span>
+      </div>
+
+      <p>What a good God. Free wisdom. When you need it most. The only condition is this — and it's really important for you to understand this. The condition isn't a moral condition. It isn't a performance condition. It's a posture condition.</p>
+      <p>He says, when you ask, don't try to run the math both ways. The text says, don't be double-minded. Most translations use the word "doubt." It's better to say double-minded. What does that mean?</p>
+      <p>Let me ask you a different question. How many of you, if you're completely honest with yourself, are running what I'd call a spiritual backup plan? God is your plan A. You want to trust him. You're in church. You pray. And you mean it. But somewhere in the background, you're maintaining a plan B — actually what you are maintaining is an idolatry.</p>
+      <p>Maybe it's that extra degree that you hope will keep you from being irrelevant. Maybe it's the savings account you check every morning. Maybe it's your child's acceptance into the right school. For some of you, it's the thing that will finally get your parents to see you the way you always hoped they would. And if God comes through, great. But if he doesn't — you've got options. The issue is not whether you have savings or a good plan; it's whether or not your peace rises and falls with the bank balance or your success or failure.</p>
+      <p>Double-mindedness is not only an identity problem, it's an idol problem. It's what happens when you haven't decided who you are. Or maybe it's better to say, whose you are.</p>
+
+      <div class="scripture-block">
+        Let the brother of humble circumstances boast in his exaltation, and the rich person in his humiliation, because he will pass away like a flower of the field. For the sun rises and, with the scorching wind, withers the grass; its flower falls off, and its beautiful appearance perishes. In the same way, the rich person will wither away while pursuing his activities.
+        <span class="scripture-ref">James 1:9–11</span>
+      </div>
+
+      <p>Here's what James is saying. Some of you are really struggling — maybe financially, maybe emotionally, maybe relationally. You are poor in an area that the world says you need "wealth." The new math says: the worldly poor are often the spiritually rich.</p>
+      <p>And likewise, some of you are doing quite well. Maybe you have begun to identify yourself with these things that make you appear or feel rich. And the new math says: those things are going to be like a flower in the scorching sun. It appears pretty, but it won't last.</p>
+      <p>James is stripping away everything we are prone to cling to. Poverty won't save you. Wealth won't save you. What's left when everything gets burned away?</p>
+      <p>When suffering and trials come into your life — when you get that terrible diagnosis, when all your efforts don't produce the result you hoped for, when the relationship you thought would bring you joy falls apart — you cannot by sheer force of will just "count it as all joy." You need something underneath you.</p>
+      <p>Did you know that on his way to the cross, Jesus was doing math? He was bringing to mind the things he knew from before time began.</p>
+
+      <div class="scripture-block">
+        ...who for the joy set before him endured the cross, despising the shame, and sat down at the right hand of the throne of God.
+        <span class="scripture-ref">Hebrews 12:2</span>
+      </div>
+
+      <p>What was the joy set before him? What was he calculating? He saw the other side. He saw the throne. He saw the restoration of everything that had been broken since the garden. And he ran the numbers. The cross on one side. The joy on the other. The shame on one side. The glory on the other. And he did something almost impossible to understand — he despised the shame. He counted the shame as worthless and the joy as infinitely valuable.</p>
+      <p>Jesus did not just go through a trial or experience suffering. He entered the ultimate trial and suffering in your place. And then he rose from the dead so now you can know that whatever trial or suffering you may experience is never empty and never final.</p>
+      <p>So for now, when you are suffering, when things don't make sense — James tells us this: Ask for wisdom. Remember what he said: "Now if any of you lacks wisdom, he should ask God — who gives to all generously and ungrudgingly — and it will be given to him."</p>
+      <p>What did God give us generously and ungrudgingly? Jesus.</p>
+
+      <div class="scripture-block">
+        It is from him that you are in Christ Jesus, who became wisdom from God for us — our righteousness, sanctification, and redemption.
+        <span class="scripture-ref">1 Corinthians 1:30</span>
+      </div>
+
+      <p>Which means when you are sitting in the hospital room wondering what just happened, the wisdom God promises isn't a principle you look up — it's certainly not ChatGPT. It's a person who sat in the garden of Gethsemane and didn't run.</p>
+      <p>At the beginning of this sermon I told you James was asking you to do math that sounds insane. Consider it joy when your life falls apart. And maybe you're still not sure you can do that. But here's what I want you to see. Before James ever asked you to do that math, Jesus did it first. He looked at the cross — the worst subtraction in human history — and he counted it as joy. Not because the math made sense. Because you were on the other side of it.</p>
+      <p>He's not just the math underneath your math. He is the answer.</p>
+    </div>
+  </article>
+
+  <!-- ─── TRADITIONAL CHINESE 繁體中文 ─── -->
+  <article class="lang-content" id="content-zh" lang="zh-TW">
+    <div class="sermon-text">
+      <p>在進入主題之前，讓我先談談這本書。因為對我們許多人來說，雅各書可能是新約聖經中讀起來最不舒服的一封書信。</p>
+      <p>它的實踐性極強。雅各沒有用一大段教義論述來開場，他也沒有在談到應用之前先寫一堆精美的神學。他直接從應用開始。你的信仰看起來是什麼樣子？它結出了什麼果子？你怎麼對待窮人？你如何使用你的舌頭？你的禱告生活究竟有沒有在前進？</p>
+      <p>說實在的，有些人很喜歡這樣。你們當中有些人一直在等待有人直接告訴你該怎麼做。</p>
+      <p>但也有些人已經開始有點緊張了。你擔心你又要得到一張待辦清單，而你注定會做不到。</p>
+      <p>我想一開始就說清楚：雅各書的危險之處，也是為什麼這麼多人誤讀它的原因，就在於我們很容易把這封書信變成一張「你需要做得更好」的清單。如果你這樣讀，你每一週都會帶著「又考砸了」的感覺離開。</p>
+      <p>但雅各並不是在做這件事。雅各給我們的不是一個自我改進計畫。我們將會看到，雅各是在幫助我們把自己與耶穌對齊。他希望我們的心對耶穌有一種全然專一的委身。</p>
+      <p>他想談的第一件事，就是苦難。因為當你受苦的時候，你的委身會受到挑戰。苦難會揭露那些深藏在內心的偶像崇拜。雅各想要幫助我們除去那些偶像，使我們能夠全然委身於耶穌基督。</p>
+
+      <div class="scripture-block">
+        神和主耶穌基督的僕人雅各，請分散在各地的十二個支派的人安。我的弟兄們，你們落在各種試煉中，都要以為大喜樂；因為知道你們的信心經過試驗，就生忍耐。但忍耐也當成功，使你們成全、完備，毫無欠缺。
+        <span class="scripture-ref">雅各書 1:1–4</span>
+      </div>
+
+      <p>雅各是寫信給散居在羅馬世界各地的猶太基督徒。這些人所面對的，不只是小小的不方便。有些人被趕離家園。有些人正在掙扎於貧困、社會排斥，以及真實的壓力——放棄跟隨基督的壓力。</p>
+      <p>注意「各種試煉」這兩個字——它的意思類似於考驗、壓力、那些把你逼到崩潰邊緣的事情。然後他說：當你遇到這些事的時候，要以為大喜樂。</p>
+      <p>如果你現在坐在這裡，而你不是基督徒，或者你對自己的信仰還不確定，那我們老實說吧。這聽起來完全瘋了。當你的生活崩潰的時候，要以為喜樂？這聽起來像是一個坐在舒適中的宗教人士對正在受苦的另一個人說的話。所以在你關掉耳朵之前，讓我來展示雅各實際上在做什麼。他並不是要求你感到開心。他是在要你做一道算術。</p>
+      <p>「以為」這個詞承擔了很重要的工作。這不是一個關於情感的命令。他是在要我們去思考，去改變我們的想法，去相信某件事是真實的。</p>
+      <p>我的意思是：當好事或壞事發生在我們身上的時候，我們一直在計算代價。大多數時候，我們認為好事是加法甚至是乘法。但當壞的或負面的事發生，那就是減法或除法。特別是苦難，非常糟糕。有什麼東西被從你身上奪走了。你覺得自己變得比以前更少了。</p>
+      <p>雅各告訴我們：那是這個世界的算術。我們需要一種新的算術。</p>
+      <p>他告訴我們為什麼。信心的考驗產生忍耐——就是在重壓下仍然站立的能力。不只是撐過去，而是在不妥協的情況下堅持住。忍耐的結果是：你不會變得比以前更少，你會變得比你能想像的更多。成全、完備，毫無欠缺。</p>
+      <p>讓我誠實地說一件事。我們大多數人聽到這句話都會想：好，那只要我撐夠久，事情就會變得更容易。我們把苦難當作一條隧道，只要一直走，最終就能走出來，進入陽光。但事實是這樣的：生活通常不會變得更容易。去問任何一個活了一段時間的人，他們會告訴你，挑戰只會越來越大，不會越來越小。你不會「畢業」於艱難。</p>
+      <p>但雅各真正在應許的是什麼？它比你以為你想要的更好。他不是在說重量會變輕。他是在說，你會成為一個能夠承受更多的人。那個讓忍耐充分發揮作用的人，不是一個生活變得更簡單的人——而是一個能夠站立在十年前足以摧毀他的風暴中，還仍然站著的人。不是因為他更強壯。而是因為他紮根在更深的地方。</p>
+      <p>這只有通過考驗才能發生。具體來說，是對我們信心的考驗。這不只是學習「更擅長受苦」——而是在信靠上的成長。苦難本身不會使你更強壯，苦難本身可以讓你變得苦澀、憤世嫉俗，或麻木。去問任何一個在沒有信仰的情況下經歷過可怕事情的人。他們出來的時候不是被淬煉的，而是被燒焦的。</p>
+      <p>那這是什麼意思呢？簡單來說，就是當神把我們放在一個必須回答這個問題的處境裡：你信靠我、看重我，是否勝過這一切？這些考驗讓我們感受到自己的無助，我們無法修復它、解決它、逃出去，或拯救自己。唯有如此，我們的信心才得以被考驗，使我們最終完全倚靠神。</p>
+      <p>讓我分享我自己生命中的一件事。許多年前，我曾短暫在一間狀況非常不健康的教會服事。用「功能失調」這個詞都不足以形容它。那段時間，我滿腦子想的都是我失去了什麼。那是漫長的四年，我不斷禱告，求神終結那一切。當祂終於這樣做的時候，我以為我接下來去的那間教會是天堂。一開始是這樣。然後我發現它也一樣功能失調。那些處境破損得我無法修復，而且我也意識到，其實我自己破損得連自己都修復不了。就是從那時候開始，直到現在，我持續仰望神，仰望唯獨神——我也盼望這一直持續到最後。</p>
+      <p>雅各邀請我們使用一種不同的算術。一種來自上面的算術，而不是來自世界的。那些你試圖避免的試煉，是為了從你生命中除去某些東西——那些你用來代替神的隱藏偶像。而它們在你的生命中增加的，是越來越多的基督。</p>
+      <p>現在，讓我向你展示一件美好的事。有些人認為，走過困難的方法是更努力、更用力地嘗試。但這不是雅各給我們的答案。</p>
+
+      <div class="scripture-block">
+        你們中間若有缺少智慧的，應當求那厚賜與眾人、也不斥責人的神，主就必賜給他。
+        <span class="scripture-ref">雅各書 1:5</span>
+      </div>
+
+      <p>這節經文是特定的。神在這裡應許的智慧，是在我們受苦時白白賜給我們的。讓我問你——為什麼你在受苦的時候需要智慧？因為我們大多數人在受苦的時候都搞不清楚狀況，甚至失去了清晰思考的能力。所以雅各告訴我們：當你受苦的時候，神對你有一個特別的應許。求祂賜給你智慧，祂就必白白賜給你。</p>
+
+      <div class="scripture-block">
+        只要憑著信心求，一點不疑惑；因為那疑惑的人，就像海中的波浪，被風吹動翻騰。這樣的人不要想從主那裡得什麼；心懷二意的人，在他一切所行的路上都沒有定見。
+        <span class="scripture-ref">雅各書 1:6–8</span>
+      </div>
+
+      <p>多麼好的神。在你最需要的時候，白白給你智慧。唯一的條件是這個——而且這對你來說非常重要。這個條件不是道德條件，不是表現條件，而是一個姿態的條件。</p>
+      <p>祂說：當你祈求的時候，不要試圖兩邊都算。經文說，不要「心懷二意」。大多數翻譯用「疑惑」這個字，但「心懷二意」更準確。這是什麼意思呢？</p>
+      <p>讓我問你一個不同的問題。你們當中有多少人，如果完全誠實的話，其實正在維持著一個我稱之為「屬靈備用計畫」的東西？神是你的A計畫。你想要信靠祂。你在教會。你禱告。你是認真的。但在某個地方，你默默地維持著一個B計畫——實際上你在維持的是一種偶像崇拜。</p>
+      <p>也許是那個你希望能讓你不被淘汰的學歷。也許是你每天早上都要查看的存款帳戶。也許是你孩子能否進入那所好學校。對某些人來說，是那件終於能讓你的父母用你一直希望的眼光看你的事情。如果神來了，很好。但如果祂沒有——你有其他選項。問題不在於你是否有積蓄或好的計畫，而在於你的平安是否隨著帳戶餘額或你的成敗而起伏。</p>
+      <p>心懷二意不只是一個身份認同的問題，也是一個偶像崇拜的問題。這是當你還沒有決定你是誰時——或者更準確地說，你是誰的——所發生的事。</p>
+
+      <div class="scripture-block">
+        卑微的弟兄升高，就該誇耀；富足的降卑，也該如此，因為他必要過去，如同草上的花一樣。太陽出來，熱風刮起，草就枯乾，花也凋謝，美容就消沒了；那富足的人，在他所行的事上，也要這樣衰殘。
+        <span class="scripture-ref">雅各書 1:9–11</span>
+      </div>
+
+      <p>雅各是在說：你們有些人正在真實地掙扎——也許是在財務上、情感上，或人際關係上。你在世界說你需要「財富」的那個領域是貧乏的。新的算術說：世俗眼中的窮人，往往是屬靈上的富足人。</p>
+      <p>同樣地，你們有些人過得相當不錯。你也許已經開始用那些讓你看起來或感覺富有的事物來定義自己。新的算術說：那些東西會像驕陽下的花朵一樣。看起來很美，但撐不住。</p>
+      <p>雅各正在剝除一切我們容易緊緊抓住的東西。貧窮不能拯救你，財富也不能拯救你。當一切都被燒盡之後，剩下的是什麼？</p>
+      <p>當苦難與試煉來到你的生命中——當你得到那個可怕的診斷，當你所有的努力都沒有帶來你期望的結果，當你以為會帶給你喜樂的那段關係破裂——你無法單靠意志力「以為大喜樂」。你需要一個在你腳下的根基。</p>
+      <p>你知道嗎，耶穌在去往十字架的路上，也在做算術。祂把祂從亙古以前就知道的事帶到心中。</p>
+
+      <div class="scripture-block">
+        ……祂因那擺在前面的喜樂，就輕看羞辱，忍受了十字架的苦難，便坐在神寶座的右邊。
+        <span class="scripture-ref">希伯來書 12:2</span>
+      </div>
+
+      <p>擺在祂前面的喜樂是什麼？祂在算什麼？祂看見了另一邊。祂看見了寶座。祂看見了伊甸園被破壞以來一切事物的恢復。祂算了那道數學。一邊是十字架，另一邊是喜樂。一邊是羞辱，另一邊是榮耀。然後祂做了一件幾乎讓人無法理解的事——祂「輕看」羞辱。實際上，「輕看」的意思是：祂在做算術。祂認為羞辱是毫無價值的，而喜樂是無限珍貴的。</p>
+      <p>耶穌不只是經歷了試煉或苦難。祂代替你進入了終極的試煉與苦難。然後祂從死裡復活，所以現在你可以知道，無論你所經歷的試煉或苦難是什麼，都永遠不是徒然的，也永遠不是最終的。</p>
+      <p>所以，當你正在受苦，當事情看起來毫無意義的時候——雅各告訴我們這件事：求智慧。記住他說的：「你們中間若有缺少智慧的，應當求那厚賜與眾人、也不斥責人的神，主就必賜給他。」</p>
+      <p>神白白賜給我們的是什麼？是耶穌。</p>
+
+      <div class="scripture-block">
+        但你們得在基督耶穌裡，是本乎神，神又使他成為我們的智慧、公義、聖潔、救贖。
+        <span class="scripture-ref">哥林多前書 1:30</span>
+      </div>
+
+      <p>這意味著，當你坐在醫院病房裡，不知道剛剛發生了什麼，神應許的智慧不是一條你去查找的原則——當然也不是ChatGPT。而是一個曾經在客西馬尼園裡坐下，卻沒有逃跑的人。</p>
+      <p>在這篇講道的開始，我告訴你雅各要求你做一道聽起來很瘋狂的算術。當你的生活崩潰時，要以為喜樂。也許你仍然不確定自己能做到。但我想讓你看見這件事：在雅各要求你做這道算術之前，耶穌已經先做了。祂看著十字架——人類歷史上最糟糕的減法——然後算它為喜樂。不是因為這道算術說得通，而是因為你在那道算術的另一邊。</p>
+      <p>祂不只是在你的算術下面的算術，祂就是那個答案。</p>
+    </div>
+  </article>
+
+  <!-- ─── BAHASA INDONESIA ─── -->
+  <article class="lang-content" id="content-id" lang="id">
+    <div class="sermon-text">
+      <p>Sebelum kita masuk ke inti, izinkan saya mengatakan sesuatu tentang buku ini. Bagi banyak dari kita, Surat Yakobus terasa seperti surat yang paling membuat kita tidak nyaman di Perjanjian Baru.</p>
+      <p>Surat ini sangat praktis. Yakobus tidak membuka dengan bagian doktrin yang panjang. Dia tidak menulis banyak teologi yang indah sebelum sampai ke penerapannya. Dia langsung mulai dengan penerapan. Seperti apa iman Anda? Apa yang dihasilkannya? Bagaimana Anda memperlakukan orang miskin? Apa yang Anda lakukan dengan lidah Anda? Apakah kehidupan doa Anda benar-benar berjalan ke suatu tempat?</p>
+      <p>Yang jelas, sebagian orang sangat menyukai ini. Sebagian dari kamu sudah lama menunggu ada yang langsung memberitahumu apa yang harus dilakukan.</p>
+      <p>Dan sebagian lainnya sudah mulai sedikit gelisah. Kamu khawatir akan mendapat daftar hal-hal yang harus dilakukan dan kamu pasti akan gagal melakukannya.</p>
+      <p>Saya ingin menegaskan ini di awal: bahaya dalam membaca Yakobus — dan alasan mengapa begitu banyak orang salah memahaminya — adalah kita sangat mudah mengubah surat ini menjadi daftar hal yang perlu kita lakukan dengan lebih baik. Jika kamu melakukannya, setiap minggu kamu akan pergi dengan perasaan sudah gagal ujian.</p>
+      <p>Tapi bukan itu yang Yakobus lakukan. Yakobus tidak memberikan program perbaikan diri. Kita akan melihat bahwa Yakobus sedang membantu kita untuk menyelaraskan diri dengan Yesus. Dia ingin hati kita memiliki ketaatan yang tidak terbagi kepada Yesus.</p>
+      <p>Dan hal pertama yang ingin dia bicarakan adalah penderitaan. Karena ketika kamu menderita, ketaatanmu akan diuji. Penderitaan mengungkapkan penyembahan berhala yang bersembunyi jauh di dalam hati. Dan Yakobus ingin membantu kita menyingkirkan penyembahan berhala itu agar kita bisa sepenuhnya berkomitmen kepada Yesus Kristus.</p>
+
+      <div class="scripture-block">
+        Dari Yakobus, hamba Allah dan Tuhan Yesus Kristus, kepada kedua belas suku di perantauan: salam! Saudara-saudaraku, anggaplah sebagai suatu kebahagiaan, apabila kamu jatuh ke dalam berbagai-bagai pencobaan, sebab kamu tahu, bahwa ujian terhadap imanmu itu menghasilkan ketekunan. Dan biarkanlah ketekunan itu memperoleh buah yang matang, supaya kamu menjadi sempurna dan utuh dan tak kekurangan suatu apapun.
+        <span class="scripture-ref">Yakobus 1:1–4</span>
+      </div>
+
+      <p>Yakobus menulis kepada orang-orang Kristen Yahudi yang tersebar di seluruh dunia Romawi. Mereka bukan sedang menghadapi ketidaknyamanan kecil. Sebagian telah diusir dari rumah mereka. Sebagian berjuang dengan kemiskinan, pengucilan sosial, dan tekanan nyata untuk meninggalkan Kristus.</p>
+      <p>Perhatikan dua kata, "berbagai-bagai pencobaan" — artinya sesuatu seperti ujian, tekanan, hal-hal yang memaksamu sampai ke titik putus. Dan dia berkata: Anggaplah ini sebagai KEBAHAGIAAN BESAR ketika kamu mengalaminya.</p>
+      <p>Sekarang, jika kamu duduk di sini dan bukan seorang Kristen, atau tidak yakin dengan apa yang kamu percayai — jujur saja, itu terdengar sangat tidak masuk akal. Anggap sebagai sukacita ketika hidupmu berantakan? Itu terdengar seperti sesuatu yang dikatakan orang beragama kepada orang yang menderita sementara dia sendiri duduk dalam kenyamanan. Jadi sebelum kamu menutup telinga, izinkan saya menunjukkan apa yang sebenarnya Yakobus lakukan. Dia tidak memintamu untuk merasa bahagia. Dia memintamu untuk melakukan matematika.</p>
+      <p>Kata "anggaplah" itu melakukan banyak pekerjaan. Ini bukan perintah emosional. Dia meminta kita untuk berpikir. Untuk mengubah pikiran kita dan percaya bahwa sesuatu itu benar.</p>
+      <p>Maksud saya adalah kita selalu menghitung biaya ketika hal baik atau buruk terjadi pada kita. Kebanyakan waktu, hal-hal baik kita anggap sebagai pertambahan atau bahkan perkalian. Tapi ketika sesuatu yang buruk terjadi, itu adalah pengurangan atau pembagian. Penderitaan khususnya terasa sangat buruk. Sesuatu telah diambil darimu. Kamu merasa akan menjadi lebih sedikit dari sebelumnya.</p>
+      <p>Yakobus memberitahu kita: itulah matematika dunia. Kita membutuhkan matematika baru.</p>
+      <p>Dan dia memberitahu kita alasannya. Ujian imanmu menghasilkan ketekunan — kemampuan untuk tetap berdiri di bawah beban. Bukan sekadar bertahan, tapi tetap tegak tanpa menyerah. Dan ketekunan menghasilkan buah: kamu tidak menjadi lebih sedikit dari sebelumnya, kamu menjadi lebih dari yang bisa kamu bayangkan. Sempurna dan utuh, tak kekurangan suatu apapun.</p>
+      <p>Izinkan saya jujur tentang sesuatu. Kebanyakan dari kita mendengar itu dan berpikir: baiklah, jadi jika saya bertahan cukup lama, segalanya akan menjadi lebih mudah. Kita memperlakukan penderitaan seperti terowongan. Kamu terus berjalan dan akhirnya keluar ke cahaya matahari. Tapi begini masalahnya: hidup biasanya tidak menjadi lebih mudah. Tanyakan kepada siapapun yang sudah lama melewati kehidupan dan mereka akan mengatakan tantangan semakin besar, bukan semakin kecil. Kamu tidak bisa "lulus" dari hal-hal yang sulit.</p>
+      <p>Tapi inilah yang sebenarnya Yakobus janjikan — dan ini lebih baik dari yang menurutmu kamu inginkan. Dia tidak mengatakan bebannya menjadi lebih ringan. Dia mengatakan kamu menjadi seseorang yang bisa menanggung lebih banyak. Orang yang telah membiarkan ketekunan bekerja sepenuhnya bukan seseorang yang hidupnya menjadi lebih sederhana — tetapi seseorang yang bisa berdiri di tengah badai yang sepuluh tahun lalu pasti menghancurkannya, dan mereka masih berdiri. Bukan karena mereka lebih kuat. Tapi karena mereka berakar lebih dalam.</p>
+      <p>Itu hanya bisa terjadi melalui ujian. Khususnya ujian iman kita. Ini bukan tentang menjadi lebih mahir dalam menderita — ini tentang bertumbuh dalam kepercayaan. Penderitaan sendiri tidak membuat kamu lebih kuat. Penderitaan sendiri bisa membuatmu pahit, sinis, atau mati rasa. Tanyakan kepada siapapun yang telah melalui sesuatu yang mengerikan tanpa iman. Mereka tidak keluar dalam keadaan dimurnikan. Mereka keluar dalam keadaan hangus.</p>
+      <p>Lalu apa artinya? Sederhananya, inilah saatnya Tuhan menempatkan kita dalam situasi di mana kita harus menjawab pertanyaan: Apakah kamu mempercayai dan menghargai-Ku lebih dari ini? Ujian-ujian ini membuat kita merasakan ketidakberdayaan kita sendiri. Ketidakmampuan kita untuk memperbaikinya, menyelesaikannya, keluar, atau menyelamatkan diri sendiri. Hanya dengan begitu iman kita diuji sehingga kita akhirnya mengandalkan Allah saja.</p>
+      <p>Izinkan saya berbagi sesuatu dari kehidupan saya sendiri. Bertahun-tahun lalu saya pernah sebentar melayani di sebuah gereja yang kondisinya sangat tidak sehat. Kata "disfungsional" pun belum cukup menggambarkannya. Saat itu, yang selalu ada di pikiran saya hanyalah apa yang saya kehilangan. Itu adalah empat tahun yang sangat panjang di mana saya terus berdoa meminta Tuhan mengakhirinya. Ketika Dia akhirnya melakukannya, saya pikir gereja berikutnya yang saya pergi adalah surga. Pada awalnya. Kemudian saya mendapatinya juga disfungsional. Situasinya begitu rusak sehingga saya tidak bisa memperbaikinya. Dan sebenarnya saya menyadari bahwa saya sendiri begitu rusak sehingga tidak bisa memperbaiki diri sendiri. Hanya saat itulah — dan semoga terus berlanjut — saya mulai sepenuhnya mengandalkan Allah.</p>
+      <p>Yakobus mengundang kita untuk menggunakan jenis matematika yang berbeda. Satu yang berasal dari atas, bukan dari dunia. Pencobaan yang coba kamu hindari itu diberikan untuk mengurangi sesuatu dari hidupmu — berhala-berhala tersembunyi yang kamu gunakan sebagai pengganti Allah. Dan mereka menambahkan pada hidupmu dengan memberikan semakin banyak Kristus.</p>
+      <p>Sekarang, izinkan saya menunjukkan sesuatu yang sangat indah. Beberapa orang berpikir cara melewati kesulitan adalah dengan bekerja lebih keras, mencoba lebih keras, melakukan lebih banyak. Tapi itu bukan jawaban yang Yakobus berikan kepada kita.</p>
+
+      <div class="scripture-block">
+        Tetapi apabila di antara kamu ada yang kekurangan hikmat, hendaklah ia memintakannya kepada Allah, — yang memberikan kepada semua orang dengan murah hati dan dengan tidak membangkit-bangkit —, maka hal itu akan diberikan kepadanya.
+        <span class="scripture-ref">Yakobus 1:5</span>
+      </div>
+
+      <p>Ayat ini spesifik. Hikmat yang Tuhan janjikan di sini diberikan dengan cuma-cuma ketika kita menderita. Dan izinkan saya bertanya — mengapa kamu membutuhkan hikmat saat menderita? Karena sebagian besar dari kita, ketika menderita, tidak mengerti dan bahkan kehilangan kemampuan untuk berpikir jernih. Jadi Yakobus memberitahu kita: ketika kamu menderita, Allah punya janji khusus untukmu. Mintalah hikmat kepada-Nya dan Dia akan memberikannya dengan cuma-cuma.</p>
+
+      <div class="scripture-block">
+        Hendaklah ia memintanya dalam iman, dan sama sekali jangan bimbang, sebab orang yang bimbang sama dengan gelombang laut, yang diombang-ambingkan kian ke mari oleh angin. Orang yang demikian janganlah mengira, bahwa ia akan menerima sesuatu dari Tuhan. Sebab orang yang mendua hati tidak akan tenang dalam hidupnya.
+        <span class="scripture-ref">Yakobus 1:6–8</span>
+      </div>
+
+      <p>Betapa baiknya Allah. Hikmat yang cuma-cuma. Tepat saat kamu paling membutuhkannya. Satu-satunya syaratnya adalah ini — dan ini sangat penting untuk dipahami. Syaratnya bukan syarat moral, bukan syarat prestasi, melainkan syarat sikap hati.</p>
+      <p>Dia berkata: ketika kamu meminta, jangan mencoba menjalankan matematika dari kedua arah. Teks berkata, jangan "mendua hati." Kebanyakan terjemahan menggunakan kata "ragu." Lebih baik dikatakan mendua hati. Apa maksudnya?</p>
+      <p>Izinkan saya mengajukan pertanyaan yang berbeda. Berapa banyak dari kamu, jika benar-benar jujur, sedang menjalankan apa yang saya sebut "rencana cadangan rohani"? Allah adalah rencana A-mu. Kamu ingin mempercayai-Nya. Kamu di gereja. Kamu berdoa. Dan kamu sungguh-sungguh. Tapi di suatu tempat di latar belakang, kamu mempertahankan rencana B — yang sebenarnya kamu pertahankan adalah penyembahan berhala.</p>
+      <p>Mungkin itu gelar tambahan yang kamu harapkan bisa menjagamu tetap relevan. Mungkin rekening tabungan yang kamu periksa setiap pagi. Mungkin masuknya anakmu ke sekolah yang tepat. Bagi sebagian, itu adalah hal yang akhirnya akan membuat orang tuamu melihatmu dengan cara yang selalu kamu harapkan. Dan jika Allah datang melalui, bagus. Tapi jika tidak — kamu punya pilihan lain. Masalahnya bukan apakah kamu punya tabungan atau rencana yang baik; melainkan apakah kedamaianmu naik turun bersama saldo rekening atau keberhasilan dan kegagalanmu.</p>
+      <p>Mendua hati bukan hanya masalah identitas, ini adalah masalah penyembahan berhala. Ini yang terjadi ketika kamu belum memutuskan siapa dirimu — atau mungkin lebih baik dikatakan, milik siapa dirimu.</p>
+
+      <div class="scripture-block">
+        Biarlah saudara yang berada dalam keadaan yang rendah bermegah karena kedudukannya yang tinggi, dan orang yang kaya karena kedudukannya yang rendah, sebab ia akan berlalu seperti bunga rumput. Karena matahari terbit dengan panasnya yang terik dan melayukan rumput itu, sehingga gugur bunganya dan hilanglah keindahannya. Demikian jugalah orang kaya akan melayu dalam segala usahanya.
+        <span class="scripture-ref">Yakobus 1:9–11</span>
+      </div>
+
+      <p>Inilah yang Yakobus katakan. Sebagian dari kamu sungguh-sungguh berjuang — mungkin secara finansial, emosional, atau relasional. Kamu miskin dalam area yang dunia katakan kamu butuhkan "kekayaan." Matematika baru berkata: orang yang miskin secara duniawi seringkali kaya secara rohani.</p>
+      <p>Demikian juga, sebagian dari kamu cukup berhasil. Mungkin kamu sudah mulai mengidentifikasi dirimu dengan hal-hal yang membuatmu tampak atau merasa kaya. Dan matematika baru berkata: hal-hal itu akan seperti bunga di bawah terik matahari. Terlihat indah, tapi tidak akan bertahan.</p>
+      <p>Yakobus sedang menanggalkan semua yang cenderung kita pegang erat. Kemiskinan tidak bisa menyelamatkanmu. Kekayaan tidak bisa menyelamatkanmu. Apa yang tersisa ketika semuanya terbakar?</p>
+      <p>Ketika penderitaan dan pencobaan datang dalam hidupmu — ketika kamu mendapat diagnosis yang mengerikan itu, ketika semua usahamu tidak menghasilkan seperti yang kamu harapkan, ketika hubungan yang kamu kira akan membawa sukacita hancur — kamu tidak bisa hanya dengan kekuatan tekad "menganggapnya sebagai kebahagiaan." Kamu butuh sesuatu yang menopang di bawahmu.</p>
+      <p>Tahukah kamu bahwa dalam perjalanan ke salib, Yesus sedang melakukan matematika? Dia membawa ke dalam pikiran hal-hal yang Dia ketahui dari sebelum waktu dimulai.</p>
+
+      <div class="scripture-block">
+        …yang dengan mengabaikan kehinaan tekun menanggung salib ganti sukacita yang disediakan bagi Dia, yang sekarang duduk di sebelah kanan takhta Allah.
+        <span class="scripture-ref">Ibrani 12:2</span>
+      </div>
+
+      <p>Apa sukacita yang disediakan bagi-Nya? Apa yang Dia hitung? Dia melihat sisi yang lain. Dia melihat takhta. Dia melihat pemulihan segala sesuatu yang telah rusak sejak taman Eden. Dan Dia menjalankan angka-angkanya. Salib di satu sisi. Sukacita di sisi lain. Kehinaan di satu sisi. Kemuliaan di sisi lain. Dan Dia melakukan sesuatu yang hampir tidak mungkin dipahami — Dia "mengabaikan" kehinaan. Artinya Dia melakukan matematika: Dia menganggap kehinaan tidak berharga dan sukacita bernilai tak terbatas.</p>
+      <p>Yesus tidak hanya melewati pencobaan atau mengalami penderitaan. Dia masuk ke dalam pencobaan dan penderitaan yang paling besar — menggantikan kamu. Dan kemudian Dia bangkit dari kematian sehingga sekarang kamu bisa tahu bahwa apapun pencobaan atau penderitaan yang mungkin kamu alami, tidak pernah sia-sia dan tidak pernah menjadi akhir.</p>
+      <p>Jadi sekarang, ketika kamu menderita, ketika segalanya tidak masuk akal — Yakobus memberitahu kita ini: Mintalah hikmat. Ingat apa yang dia katakan: "Apabila di antara kamu ada yang kekurangan hikmat, hendaklah ia memintakannya kepada Allah, yang memberikan kepada semua orang dengan murah hati dan dengan tidak membangkit-bangkit, maka hal itu akan diberikan kepadanya."</p>
+      <p>Apa yang Allah berikan kepada kita dengan murah hati dan tidak membangkit-bangkit? Yesus.</p>
+
+      <div class="scripture-block">
+        Tetapi oleh Dia kamu berada dalam Kristus Yesus, yang oleh Allah telah menjadi hikmat bagi kita. Ia membenarkan dan menguduskan dan menebus kita.
+        <span class="scripture-ref">1 Korintus 1:30</span>
+      </div>
+
+      <p>Artinya ketika kamu duduk di ruang rumah sakit bertanya-tanya apa yang baru saja terjadi, hikmat yang Tuhan janjikan bukan sebuah prinsip yang kamu cari — tentu bukan ChatGPT. Melainkan seorang pribadi yang duduk di taman Getsemani dan tidak lari.</p>
+      <p>Di awal khotbah ini saya memberitahumu bahwa Yakobus memintamu melakukan matematika yang terdengar gila. Anggap sebagai sukacita ketika hidupmu berantakan. Dan mungkin kamu masih tidak yakin bisa melakukannya. Tapi inilah yang ingin saya tunjukkan kepadamu. Sebelum Yakobus pernah memintamu melakukan matematika itu, Yesus sudah melakukannya lebih dulu. Dia melihat salib — pengurangan terburuk dalam sejarah manusia — dan Dia menganggapnya sebagai sukacita. Bukan karena matematikanya masuk akal. Tapi karena kamu ada di sisi yang lain dari matematika itu.</p>
+      <p>Dia bukan hanya matematika di bawah matematikamu. Dia adalah jawabannya.</p>
+    </div>
+  </article>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <strong>Taichung International Fellowship</strong><br>
+  TIF North: Morrison Academy, Beitun · TIF South: SYME, Xitun<br>
+  <a href="https://taichunginternationalfellowship.org">taichunginternationalfellowship.org</a> · +886 437 007 933
+  <br><br>
+  <span style="font-size:0.72rem;">
+    Translations generated for the benefit of our Mandarin and Indonesian-speaking congregation members.<br>
+    經文翻譯為繁體中文，以服務我們說中文的會眾。Terjemahan tersedia dalam Bahasa Indonesia untuk jemaat kami.<br><br>
+    <a href="archive.html">← Back to Sermon Archive</a> · Last updated: April 11, 2026
+  </span>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+    });
+    const content = document.getElementById('content-' + lang);
+    if (content) content.classList.add('active');
+    const buttons = document.querySelectorAll('.lang-btn');
+    const langIndex = { en: 0, zh: 1, id: 2 };
+    const idx = langIndex[lang];
+    if (buttons[idx]) {
+      buttons[idx].classList.add('active');
+      buttons[idx].setAttribute('aria-pressed', 'true');
+    }
+    const titles = { en: 'New Math', zh: '新的算術', id: 'Matematika Baru' };
+    const scriptures = { en: 'James 1:1–11', zh: '雅各書 1:1-11', id: 'Yakobus 1:1–11' };
+    document.getElementById('hero-title').textContent = titles[lang] || titles.en;
+    document.getElementById('hero-scripture').textContent = scriptures[lang] || scriptures.en;
+    document.documentElement.lang = lang === 'zh' ? 'zh-TW' : lang;
+  }
+</script>
+</body>
+</html>
