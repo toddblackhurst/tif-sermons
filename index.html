@@ -64,6 +64,11 @@
       font-size: 0.78rem;
       margin-top: 2px;
     }
+
+    .header-links { display: flex; gap: 20px; align-items: center; }
+    .header-link { color: rgba(255,255,255,0.55); font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
+    .header-link:hover { color: var(--light-blue); }
+    .header-link.active { color: var(--light-blue); font-weight: 600; }
     .header-label {
       color: rgba(255,255,255,0.45);
       font-size: 0.78rem;
@@ -231,7 +236,10 @@
       <div class="header-sub">台中國際團契 · Persekutuan Internasional Taichung</div>
     </div>
   </div>
-  <div class="header-label">Sermon Translations</div>
+  <div class="header-links">
+    <a href="index.html" class="header-link active">Current Sermon</a>
+    <a href="archive.html" class="header-link">Sermon Archive</a>
+  </div>
 </header>
 
 <!-- LANGUAGE TOGGLE -->
@@ -697,7 +705,7 @@
   <br><br>
   <span style="font-size:0.72rem;">Translations generated for the benefit of our Mandarin and Indonesian-speaking congregation members.<br>
   經文翻譯為繁體中文，以服務我們說中文的會眾。Terjemahan tersedia dalam Bahasa Indonesia untuk jemaat kami.<br><br>
-  Last updated: April 11, 2026</span>
+  <a href="archive.html">Sermon Archive</a> · Last updated: April 11, 2026</span>
 </footer>
 
 <script>
