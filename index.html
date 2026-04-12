@@ -1075,56 +1075,68 @@
   function buildPreview(langName, lc, langId) {
     var en = document.getElementById('content-en');
     var bigIdea = (en.querySelector('.big-idea-text') || {}).textContent || '';
-    var labels = ['Big Idea','Scripture','Sermon Flow','Key Words','Anchor Statements','Listening Cues','Application Focus'];
-    var notice = 'Machine-generated preview. A full pastoral translation is being prepared by the TIF team.';
+    var labels  = ['Big Idea','Scripture','Sermon Flow','Key Words','Anchor Statements','Listening Cues','Application Focus'];
+    var notice  = 'Machine-generated preview. A full pastoral translation is being prepared by the TIF team.';
+    var pending = 'Full translation in progress\u2026';
 
-    return Promise.all([tx(bigIdea,lc)].concat(labels.map(function(l){return tx(l,lc);})).concat([tx(notice,lc)]))
-      .then(function(results) {
-        var biT = results[0];
-        var labT = results.slice(1, 8);
-        var noticeT = results[8];
+    return Promise.all(
+      [tx(bigIdea, lc)]
+        .concat(labels.map(function(l) { return tx(l, lc); }))
+        .concat([tx(notice, lc), tx(pending, lc)])
+    ).then(function(res) {
+      var biT     = res[0];
+      var labT    = res.slice(1, 8);
+      var noticeT = res[8];
+      var pendT   = res[9];
 
-        var art = document.createElement('article');
-        art.id = 'content-' + langId;
-        art.lang = lc;
+      var art = document.createElement('article');
+      art.id  = 'content-' + langId;
+      art.lang = lc;
 
-        // Preview notice
-        var pn = document.createElement('div');
-        pn.className = 'preview-notice';
-        pn.innerHTML = '<strong>Translation Preview</strong>' + noticeT;
-        art.appendChild(pn);
+      // Preview notice banner
+      var pn = document.createElement('div');
+      pn.className = 'preview-notice';
+      pn.innerHTML = '<strong>Translation Preview</strong>' + noticeT;
+      art.appendChild(pn);
 
-        // Big Idea card (clone from EN, swap text)
-        var biCard = en.querySelector('.big-idea-card');
-        if (biCard) {
-          var biClone = biCard.cloneNode(true);
-          var biLabel = biClone.querySelector('.big-idea-label');
-          var biText  = biClone.querySelector('.big-idea-text');
-          if (biLabel) biLabel.textContent = labT[0];
-          if (biText)  biText.textContent  = biT;
-          art.appendChild(biClone);
+      // Big Idea card — fully translated
+      var biCard = en.querySelector('.big-idea-card');
+      if (biCard) {
+        var biClone = biCard.cloneNode(true);
+        var biLabel = biClone.querySelector('.big-idea-label');
+        var biText  = biClone.querySelector('.big-idea-text');
+        if (biLabel) biLabel.textContent = labT[0];
+        if (biText)  biText.textContent  = biT;
+        art.appendChild(biClone);
+      }
+
+      // Section cards — translated heading, body replaced with pending placeholder
+      var sectionTitles = en.querySelectorAll('.section-title');
+      var sectionCards  = en.querySelectorAll('.section-card');
+      var titleMap = {};
+      sectionTitles.forEach(function(t, i) { titleMap[t.textContent.trim()] = labT[i + 1] || t.textContent; });
+
+      sectionCards.forEach(function(card) {
+        var clone   = card.cloneNode(true);
+        var titleEl = clone.querySelector('.section-title');
+        if (titleEl && titleMap[titleEl.textContent.trim()]) {
+          titleEl.textContent = titleMap[titleEl.textContent.trim()];
         }
-
-        // Clone each section-card with translated heading
-        var sectionTitles = en.querySelectorAll('.section-title');
-        var sectionCards  = en.querySelectorAll('.section-card');
-        var titleMap = {};
-        sectionTitles.forEach(function(t,i){ titleMap[t.textContent.trim()] = labT[i+1] || t.textContent; });
-
-        sectionCards.forEach(function(card) {
-          var clone = card.cloneNode(true);
-          var titleEl = clone.querySelector('.section-title');
-          if (titleEl && titleMap[titleEl.textContent.trim()]) {
-            titleEl.textContent = titleMap[titleEl.textContent.trim()];
-          }
-          art.appendChild(clone);
-        });
-
-        // Insert before footer
-        var footer = document.querySelector('footer.site-footer');
-        footer.parentNode.insertBefore(art, footer);
-        return art;
+        // Replace English body content with translated pending placeholder
+        var body = clone.querySelector('.section-body');
+        if (body) {
+          body.innerHTML =
+            '<p style="color:var(--muted-text);font-style:italic;font-size:0.85rem;' +
+            'padding:0.4rem 0 0.2rem;">' + pendT + '</p>';
+        }
+        art.appendChild(clone);
       });
+
+      // Insert before footer
+      var footer = document.querySelector('footer.site-footer');
+      footer.parentNode.insertBefore(art, footer);
+      return art;
+    });
   }
 
   /* ── FORM SUBMISSION ── */
@@ -1167,9 +1179,15 @@
       (lc ? ' A preview translation is loading in the language bar.' : '') +
       '<br><br>We\'ll be in touch at <strong>' + reqEmail + '</strong> when a full translation is ready.';
 
-    // Send email via Web3Forms
-    var cmd1 = 'python tif_language_request.py --language "' + langName + '" --mode once --name "' + reqName + '" --email "' + reqEmail + '"';
-    var cmd2 = 'python tif_language_request.py --language "' + langName + '" --mode ongoing --name "' + reqName + '" --email "' + reqEmail + '"';
+    // Send email via Web3Forms (with clickable approve.html links)
+    var base  = 'https://toddblackhurst.github.io/tif-sermons/approve.html';
+    var qs    = '?lang=' + encodeURIComponent(langName) +
+                '&name=' + encodeURIComponent(reqName) +
+                '&email=' + encodeURIComponent(reqEmail) +
+                '&status=' + encodeURIComponent(reqStatus);
+    var urlOnce    = base + qs + '&mode=once';
+    var urlOngoing = base + qs + '&mode=ongoing';
+    var urlDeny    = base + qs + '&mode=deny';
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
@@ -1180,21 +1198,24 @@
         name: reqName, email: reqEmail,
         message: [
           'New language translation request',
-          '────────────────────────────────',
+          '════════════════════════════════════',
           'Language:  ' + langName,
           'Name:      ' + reqName,
           'Status:    ' + reqStatus,
           'Email:     ' + reqEmail,
           '',
-          '── APPROVAL OPTIONS ─────────────',
+          '── CLICK TO APPROVE ─────────────────',
           '',
-          '▶ THIS WEEK ONLY:',
-          '  ' + cmd1,
+          '▶ Approve this week only:',
+          '  ' + urlOnce,
           '',
-          '▶ ONGOING (all future sermons):',
-          '  ' + cmd2,
+          '▶ Approve ongoing (all future sermons):',
+          '  ' + urlOngoing,
           '',
-          '────────────────────────────────',
+          '▶ Deny / ignore:',
+          '  ' + urlDeny,
+          '',
+          '════════════════════════════════════',
           'Sent from TIF Sermon Listening Aid'
         ].join('\n')
       })
