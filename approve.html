@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Request Approval · TIF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;500;600&family=Asul:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dark-bg:    #1b2c35;
+      --extra-dark: #141f26;
+      --accent:     #27b7d8;
+      --accent-dim: #1e96b2;
+      --light-text: #e8f0f4;
+      --muted-text: #7a9aaa;
+      --body-text:  #2c3e47;
+      --border:     #d0dde3;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Asap', sans-serif;
+      background: #f0f4f6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.12);
+      overflow: hidden;
+    }
+    .card-head {
+      background: var(--extra-dark);
+      padding: 1.4rem 1.6rem 1.2rem;
+    }
+    .card-head .logo {
+      font-family: 'Asul', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .card-head h1 {
+      font-family: 'Asul', serif;
+      font-size: 1.1rem;
+      color: var(--light-text);
+      font-weight: 700;
+    }
+    .card-body { padding: 1.5rem 1.6rem 1.8rem; }
+
+    /* ── Request info ── */
+    .req-table { width: 100%; border-collapse: collapse; margin-bottom: 1.4rem; font-size: 0.88rem; }
+    .req-table td { padding: 0.4rem 0; vertical-align: top; }
+    .req-table td:first-child { color: var(--muted-text); font-weight: 600; width: 90px; font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; padding-right: 0.75rem; }
+    .req-table td:last-child  { color: var(--body-text); }
+    .req-lang { font-family: 'Asul', serif; font-size: 1.05rem; color: var(--dark-bg) !important; font-weight: 700; }
+    .mode-badge {
+      display: inline-block; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 2px 8px; border-radius: 3px; margin-top: 3px;
+    }
+    .mode-once    { background: rgba(39,183,216,0.12); color: var(--accent-dim); }
+    .mode-ongoing { background: rgba(39,183,216,0.22); color: var(--accent-dim); }
+    .mode-deny    { background: rgba(200,50,50,0.10);  color: #c43232; }
+
+    /* ── Buttons ── */
+    .btn-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn {
+      flex: 1; min-width: 120px;
+      padding: 0.7rem 1rem;
+      border: none; border-radius: 5px;
+      font-family: 'Asap', sans-serif; font-size: 0.9rem; font-weight: 600;
+      cursor: pointer; transition: background 0.2s, opacity 0.2s;
+    }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-approve  { background: var(--accent); color: #fff; }
+    .btn-approve:hover:not(:disabled) { background: var(--accent-dim); }
+    .btn-deny     { background: #f0f4f6; color: var(--muted-text); border: 1px solid var(--border); }
+    .btn-deny:hover:not(:disabled) { background: #e4ecf0; color: var(--body-text); }
+
+    /* ── Token setup panel ── */
+    .setup-panel { display: none; }
+    .setup-panel.show { display: block; }
+    .setup-note {
+      background: rgba(39,183,216,0.07);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      padding: 0.85rem 1rem;
+      font-size: 0.82rem; color: #3a5060; line-height: 1.65;
+      margin-bottom: 1.2rem;
+    }
+    .setup-note strong { display: block; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+    .form-label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--dark-bg); margin-bottom: 6px; }
+    .form-input {
+      width: 100%; padding: 0.55rem 0.75rem;
+      border: 1.5px solid var(--border); border-radius: 4px;
+      font-family: 'Asap', sans-serif; font-size: 0.88rem; color: var(--body-text);
+      background: #fff; transition: border-color 0.2s;
+    }
+    .form-input:focus { outline: none; border-color: var(--accent); }
+    .btn-save {
+      margin-top: 0.75rem;
+      background: var(--accent); color: #fff; border: none;
+      padding: 0.6rem 1.4rem; border-radius: 4px;
+      font-family: 'Asap', sans-serif; font-size: 0.88rem; font-weight: 600;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .btn-save:hover { background: var(--accent-dim); }
+    .token-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.2rem; font-size: 0.82rem; color: var(--muted-text); }
+    .token-row a { color: var(--accent); cursor: pointer; text-decoration: none; }
+    .token-row a:hover { text-decoration: underline; }
+
+    /* ── Status states ── */
+    .main-view { }
+    .main-view.hide { display: none; }
+    .result-view { display: none; text-align: center; padding: 0.5rem 0 0.25rem; }
+    .result-view.show { display: block; }
+    .result-icon { font-size: 2.2rem; margin-bottom: 0.75rem; }
+    .result-title { font-family: 'Asul', serif; font-size: 1.05rem; color: var(--dark-bg); margin-bottom: 0.5rem; }
+    .result-body { font-size: 0.85rem; color: #666; line-height: 1.7; }
+    .result-body a { color: var(--accent); }
+
+    /* ── Divider ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 1.2rem 0; }
+
+    /* ── Footer ── */
+    .page-footer { margin-top: 1.5rem; font-size: 0.75rem; color: #aab8bf; text-align: center; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-head">
+    <div class="logo">TIF · Sermon Translations</div>
+    <h1 id="pageTitle">Language Request</h1>
+  </div>
+  <div class="card-body">
+
+    <!-- ── TOKEN SETUP (shown when no token is stored) ── -->
+    <div class="setup-panel" id="setupPanel">
+      <div class="setup-note">
+        <strong>One-time Setup</strong>
+        To approve translation requests, enter your GitHub Personal Access Token below.
+        It will be saved in your browser — you won't need to enter it again.
+        <br><br>Your token is in <code>tif_push.py</code> (the long string after <code>Bearer </code>).
+      </div>
+      <label class="form-label" for="tokenInput">GitHub Personal Access Token</label>
+      <input class="form-input" id="tokenInput" type="password" placeholder="github_pat_…" autocomplete="off">
+      <button class="btn-save" onclick="saveToken()">Save Token &amp; Continue</button>
+    </div>
+
+    <!-- ── MAIN APPROVAL VIEW ── -->
+    <div class="main-view" id="mainView">
+
+      <div class="token-row" id="tokenRow">
+        <span>Token saved ✓</span>
+        <a onclick="resetToken()">(change)</a>
+      </div>
+
+      <table class="req-table" id="reqTable">
+        <tr><td>Language</td><td class="req-lang" id="rLang">—</td></tr>
+        <tr><td>Name</td><td id="rName">—</td></tr>
+        <tr><td>Status</td><td id="rStatus">—</td></tr>
+        <tr><td>Email</td><td id="rEmail">—</td></tr>
+        <tr><td>Action</td><td id="rMode">—</td></tr>
+      </table>
+
+      <div class="result-view" id="resultView">
+        <div class="result-icon" id="resultIcon"></div>
+        <div class="result-title" id="resultTitle"></div>
+        <div class="result-body" id="resultBody"></div>
+      </div>
+
+      <div id="actionArea">
+        <div class="btn-row" id="btnRow"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="page-footer">Taichung International Fellowship &nbsp;·&nbsp; <a href="https://toddblackhurst.github.io/tif-sermons/" style="color:var(--accent);text-decoration:none;">Sermon Translations</a></div>
+
+<script>
+  var REPO    = 'toddblackhurst/tif-sermons';
+  var API_URL = 'https://api.github.com/repos/' + REPO + '/dispatches';
+  var TOKEN_KEY = 'tif_gh_token';
+
+  /* ── Read URL params ── */
+  var params  = new URLSearchParams(window.location.search);
+  var pLang   = params.get('lang')   || '';
+  var pName   = params.get('name')   || '';
+  var pEmail  = params.get('email')  || '';
+  var pStatus = params.get('status') || '';
+  var pMode   = params.get('mode')   || 'once';   // once | ongoing | deny
+
+  /* ── Init ── */
+  window.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('rLang').textContent   = pLang   || '(unknown)';
+    document.getElementById('rName').textContent   = pName   || '(unknown)';
+    document.getElementById('rStatus').textContent = pStatus || '(unknown)';
+    document.getElementById('rEmail').textContent  = pEmail  || '(unknown)';
+
+    var modeBadge, modeLabel, pageTitle;
+    if (pMode === 'deny') {
+      modeBadge  = '<span class="mode-badge mode-deny">Deny / Ignore</span>';
+      modeLabel  = 'Deny / Ignore';
+      pageTitle  = 'Deny Language Request';
+    } else if (pMode === 'ongoing') {
+      modeBadge  = '<span class="mode-badge mode-ongoing">Ongoing — All Future Sermons</span>';
+      modeLabel  = 'Approve Ongoing';
+      pageTitle  = 'Approve Ongoing Translation';
+    } else {
+      modeBadge  = '<span class="mode-badge mode-once">This Week Only</span>';
+      modeLabel  = 'Approve Once';
+      pageTitle  = 'Approve One-Time Translation';
+    }
+    document.getElementById('pageTitle').textContent = pageTitle;
+    document.getElementById('rMode').innerHTML = modeBadge;
+
+    /* Build action buttons */
+    var btnRow = document.getElementById('btnRow');
+    if (pMode === 'deny') {
+      var bd = document.createElement('button');
+      bd.className = 'btn btn-deny'; bd.textContent = 'Confirm — Do Nothing';
+      bd.onclick = function() { showResult('ignored'); };
+      btnRow.appendChild(bd);
+    } else {
+      var ba = document.createElement('button');
+      ba.className = 'btn btn-approve'; ba.id = 'confirmBtn';
+      ba.textContent = modeLabel;
+      ba.onclick = function() { dispatch(pMode); };
+      var bc = document.createElement('button');
+      bc.className = 'btn btn-deny'; bc.textContent = 'Cancel';
+      bc.onclick = function() { history.back(); };
+      btnRow.appendChild(ba);
+      btnRow.appendChild(bc);
+    }
+
+    /* Show/hide token setup */
+    var token = localStorage.getItem(TOKEN_KEY);
+    if (token) {
+      showMainView();
+    } else {
+      document.getElementById('setupPanel').classList.add('show');
+      document.getElementById('mainView').classList.add('hide');
+    }
+  });
+
+  function showMainView() {
+    document.getElementById('setupPanel').classList.remove('show');
+    document.getElementById('mainView').classList.remove('hide');
+  }
+
+  function saveToken() {
+    var v = document.getElementById('tokenInput').value.trim();
+    if (!v) { alert('Please enter your GitHub token.'); return; }
+    localStorage.setItem(TOKEN_KEY, v);
+    showMainView();
+  }
+
+  function resetToken() {
+    localStorage.removeItem(TOKEN_KEY);
+    document.getElementById('tokenInput').value = '';
+    document.getElementById('setupPanel').classList.add('show');
+    document.getElementById('mainView').classList.add('hide');
+  }
+
+  function dispatch(mode) {
+    var token = localStorage.getItem(TOKEN_KEY);
+    if (!token) { resetToken(); return; }
+
+    var btn = document.getElementById('confirmBtn');
+    if (btn) { btn.disabled = true; btn.textContent = 'Processing\u2026'; }
+
+    fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        event_type: 'approve-language',
+        client_payload: {
+          language:        pLang,
+          mode:            mode,
+          requester_name:  pName,
+          requester_email: pEmail,
+          requester_status: pStatus
+        }
+      })
+    }).then(function(res) {
+      if (res.status === 204 || res.ok) {
+        showResult('success', mode);
+      } else {
+        return res.text().then(function(t) { throw new Error(t); });
+      }
+    }).catch(function(err) {
+      if (btn) { btn.disabled = false; btn.textContent = mode === 'ongoing' ? 'Approve Ongoing' : 'Approve Once'; }
+      var errMsg = String(err);
+      if (errMsg.indexOf('401') !== -1 || errMsg.indexOf('Bad credentials') !== -1) {
+        alert('Token rejected by GitHub. Please update your token.');
+        resetToken();
+      } else {
+        showResult('error', null, errMsg);
+      }
+    });
+  }
+
+  function showResult(state, mode, errDetail) {
+    document.getElementById('actionArea').style.display = 'none';
+    document.getElementById('tokenRow').style.display   = 'none';
+    document.getElementById('reqTable').style.marginBottom = '0';
+
+    var rv = document.getElementById('resultView');
+    rv.classList.add('show');
+
+    var icon  = document.getElementById('resultIcon');
+    var title = document.getElementById('resultTitle');
+    var body  = document.getElementById('resultBody');
+
+    if (state === 'success') {
+      icon.textContent  = '✅';
+      title.textContent = 'Request Approved!';
+      var modeDesc = mode === 'ongoing'
+        ? 'This language will be included in all future sermon translations.'
+        : 'This week\u2019s sermon is being translated now.';
+      body.innerHTML = modeDesc + ' The translation will appear on the <a href="https://toddblackhurst.github.io/tif-sermons/" target="_blank">sermon page</a> within a few minutes.<br><br><strong>' + pName + '</strong> will be notified at <strong>' + pEmail + '</strong>.';
+    } else if (state === 'ignored') {
+      icon.textContent  = '🚫';
+      title.textContent = 'Request Denied';
+      body.textContent  = 'No translation will be created. The request has been ignored.';
+    } else {
+      icon.textContent  = '❌';
+      title.textContent = 'Something went wrong';
+      body.innerHTML    = 'The approval could not be processed. Try refreshing and trying again.<br><br><small style="color:#aaa;">' + (errDetail || '') + '</small>';
+    }
+  }
+</script>
+</body>
+</html>
