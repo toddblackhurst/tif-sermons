@@ -432,6 +432,76 @@
       .main-wrapper { padding: 1.25rem 1rem 3rem; }
       .keyword-term { min-width: 100px; }
     }
+
+    /* ── REQUEST LANGUAGE BUTTON ── */
+    .lang-bar-sep { width: 1px; height: 16px; background: rgba(39,183,216,0.2); flex-shrink: 0; margin: 0 0.25rem; }
+    .lang-request-btn {
+      background: transparent; border: 1px solid rgba(39,183,216,0.25);
+      color: rgba(156,176,187,0.7); padding: 0.3rem 0.75rem; border-radius: 3px; cursor: pointer;
+      font-family: 'Asap', sans-serif; font-size: 0.75rem; font-weight: 500;
+      transition: all 0.2s; white-space: nowrap; display: inline-flex; align-items: center; gap: 5px;
+    }
+    .lang-request-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(18,27,32,0.85); z-index: 200;
+      align-items: center; justify-content: center; padding: 1rem;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #fff; border-radius: 8px; max-width: 460px; width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5); overflow: hidden;
+      max-height: 92vh; overflow-y: auto;
+    }
+    .modal-head {
+      background: var(--extra-dark); padding: 1.3rem 1.5rem 1.1rem; position: relative;
+    }
+    .modal-head h2 { font-family: 'Asul', serif; color: var(--light-text); font-size: 1rem; margin-bottom: 3px; }
+    .modal-head p  { font-size: 0.78rem; color: var(--muted-text); }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1.1rem;
+      background: none; border: none; color: rgba(255,255,255,0.4);
+      font-size: 1.3rem; cursor: pointer; line-height: 1; padding: 4px; transition: color 0.2s;
+    }
+    .modal-close:hover { color: #fff; }
+    .modal-body { padding: 1.4rem 1.5rem 1.6rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-label { display: block; font-size: 0.77rem; font-weight: 600; color: var(--dark-bg); margin-bottom: 5px; letter-spacing: 0.02em; }
+    .form-label .req { color: var(--accent); margin-left: 2px; }
+    .form-input, .form-select {
+      width: 100%; padding: 0.5rem 0.7rem; border: 1.5px solid var(--border); border-radius: 4px;
+      font-family: 'Asap', sans-serif; font-size: 0.88rem; color: var(--body-text);
+      background: #fff; transition: border-color 0.2s; appearance: none; -webkit-appearance: none;
+    }
+    .form-input:focus, .form-select:focus { outline: none; border-color: var(--accent); }
+    .form-input.err, .form-select.err { border-color: #d94f4f; box-shadow: 0 0 0 3px rgba(217,79,79,0.1); }
+    .form-hint { font-size: 0.73rem; color: var(--muted-text); margin-top: 3px; }
+    .other-row { display: none; margin-top: 7px; }
+    .other-row.show { display: block; }
+    .form-submit {
+      width: 100%; background: var(--accent); color: #fff; border: none;
+      padding: 0.7rem; border-radius: 4px; font-family: 'Asap', sans-serif;
+      font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem;
+    }
+    .form-submit:hover:not(:disabled) { background: var(--accent-dim); }
+    .form-submit:disabled { background: #9cb0bb; cursor: not-allowed; }
+    .modal-success { display: none; padding: 2rem 1.5rem 2.25rem; text-align: center; }
+    .modal-success.show { display: block; }
+    .form-view.hide { display: none; }
+    .success-icon { width: 50px; height: 50px; background: rgba(39,183,216,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 1rem; }
+    .success-title { font-family: 'Asul', serif; font-size: 1.05rem; color: var(--dark-bg); margin-bottom: 0.5rem; }
+    .success-body { font-size: 0.85rem; color: #666; line-height: 1.7; margin-bottom: 1.25rem; }
+    .done-btn { background: var(--accent); color: #fff; border: none; padding: 0.6rem 1.75rem; border-radius: 4px; font-family: 'Asap', sans-serif; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .done-btn:hover { background: var(--accent-dim); }
+    .lang-btn.generating { background: rgba(39,183,216,0.1); border-color: rgba(39,183,216,0.4); color: var(--accent); font-style: italic; }
+    .preview-notice {
+      background: rgba(39,183,216,0.06); border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0; padding: 0.75rem 1rem; margin-bottom: 1.25rem;
+      font-size: 0.82rem; color: #3a5060; line-height: 1.6;
+    }
+    .preview-notice strong { display: block; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 3px; }
   </style>
 </head>
 <body>
@@ -442,6 +512,11 @@
   <button class="lang-btn active" onclick="setLang('en')" id="btn-en">English</button>
   <button class="lang-btn" onclick="setLang('zh')" id="btn-zh">繁體中文</button>
   <button class="lang-btn" onclick="setLang('id')" id="btn-id">Bahasa</button>
+  <span class="lang-bar-sep" aria-hidden="true"></span>
+  <button class="lang-request-btn" onclick="openRequestModal()" aria-label="Request a new language translation">
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
+    Request Language
+  </button>
 </div>
 
 <!-- Nav -->
@@ -822,7 +897,91 @@
   <div class="footer-copy">Listening aids produced weekly in English, Traditional Chinese, and Bahasa Indonesia.</div>
 </footer>
 
+<!-- ═══ LANGUAGE REQUEST MODAL ═══════════════════════════════════════ -->
+<div class="modal-overlay" id="langModal" role="dialog" aria-modal="true"
+     aria-labelledby="modalTitle" onclick="closeModalIfOverlay(event)">
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+      <h2 id="modalTitle">Request a Language Translation</h2>
+      <p>Help make TIF sermons accessible in your language.</p>
+    </div>
+
+    <div id="formView" class="form-view">
+      <div class="modal-body">
+        <form id="reqForm" onsubmit="submitRequest(event)" novalidate>
+
+          <div class="form-group">
+            <label class="form-label" for="fLang">Language <span class="req">*</span></label>
+            <select class="form-select" id="fLang" required onchange="toggleOther(this)">
+              <option value="">— Select a language —</option>
+              <option>Japanese (日本語)</option>
+              <option>Korean (한국어)</option>
+              <option>Thai (ภาษาไทย)</option>
+              <option>Vietnamese (Tiếng Việt)</option>
+              <option>Filipino / Tagalog</option>
+              <option>German (Deutsch)</option>
+              <option>French (Français)</option>
+              <option>Spanish (Español)</option>
+              <option>Portuguese (Português)</option>
+              <option>Hindi (हिन्दी)</option>
+              <option>Malay (Bahasa Melayu)</option>
+              <option>Burmese (မြန်မာဘာသာ)</option>
+              <option>Russian (Русский)</option>
+              <option>Arabic (العربية)</option>
+              <option>Dutch (Nederlands)</option>
+              <option>Italian (Italiano)</option>
+              <option>Hebrew (עברית)</option>
+              <option>Ukrainian (Українська)</option>
+              <option>Bengali (বাংলা)</option>
+              <option>Swahili</option>
+              <option value="other">Other — specify below</option>
+            </select>
+            <div class="other-row" id="otherRow">
+              <input class="form-input" id="fOther" type="text" placeholder="Type your language name" maxlength="60">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="fName">Full Name <span class="req">*</span></label>
+            <input class="form-input" id="fName" type="text" placeholder="Your full name" required maxlength="100">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="fStatus">Your Connection to TIF <span class="req">*</span></label>
+            <select class="form-select" id="fStatus" required>
+              <option value="">— Select your status —</option>
+              <option>Considering TIF</option>
+              <option>Regular Attender</option>
+              <option>Member</option>
+              <option>Just Visiting — Don't Plan to Return</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="fEmail">Email Address <span class="req">*</span></label>
+            <input class="form-input" id="fEmail" type="email" placeholder="you@example.com" required maxlength="120">
+            <div class="form-hint">We'll let you know when your language is added.</div>
+          </div>
+
+          <button type="submit" class="form-submit" id="fSubmit">Submit Request</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal-success" id="successView">
+      <div class="success-icon">✓</div>
+      <div class="success-title">Request Received!</div>
+      <div class="success-body" id="successMsg">Your request has been sent to the TIF team.</div>
+      <button class="done-btn" onclick="closeModal()">Done</button>
+    </div>
+
+  </div>
+</div>
+
 <script>
+  /* ── EXISTING LANGUAGE SWITCHER ── */
   function setLang(lang) {
     document.querySelectorAll('article').forEach(a => a.classList.remove('active'));
     document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
@@ -835,6 +994,229 @@
     document.getElementById('hero-title-id').style.display = (lang === 'id') ? 'block' : 'none';
     var scriptureMap = { en: 'James 2:1\u201313', zh: '\u96c5\u5404\u66f8 2:1\u201313', id: 'Yakobus 2:1\u201313' };
     document.getElementById('hero-scripture').textContent = scriptureMap[lang];
+  }
+
+  /* ── CUSTOM LANGUAGE SWITCHER (for dynamically added languages) ── */
+  function setLangCustom(langId) {
+    document.querySelectorAll('article').forEach(a => a.classList.remove('active'));
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    var art = document.getElementById('content-' + langId);
+    var btn = document.getElementById('btn-' + langId);
+    if (art) art.classList.add('active');
+    if (btn) { btn.classList.add('active'); }
+    // Leave hero in English for preview translations
+    ['hero-title-en','hero-title-zh','hero-title-id'].forEach(function(id) {
+      var el = document.getElementById(id); if (el) el.style.display = 'none';
+    });
+    var enTitle = document.getElementById('hero-title-en');
+    if (enTitle) enTitle.style.display = 'block';
+  }
+
+  /* ── MODAL ── */
+  function openRequestModal() {
+    document.getElementById('langModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function(){ document.getElementById('fLang').focus(); }, 80);
+  }
+  function closeModal() {
+    document.getElementById('langModal').classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(function(){
+      document.getElementById('reqForm').reset();
+      document.getElementById('otherRow').classList.remove('show');
+      document.getElementById('formView').classList.remove('hide');
+      document.getElementById('successView').classList.remove('show');
+      document.getElementById('fSubmit').disabled = false;
+      document.getElementById('fSubmit').textContent = 'Submit Request';
+      ['fLang','fOther','fName','fStatus','fEmail'].forEach(function(id){
+        var el = document.getElementById(id); if(el) el.classList.remove('err');
+      });
+    }, 300);
+  }
+  function closeModalIfOverlay(e) { if (e.target === document.getElementById('langModal')) closeModal(); }
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+
+  function toggleOther(sel) {
+    var row = document.getElementById('otherRow');
+    var inp = document.getElementById('fOther');
+    var show = sel.value === 'other';
+    row.classList.toggle('show', show);
+    show ? inp.setAttribute('required','') : inp.removeAttribute('required');
+  }
+
+  /* ── LANGUAGE MAPS ── */
+  var LC = {
+    'Japanese':{'lc':'ja','nat':'日本語'}, 'Korean':{'lc':'ko','nat':'한국어'},
+    'Thai':{'lc':'th','nat':'ภาษาไทย'}, 'Vietnamese':{'lc':'vi','nat':'Tiếng Việt'},
+    'Filipino':{'lc':'tl','nat':'Filipino'}, 'German':{'lc':'de','nat':'Deutsch'},
+    'French':{'lc':'fr','nat':'Français'}, 'Spanish':{'lc':'es','nat':'Español'},
+    'Portuguese':{'lc':'pt','nat':'Português'}, 'Hindi':{'lc':'hi','nat':'हिन्दी'},
+    'Malay':{'lc':'ms','nat':'Bahasa Melayu'}, 'Burmese':{'lc':'my','nat':'မြန်မာ'},
+    'Russian':{'lc':'ru','nat':'Русский'}, 'Arabic':{'lc':'ar','nat':'العربية'},
+    'Dutch':{'lc':'nl','nat':'Nederlands'}, 'Italian':{'lc':'it','nat':'Italiano'},
+    'Hebrew':{'lc':'he','nat':'עברית'}, 'Ukrainian':{'lc':'uk','nat':'Українська'},
+    'Bengali':{'lc':'bn','nat':'বাংলা'}, 'Swahili':{'lc':'sw','nat':'Kiswahili'}
+  };
+
+  function baseLangName(val) {
+    // Strip native script in parens, e.g. "Japanese (日本語)" → "Japanese"
+    return val.replace(/\s*\(.*\)/, '').replace(' / Tagalog','').trim();
+  }
+
+  /* ── TRANSLATION HELPER (MyMemory free API) ── */
+  function tx(text, lc) {
+    return fetch('https://api.mymemory.translated.net/get?q=' + encodeURIComponent(text) + '&langpair=en|' + lc)
+      .then(function(r){ return r.json(); })
+      .then(function(d){ return d.responseStatus === 200 ? d.responseData.translatedText : text; })
+      .catch(function(){ return text; });
+  }
+
+  /* ── BUILD PREVIEW TRANSLATION (injects into current page DOM) ── */
+  function buildPreview(langName, lc, langId) {
+    var en = document.getElementById('content-en');
+    var bigIdea = (en.querySelector('.big-idea-text') || {}).textContent || '';
+    var labels = ['Big Idea','Scripture','Sermon Flow','Key Words','Anchor Statements','Listening Cues','Application Focus'];
+    var notice = 'Machine-generated preview. A full pastoral translation is being prepared by the TIF team.';
+
+    return Promise.all([tx(bigIdea,lc)].concat(labels.map(function(l){return tx(l,lc);})).concat([tx(notice,lc)]))
+      .then(function(results) {
+        var biT = results[0];
+        var labT = results.slice(1, 8);
+        var noticeT = results[8];
+
+        var art = document.createElement('article');
+        art.id = 'content-' + langId;
+        art.lang = lc;
+
+        // Preview notice
+        var pn = document.createElement('div');
+        pn.className = 'preview-notice';
+        pn.innerHTML = '<strong>Translation Preview</strong>' + noticeT;
+        art.appendChild(pn);
+
+        // Big Idea card (clone from EN, swap text)
+        var biCard = en.querySelector('.big-idea-card');
+        if (biCard) {
+          var biClone = biCard.cloneNode(true);
+          var biLabel = biClone.querySelector('.big-idea-label');
+          var biText  = biClone.querySelector('.big-idea-text');
+          if (biLabel) biLabel.textContent = labT[0];
+          if (biText)  biText.textContent  = biT;
+          art.appendChild(biClone);
+        }
+
+        // Clone each section-card with translated heading
+        var sectionTitles = en.querySelectorAll('.section-title');
+        var sectionCards  = en.querySelectorAll('.section-card');
+        var titleMap = {};
+        sectionTitles.forEach(function(t,i){ titleMap[t.textContent.trim()] = labT[i+1] || t.textContent; });
+
+        sectionCards.forEach(function(card) {
+          var clone = card.cloneNode(true);
+          var titleEl = clone.querySelector('.section-title');
+          if (titleEl && titleMap[titleEl.textContent.trim()]) {
+            titleEl.textContent = titleMap[titleEl.textContent.trim()];
+          }
+          art.appendChild(clone);
+        });
+
+        // Insert before footer
+        var footer = document.querySelector('footer.site-footer');
+        footer.parentNode.insertBefore(art, footer);
+        return art;
+      });
+  }
+
+  /* ── FORM SUBMISSION ── */
+  function submitRequest(e) {
+    e.preventDefault();
+
+    var fLang   = document.getElementById('fLang');
+    var fOther  = document.getElementById('fOther');
+    var fName   = document.getElementById('fName');
+    var fStatus = document.getElementById('fStatus');
+    var fEmail  = document.getElementById('fEmail');
+
+    [fLang,fOther,fName,fStatus,fEmail].forEach(function(el){ el.classList.remove('err'); });
+
+    var ok = true;
+    if (!fLang.value)                                                       { fLang.classList.add('err');   ok=false; }
+    if (fLang.value==='other' && !fOther.value.trim())                      { fOther.classList.add('err');  ok=false; }
+    if (!fName.value.trim())                                                 { fName.classList.add('err');   ok=false; }
+    if (!fStatus.value)                                                      { fStatus.classList.add('err'); ok=false; }
+    if (!fEmail.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fEmail.value)) { fEmail.classList.add('err'); ok=false; }
+    if (!ok) return;
+
+    var rawLang    = fLang.value === 'other' ? fOther.value.trim() : fLang.value;
+    var langName   = baseLangName(rawLang);
+    var info       = LC[langName] || {};
+    var lc         = info.lc || null;
+    var langId     = langName.toLowerCase().replace(/[^a-z0-9]/g,'_');
+    var reqName    = fName.value.trim();
+    var reqEmail   = fEmail.value.trim();
+    var reqStatus  = fStatus.value;
+
+    document.getElementById('fSubmit').disabled = true;
+    document.getElementById('fSubmit').textContent = 'Submitting…';
+
+    // Show success immediately
+    document.getElementById('formView').classList.add('hide');
+    document.getElementById('successView').classList.add('show');
+    document.getElementById('successMsg').innerHTML =
+      '<strong>' + reqName + '</strong>, your request for <strong>' + langName + '</strong> has been sent to the TIF team.' +
+      (lc ? ' A preview translation is loading in the language bar.' : '') +
+      '<br><br>We\'ll be in touch at <strong>' + reqEmail + '</strong> when a full translation is ready.';
+
+    // Send email via Web3Forms
+    var cmd1 = 'python tif_language_request.py --language "' + langName + '" --mode once --name "' + reqName + '" --email "' + reqEmail + '"';
+    var cmd2 = 'python tif_language_request.py --language "' + langName + '" --mode ongoing --name "' + reqName + '" --email "' + reqEmail + '"';
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        access_key: '3fc0c694-adc2-4cda-8191-c4f6993a9a55',
+        subject: 'TIF Language Request: ' + langName + ' from ' + reqName,
+        from_name: 'TIF Sermon Site',
+        name: reqName, email: reqEmail,
+        message: [
+          'New language translation request',
+          '────────────────────────────────',
+          'Language:  ' + langName,
+          'Name:      ' + reqName,
+          'Status:    ' + reqStatus,
+          'Email:     ' + reqEmail,
+          '',
+          '── APPROVAL OPTIONS ─────────────',
+          '',
+          '▶ THIS WEEK ONLY:',
+          '  ' + cmd1,
+          '',
+          '▶ ONGOING (all future sermons):',
+          '  ' + cmd2,
+          '',
+          '────────────────────────────────',
+          'Sent from TIF Sermon Listening Aid'
+        ].join('\n')
+      })
+    }).catch(function(){});
+
+    // Generate in-session preview
+    if (lc) {
+      var bar = document.querySelector('.lang-bar');
+      var btn = document.createElement('button');
+      btn.className = 'lang-btn generating';
+      btn.id = 'btn-' + langId;
+      btn.textContent = langName + ' · loading…';
+      btn.onclick = function(){ setLangCustom(langId); };
+      var sep = bar.querySelector('.lang-bar-sep');
+      bar.insertBefore(btn, sep);
+
+      buildPreview(langName, lc, langId).then(function(){
+        btn.className = 'lang-btn';
+        btn.textContent = info.nat ? langName : langName;
+        btn.onclick = function(){ setLangCustom(langId); };
+      }).catch(function(){ btn.remove(); });
+    }
   }
 </script>
 
