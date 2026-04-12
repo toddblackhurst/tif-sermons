@@ -1175,17 +1175,16 @@
     document.getElementById('formView').classList.add('hide');
     document.getElementById('successView').classList.add('show');
     document.getElementById('successMsg').innerHTML =
-      '<strong>' + reqName + '</strong>, your request for <strong>' + langName + '</strong> has been sent to the TIF team.' +
-      (lc ? ' A preview translation is loading in the language bar.' : '') +
-      '<br><br>We\'ll be in touch at <strong>' + reqEmail + '</strong> when a full translation is ready.';
+      '<strong>' + reqName + '</strong>, a <strong>' + langName + '</strong> translation is being generated now.' +
+      (lc ? ' A quick preview is loading in the language bar.' : '') +
+      '<br><br>The full translation will appear on this page within 30 minutes.';
 
-    // Send email via Web3Forms (with clickable approve.html links)
+    // Send email via Web3Forms — translation will be generated automatically
     var base  = 'https://toddblackhurst.github.io/tif-sermons/approve.html';
     var qs    = '?lang=' + encodeURIComponent(langName) +
                 '&name=' + encodeURIComponent(reqName) +
                 '&email=' + encodeURIComponent(reqEmail) +
                 '&status=' + encodeURIComponent(reqStatus);
-    var urlOnce    = base + qs + '&mode=once';
     var urlOngoing = base + qs + '&mode=ongoing';
     var urlDeny    = base + qs + '&mode=deny';
     fetch('https://api.web3forms.com/submit', {
@@ -1197,22 +1196,25 @@
         from_name: 'TIF Sermon Site',
         name: reqName, email: reqEmail,
         message: [
-          'New language translation request',
+          'TIF-LANG-REQUEST',
           '════════════════════════════════════',
-          'Language:  ' + langName,
-          'Name:      ' + reqName,
-          'Status:    ' + reqStatus,
-          'Email:     ' + reqEmail,
+          'Language: ' + langName,
+          'Name:     ' + reqName,
+          'Status:   ' + reqStatus,
+          'Email:    ' + reqEmail,
           '',
-          '── CLICK TO APPROVE ─────────────────',
+          'A ' + langName + ' translation is being generated automatically',
+          'and will appear on the sermon page within 30 minutes.',
           '',
-          '▶ Approve this week only:',
-          '  ' + urlOnce,
+          '── DECIDE PERSISTENCE ───────────────',
           '',
-          '▶ Approve ongoing (all future sermons):',
+          '▶ Keep for all future sermons (ongoing):',
           '  ' + urlOngoing,
           '',
-          '▶ Deny / ignore:',
+          '▶ This week only — no action needed.',
+          '  (Translation will be removed when the next sermon publishes.)',
+          '',
+          '▶ Remove from this week:',
           '  ' + urlDeny,
           '',
           '════════════════════════════════════',
