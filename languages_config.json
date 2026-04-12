@@ -1,0 +1,9 @@
+{
+  "extra_languages": [
+    {
+      "name": "Korean",
+      "code": "ko",
+      "display": "한국어"
+    }
+  ]
+}
