@@ -35,44 +35,123 @@
     /* ── LANGUAGE TOGGLE ── */
     .lang-bar {
       background: var(--extra-dark);
-      padding: 0.6rem 1.5rem;
+      padding: 0.55rem 1.2rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: space-between;
       border-bottom: 1px solid rgba(39,183,216,0.15);
       position: sticky;
       top: 0;
       z-index: 100;
     }
-
-    .lang-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted-text);
-      margin-right: 0.5rem;
-    }
-
-    .lang-btn {
-      background: transparent;
-      border: 1px solid rgba(39,183,216,0.3);
-      color: var(--muted-text);
-      padding: 0.3rem 0.85rem;
-      border-radius: 3px;
-      font-family: 'Asap', sans-serif;
-      font-size: 0.8rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-    .lang-btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
+    .lang-current {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.82rem;
       font-weight: 600;
+      color: rgba(255,255,255,0.65);
     }
+    .lang-current-flag { font-size: 1.05rem; line-height: 1; }
+    .lang-current-name { font-family: 'Asap', sans-serif; }
+    .globe-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.38rem;
+      background: rgba(39,183,216,0.12);
+      border: 1.5px solid rgba(39,183,216,0.35);
+      border-radius: 5px;
+      padding: 0.3rem 0.7rem;
+      color: var(--accent);
+      font-family: 'Asap', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .globe-btn:hover { background: rgba(39,183,216,0.22); }
+    .globe-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+    .lang-bar-actions { display: flex; align-items: center; gap: 0.5rem; }
+    /* ── LANGUAGE SHEET ── */
+    .lang-sheet-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 300;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .lang-sheet-overlay.open { display: flex; }
+    .lang-sheet {
+      background: #fff;
+      border-radius: 16px 16px 0 0;
+      width: 100%;
+      max-width: 600px;
+      padding-bottom: env(safe-area-inset-bottom, 1rem);
+      max-height: 75vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      animation: langSheetUp 0.22s ease;
+    }
+    @keyframes langSheetUp {
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0); }
+    }
+    .lang-sheet-handle {
+      width: 36px; height: 4px;
+      background: #d0dde3;
+      border-radius: 99px;
+      margin: 0.7rem auto 0;
+    }
+    .lang-sheet-title {
+      font-family: 'Asul', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #7a9aaa;
+      padding: 0.9rem 1.25rem 0.4rem;
+    }
+    .lang-sheet-list { list-style: none; }
+    .lang-sheet-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.78rem 1.25rem;
+      cursor: pointer;
+      border-bottom: 1px solid #f0f4f6;
+      font-family: 'Asap', sans-serif;
+      font-size: 0.92rem;
+      color: #2c3e47;
+      font-weight: 500;
+      transition: background 0.1s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .lang-sheet-item:hover  { background: #f5f9fb; }
+    .lang-sheet-item:active { background: #ebf4f7; }
+    .lang-sheet-item.active { color: #1e96b2; font-weight: 600; }
+    .lang-sheet-item.generating { color: #27b7d8; font-style: italic; opacity: 0.75; }
+    .lang-item-flag { font-size: 1.2rem; width: 1.5rem; text-align: center; flex-shrink: 0; }
+    .lang-item-name { flex: 1; }
+    .lang-check { margin-left: auto; color: #27b7d8; font-size: 0.88rem; font-weight: 700; }
+    .lang-sheet-sep { border: none; border-top: 1px solid #e8f0f4; margin: 0.25rem 0; }
+    .lang-sheet-request-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 0.9rem 1.25rem;
+      font-family: 'Asap', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #27b7d8;
+      cursor: pointer;
+      text-align: left;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .lang-sheet-request-btn:hover { background: #f5f9fb; }
+    .lang-sheet-request-btn svg { flex-shrink: 0; }
 
     /* ── NAV ── */
     .nav {
@@ -434,7 +513,7 @@
     }
 
     /* ── REQUEST LANGUAGE BUTTON ── */
-    .lang-bar-sep { width: 1px; height: 16px; background: rgba(39,183,216,0.2); flex-shrink: 0; margin: 0 0.25rem; }
+
     .lang-request-btn {
       background: transparent; border: 1px solid rgba(39,183,216,0.25);
       color: rgba(156,176,187,0.7); padding: 0.3rem 0.75rem; border-radius: 3px; cursor: pointer;
@@ -495,7 +574,7 @@
     .success-body { font-size: 0.85rem; color: #666; line-height: 1.7; margin-bottom: 1.25rem; }
     .done-btn { background: var(--accent); color: #fff; border: none; padding: 0.6rem 1.75rem; border-radius: 4px; font-family: 'Asap', sans-serif; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
     .done-btn:hover { background: var(--accent-dim); }
-    .lang-btn.generating { background: rgba(39,183,216,0.1); border-color: rgba(39,183,216,0.4); color: var(--accent); font-style: italic; }
+
     .preview-notice {
       background: rgba(39,183,216,0.06); border-left: 3px solid var(--accent);
       border-radius: 0 4px 4px 0; padding: 0.75rem 1rem; margin-bottom: 1.25rem;
@@ -508,16 +587,52 @@
 
 <!-- Language Toggle Bar -->
 <div class="lang-bar">
-  <span class="lang-label">Language</span>
-  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">English</button>
-  <button class="lang-btn" onclick="setLang('zh')" id="btn-zh">繁體中文</button>
-  <button class="lang-btn" onclick="setLang('id')" id="btn-id">Bahasa</button>
-  <button class="lang-btn" onclick="setLang('tl')">Filipino</button><span class="lang-bar-sep" aria-hidden="true"></span>
-  <button class="lang-request-btn" onclick="openRequestModal()" aria-label="Request a new language translation">
-    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
-    Request Language
-  </button>
+  <div class="lang-current">
+    <span class="lang-current-flag" id="langCurrentFlag">&#x1F1FA;&#x1F1F8;</span>
+    <span class="lang-current-name" id="langCurrentName">English</span>
+  </div>
+  <div class="lang-bar-actions">
+    <button class="globe-btn" onclick="openLangSheet()" aria-label="Choose language">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      Language
+    </button>
+  </div>
 </div>
+
+<!-- Language Selection Sheet -->
+<div class="lang-sheet-overlay" id="langSheetOverlay" onclick="closeLangSheet(event)">
+  <div class="lang-sheet">
+    <div class="lang-sheet-handle"></div>
+    <div class="lang-sheet-title">Choose language</div>
+    <ul class="lang-sheet-list" id="langSheetList">
+      <li class="lang-sheet-item active" id="btn-en" onclick="setLang('en')">
+        <span class="lang-item-flag">&#x1F1FA;&#x1F1F8;</span>
+        <span class="lang-item-name">English</span>
+        <span class="lang-check">&#x2713;</span>
+      </li>
+      <li class="lang-sheet-item" id="btn-zh" onclick="setLang('zh')">
+        <span class="lang-item-flag">&#x1F1F9;&#x1F1FC;</span>
+        <span class="lang-item-name">&#x7E41;&#x9AD4;&#x4E2D;&#x6587;</span>
+      </li>
+      <li class="lang-sheet-item" id="btn-id" onclick="setLang('id')">
+        <span class="lang-item-flag">&#x1F1EE;&#x1F1E9;</span>
+        <span class="lang-item-name">Bahasa Indonesia</span>
+      </li>
+      <li class="lang-sheet-item" id="btn-tl" onclick="setLang('tl')">
+        <span class="lang-item-flag">&#x1F1F5;&#x1F1ED;</span>
+        <span class="lang-item-name">Filipino</span>
+      </li>
+    </ul>
+    <hr class="lang-sheet-sep">
+    <button class="lang-sheet-request-btn"
+            onclick="document.getElementById('langSheetOverlay').classList.remove('open');
+                     document.body.style.overflow=''; openRequestModal()">
+      <svg width="11" height="11" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
+      Request another language
+    </button>
+  </div>
+</div>
+
 
 <!-- Nav -->
 <nav class="nav">
@@ -981,35 +1096,79 @@
 </div>
 
 <script>
-  /* ── EXISTING LANGUAGE SWITCHER ── */
-  function setLang(lang) {
-    document.querySelectorAll('article').forEach(a => a.classList.remove('active'));
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('content-' + lang).classList.add('active');
-    document.getElementById('btn-' + lang).classList.add('active');
-    var langMap = { en: 'en', zh: 'zh-TW', id: 'id' };
-    document.documentElement.lang = langMap[lang];
-    document.getElementById('hero-title-en').style.display = (lang === 'en') ? 'block' : 'none';
-    document.getElementById('hero-title-zh').style.display = (lang === 'zh') ? 'block' : 'none';
-    document.getElementById('hero-title-id').style.display = (lang === 'id') ? 'block' : 'none';
-    var scriptureMap = { en: 'James 2:1\u201313', zh: '\u96c5\u5404\u66f8 2:1\u201313', id: 'Yakobus 2:1\u201313' };
-    document.getElementById('hero-scripture').textContent = scriptureMap[lang];
+  /* ── LANGUAGE META ── */
+  var LANG_META = {
+    en: { flag: '🇺🇸', name: 'English',          htmlLang: 'en',    scripture: 'James 2:1\u201313' },
+    zh: { flag: '🇹🇼', name: '繁體中文', htmlLang: 'zh-TW', scripture: '\u96c5\u5404\u66f8 2:1\u201313' },
+    id: { flag: '🇮🇩', name: 'Bahasa Indonesia',  htmlLang: 'id',    scripture: 'Yakobus 2:1\u201313' },
+    tl: { flag: '🇵🇭', name: 'Filipino',          htmlLang: 'tl',    scripture: 'Santiago 2:1\u201313' },
+  };
+
+  /* ── SHEET HELPERS ── */
+  function openLangSheet() {
+    document.getElementById('langSheetOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLangSheet(e) {
+    if (!e || e.target === document.getElementById('langSheetOverlay')) {
+      document.getElementById('langSheetOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
   }
 
-  /* ── CUSTOM LANGUAGE SWITCHER (for dynamically added languages) ── */
+  /* ── LANGUAGE SWITCHER ── */
+  function _applyLangMeta(lang) {
+    var meta = LANG_META[lang] || LANG_META.en;
+    document.getElementById('langCurrentFlag').textContent = meta.flag;
+    document.getElementById('langCurrentName').textContent = meta.name;
+    document.documentElement.lang = meta.htmlLang;
+    document.querySelectorAll('.lang-sheet-item').forEach(function(li) {
+      li.classList.remove('active');
+      var chk = li.querySelector('.lang-check'); if (chk) chk.remove();
+    });
+    var activeLi = document.getElementById('btn-' + lang);
+    if (activeLi) {
+      activeLi.classList.add('active');
+      var chk = document.createElement('span');
+      chk.className = 'lang-check'; chk.textContent = '\u2713';
+      activeLi.appendChild(chk);
+    }
+    ['en','zh','id'].forEach(function(l) {
+      var el = document.getElementById('hero-title-' + l); if (el) el.style.display = 'none';
+    });
+    var heroKey = (['en','zh','id'].indexOf(lang) >= 0) ? lang : 'en';
+    var heroEl  = document.getElementById('hero-title-' + heroKey);
+    if (heroEl) heroEl.style.display = 'block';
+    if (meta.scripture) {
+      var scrEl = document.getElementById('hero-scripture');
+      if (scrEl) scrEl.textContent = meta.scripture;
+    }
+  }
+
+  function setLang(lang) {
+    document.querySelectorAll('article').forEach(a => a.classList.remove('active'));
+    var art = document.getElementById('content-' + lang);
+    if (art) art.classList.add('active');
+    _applyLangMeta(lang);
+    closeLangSheet();
+  }
+
+  /* ── CUSTOM LANGUAGE SWITCHER (for dynamically added preview languages) ── */
   function setLangCustom(langId) {
     document.querySelectorAll('article').forEach(a => a.classList.remove('active'));
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
     var art = document.getElementById('content-' + langId);
-    var btn = document.getElementById('btn-' + langId);
     if (art) art.classList.add('active');
-    if (btn) { btn.classList.add('active'); }
-    // Leave hero in English for preview translations
-    ['hero-title-en','hero-title-zh','hero-title-id'].forEach(function(id) {
-      var el = document.getElementById(id); if (el) el.style.display = 'none';
-    });
-    var enTitle = document.getElementById('hero-title-en');
-    if (enTitle) enTitle.style.display = 'block';
+    if (LANG_META[langId]) {
+      _applyLangMeta(langId);
+    } else {
+      document.querySelectorAll('.lang-sheet-item').forEach(function(li) {
+        li.classList.remove('active');
+        var chk = li.querySelector('.lang-check'); if (chk) chk.remove();
+      });
+      var li = document.getElementById('btn-' + langId);
+      if (li) li.classList.add('active');
+    }
+    closeLangSheet();
   }
 
   /* ── MODAL ── */
@@ -1223,22 +1382,25 @@
       })
     }).catch(function(){});
 
-    // Generate in-session preview
+    // Generate in-session preview — add entry to language sheet
     if (lc) {
-      var bar = document.querySelector('.lang-bar');
-      var btn = document.createElement('button');
-      btn.className = 'lang-btn generating';
-      btn.id = 'btn-' + langId;
-      btn.textContent = langName + ' · loading…';
-      btn.onclick = function(){ setLangCustom(langId); };
-      var sep = bar.querySelector('.lang-bar-sep');
-      bar.insertBefore(btn, sep);
+      var list  = document.getElementById('langSheetList');
+      var sepEl = document.querySelector('.lang-sheet-sep');
+      var li    = document.createElement('li');
+      li.className = 'lang-sheet-item generating';
+      li.id = 'btn-' + langId;
+      li.innerHTML = '<span class="lang-item-flag">&#x1F310;</span>'
+                   + '<span class="lang-item-name">' + langName + ' \u00b7 loading\u2026</span>';
+      li.onclick = function(){ setLangCustom(langId); };
+      if (sepEl) list.parentNode.insertBefore(li, sepEl);
+      else list.appendChild(li);
 
       buildPreview(langName, lc, langId).then(function(){
-        btn.className = 'lang-btn';
-        btn.textContent = info.nat ? langName : langName;
-        btn.onclick = function(){ setLangCustom(langId); };
-      }).catch(function(){ btn.remove(); });
+        li.className = 'lang-sheet-item';
+        li.innerHTML = '<span class="lang-item-flag">&#x1F310;</span>'
+                     + '<span class="lang-item-name">' + langName + '</span>';
+        li.onclick = function(){ setLangCustom(langId); };
+      }).catch(function(){ li.remove(); });
     }
   }
 </script>
