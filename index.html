@@ -3,1410 +3,471 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>No Favorites | TIF Sermon Listening Aid</title>
+  <meta name="tif-week-slug" content="james-week-3">
+  <meta name="tif-page-type" content="full-manuscript">
+  <title>Mercy Triumphs | TIF Full Sermon Manuscript</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Asul:wght@400;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --dark-bg: #1b2327;
+      --dark: #1b2327;
       --extra-dark: #121b20;
       --accent: #27b7d8;
-      --accent-dim: #1a8fa8;
       --body-text: #333333;
       --light-text: #f0f0f0;
-      --muted-text: #9cb0bb;
-      --card-bg: #ffffff;
-      --section-bg: #f4f7f9;
-      --border: #dde6ea;
+      --mid-text: #b0bec5;
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Asap', sans-serif;
-      background: var(--dark-bg);
-      color: var(--body-text);
-      min-height: 100vh;
-    }
-
-    /* ── LANGUAGE TOGGLE ── */
-    .lang-bar {
-      background: var(--extra-dark);
-      padding: 0.55rem 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(39,183,216,0.15);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .lang-current {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.65);
-    }
-    .lang-current-flag { font-size: 1.05rem; line-height: 1; }
-    .lang-current-name { font-family: 'Asap', sans-serif; }
-    .globe-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.38rem;
-      background: rgba(39,183,216,0.12);
-      border: 1.5px solid rgba(39,183,216,0.35);
-      border-radius: 5px;
-      padding: 0.3rem 0.7rem;
-      color: var(--accent);
-      font-family: 'Asap', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .globe-btn:hover { background: rgba(39,183,216,0.22); }
-    .globe-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
-    .lang-bar-actions { display: flex; align-items: center; gap: 0.5rem; }
-    /* ── LANGUAGE SHEET ── */
-    .lang-sheet-overlay {
-      display: none;
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 300;
-      align-items: flex-end;
-      justify-content: center;
-    }
-    .lang-sheet-overlay.open { display: flex; }
-    .lang-sheet {
-      background: #fff;
-      border-radius: 16px 16px 0 0;
-      width: 100%;
-      max-width: 600px;
-      padding-bottom: env(safe-area-inset-bottom, 1rem);
-      max-height: 75vh;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      animation: langSheetUp 0.22s ease;
-    }
-    @keyframes langSheetUp {
-      from { transform: translateY(100%); }
-      to   { transform: translateY(0); }
-    }
-    .lang-sheet-handle {
-      width: 36px; height: 4px;
-      background: #d0dde3;
-      border-radius: 99px;
-      margin: 0.7rem auto 0;
-    }
-    .lang-sheet-title {
-      font-family: 'Asul', serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #7a9aaa;
-      padding: 0.9rem 1.25rem 0.4rem;
-    }
-    .lang-sheet-list { list-style: none; }
-    .lang-sheet-item {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      padding: 0.78rem 1.25rem;
-      cursor: pointer;
-      border-bottom: 1px solid #f0f4f6;
-      font-family: 'Asap', sans-serif;
-      font-size: 0.92rem;
-      color: #2c3e47;
-      font-weight: 500;
-      transition: background 0.1s;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .lang-sheet-item:hover  { background: #f5f9fb; }
-    .lang-sheet-item:active { background: #ebf4f7; }
-    .lang-sheet-item.active { color: #1e96b2; font-weight: 600; }
-    .lang-sheet-item.generating { color: #27b7d8; font-style: italic; opacity: 0.75; }
-    .lang-item-flag { font-size: 1.2rem; width: 1.5rem; text-align: center; flex-shrink: 0; }
-    .lang-item-name { flex: 1; }
-    .lang-check { margin-left: auto; color: #27b7d8; font-size: 0.88rem; font-weight: 700; }
-    .lang-sheet-sep { border: none; border-top: 1px solid #e8f0f4; margin: 0.25rem 0; }
-    .lang-sheet-request-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      width: 100%;
-      background: none;
-      border: none;
-      padding: 0.9rem 1.25rem;
-      font-family: 'Asap', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: #27b7d8;
-      cursor: pointer;
-      text-align: left;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .lang-sheet-request-btn:hover { background: #f5f9fb; }
-    .lang-sheet-request-btn svg { flex-shrink: 0; }
-
-    /* ── NAV ── */
-    .nav {
-      background: var(--extra-dark);
-      padding: 0.75rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 2px solid var(--accent);
-    }
-
-    .nav-brand {
-      font-family: 'Asul', serif;
-      color: var(--light-text);
-      font-size: 0.95rem;
-      letter-spacing: 0.04em;
-      text-decoration: none;
-    }
-
-    .nav-archive {
-      font-size: 0.8rem;
-      color: var(--accent);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      transition: opacity 0.2s;
-    }
-
-    .nav-archive:hover { opacity: 0.8; }
-
-    /* ── HERO ── */
-    .hero {
-      background: var(--extra-dark);
-      padding: 3rem 2rem 2.5rem;
-      text-align: center;
-      border-bottom: 3px solid var(--accent);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(39,183,216,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-series {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-      font-weight: 600;
-    }
-
-    .hero-title {
-      font-family: 'Asul', serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      color: var(--light-text);
-      line-height: 1.15;
-      margin-bottom: 1rem;
-    }
-
-    .hero-scripture {
-      display: inline-block;
-      background: rgba(39,183,216,0.12);
-      border: 1px solid rgba(39,183,216,0.3);
-      color: var(--accent);
-      padding: 0.35rem 1rem;
-      border-radius: 2px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.75rem;
-    }
-
-    .hero-date {
-      font-size: 0.8rem;
-      color: var(--muted-text);
-      margin-top: 0.5rem;
-    }
-
-    /* ── MAIN CONTENT ── */
-    .main-wrapper {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
-    }
-
+    body { font-family: 'Asap', sans-serif; background: #f5f7f8; color: var(--body-text); font-size: 18px; line-height: 1.7; }
+    header { background: var(--extra-dark); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+    .header-nav a { color: var(--mid-text); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .header-nav a:hover { color: var(--accent); }
+    .lang-btn { background: none; border: 1px solid var(--accent); color: var(--accent); padding: 6px 14px; border-radius: 20px; font-size: 14px; font-family: 'Asap', sans-serif; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: background 0.2s; }
+    .lang-btn:hover { background: rgba(39,183,216,0.1); }
+    .hero { background: var(--dark); color: var(--light-text); padding: 64px 24px 56px; text-align: center; }
+    .manuscript-badge { display: inline-block; background: var(--accent); color: var(--extra-dark); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 12px; margin-bottom: 20px; }
+    .series-label { color: var(--accent); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+    .hero h1 { font-family: 'Asul', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.15; margin-bottom: 16px; }
+    .hero .scripture { font-size: 1.1rem; color: var(--accent); margin-bottom: 8px; font-weight: 500; }
+    .hero .date { font-size: 0.9rem; color: var(--mid-text); }
+    main { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
     article { display: none; }
     article.active { display: block; }
-
-    /* ── SECTION CARDS ── */
-    .section-card {
-      background: var(--card-bg);
-      border-radius: 6px;
-      margin-bottom: 1.25rem;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    }
-
-    .section-header {
-      background: var(--dark-bg);
-      padding: 0.65rem 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .section-num {
-      font-family: 'Asul', serif;
-      font-size: 0.65rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      opacity: 0.85;
-    }
-
-    .section-title {
-      font-family: 'Asul', serif;
-      font-size: 0.9rem;
-      color: var(--light-text);
-      font-weight: 700;
-    }
-
-    .section-body {
-      padding: 1.1rem 1.25rem 1.25rem;
-    }
-
-    /* ── BIG IDEA ── */
-    .big-idea-card {
-      background: linear-gradient(135deg, var(--extra-dark) 0%, #1d2f38 100%);
-      border-left: 4px solid var(--accent);
-      border-radius: 6px;
-      padding: 1.5rem 1.5rem 1.5rem 1.75rem;
-      margin-bottom: 1.25rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
-    }
-
-    .big-idea-label {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .big-idea-text {
-      font-family: 'Asul', serif;
-      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-      color: var(--light-text);
-      line-height: 1.5;
-    }
-
-    .sermon-meta-inline {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.85rem;
-    }
-
-    .meta-badge {
-      font-size: 0.7rem;
-      background: rgba(39,183,216,0.1);
-      border: 1px solid rgba(39,183,216,0.2);
-      color: var(--muted-text);
-      padding: 0.2rem 0.65rem;
-      border-radius: 2px;
-      letter-spacing: 0.04em;
-    }
-
-    /* ── SCRIPTURE ── */
-    .scripture-ref {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--body-text);
-      margin-bottom: 0.25rem;
-    }
-
-    .scripture-support {
-      font-size: 0.85rem;
-      color: #777;
-      font-style: italic;
-    }
-
-    /* ── FLOW SECTIONS ── */
-    .flow-part {
-      margin-bottom: 1.1rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .flow-part:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-
-    .flow-part-title {
-      font-family: 'Asul', serif;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--dark-bg);
-      margin-bottom: 0.6rem;
-      padding-left: 0.75rem;
-      border-left: 3px solid var(--accent);
-    }
-
-    .flow-bullets {
-      list-style: none;
-      padding-left: 0.5rem;
-    }
-
-    .flow-bullets li {
-      font-size: 0.88rem;
-      line-height: 1.55;
-      color: #444;
-      padding: 0.22rem 0 0.22rem 1.2rem;
-      position: relative;
-    }
-
-    .flow-bullets li::before {
-      content: '›';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    /* ── KEY WORDS ── */
-    .keyword-item {
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .keyword-item:last-child { border-bottom: none; }
-
-    .keyword-term {
-      font-weight: 700;
-      font-size: 0.88rem;
-      color: var(--accent-dim);
-      min-width: 130px;
-      flex-shrink: 0;
-    }
-
-    .keyword-def {
-      font-size: 0.87rem;
-      color: #555;
-      line-height: 1.45;
-    }
-
-    /* ── ANCHOR STATEMENTS ── */
-    .anchor-item {
-      border-left: 3px solid var(--accent);
-      background: var(--section-bg);
-      padding: 0.7rem 1rem 0.7rem 1.1rem;
-      margin-bottom: 0.65rem;
-      border-radius: 0 4px 4px 0;
-      font-size: 0.92rem;
-      font-style: italic;
-      color: #333;
-      line-height: 1.5;
-    }
-
-    .anchor-item:last-child { margin-bottom: 0; }
-
-    /* ── LISTENING CUES ── */
-    .cue-item {
-      display: flex;
-      gap: 0.65rem;
-      align-items: flex-start;
-      padding: 0.4rem 0;
-    }
-
-    .cue-icon {
-      color: var(--accent);
-      font-size: 0.75rem;
-      margin-top: 0.2rem;
-      flex-shrink: 0;
-    }
-
-    .cue-text {
-      font-size: 0.87rem;
-      font-style: italic;
-      color: #666;
-      line-height: 1.5;
-    }
-
-    /* ── APPLICATION ── */
-    .app-item {
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-      padding: 0.55rem 0;
-      border-bottom: 1px dashed var(--border);
-    }
-
-    .app-item:last-child { border-bottom: none; }
-
-    .app-num {
-      width: 22px;
-      height: 22px;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 0.05rem;
-    }
-
-    .app-text {
-      font-size: 0.88rem;
-      color: #444;
-      line-height: 1.5;
-    }
-
-    /* ── FOOTER ── */
-    .site-footer {
-      background: var(--extra-dark);
-      padding: 2rem;
-      text-align: center;
-      border-top: 1px solid rgba(39,183,216,0.15);
-    }
-
-    .footer-church {
-      font-family: 'Asul', serif;
-      color: var(--light-text);
-      font-size: 0.9rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .footer-link {
-      color: var(--accent);
-      font-size: 0.8rem;
-      text-decoration: none;
-    }
-
-    .footer-link:hover { text-decoration: underline; }
-
-    .footer-copy {
-      font-size: 0.72rem;
-      color: var(--muted-text);
-      margin-top: 0.5rem;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      .nav { padding: 0.6rem 1rem; }
-      .hero { padding: 2rem 1rem 1.75rem; }
-      .main-wrapper { padding: 1.25rem 1rem 3rem; }
-      .keyword-term { min-width: 100px; }
-    }
-
-    /* ── REQUEST LANGUAGE BUTTON ── */
-
-    .lang-request-btn {
-      background: transparent; border: 1px solid rgba(39,183,216,0.25);
-      color: rgba(156,176,187,0.7); padding: 0.3rem 0.75rem; border-radius: 3px; cursor: pointer;
-      font-family: 'Asap', sans-serif; font-size: 0.75rem; font-weight: 500;
-      transition: all 0.2s; white-space: nowrap; display: inline-flex; align-items: center; gap: 5px;
-    }
-    .lang-request-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* ── MODAL ── */
-    .modal-overlay {
-      display: none; position: fixed; inset: 0;
-      background: rgba(18,27,32,0.85); z-index: 200;
-      align-items: center; justify-content: center; padding: 1rem;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal-box {
-      background: #fff; border-radius: 8px; max-width: 460px; width: 100%;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5); overflow: hidden;
-      max-height: 92vh; overflow-y: auto;
-    }
-    .modal-head {
-      background: var(--extra-dark); padding: 1.3rem 1.5rem 1.1rem; position: relative;
-    }
-    .modal-head h2 { font-family: 'Asul', serif; color: var(--light-text); font-size: 1rem; margin-bottom: 3px; }
-    .modal-head p  { font-size: 0.78rem; color: var(--muted-text); }
-    .modal-close {
-      position: absolute; top: 1rem; right: 1.1rem;
-      background: none; border: none; color: rgba(255,255,255,0.4);
-      font-size: 1.3rem; cursor: pointer; line-height: 1; padding: 4px; transition: color 0.2s;
-    }
-    .modal-close:hover { color: #fff; }
-    .modal-body { padding: 1.4rem 1.5rem 1.6rem; }
-    .form-group { margin-bottom: 1rem; }
-    .form-label { display: block; font-size: 0.77rem; font-weight: 600; color: var(--dark-bg); margin-bottom: 5px; letter-spacing: 0.02em; }
-    .form-label .req { color: var(--accent); margin-left: 2px; }
-    .form-input, .form-select {
-      width: 100%; padding: 0.5rem 0.7rem; border: 1.5px solid var(--border); border-radius: 4px;
-      font-family: 'Asap', sans-serif; font-size: 0.88rem; color: var(--body-text);
-      background: #fff; transition: border-color 0.2s; appearance: none; -webkit-appearance: none;
-    }
-    .form-input:focus, .form-select:focus { outline: none; border-color: var(--accent); }
-    .form-input.err, .form-select.err { border-color: #d94f4f; box-shadow: 0 0 0 3px rgba(217,79,79,0.1); }
-    .form-hint { font-size: 0.73rem; color: var(--muted-text); margin-top: 3px; }
-    .other-row { display: none; margin-top: 7px; }
-    .other-row.show { display: block; }
-    .form-submit {
-      width: 100%; background: var(--accent); color: #fff; border: none;
-      padding: 0.7rem; border-radius: 4px; font-family: 'Asap', sans-serif;
-      font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem;
-    }
-    .form-submit:hover:not(:disabled) { background: var(--accent-dim); }
-    .form-submit:disabled { background: #9cb0bb; cursor: not-allowed; }
-    .modal-success { display: none; padding: 2rem 1.5rem 2.25rem; text-align: center; }
-    .modal-success.show { display: block; }
-    .form-view.hide { display: none; }
-    .success-icon { width: 50px; height: 50px; background: rgba(39,183,216,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 1rem; }
-    .success-title { font-family: 'Asul', serif; font-size: 1.05rem; color: var(--dark-bg); margin-bottom: 0.5rem; }
-    .success-body { font-size: 0.85rem; color: #666; line-height: 1.7; margin-bottom: 1.25rem; }
-    .done-btn { background: var(--accent); color: #fff; border: none; padding: 0.6rem 1.75rem; border-radius: 4px; font-family: 'Asap', sans-serif; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
-    .done-btn:hover { background: var(--accent-dim); }
-
-    .preview-notice {
-      background: rgba(39,183,216,0.06); border-left: 3px solid var(--accent);
-      border-radius: 0 4px 4px 0; padding: 0.75rem 1rem; margin-bottom: 1.25rem;
-      font-size: 0.82rem; color: #3a5060; line-height: 1.6;
-    }
-    .preview-notice strong { display: block; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 3px; }
+    .manuscript h2 { font-family: 'Asul', serif; font-size: 1.5rem; color: var(--accent); margin: 2rem 0 0.75rem; }
+    .manuscript p { margin-bottom: 1.2rem; }
+    .manuscript .scripture-quote { margin: 1.5rem 0; padding: 1rem 1.5rem; border-left: 4px solid var(--accent); background: #f0f9fc; color: #1a3a42; font-style: italic; border-radius: 0 6px 6px 0; }
+    .manuscript .scripture-quote cite { display: block; font-style: normal; font-size: 0.85rem; color: var(--accent); margin-top: 8px; font-weight: 600; }
+    footer { background: var(--extra-dark); color: var(--mid-text); text-align: center; padding: 32px 24px; font-size: 14px; }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .sheet-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; }
+    .sheet-overlay.open { display: block; }
+    .lang-sheet { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-radius: 20px 20px 0 0; padding: 24px 0 32px; z-index: 201; transform: translateY(100%); transition: transform 0.3s ease; max-height: 85vh; overflow-y: auto; }
+    .lang-sheet.open { transform: translateY(0); }
+    .sheet-handle { width: 40px; height: 4px; background: #ddd; border-radius: 2px; margin: 0 auto 20px; }
+    .sheet-title { font-family: 'Asul', serif; font-size: 1.1rem; color: var(--dark); text-align: center; margin-bottom: 16px; font-weight: 700; }
+    .lang-option { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; cursor: pointer; transition: background 0.15s; border-bottom: 1px solid #f0f0f0; }
+    .lang-option:hover { background: #f5f5f5; }
+    .lang-option .lang-info { display: flex; align-items: center; gap: 12px; }
+    .lang-option .flag { font-size: 22px; }
+    .lang-option .lang-name { font-size: 16px; font-weight: 500; color: var(--dark); }
+    .lang-option .lang-native { font-size: 13px; color: #888; }
+    .lang-option .check { color: var(--accent); font-size: 18px; opacity: 0; }
+    .lang-option.selected .check { opacity: 1; }
+    .lang-option.selected .lang-name { color: var(--accent); }
+    .request-section { padding: 20px 24px 0; }
+    .request-btn { width: 100%; padding: 12px; background: none; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; color: #555; cursor: pointer; font-family: 'Asap', sans-serif; text-align: left; }
+    .request-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .request-form { display: none; margin-top: 16px; }
+    .request-form.open { display: block; }
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 4px; }
+    .form-group select, .form-group input { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; font-family: 'Asap', sans-serif; }
+    .form-group select:focus, .form-group input:focus { outline: none; border-color: var(--accent); }
+    .submit-btn { width: 100%; padding: 12px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: 'Asap', sans-serif; margin-top: 4px; }
+    .submit-btn:hover { background: #1fa0be; }
+    .form-msg { font-size: 13px; color: #27ae60; margin-top: 8px; display: none; }
+    @media (max-width: 600px) { .hero { padding: 48px 16px 40px; } main { padding: 32px 16px 60px; } }
   </style>
 </head>
 <body>
 
-<!-- Language Toggle Bar -->
-<div class="lang-bar">
-  <div class="lang-current">
-    <span class="lang-current-flag" id="langCurrentFlag">&#x1F1FA;&#x1F1F8;</span>
-    <span class="lang-current-name" id="langCurrentName">English</span>
-  </div>
-  <div class="lang-bar-actions">
-    <button class="globe-btn" onclick="openLangSheet()" aria-label="Choose language">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      Language
-    </button>
-  </div>
-</div>
+<header>
+  <nav class="header-nav"><a href="archive.html">&#8592; Sermon Archive</a></nav>
+  <button class="lang-btn" onclick="openSheet()">
+    <span id="current-flag">&#127482;&#127480;</span>
+    <span id="current-lang-name">English</span>
+    &nbsp;&#127760;
+  </button>
+</header>
 
-<!-- Language Selection Sheet -->
-<div class="lang-sheet-overlay" id="langSheetOverlay" onclick="closeLangSheet(event)">
-  <div class="lang-sheet">
-    <div class="lang-sheet-handle"></div>
-    <div class="lang-sheet-title">Choose language</div>
-    <ul class="lang-sheet-list" id="langSheetList">
-      <li class="lang-sheet-item active" id="btn-en" onclick="setLang('en')">
-        <span class="lang-item-flag">&#x1F1FA;&#x1F1F8;</span>
-        <span class="lang-item-name">English</span>
-        <span class="lang-check">&#x2713;</span>
-      </li>
-      <li class="lang-sheet-item" id="btn-zh" onclick="setLang('zh')">
-        <span class="lang-item-flag">&#x1F1F9;&#x1F1FC;</span>
-        <span class="lang-item-name">&#x7E41;&#x9AD4;&#x4E2D;&#x6587;</span>
-      </li>
-      <li class="lang-sheet-item" id="btn-id" onclick="setLang('id')">
-        <span class="lang-item-flag">&#x1F1EE;&#x1F1E9;</span>
-        <span class="lang-item-name">Bahasa Indonesia</span>
-      </li>
-      <li class="lang-sheet-item" id="btn-tl" onclick="setLang('tl')">
-        <span class="lang-item-flag">&#x1F1F5;&#x1F1ED;</span>
-        <span class="lang-item-name">Filipino</span>
-      </li>
-    </ul>
-    <hr class="lang-sheet-sep">
-    <button class="lang-sheet-request-btn"
-            onclick="document.getElementById('langSheetOverlay').classList.remove('open');
-                     document.body.style.overflow=''; openRequestModal()">
-      <svg width="11" height="11" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
-      Request another language
-    </button>
-  </div>
-</div>
+<section class="hero">
+  <div class="manuscript-badge">Full Manuscript</div>
+  <div class="series-label">James &middot; Week 3</div>
+  <h1>Mercy Triumphs</h1>
+  <p class="scripture">James 2:1&ndash;13</p>
+  <p class="date">April 12, 2026 &middot; Taichung International Fellowship</p>
+</section>
 
+<main>
 
-<!-- Nav -->
-<nav class="nav">
-  <a href="#" class="nav-brand">Taichung International Fellowship</a>
-  <a href="archive.html" class="nav-archive">← Sermon Archive</a>
-</nav>
-
-<!-- Hero -->
-<div class="hero">
-  <div class="hero-series">James · Week 3</div>
-  <h1 class="hero-title" id="hero-title-en">No Favorites</h1>
-  <h1 class="hero-title" id="hero-title-zh" style="display:none;">不偏待人</h1>
-  <h1 class="hero-title" id="hero-title-id" style="display:none;">Tanpa Pilih Kasih</h1>
-  <div class="hero-scripture" id="hero-scripture">James 2:1–13</div>
-  <div class="hero-date">April 12, 2026</div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════
-     ENGLISH CONTENT
-════════════════════════════════════════════════════════ -->
-<div class="main-wrapper">
-<article id="content-en" class="active">
-
-  <div class="big-idea-card">
-    <div class="big-idea-label">Big Idea</div>
-    <div class="big-idea-text">Favoritism reveals a heart still looking to people for what only God can give.</div>
-    <div class="sermon-meta-inline">
-      <span class="meta-badge">James 2:1–13</span>
-      <span class="meta-badge">Series: James</span>
-      <span class="meta-badge">Week 3</span>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§2</span><span class="section-title">Scripture</span></div>
-    <div class="section-body">
-      <div class="scripture-ref">James 2:1–13</div>
-      <div class="scripture-support">Supporting passage: Luke 19:1–10 (Zacchaeus)</div>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§3</span><span class="section-title">Sermon Flow</span></div>
-    <div class="section-body">
-      <div class="flow-part">
-        <div class="flow-part-title">Part 1 — We All Do the Math (James 2:1–4)</div>
-        <ul class="flow-bullets">
-          <li>Favoritism = calculating someone's value based on what they can do for you</li>
-          <li>James's picture: gold ring vs. filthy clothes — best seat vs. floor</li>
-          <li>We do it too: appearance, job title, connections, passport nationality</li>
-          <li>"Strategic networking" is the modern gold ring</li>
-        </ul>
-      </div>
-      <div class="flow-part">
-        <div class="flow-part-title">Part 2 — The Math Doesn't Work (James 2:5–7)</div>
-        <ul class="flow-bullets">
-          <li>God's value system and the world's are moving in opposite directions</li>
-          <li>The "poor" are rich in faith — heirs of the kingdom</li>
-          <li>The people you favor often exploit you; the calculation fails</li>
-          <li>This isn't just a social problem — it's a theological problem</li>
-        </ul>
-      </div>
-      <div class="flow-part">
-        <div class="flow-part-title">Part 3 — The Law Doesn't Grade on a Curve (James 2:8–10)</div>
-        <ul class="flow-bullets">
-          <li>"Love your neighbor as yourself" = the Royal Law</li>
-          <li>The law is not a scoresheet — it expresses God's character</li>
-          <li>Stumble at one point = guilty of all; we can't rank our sins down</li>
-        </ul>
-      </div>
-      <div class="flow-part">
-        <div class="flow-part-title">Part 4 — The Idol Behind the Math (James 2:8–11)</div>
-        <ul class="flow-bullets">
-          <li>Underneath selfishness: you're trying to secure something</li>
-          <li>The impressive person in the room is functioning as a savior in your heart</li>
-          <li>Every room becomes a performance; every conversation an audition</li>
-          <li>Idols never say "enough" — they always say "never enough"</li>
-          <li>Favoritism is double-mindedness in action — living in two kingdoms at once</li>
-        </ul>
-      </div>
-      <div class="flow-part">
-        <div class="flow-part-title">Part 5 — Jesus Rewrites the Math (James 2:12–13; Luke 19)</div>
-        <ul class="flow-bullets">
-          <li>Zacchaeus: Jesus didn't calculate — and it broke him open completely</li>
-          <li>Jesus left the highest seat and crossed the greatest distance</li>
-          <li>The verdict on your life was spoken at the cross — not by anyone in the room</li>
-          <li>The gospel doesn't give you a new project — it gives you a new heart</li>
-          <li>When people can't save you, you're free to love without an agenda</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§4</span><span class="section-title">Key Words</span></div>
-    <div class="section-body">
-      <div class="keyword-item"><div class="keyword-term">Favoritism</div><div class="keyword-def">Calculating someone's worth based on what they can offer you</div></div>
-      <div class="keyword-item"><div class="keyword-term">Royal Law</div><div class="keyword-def">Love your neighbor as yourself — the command that sums up all of life toward others</div></div>
-      <div class="keyword-item"><div class="keyword-term">Double-mindedness</div><div class="keyword-def">James's term: trying to live in two kingdoms at once (God's and the world's)</div></div>
-      <div class="keyword-item"><div class="keyword-term">Identity Idol</div><div class="keyword-def">Placing a person or thing in the role only God can fill — looking to them for your worth</div></div>
-      <div class="keyword-item"><div class="keyword-term">Mercy</div><div class="keyword-def">Getting the opposite of what we deserve — the verdict Jesus gives at the cross</div></div>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§5</span><span class="section-title">Anchor Statements</span></div>
-    <div class="section-body">
-      <div class="anchor-item">"The world's value system and God's value system are moving in opposite directions."</div>
-      <div class="anchor-item">"The person across the room with the gold ring is functioning as a savior in your heart's operating system."</div>
-      <div class="anchor-item">"The gospel doesn't give you a new project. It gives you a different heart."</div>
-      <div class="anchor-item">"Mercy triumphs over judgment."</div>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§6</span><span class="section-title">Listening Cues</span></div>
-    <div class="section-body">
-      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">Watch for the "new math" — James has used this idea before. Notice how he flips the equation again here.</span></div>
-      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">When you hear "evil motives" (v.4) — James is going deeper than bad manners. This is the pivot.</span></div>
-      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">This is the turning point: the idol diagnosis. What we call favoritism, James calls false worship.</span></div>
-      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">Watch how Jesus with Zacchaeus is the whole sermon in action — notice what Jesus does not do.</span></div>
-      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">Listen for the closing warning: the gospel changes a heart, not just a to-do list.</span></div>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§7</span><span class="section-title">Application Focus</span></div>
-    <div class="section-body">
-      <div class="app-item"><div class="app-num">1</div><div class="app-text">Where do you feel the pull of "the math"? Name it honestly — the room, the context, the type of person.</div></div>
-      <div class="app-item"><div class="app-num">2</div><div class="app-text">Is there someone you've been keeping at distance because they feel "costly"? What would mercy look like toward them this week?</div></div>
-      <div class="app-item"><div class="app-num">3</div><div class="app-text">Receive the verdict the cross speaks over your life — and let it free you from needing the room's approval.</div></div>
-    </div>
-  </div>
-
+<!-- ===================== ENGLISH ===================== -->
+<article id="content-en" class="active manuscript">
+<p>Today we're going to talk about the way we treat each other. Specifically, the idea of favoritism.</p>
+<p>And what I want us to understand is this isn't a lesson in manners or etiquette. Like he's done before, James wants us to see the real problem. The one that's underneath. Let's jump in.</p>
+<div class="scripture-quote">My brothers and sisters, do not show favoritism as you hold on to the faith in our glorious Lord Jesus Christ.<cite>James 2:1</cite></div>
+<p>So James is telling us that favoritism and faith are inconsistent. They don't and can't go together.</p>
+<p>What is favoritism? Well, it's another form of math. We calculate someone's value based on a whole set of variables. Which might be a little different for each of us. But favoritism is selfish. It's calculating what someone is worth to me. So James gives us a picture.</p>
+<div class="scripture-quote">For if someone comes into your meeting wearing a gold ring and dressed in fine clothes, and a poor person dressed in filthy clothes also comes in, if you look with favor on the one wearing the fine clothes and say, "Sit here in a good place," and yet you say to the poor person, "Stand over there," or "Sit here on the floor by my footstool," haven't you made distinctions among yourselves and become judges with evil motives?<cite>James 2:2&ndash;4</cite></div>
+<p>There it is, evil motives. In the ancient Roman world, a gold ring meant you were someone with power, a position, connections, and political weight, financial means. You were someone who entered the room and expected the room to reorganize itself around you.</p>
+<p>But the second person. This person has nothing to offer. Not just financially, but in terms of relational capital. This is someone you judge before they ever open their mouth.</p>
+<p>So what James is saying &mdash; these kinds of calculations are off limits for a Christian. Because it's worldly math. Rich man: best seat in the house. Poor man: stand in the corner. Or sit on the floor at my feet. And James says: when you do that, you've revealed something inside.</p>
+<p>Now, to be honest, we don't do this, I don't think, not here at TIF. And probably most of us don't think of ourselves as people who do this. We don't consciously seat poor people on the floor or give someone who looks impressive a better seat.</p>
+<p>But we do the math.</p>
+<p>Think about who you gravitate towards. Who you make an effort to introduce yourself to.</p>
+<p>The calculations begin even before the introductions. How they dress, their hair, their smell. Then when the words start &mdash; job title, company name, university, passport. And maybe you start thinking: what doors can this person open for me, or maybe close. Are they worth the investment of my time and attention.</p>
+<p>We may even justify such behavior by saying we are making strategic contacts.</p>
+<p>That's the modern version of the gold ring. And in business or some other settings it might be necessary at times. But we cannot let this live or grow inside the church. In our church.</p>
+<p>I've done this. I have walked into rooms and run this exact calculation. Who could increase my social value?</p>
+<p>And I've been on the other side of it too &mdash; the person who wasn't considered worthy. Nobody has to say anything. You know it and you feel it.</p>
+<p>But listen to me, James is telling us something really important. This isn't just a social problem. It's a theological problem.</p>
+<div class="scripture-quote">Listen, my dear brothers and sisters: Didn't God choose the poor of this world to be rich in faith and heirs of the kingdom that he has promised to those who love him? Yet you have dishonored the poor person. Don't the rich oppress you and drag you into court? Don't they blaspheme the good name that was invoked over you?<cite>James 2:5&ndash;7</cite></div>
+<p>Notice what James is doing here. He's again giving us the new math equation. The same idea we learned regarding suffering. Except this time the reversal is about status.</p>
+<p>Here it is: The world's value system and God's value system are moving in opposite directions.</p>
+<p>James says, God chose the poor to be rich in faith &mdash; heirs of the kingdom. It's easy to take that idea of poor as meaning financially poor, and at the time it probably did. There are many ways to be poor. I think the Holy Spirit is trying to teach us about those who are poor in the world's eyes. And in that very poverty they have been given something you cannot buy: the treasure of faith.</p>
+<p>Let's be clear, James is not saying wealth is automatically corrupting &mdash; and again that's not just financial wealth. Nor is he saying that poverty is automatically virtuous. He's saying this: favoritism doesn't even work.</p>
+<p>He points out the obvious. When you honor the world's wealthy &mdash; you do it because you want access to their status, their approval, their network. Again it's selfish. And when you manage the distance from the worldly poor &mdash; it's again selfish, it's because you think they will subtract something from you.</p>
+<p>And James says your math doesn't work. The people you are playing favorites with &mdash; these are the people dragging you into court. They mock your faith. You think you are using them, but you are the one being used. So he goes on to say this.</p>
+<div class="scripture-quote">Indeed, if you fulfill the royal law prescribed in the Scripture, Love your neighbor as yourself, you are doing well. If, however, you show favoritism, you commit sin and are convicted by the law as transgressors. For whoever keeps the entire law, and yet stumbles at one point, is guilty of breaking it all.<cite>James 2:8&ndash;10</cite></div>
+<p>Love your neighbor as yourself. Jesus called it the second greatest commandment. Paul said the entire second half of the law is summed up in it.</p>
+<p>James is saying if you keep the part of the law towards God but fail at the law towards others, you've actually failed it all. Because the law is not a scoresheet. It's the expression of God's character. To break one part of it is to reveal that your heart is still rotating around something other than love for God and neighbor.</p>
+<p>Practically it looks like this. Sure I show a little favoritism. But at least I'm not a thief. At least I don't beat my wife. Favoritism is a minor thing. We rank our sins and reassure ourselves.</p>
+<p>So let's take a moment and find out why we show favoritism.</p>
+<p>And as I've already hinted at &mdash; it's selfishness. But that answer doesn't get to the root.</p>
+<p>Underneath that selfishness we are trying to secure something.</p>
+<p>Think about what you're actually looking for when you cross the room toward that wealthy person. You want to be seen by someone worth being seen by. You want their association with you or their assessment of you to change your status. And when it does, you feel like you matter.</p>
+<p>It's just another identity idol. You've made the other person an idol and you are trying to get that idol to serve your idol &mdash; you.</p>
+<p>And remember what we learned about idols. They always demand a sacrifice.</p>
+<p>Here's how that works. We enter a room and in the first few seconds, the math is done. Who's here? What do they do? Is this worth my time? You're not doing it consciously. It just happens. A constant low-grade assessment of every interaction: what's the return on this?</p>
+<p>If your network is your security, then you can never stop networking. Every room is a performance. Every conversation is an audition. You're always on trial, and your worth is always being recalculated based on your last interaction.</p>
+<p>And even when it works, it doesn't work. Even when you get the contact, secure the deal, get the introduction &mdash; you feel it for a moment, but then it starts again. Because there's always someone more impressive to impress. There's always a better seat you don't have yet. The idol never says: enough. It always says: never enough.</p>
+<p>You have built your security on something that will never give you security. And deep down, you know it.</p>
+<p>The person across the room with the gold ring &mdash; the VP, the partner, the keynote speaker. In your heart's operating system, they're functioning as a savior. You're looking for someone with the power to speak a verdict on your life. To tell you: You belong here. You matter. You're enough.</p>
+<p>Sometimes it is calculated. Sometimes it is automatic. Sometimes it is just plain selfish.</p>
+<p>That's a religion. It has rituals &mdash; the handshake, the card, the follow-up email. It has a priesthood &mdash; the well-connected, the influential, the impressive. And it has a liturgy: every conversation is an audition, every interaction is an offering, every connection is a prayer for justification.</p>
+<p>James is showing us that our worship is disordered. You are looking to a human being to speak a verdict over you that only God has the authority to speak.</p>
+<p>James called this double-mindedness. You are trying to live in two kingdoms at once, and your feet give it away. Which direction do you move when someone impressive walks through the door? Which direction when someone costly walks through?</p>
+<p>Favoritism is what double-mindedness looks like in action.</p>
+<p>What you need is the security and identity given to you that destroys the idol and sets you free.</p>
+<p>Jesus can do that. He did it at the cross. He held the seat of highest honor. And he left it. He crossed the greatest distance in the universe. He became poor so that we, in our poverty, could become rich. He didn't manage us as potential cost or benefit to his reputation. He hung naked on a cross, so you could be clothed in righteousness.</p>
+<p>What does this look like in real life? Watch Jesus at work. Let me show it to you. Luke 19 &mdash; Jesus' encounter with Zacchaeus.</p>
+<div class="scripture-quote">He entered Jericho and was passing through. There was a man named Zacchaeus who was a chief tax collector, and he was rich. He was trying to see who Jesus was, but he was not able because of the crowd, since he was a short man. So running ahead, he climbed up a sycamore tree to see Jesus, since he was about to pass that way. When Jesus came to the place, he looked up and said to him, "Zacchaeus, hurry and come down because today it is necessary for me to stay at your house." So he quickly came down and welcomed him joyfully. All who saw it began to complain, "He's gone to stay with a sinful man." But Zacchaeus stood there and said to the Lord, "Look, I'll give half of my possessions to the poor, Lord. And if I have extorted anything from anyone, I'll pay back four times as much." "Today salvation has come to this house," Jesus told him, "because he too is a son of Abraham. For the Son of Man has come to seek and to save the lost."<cite>Luke 19:1&ndash;10</cite></div>
+<p>Zacchaeus finally encountered someone who wasn't calculating. And it broke him open completely.</p>
+<p>Jesus didn't need anything from Zacchaeus. But he could give Zacchaeus something money couldn't buy.</p>
+<p>There's something else you need to see. The crowd is doing the same math. Zacchaeus is a liability &mdash; Jesus is associating with a sinful man. The crowd's verdict on Jesus didn't mean anything to him because Jesus didn't need anything from the crowd.</p>
+<p>James goes on &mdash;</p>
+<div class="scripture-quote">Speak and act as those who are going to be judged by the law of freedom. For judgment is without mercy to the one who has not shown mercy. Mercy triumphs over judgment.<cite>James 2:12&ndash;13</cite></div>
+<p>Mercy triumphs over judgment.</p>
+<p>Do you know what this is? It's a description. Of Jesus.</p>
+<p>You and I deserve judgment. We have broken the law not just at one point but at many.</p>
+<p>We've played favorites. We have loved people for what they could do for us and kept others at arm's length because they cost too much.</p>
+<p>Judgment is an appropriate verdict. But instead of judgment, we got mercy &mdash; and mercy brought us victory and hope.</p>
+<p>Judgment wasn't cancelled &mdash; it was paid. At the cross, the full weight of the judgment you and I deserve fell on Jesus.</p>
+<p>He didn't calculate who was worth the investment. He did it for all of us.</p>
+<p>When you not only believe that, but you receive it for yourself, then the idols you've been making sacrifices to get destroyed and you get set free.</p>
+<p>Because you understand, you know, the most important evaluation of your life has already been given, and it wasn't based on your resume or your connections or your performance.</p>
+<p>And when that's true &mdash; when it's actually true inside you, not just true as a concept you affirm &mdash; there is no one you will meet who is either a benefit or a liability. Because you quit determining the value of someone based on what they can do for you or what they will cost you. Because you really understand that all of our value was settled at the cross.</p>
+<p>Let me pause and say something. Some of you are already thinking about what to do. You're thinking about finding that person who gets left out of conversations, and you're going to go talk to them. And you're going to feel like that's what this sermon was for. Stop it. Just stop for a second.</p>
+<p>If you walk over to that person to prove to yourself that the gospel has taken hold in you &mdash; that's still the old math. You're just doing it for yourself or even worse maybe you're doing it for God.</p>
+<p>The gospel doesn't give you a new project. It gives you a different heart.</p>
+<p>Here's what that actually looks like. You're still going to be put in these situations. And you're still going to see and maybe even feel the pull of the old math. That's not going to just disappear. But here's the difference. It doesn't own you anymore.</p>
+<p>Because you've been changed. Your heart has been changed &mdash; people can no longer save you, and you can't save them. You can see them clearly, maybe for the first time: everyone is a person made in the image of God.</p>
+<p>You're not going over there to prove you're a good Christian. You don't need anything from them. And they don't need anything from you. They need the real savior. Which means, maybe for the first time, you're free to give. Free to love without an agenda.</p>
+<p>Jesus didn't play favorites. The beloved son of heaven left the seat of highest honor, the right hand of God &mdash; no better place in the universe. And he crossed the greatest distance to sit down next to you and I and rescue us.</p>
 </article>
 
-<!-- ═══════════════════════════════════════════════════════
-     TRADITIONAL CHINESE CONTENT
-════════════════════════════════════════════════════════ -->
-<article id="content-zh">
-
-  <div class="big-idea-card">
-    <div class="big-idea-label">核心主旨</div>
-    <div class="big-idea-text">偏待人揭露了一顆仍在仰賴他人、卻只有上帝才能真正滿足的心。</div>
-    <div class="sermon-meta-inline">
-      <span class="meta-badge">雅各書 2:1–13</span>
-      <span class="meta-badge">系列：雅各書</span>
-      <span class="meta-badge">第三週</span>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§2</span><span class="section-title">經文</span></div>
-    <div class="section-body">
-      <div class="scripture-ref">雅各書 2:1–13</div>
-      <div class="scripture-support">參考經文：路加福音 19:1–10（撒該的故事）</div>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§3</span><span class="section-title">信息脈絡</span></div>
-    <div class="section-body">
-      <div class="flow-part">
-        <div class="flow-part-title">第一部分 — 我們都在做計算（雅各書 2:1–4）</div>
-        <ul class="flow-bullets">
-          <li>偏待人 (piān dài rén) ＝ 根據別人對你的利用價值來評估他們</li>
-          <li>雅各的圖像：戴金戒指 vs. 衣衫襤褸——上座 vs. 坐在地上</li>
-          <li>我們也這樣做：穿著外表、職銜、人脈關係、護照國籍</li>
-          <li>現代版的「金戒指」就是所謂的「策略性人脈經營」</li>
-        </ul>
-      </div>
-      <div class="flow-part">
-        <div class="flow-part-title">第二部分 — 這個算法根本行不通（雅各書 2:5–7）</div>
-        <ul class="flow-bullets">
-          <li>上帝的價值體系與世界的走的是完全相反的方向</li>
-          <li>「貧窮人」在信仰上是富足的——是天國的繼承人</li>
-          <li>你刻意巴結的人，往往反而剝削你；這個算法失敗了</li>
-          <li>偏待人不只是社交問題——這是一個神學問題</li>
-        </ul>
-      </div>
-      <div class="flow-part">
-        <div class="flow-part-title">第三部分 — 律法不給加分（雅各書 2:8–10）</div>
-        <ul class="flow-bullets">
-          <li>「愛鄰舍如同自己」＝ 至尊律法 (zhì zūn lǜ fǎ)（皇家律法）</li>
-          <li>律法不是計分表——它反映的是上帝的品格</li>
-          <li>在任何一點上跌倒，就是犯了全律法；我們無法為小罪開脫</li>
-        </ul>
-      </div>
-      <div class="flow-part">
-        <div class="flow-part-title">第四部分 — 計算背後的偶像 (ǒu xiàng)（雅各書 2:8–11）</div>
-        <ul class="flow-bullets">
-          <li>在自私之下，我們其實是在試圖「鞏固某種安全感」</li>
-          <li>那位令人印象深刻的人，在你心裡正扮演著救主的角色</li>
-          <li>每個場合都變成一場表演；每次對話都成了一次試鏡</li>
-          <li>偶像從來不說「夠了」——它永遠說「還不夠」</li>
-          <li>偏待人就是「雙心 (shuāng xīn)」的行動表現——試圖同時活在兩個國度裡</li>
-        </ul>
-      </div>
-      <div class="flow-part">
-        <div class="flow-part-title">第五部分 — 耶穌重寫算法（雅各書 2:12–13；路加福音 19）</div>
-        <ul class="flow-bullets">
-          <li>撒該的故事：耶穌沒有算計——這反而讓撒該徹底改變</li>
-          <li>耶穌離開最高的榮耀寶座，跨越了宇宙中最遠的距離</li>
-          <li>你生命中最重要的評價，已在十字架上說出——不是在場任何人有資格說的</li>
-          <li>福音不是給你一個新計畫——而是給你一顆新的心</li>
-          <li>當人不再能「拯救」你，你就自由了，可以無條件地去愛</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§4</span><span class="section-title">關鍵詞</span></div>
-    <div class="section-body">
-      <div class="keyword-item"><div class="keyword-term">偏待人 (piān dài rén)</div><div class="keyword-def">根據對方對你的利用價值來判斷他們的重要性</div></div>
-      <div class="keyword-item"><div class="keyword-term">至尊律法 (zhì zūn lǜ fǎ)</div><div class="keyword-def">「愛鄰舍如同自己」——涵蓋整個對人關係的命令</div></div>
-      <div class="keyword-item"><div class="keyword-term">雙心 (shuāng xīn)</div><div class="keyword-def">雅各用語：試圖同時活在上帝的國度與世界的國度中</div></div>
-      <div class="keyword-item"><div class="keyword-term">身份偶像 (shēn fèn ǒu xiàng)</div><div class="keyword-def">將某人或某物置於只有上帝才能填滿的位置——向他們尋求自我價值</div></div>
-      <div class="keyword-item"><div class="keyword-term">憐憫 (lián mǐn)</div><div class="keyword-def">得到與應得完全相反的——耶穌在十字架上所給的判決</div></div>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§5</span><span class="section-title">關鍵句</span></div>
-    <div class="section-body">
-      <div class="anchor-item">「世界的價值體系和上帝的價值體系，正往完全相反的方向走。」</div>
-      <div class="anchor-item">「那位戴著金戒指的人，在你心靈的作業系統裡，正扮演著救主的功能。」</div>
-      <div class="anchor-item">「福音不是給你一個新計畫。它給你的是一顆不同的心。」</div>
-      <div class="anchor-item">「憐憫勝過審判。」</div>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§6</span><span class="section-title">聆聽提示</span></div>
-    <div class="section-body">
-      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">留意「新算法」——雅各之前已用過這個概念，看他這次如何再次翻轉等式。</span></div>
-      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">當你聽到「邪惡動機」（第4節）時——雅各要挖的比表面的禮節問題深得多，這是轉折點。</span></div>
-      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">這是信息的核心：偶像崇拜的診斷。我們稱之為偏待人，雅各卻說這是錯誤的敬拜。</span></div>
-      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">留意耶穌與撒該的相遇——這就是整篇信息的具體示範，注意耶穌沒有做什麼。</span></div>
-      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">留意結尾的提醒：福音改變的是一顆心，不只是你的待辦清單。</span></div>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§7</span><span class="section-title">回應與應用</span></div>
-    <div class="section-body">
-      <div class="app-item"><div class="app-num">1</div><div class="app-text">你在哪些場合感受到「計算」的衝動？誠實地說出來——是什麼場景、什麼類型的人。</div></div>
-      <div class="app-item"><div class="app-num">2</div><div class="app-text">有沒有某個人，因為感覺「代價太高」而被你刻意保持距離？本週對他們而言，憐憫是什麼樣子？</div></div>
-      <div class="app-item"><div class="app-num">3</div><div class="app-text">接受十字架為你的生命所說出的判決——讓它把你從需要在場眾人認可的捆綁中釋放出來。</div></div>
-    </div>
-  </div>
-
+<!-- ===================== TRADITIONAL CHINESE ===================== -->
+<article id="content-zh" class="manuscript">
+<p>今天我們要談論我們彼此對待的方式，具體來說，就是「偏私」（piān sī）這個問題。</p>
+<p>我希望大家明白，這不是一堂關於禮儀或規矩的課。就像雅各之前所做的，他要我們看見真正的問題——那個藏在深處的根源。讓我們直接進入。</p>
+<div class="scripture-quote">我的弟兄姊妹們，你們信奉我們榮耀的主耶穌基督，就不可按外貌待人。<cite>雅各書 2:1</cite></div>
+<p>雅各在告訴我們，偏私與信仰（xìn yǎng）是不相容的。它們不可能也無法共存。</p>
+<p>什麼是偏私？這是另一種形式的計算。我們根據各種因素來衡量一個人的價值。每個人的計算方式可能略有不同，但偏私本質上是自私的——是在計算一個人對我而言值多少。雅各給了我們一個具體的畫面。</p>
+<div class="scripture-quote">假若有人戴著金戒指，穿著華麗的衣服進你們的會堂，又有窮人穿著骯髒的衣服進來，你們就看重那穿華麗衣服的人，說：「請坐在這個好地方」，對那窮人說：「你站在那邊，或坐在我腳凳旁邊」，這豈不是你們偏心，用惡意斷定人嗎？<cite>雅各書 2:2–4</cite></div>
+<p>就在這裡——惡意。在古羅馬世界，金戒指代表一個人有權勢、有地位、有關係、有政治影響力和財富。這樣的人走進房間，整個房間都會重新以他為中心運作。</p>
+<p>但第二個人呢？這個人沒有任何可以提供的——不只是在財富上，在關係資本上也是如此。這是一個你還沒聽他開口就先評斷他的人。</p>
+<p>雅各說的是：這種計算對基督徒而言是被禁止的。因為這是世界的算術。有錢人：最好的位置。窮人：站在角落，或坐在地板上。雅各說：當你這樣做的時候，你暴露了你內心深處的某些東西。</p>
+<p>說實話，我想我們在台中國際教會不太會這樣做。而且大多數人也不認為自己是這樣的人。我們不會刻意讓窮人坐在地板上，也不會刻意把好座位留給外表體面的人。</p>
+<p>但我們確實在做這種計算。</p>
+<p>想想你會自然靠近誰？你會主動去介紹自己認識誰？</p>
+<p>這種計算在介紹開口之前就已經開始了——對方的穿著、髮型、氣味。然後當對話開始：職稱、公司名稱、大學、護照。也許你開始思考：這個人能為我打開哪些門，或者關閉哪些門？這個人值得我投入時間和注意嗎？</p>
+<p>我們甚至可能會為這種行為辯護，說我們是在建立策略性的關係網絡。</p>
+<p>這就是現代版的金戒指。在商業或某些場合，這有時可能是必要的。但我們不能讓這種思維方式在教會裡存活和成長。在我們的教會裡。</p>
+<p>我做過這樣的事。我走進過房間，進行過這種精確的計算——誰能提升我的社會價值？</p>
+<p>我也站在另一側——那個不被認為值得的人。沒有人需要說什麼，你自己就知道，也能感受到。</p>
+<p>但請聽我說，雅各在告訴我們一些非常重要的事。這不只是一個社會問題，這是一個神學問題（shén xué wèn tí）。</p>
+<div class="scripture-quote">我親愛的弟兄姊妹們，請聽，神豈不是揀選了世上的窮人，叫他們在信心上富足，並承受祂所應許給那些愛祂之人的國嗎？你們反倒羞辱了貧窮人。那富足人豈不是欺壓你們、拉你們到公堂去嗎？他們不是褻瀆你們所敬奉尊貴名號的嗎？<cite>雅各書 2:5–7</cite></div>
+<p>注意雅各在這裡做了什麼。他再次給了我們一個新的算術方程式。這次反轉的是關於地位（dì wèi）。</p>
+<p>就是這樣：世界的價值體系與神的價值體系朝著相反的方向運行。</p>
+<p>雅各說，神揀選了世上的窮人，使他們在信心上富足，成為國度的繼承人。我們容易把「窮人」理解為物質上的貧乏，當時或許確實如此。但貧窮有很多種。我相信聖靈（Shèng Líng）在教導我們，那些在世界眼中一無所有的人，正是在他們的貧乏之中，得到了一樣買不到的東西：信心的寶藏。</p>
+<p>說清楚一點，雅各不是說財富必然會帶來腐敗。他也不是說貧窮必然帶來美德。他說的是：偏私根本行不通。</p>
+<p>他指出了顯而易見的事實。當你尊重世界上的富人——你這樣做是因為你想要進入他們的地位、他們的認可、他們的關係網絡。這又是自私。而當你刻意保持與世俗意義上的窮人之間的距離——那也是自私的，因為你認為他們會讓你失去什麼。</p>
+<p>雅各說，你的算術根本不管用。那些你偏愛的人——正是把你拉到法庭的人。他們嘲笑你的信仰。你以為你在利用他們，但實際上被利用的是你。所以他繼續說：</p>
+<div class="scripture-quote">你們若按聖經上「要愛人如己」至尊的律法去做，就做得好了。但你們若按外貌待人，便是犯罪，被律法定為罪人。因為凡遵守全律法的，只在一條上跌倒，他就是犯了眾條。<cite>雅各書 2:8–10</cite></div>
+<p>愛人如己。耶穌稱它為第二大誡命。保羅說律法的後半部分全都包含在其中。</p>
+<p>雅各說，如果你在對神的律法上做到了，卻在對人的律法上失敗了，你其實整個失敗了。因為律法不是一張計分表，而是神品格（pǐn gé）的表達。違反其中任何一條，就暴露了你的心仍然在以別的事物，而不是對神和鄰人的愛為中心運作。</p>
+<p>實際上看起來是這樣：「是的，我有一點偏私。但至少我不是小偷。至少我不打老婆。偏私是小事。」我們給自己的罪排列等級，然後自我安慰。</p>
+<p>那麼讓我們停下來，找出我們為什麼會偏私的原因。</p>
+<p>正如我已經暗示的——是自私。但這個答案還沒有觸及根源。</p>
+<p>在那種自私之下，我們試圖確保某些東西。</p>
+<p>想想當你走過房間、走向那個有錢的人時，你實際上在尋求什麼。你想被一個值得被他看見的人看見。你想讓他對你的聯繫或評價改變你的地位。當這發生時，你感覺到自己重要了。</p>
+<p>這只是另一種身份偶像（shēn fèn ǒu xiàng）。你已經把對方變成了偶像，而你試圖讓那個偶像服務你自己的偶像——你自己。</p>
+<p>記住我們學過的關於偶像的事——偶像永遠需要祭品。</p>
+<p>這是它的運作方式：我們走進一個房間，在最初幾秒鐘，算術就完成了。誰在這裡？他們做什麼？這值得我花時間嗎？你不是有意識地這樣做，它就這樣發生了。每一次互動都有一種持續的低度評估：這能帶來什麼回報？</p>
+<p>如果你的關係網絡是你的安全感，那你就永遠無法停止建立關係網絡。每個房間都是一場表演，每次對話都是一次試鏡。你永遠在接受審判，而你的價值總是根據你最後一次互動被重新計算。</p>
+<p>即使成功了，也沒有成功。即使你得到了那個聯繫、談成了那筆交易、得到了那個介紹——你會感受片刻，但然後又重新開始。因為永遠有更令人印象深刻的人需要你去打動。偶像永遠不會說：夠了。它永遠說：永遠不夠。</p>
+<p>你已經把你的安全感建立在一個永遠無法給你安全感的東西上。在你的內心深處，你知道這一點。</p>
+<p>那個在房間對面帶著金戒指的人——那個副總裁、合夥人、主題演講者。在你心靈的運作系統中，他們正在充當救主（jiù zhǔ）的角色。你在尋找一個有能力對你的生命宣告裁決的人，告訴你：你屬於這裡，你重要，你足夠了。</p>
+<p>有時是經過計算的，有時是自動的，有時只是純粹的自私。</p>
+<p>這就是一種宗教。它有儀式——握手、名片、後續跟進的電子郵件。它有祭司階層——那些人脈廣泛、有影響力、令人印象深刻的人。它有禮儀：每次對話都是試鏡，每次互動都是獻祭，每個關係都是一個尋求稱義（chēng yì）的祈禱。</p>
+<p>雅各讓我們看見，我們的敬拜是錯亂的。你在尋找一個人來對你宣告一個裁決，而那個裁決只有神才有權柄宣告。</p>
+<p>雅各稱這為三心兩意（sān xīn liǎng yì）。你試圖同時生活在兩個國度之中，而你的腳步出賣了你。當有令人印象深刻的人走進門時，你朝哪個方向移動？當帶來代價的人走進來時，又朝哪個方向？</p>
+<p>偏私是三心兩意在行動中的模樣。</p>
+<p>你所需要的是那種被賜予你的、能夠摧毀偶像並使你自由的安全感和身份認同（shēn fèn rèn tóng）。</p>
+<p>耶穌能做到這一點。祂在十字架上做到了。祂擁有最高榮耀的位置，卻離開了那個位置。祂跨越了宇宙中最大的距離，成為貧窮，使我們在自己的貧窮中能夠變得富足。祂沒有把我們當作對祂聲譽的潛在代價或益處來管理。祂赤裸地被釘在十字架上，為的是讓你能夠被義袍遮蓋。</p>
+<p>在現實生活中，這是什麼樣的？看耶穌的行動。讓我給你看。路加福音 19 章——耶穌與撒該的相遇。</p>
+<div class="scripture-quote">耶穌進了耶利哥，正經過的時候，有一個人名叫撒該，作稅吏長，是個財主。他要看看耶穌是怎樣的人，只因人多，他的身量又矮，所以不能，就跑到前頭，爬上桑樹，要看耶穌，因為耶穌必從那裡經過。耶穌到了那地方，抬頭一看，對他說：「撒該，快下來！今天我必住在你家裡。」他就急忙下來，歡歡喜喜地接待耶穌。眾人看見，都私下議論說：「他竟到罪人家裡去住宿。」撒該站著對主說：「主啊，我把所有的一半給窮人，我若訛詐了誰，就還他四倍。」耶穌說：「今天救恩到了這家，因為他也是亞伯拉罕的子孫。人子來，為要尋找、拯救失喪的人。」<cite>路加福音 19:1–10</cite></div>
+<p>撒該終於遇見了一個不在進行計算的人，這讓他完全敞開了。</p>
+<p>耶穌不需要撒該任何東西。但祂能給撒該一樣金錢買不到的東西。</p>
+<p>還有另一件事你需要看見。那群人在做同樣的算術。撒該是一個負債——耶穌在與一個罪人交往。但那群人對耶穌的裁決對祂毫無意義，因為耶穌不需要那群人任何東西。</p>
+<p>雅各繼續說——</p>
+<div class="scripture-quote">你們既然要按使人自由的律法受審判，就應當照這律法說話行事。因為那不憐憫人的，也要受無憐憫的審判。憐憫（lián mǐn）原是向審判誇勝。<cite>雅各書 2:12–13</cite></div>
+<p>憐憫向審判誇勝。</p>
+<p>你知道這是什麼嗎？這是一個描述。關於耶穌的描述。</p>
+<p>你和我都應得審判。我們不只是在一點上違犯了律法，而是在許多方面都犯了罪。</p>
+<p>我們曾經偏私。我們曾經因著人們能為我們做什麼而愛他們，又因著他們代價太大而與他們保持距離。</p>
+<p>審判是一個合適的裁決。但我們得到的不是審判，而是憐憫——而憐憫帶給我們勝利和盼望（pàn wàng）。</p>
+<p>審判並沒有被取消——它被付清了。在十字架上，你我所應得的審判的全部重量落在了耶穌身上。</p>
+<p>祂沒有計算誰值得這個投資。祂為我們所有人這樣做了。</p>
+<p>當你不只是相信這件事，而是把它個人化地接受進自己心裡時，你一直在向其獻祭的那些偶像就被摧毀了，你也得到了自由。</p>
+<p>因為你明白了：對你生命最重要的評價已經被宣告了，而它不是基於你的履歷、你的關係網絡或你的表現。</p>
+<p>當這是真的——不只是你在智識上同意的概念，而是在你內心深處真實存在的時候——你遇見的任何人都不再是益處或負債。因為你不再根據他們能為你做什麼或他們將使你付出什麼來判斷一個人的價值。因為你真正明白了，我們所有人的價值都在十字架上被確立了。</p>
+<p>讓我停下來說一件事。你們當中有些人已經在想要做什麼了。你在想，要去找到那個在對話中被排除在外的人，去和他們說話。你會覺得這就是這篇講道的目的。停一下，停下來。</p>
+<p>如果你走向那個人是為了向自己證明福音已經在你身上紮根——那仍然是舊的算術。你只是在為自己這樣做，或者更糟的是，也許你是在為神這樣做。</p>
+<p>福音不給你一個新的項目，而是給你一顆不同的心（xīn）。</p>
+<p>這實際上是什麼樣子的？你仍然會被置於這些情況中，你仍然會看見，甚至感受到舊算術的吸引力。這不會就這樣消失。但這裡有個不同：它不再擁有你了。</p>
+<p>因為你已經被改變了。你的心已經被改變了——人們再也無法拯救你，你也無法拯救他們。你能清楚地看見他們，也許是第一次真正看見：每個人都是按照神的形象（shén de xíng xiàng）被造的人。</p>
+<p>你不是為了證明自己是個好基督徒而走過去。你不需要他們任何東西。他們也不需要你任何東西——他們需要真正的救主。這意味著，也許是第一次，你是自由的——可以給予，可以沒有任何議程地去愛。</p>
+<p>耶穌沒有偏私。天上被愛的兒子離開了最高榮耀的位置——神的右手，宇宙中再沒有更好的地方了。祂跨越了最大的距離，坐在你我身旁，拯救了我們。</p>
 </article>
 
-<!-- ═══════════════════════════════════════════════════════
-     BAHASA INDONESIA CONTENT
-════════════════════════════════════════════════════════ -->
-<article id="content-id">
-
-  <div class="big-idea-card">
-    <div class="big-idea-label">Ide Pokok</div>
-    <div class="big-idea-text">Pilih kasih mengungkapkan hati yang masih mencari dari orang lain apa yang hanya bisa Tuhan berikan.</div>
-    <div class="sermon-meta-inline">
-      <span class="meta-badge">Yakobus 2:1–13</span>
-      <span class="meta-badge">Seri: Yakobus</span>
-      <span class="meta-badge">Minggu ke-3</span>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§2</span><span class="section-title">Ayat Alkitab</span></div>
-    <div class="section-body">
-      <div class="scripture-ref">Yakobus 2:1–13</div>
-      <div class="scripture-support">Ayat pendukung: Lukas 19:1–10 (Zakheus)</div>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§3</span><span class="section-title">Alur Khotbah</span></div>
-    <div class="section-body">
-      <div class="flow-part">
-        <div class="flow-part-title">Bagian 1 — Kita Semua Menghitung (Yakobus 2:1–4)</div>
-        <ul class="flow-bullets">
-          <li>Pilih kasih = menghitung nilai seseorang berdasarkan apa yang bisa mereka berikan kepadamu</li>
-          <li>Gambaran Yakobus: cincin emas vs. pakaian lusuh — tempat terbaik vs. duduk di lantai</li>
-          <li>Kita melakukannya juga: penampilan, jabatan, koneksi, kewarganegaraan paspor</li>
-          <li>"Membangun jaringan strategis" adalah versi modern dari cincin emas</li>
-        </ul>
-      </div>
-      <div class="flow-part">
-        <div class="flow-part-title">Bagian 2 — Perhitungan Itu Tidak Berhasil (Yakobus 2:5–7)</div>
-        <ul class="flow-bullets">
-          <li>Sistem nilai Tuhan dan sistem nilai dunia bergerak dalam arah yang berlawanan</li>
-          <li>"Orang miskin" yang dimaksud Yakobus kaya dalam iman — pewaris kerajaan</li>
-          <li>Orang yang kamu hormati justru sering mengeksploitasimu; perhitungannya gagal</li>
-          <li>Pilih kasih bukan hanya masalah sosial — ini adalah masalah teologis</li>
-        </ul>
-      </div>
-      <div class="flow-part">
-        <div class="flow-part-title">Bagian 3 — Hukum Tidak Memberi Nilai Tambah (Yakobus 2:8–10)</div>
-        <ul class="flow-bullets">
-          <li>"Kasihilah sesamamu manusia seperti dirimu sendiri" = Hukum Utama</li>
-          <li>Hukum bukan lembar skor — ini adalah ekspresi karakter Allah</li>
-          <li>Gagal di satu titik = bersalah atas semuanya; kita tidak bisa meremehkan dosa kita</li>
-        </ul>
-      </div>
-      <div class="flow-part">
-        <div class="flow-part-title">Bagian 4 — Berhala di Balik Perhitungan (Yakobus 2:8–11)</div>
-        <ul class="flow-bullets">
-          <li>Di balik sikap mementingkan diri: kita sedang mencoba mengamankan sesuatu</li>
-          <li>Orang yang mengesankan itu berfungsi sebagai "juruselamat" dalam sistem hatimu</li>
-          <li>Setiap ruangan menjadi penampilan; setiap percakapan menjadi audisi</li>
-          <li>Berhala tidak pernah berkata "cukup" — selalu berkata "tidak pernah cukup"</li>
-          <li>Pilih kasih adalah wujud nyata dari "hati yang mendua" — mencoba hidup di dua kerajaan sekaligus</li>
-        </ul>
-      </div>
-      <div class="flow-part">
-        <div class="flow-part-title">Bagian 5 — Yesus Menulis Ulang Perhitungan (Yakobus 2:12–13; Lukas 19)</div>
-        <ul class="flow-bullets">
-          <li>Zakheus: Yesus tidak menghitung — dan itu mengubah Zakheus sepenuhnya</li>
-          <li>Yesus meninggalkan tempat kehormatan tertinggi dan menyeberangi jarak terbesar di alam semesta</li>
-          <li>Penilaian terpenting dalam hidupmu sudah dinyatakan di salib — bukan oleh siapapun di ruangan itu</li>
-          <li>Injil tidak memberimu proyek baru — Injil memberimu hati yang baru</li>
-          <li>Ketika orang tidak bisa lagi menyelamatkanmu, kamu bebas untuk mengasihi tanpa syarat</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§4</span><span class="section-title">Kata Kunci</span></div>
-    <div class="section-body">
-      <div class="keyword-item"><div class="keyword-term">Pilih Kasih</div><div class="keyword-def">Menghitung nilai seseorang berdasarkan apa yang bisa mereka lakukan untukmu</div></div>
-      <div class="keyword-item"><div class="keyword-term">Hukum Utama</div><div class="keyword-def">Kasihilah sesamamu seperti dirimu sendiri — perintah yang merangkum seluruh kehidupan terhadap sesama</div></div>
-      <div class="keyword-item"><div class="keyword-term">Hati yang Mendua</div><div class="keyword-def">Istilah Yakobus: mencoba hidup di dua kerajaan sekaligus — kerajaan Allah dan kerajaan dunia</div></div>
-      <div class="keyword-item"><div class="keyword-term">Berhala Identitas</div><div class="keyword-def">Menempatkan seseorang atau sesuatu pada peran yang hanya bisa diisi oleh Allah — mencari nilai diri dari mereka</div></div>
-      <div class="keyword-item"><div class="keyword-term">Belas Kasihan</div><div class="keyword-def">Menerima kebalikan dari apa yang kita layak terima — vonis yang Yesus berikan di salib</div></div>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§5</span><span class="section-title">Pernyataan Inti</span></div>
-    <div class="section-body">
-      <div class="anchor-item">"Sistem nilai dunia dan sistem nilai Tuhan bergerak dalam arah yang berlawanan."</div>
-      <div class="anchor-item">"Orang berbincin emas di seberang ruangan itu berfungsi sebagai juruselamat dalam sistem operasi hatimu."</div>
-      <div class="anchor-item">"Injil tidak memberimu proyek baru. Injil memberimu hati yang berbeda."</div>
-      <div class="anchor-item">"Belas kasihan mengalahkan penghakiman."</div>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§6</span><span class="section-title">Petunjuk Mendengarkan</span></div>
-    <div class="section-body">
-      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">Perhatikan "matematika baru" — Yakobus sudah menggunakan ide ini sebelumnya. Perhatikan bagaimana ia membalik persamaan sekali lagi.</span></div>
-      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">Saat kamu mendengar "motif jahat" (ay.4) — Yakobus sedang menggali lebih dalam dari sekadar soal sopan santun. Ini adalah titik pivotnya.</span></div>
-      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">Ini adalah titik balik: diagnosis berhala. Apa yang kita sebut pilih kasih, Yakobus sebut sebagai penyembahan yang salah.</span></div>
-      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">Perhatikan bagaimana Yesus bersama Zakheus adalah isi khotbah dalam tindakan nyata — perhatikan apa yang Yesus tidak lakukan.</span></div>
-      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">Dengarkan peringatan penutup: Injil mengubah hati, bukan hanya daftar tugas.</span></div>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="section-header"><span class="section-num">§7</span><span class="section-title">Fokus Penerapan</span></div>
-    <div class="section-body">
-      <div class="app-item"><div class="app-num">1</div><div class="app-text">Di mana kamu merasakan tarikan "perhitungan" itu? Akui dengan jujur — situasi apa, tipe orang seperti apa.</div></div>
-      <div class="app-item"><div class="app-num">2</div><div class="app-text">Adakah seseorang yang kamu jaga jaraknya karena terasa "terlalu mahal"? Seperti apa wujud belas kasihan terhadap mereka minggu ini?</div></div>
-      <div class="app-item"><div class="app-num">3</div><div class="app-text">Terimalah vonis yang salib ucapkan atas hidupmu — dan biarkan itu membebaskanmu dari kebutuhan akan persetujuan siapapun di ruangan itu.</div></div>
-    </div>
-  </div>
-
+<!-- ===================== BAHASA INDONESIA ===================== -->
+<article id="content-id" class="manuscript">
+<p>Hari ini kita akan membicarakan tentang cara kita memperlakukan satu sama lain. Secara khusus, tentang pilih kasih.</p>
+<p>Yang ingin saya tekankan adalah ini bukan pelajaran tentang sopan santun atau etiket. Seperti yang selalu dilakukan Yakobus, ia ingin kita melihat masalah yang sesungguhnya &mdash; yang tersembunyi di balik permukaan. Mari kita langsung masuk.</p>
+<div class="scripture-quote">Saudara-saudariku, sebagai orang yang beriman kepada Tuhan Yesus Kristus yang mulia, janganlah iman itu kamu amalkan dengan memandang muka.<cite>Yakobus 2:1</cite></div>
+<p>Yakobus mengatakan kepada kita bahwa pilih kasih dan iman tidak bisa berjalan berdampingan. Keduanya tidak bisa dan tidak boleh bersatu.</p>
+<p>Apa itu pilih kasih? Ini adalah bentuk lain dari perhitungan. Kita menilai nilai seseorang berdasarkan berbagai variabel &mdash; yang mungkin sedikit berbeda bagi masing-masing kita. Tetapi pilih kasih pada dasarnya adalah egois. Ini menghitung seberapa berharga seseorang bagi kita. Maka Yakobus memberikan kita sebuah gambaran.</p>
+<div class="scripture-quote">Sebab jika ada seorang masuk ke dalam kumpulanmu dengan memakai cincin emas dan pakaian indah dan datang juga seorang miskin memakai pakaian buruk, dan kamu menghormati orang yang berpakaian indah itu dan berkata kepadanya: "Silakan duduk di tempat yang baik ini!", sedang kepada orang yang miskin itu kamu berkata: "Berdirilah di sana!" atau: "Duduklah di lantai di hadapan kakiku!", bukankah kamu telah membuat pembedaan di dalam hatimu dan bertindak sebagai hakim dengan pikiran yang jahat?<cite>Yakobus 2:2&ndash;4</cite></div>
+<p>Itulah dia &mdash; pikiran yang jahat. Dalam dunia Romawi kuno, cincin emas menandakan bahwa seseorang memiliki kekuasaan, posisi, koneksi, pengaruh politik, dan kekayaan. Orang seperti itu masuk ke dalam ruangan dan mengharapkan ruangan itu menyesuaikan diri dengannya.</p>
+<p>Tetapi orang kedua? Orang ini tidak memiliki apa pun untuk ditawarkan &mdash; tidak hanya secara finansial, tetapi juga dalam hal modal relasional. Ini adalah seseorang yang sudah kamu hakimi sebelum ia membuka mulutnya.</p>
+<p>Jadi apa yang dikatakan Yakobus &mdash; jenis perhitungan seperti ini tidak boleh ada bagi seorang Kristen. Karena ini adalah matematika duniawi. Orang kaya: tempat duduk terbaik di ruangan. Orang miskin: berdiri di sudut, atau duduk di lantai. Dan Yakobus berkata: ketika kamu melakukan itu, kamu telah mengungkapkan sesuatu yang ada di dalam dirimu.</p>
+<p>Jujur saja, saya rasa kita tidak melakukan ini &mdash; tidak di TIF. Dan mungkin sebagian besar dari kita tidak menganggap diri kita sebagai orang yang melakukan ini. Kita tidak dengan sengaja mendudukkan orang miskin di lantai atau memberikan tempat duduk yang lebih baik kepada orang yang terlihat berpengaruh.</p>
+<p>Tetapi kita tetap melakukan perhitungan itu.</p>
+<p>Pikirkan tentang siapa yang secara alami kamu dekati. Kepada siapa kamu berusaha memperkenalkan dirimu.</p>
+<p>Perhitungan itu dimulai bahkan sebelum perkenalan &mdash; cara mereka berpakaian, rambut mereka, bau mereka. Lalu ketika kata-kata mulai: jabatan pekerjaan, nama perusahaan, universitas, paspor. Dan mungkin kamu mulai berpikir &mdash; pintu apa yang bisa dibuka atau ditutup oleh orang ini untukku? Apakah mereka layak mendapat investasi waktu dan perhatianku?</p>
+<p>Kita bahkan mungkin membenarkan perilaku seperti itu dengan mengatakan bahwa kita sedang membangun jaringan strategis.</p>
+<p>Itulah versi modern dari cincin emas. Dan dalam bisnis atau lingkungan tertentu mungkin kadang perlu. Tetapi kita tidak boleh membiarkan hal ini hidup dan berkembang di dalam gereja. Di gereja kita.</p>
+<p>Saya pernah melakukan ini. Saya pernah masuk ke sebuah ruangan dan menjalankan perhitungan yang tepat ini &mdash; siapa yang bisa meningkatkan nilai sosial saya?</p>
+<p>Dan saya juga pernah berada di sisi yang lain &mdash; orang yang tidak dianggap layak. Tidak ada yang perlu berkata apa-apa. Kamu tahu sendiri dan kamu merasakannya.</p>
+<p>Tetapi dengarkan saya, Yakobus memberitahu kita sesuatu yang sangat penting. Ini bukan sekadar masalah sosial. Ini adalah masalah teologis.</p>
+<div class="scripture-quote">Dengarkanlah, hai saudara-saudara yang kukasihi! Bukankah Allah memilih orang-orang yang dianggap miskin oleh dunia ini untuk menjadi kaya dalam iman dan menjadi ahli waris Kerajaan yang telah dijanjikan-Nya kepada mereka yang mengasihi Dia? Tetapi kamu telah menghinakan orang-orang miskin. Bukankah justru orang-orang kaya yang menindas kamu dan yang menyeret kamu ke pengadilan? Bukankah mereka yang menghujat Nama yang mulia, yang oleh-Nya kamu telah menjadi milik Allah?<cite>Yakobus 2:5&ndash;7</cite></div>
+<p>Perhatikan apa yang dilakukan Yakobus di sini. Ia kembali memberi kita persamaan matematika yang baru. Kali ini pembalikannya tentang status.</p>
+<p>Inilah intinya: sistem nilai dunia dan sistem nilai Allah bergerak ke arah yang berlawanan.</p>
+<p>Yakobus berkata, Allah memilih orang miskin untuk kaya dalam iman &mdash; pewaris kerajaan. Mudah untuk memaknai "miskin" sebagai miskin secara finansial, dan pada masa itu mungkin memang demikian. Ada banyak cara untuk menjadi miskin. Saya percaya Roh Kudus sedang mengajarkan kita tentang mereka yang miskin di mata dunia. Dan justru dalam kemiskinan itulah mereka diberi sesuatu yang tidak bisa dibeli: harta iman.</p>
+<p>Jelaskan dengan baik, Yakobus tidak mengatakan bahwa kekayaan secara otomatis merusak. Ia juga tidak mengatakan kemiskinan secara otomatis adalah bajik. Yang ia katakan adalah: pilih kasih bahkan tidak berhasil.</p>
+<p>Ia menunjukkan hal yang jelas. Ketika kamu menghormati orang kaya duniawi &mdash; kamu melakukannya karena kamu ingin mengakses status mereka, persetujuan mereka, jaringan mereka. Lagi-lagi egois. Dan ketika kamu menjaga jarak dari orang miskin duniawi &mdash; itu juga egois, karena kamu pikir mereka akan mengurangi sesuatu darimu.</p>
+<p>Dan Yakobus berkata matematika kamu tidak berhasil. Orang-orang yang kamu pilih kasih &mdash; itulah orang-orang yang menyeretmu ke pengadilan. Mereka mengejek imanmu. Kamu pikir kamu menggunakan mereka, tetapi kamulah yang sebenarnya digunakan. Maka ia melanjutkan untuk berkata ini.</p>
+<div class="scripture-quote">Akan tetapi, jikalau kamu menjalankan hukum utama yang tertulis dalam Kitab Suci: "Kasihilah sesamamu manusia seperti dirimu sendiri", maka baiklah perbuatanmu itu. Tetapi jikalau kamu memandang muka, kamu berbuat dosa, dan oleh hukum itu menjadi nyata, bahwa kamu melakukan pelanggaran. Sebab barangsiapa menuruti seluruh hukum itu, tetapi mengabaikan satu bagian dari padanya, ia bersalah terhadap seluruhnya.<cite>Yakobus 2:8&ndash;10</cite></div>
+<p>Kasihilah sesamamu manusia seperti dirimu sendiri. Yesus menyebutnya perintah yang kedua terbesar. Paulus mengatakan seluruh bagian kedua dari hukum Taurat dirangkum di dalamnya.</p>
+<p>Yakobus mengatakan jika kamu menjalankan bagian hukum terhadap Allah tetapi gagal dalam bagian hukum terhadap orang lain, kamu sebenarnya telah gagal semuanya. Karena hukum bukan lembar penilaian, melainkan ungkapan karakter Allah. Melanggar satu bagian darinya adalah mengungkapkan bahwa hatimu masih berputar di sekitar sesuatu yang bukan kasih kepada Allah dan sesama.</p>
+<p>Secara praktis terlihat seperti ini: "Memang saya sedikit pilih kasih. Tapi setidaknya saya bukan pencuri. Setidaknya saya tidak memukul istri. Pilih kasih adalah hal kecil." Kita memberi peringkat dosa kita dan meyakinkan diri kita sendiri.</p>
+<p>Jadi mari kita sejenak mencari tahu mengapa kita menunjukkan pilih kasih.</p>
+<p>Dan seperti yang sudah saya singgung &mdash; ini adalah keegoisan. Tetapi jawaban itu tidak sampai ke akar.</p>
+<p>Di balik keegoisan itu, kita sedang berusaha mengamankan sesuatu.</p>
+<p>Pikirkan apa yang sebenarnya kamu cari ketika kamu menyeberangi ruangan menuju orang kaya itu. Kamu ingin dilihat oleh seseorang yang layak dilihat. Kamu ingin pergaulan mereka denganmu atau penilaian mereka tentangmu mengubah statusmu. Dan ketika itu terjadi, kamu merasa bahwa kamu berarti.</p>
+<p>Ini hanya bentuk lain dari berhala identitas. Kamu telah menjadikan orang lain sebagai berhala dan kamu berusaha membuat berhala itu melayani berhala milikmu sendiri &mdash; dirimu sendiri.</p>
+<p>Dan ingat apa yang kita pelajari tentang berhala &mdash; berhala selalu menuntut korban.</p>
+<p>Begini cara kerjanya. Kita masuk ke sebuah ruangan dan dalam beberapa detik pertama, perhitungan sudah selesai. Siapa yang ada di sini? Apa yang mereka lakukan? Apakah ini layak untuk waktu saya? Kamu tidak melakukannya secara sadar. Itu hanya terjadi. Sebuah penilaian tingkat rendah yang terus-menerus terhadap setiap interaksi: apa imbalannya?</p>
+<p>Jika jaringanmu adalah keamananmu, maka kamu tidak pernah bisa berhenti membangun jaringan. Setiap ruangan adalah pertunjukan. Setiap percakapan adalah audisi. Kamu selalu dalam pengadilan, dan nilaimu selalu dihitung ulang berdasarkan interaksi terakhirmu.</p>
+<p>Dan bahkan ketika berhasil, itu tidak benar-benar berhasil. Bahkan ketika kamu mendapat kontak itu, mengamankan kesepakatan itu, mendapat pengenalan itu &mdash; kamu merasakannya sesaat, tetapi kemudian dimulai lagi. Karena selalu ada seseorang yang lebih mengesankan. Selalu ada tempat duduk yang lebih baik yang belum kamu miliki. Berhala tidak pernah berkata: cukup. Ia selalu berkata: tidak pernah cukup.</p>
+<p>Kamu telah membangun keamananmu di atas sesuatu yang tidak akan pernah memberimu keamanan. Dan jauh di lubuk hatimu, kamu tahu itu.</p>
+<p>Orang di seberang ruangan dengan cincin emas &mdash; sang wakil presiden, mitra, pembicara utama. Dalam sistem operasi hatimu, mereka berfungsi sebagai juru selamat. Kamu mencari seseorang yang memiliki kekuatan untuk mengucapkan vonis atas hidupmu. Untuk memberitahumu: Kamu layak di sini. Kamu berarti. Kamu sudah cukup.</p>
+<p>Kadang itu terhitung. Kadang itu otomatis. Kadang itu murni egois.</p>
+<p>Itulah sebuah agama. Ia memiliki ritual &mdash; jabat tangan, kartu nama, email tindak lanjut. Ia memiliki imam &mdash; mereka yang berpengaruh, terhubung, mengesankan. Dan ia memiliki liturgi: setiap percakapan adalah audisi, setiap interaksi adalah persembahan, setiap koneksi adalah doa untuk pembenaran.</p>
+<p>Yakobus menunjukkan kepada kita bahwa ibadah kita kacau. Kamu sedang mencari manusia untuk mengucapkan vonis atasmu yang hanya Allah yang memiliki otoritas untuk mengucapkannya.</p>
+<p>Yakobus menyebut ini sebagai bermuka dua. Kamu sedang mencoba hidup di dua kerajaan sekaligus, dan langkah kakimu mengungkapkannya. Ke arah mana kamu bergerak ketika seseorang yang mengesankan berjalan masuk pintu? Ke arah mana ketika seseorang yang memerlukan biaya berjalan masuk?</p>
+<p>Pilih kasih adalah seperti itulah tampilan bermuka dua dalam tindakan.</p>
+<p>Yang kamu butuhkan adalah keamanan dan identitas yang diberikan kepadamu yang menghancurkan berhala dan membebaskanmu.</p>
+<p>Yesus bisa melakukan itu. Ia melakukannya di kayu salib. Ia memegang tempat duduk kehormatan tertinggi. Dan Ia meninggalkannya. Ia menyeberangi jarak terbesar di alam semesta. Ia menjadi miskin supaya kita, dalam kemiskinan kita, bisa menjadi kaya. Ia tidak mengelola kita sebagai potensi biaya atau manfaat bagi reputasi-Nya. Ia tergantung telanjang di kayu salib, supaya kamu bisa diselubungi dengan kebenaran.</p>
+<p>Seperti apa tampilan nyata ini? Perhatikan Yesus bekerja. Biarkan saya menunjukkannya kepadamu. Lukas 19 &mdash; pertemuan Yesus dengan Zakheus.</p>
+<div class="scripture-quote">Yesus masuk ke kota Yerikho dan berjalan melintasi kota itu. Di situ ada seorang bernama Zakheus, kepala pemungut cukai, dan ia seorang yang kaya. Ia berusaha untuk melihat orang apakah Yesus itu, tetapi ia tidak berhasil karena orang banyak, sebab badannya pendek. Maka berlarilah ia mendahului orang banyak, lalu memanjat pohon ara liar untuk melihat Yesus, yang akan lewat di situ. Ketika Yesus sampai ke tempat itu, Ia melihat ke atas dan berkata: "Zakheus, segeralah turun, sebab hari ini Aku harus menumpang di rumahmu." Lalu Zakheus segera turun dan menerima Yesus dengan sukacita. Tetapi semua orang yang melihat hal itu bersungut-sungut, katanya: "Ia menumpang di rumah orang berdosa." Tetapi Zakheus berdiri dan berkata kepada Tuhan: "Tuhan, setengah dari milikku akan kuberikan kepada orang miskin dan sekiranya ada sesuatu yang kuperas dari seseorang akan kukembalikan empat kali lipat." Kata Yesus kepadanya: "Hari ini telah terjadi keselamatan kepada rumah ini, karena orang inipun anak Abraham. Sebab Anak Manusia datang untuk mencari dan menyelamatkan yang hilang."<cite>Lukas 19:1&ndash;10</cite></div>
+<p>Zakheus akhirnya bertemu seseorang yang tidak sedang melakukan perhitungan. Dan itu membuatnya terbuka sepenuhnya.</p>
+<p>Yesus tidak membutuhkan apa pun dari Zakheus. Tetapi Ia bisa memberikan Zakheus sesuatu yang tidak bisa dibeli dengan uang.</p>
+<p>Ada hal lain yang perlu kamu lihat. Orang banyak melakukan matematika yang sama. Zakheus adalah beban &mdash; Yesus bergaul dengan orang berdosa. Vonis orang banyak atas Yesus tidak berarti apa-apa bagi-Nya karena Yesus tidak membutuhkan apa pun dari orang banyak.</p>
+<p>Yakobus melanjutkan &mdash;</p>
+<div class="scripture-quote">Berkatalah dan berlakulah seperti orang-orang yang akan dihakimi oleh hukum yang memerdekakan orang. Sebab penghakiman yang tidak berbelas kasihan akan berlaku atas orang yang tidak berbelas kasihan. Tetapi belas kasihan akan menang atas penghakiman.<cite>Yakobus 2:12&ndash;13</cite></div>
+<p>Belas kasihan menang atas penghakiman.</p>
+<p>Tahukah kamu apa ini? Ini adalah deskripsi. Tentang Yesus.</p>
+<p>Kamu dan saya layak mendapat penghakiman. Kita telah melanggar hukum bukan hanya pada satu titik tetapi pada banyak titik.</p>
+<p>Kita telah pilih kasih. Kita telah mengasihi orang karena apa yang bisa mereka lakukan untuk kita dan menjaga jarak dari orang lain karena mereka terlalu mahal.</p>
+<p>Penghakiman adalah vonis yang tepat. Tetapi alih-alih penghakiman, kita mendapat belas kasihan &mdash; dan belas kasihan membawa kita pada kemenangan dan harapan.</p>
+<p>Penghakiman tidak dibatalkan &mdash; ia dibayar. Di kayu salib, seluruh beban penghakiman yang layak kamu dan saya terima jatuh kepada Yesus.</p>
+<p>Ia tidak menghitung siapa yang layak mendapat investasi itu. Ia melakukannya untuk kita semua.</p>
+<p>Ketika kamu tidak hanya mempercayai itu, tetapi menerimanya untuk dirimu sendiri, maka berhala-berhala yang selama ini kamu persembahkan korban padanya dihancurkan dan kamu dimerdekakan.</p>
+<p>Karena kamu mengerti, kamu tahu, evaluasi terpenting dalam hidupmu telah diberikan, dan itu bukan didasarkan pada resume, koneksi, atau performamu.</p>
+<p>Dan ketika itu benar &mdash; ketika itu sungguh-sungguh benar di dalam dirimu, bukan hanya sebagai konsep yang kamu setujui &mdash; tidak ada orang yang akan kamu temui yang merupakan keuntungan atau beban. Karena kamu berhenti menentukan nilai seseorang berdasarkan apa yang bisa mereka lakukan untukmu atau apa yang akan mereka biayai. Karena kamu benar-benar mengerti bahwa semua nilai kita telah ditetapkan di kayu salib.</p>
+<p>Izinkan saya berhenti sebentar dan mengatakan sesuatu. Sebagian dari kamu sudah memikirkan apa yang harus dilakukan. Kamu memikirkan untuk menemukan orang yang tersingkir dari percakapan, dan kamu akan pergi berbicara kepada mereka. Dan kamu akan merasa itulah tujuan khotbah ini. Berhenti. Berhenti sebentar.</p>
+<p>Jika kamu berjalan ke arah orang itu untuk membuktikan kepada dirimu sendiri bahwa injil telah tertanam dalam dirimu &mdash; itu masih matematika lama. Kamu hanya melakukannya untuk dirimu sendiri atau bahkan mungkin kamu melakukannya untuk Allah.</p>
+<p>Injil tidak memberimu proyek baru. Ia memberimu hati yang berbeda.</p>
+<p>Inilah tampilan nyatanya. Kamu masih akan dihadapkan pada situasi-situasi ini. Dan kamu masih akan melihat dan bahkan mungkin merasakan tarikan matematika lama itu. Itu tidak akan begitu saja menghilang. Tetapi inilah perbedaannya. Itu tidak lagi memilikimu.</p>
+<p>Karena kamu telah berubah. Hatimu telah berubah &mdash; orang-orang tidak lagi bisa menyelamatkanmu, dan kamu tidak bisa menyelamatkan mereka. Kamu bisa melihat mereka dengan jelas, mungkin untuk pertama kalinya: setiap orang adalah pribadi yang diciptakan menurut gambar Allah.</p>
+<p>Kamu tidak pergi ke sana untuk membuktikan bahwa kamu seorang Kristen yang baik. Kamu tidak membutuhkan apa pun dari mereka. Dan mereka tidak membutuhkan apa pun darimu &mdash; mereka membutuhkan Juru Selamat yang sejati. Artinya, mungkin untuk pertama kalinya, kamu bebas untuk memberi. Bebas untuk mengasihi tanpa agenda.</p>
+<p>Yesus tidak pilih kasih. Anak kesayangan sorga meninggalkan tempat duduk kehormatan tertinggi, tangan kanan Allah &mdash; tidak ada tempat yang lebih baik di alam semesta. Dan Ia menyeberangi jarak terbesar untuk duduk di samping kamu dan saya dan menyelamatkan kita.</p>
 </article>
-</div><!-- end main-wrapper -->
 
-<footer class="site-footer">
-  <div class="footer-church">Taichung International Fellowship</div>
-  <a href="archive.html" class="footer-link">Sermon Archive →</a>
-  <div class="footer-copy">Listening aids produced weekly in English, Traditional Chinese, and Bahasa Indonesia.</div>
+<!-- ===================== KOREAN ===================== -->
+<article id="content-ko" class="manuscript">
+<p>오늘은 우리가 서로를 어떻게 대하는지에 대해 이야기하려 합니다. 구체적으로는 편애(偏愛)에 대한 이야기입니다.</p>
+<p>우리가 이해해야 할 것은, 이것이 예절이나 에티켓에 관한 수업이 아니라는 점입니다. 야고보는 이전에도 그래왔듯이, 우리가 진짜 문제, 즉 그 밑에 숨겨진 문제를 보기를 원합니다. 바로 시작합시다.</p>
+<div class="scripture-quote">내 형제들아 영광의 주 곧 우리 주 예수 그리스도에 대한 믿음을 너희가 가졌으니 사람을 차별하여 대하지 말라.<cite>야고보서 2:1</cite></div>
+<p>야고보는 편애와 믿음이 양립할 수 없다고 말하고 있습니다. 둘은 함께 할 수 없습니다.</p>
+<p>편애란 무엇인가요? 이것은 또 다른 형태의 계산입니다. 우리는 다양한 변수를 바탕으로 어떤 사람의 가치를 계산합니다. 그 기준은 사람마다 조금씩 다를 수 있지만, 편애는 이기적입니다. 나에게 그 사람이 얼마나 가치 있는지를 따지는 것입니다. 야고보는 우리에게 그림을 하나 보여줍니다.</p>
+<div class="scripture-quote">만일 너희 회당에 금 가락지를 끼고 아름다운 옷을 입은 사람이 들어오고 또 더러운 옷을 입은 가난한 사람이 들어올 때에 너희가 아름다운 옷을 입은 자를 눈여겨 보고 말하되 여기 좋은 자리에 앉으소서 하고 또 가난한 자에게 말하되 너는 거기 서 있든지 내 발등상 아래에 앉으라 하면 너희끼리 서로 차별하며 악한 생각으로 판단하는 자가 되는 것이 아니냐.<cite>야고보서 2:2&ndash;4</cite></div>
+<p>바로 여기에 있습니다 &mdash; 악한 생각. 고대 로마 세계에서 금반지는 그 사람이 권력, 지위, 인맥, 정치적 영향력, 재력을 가진 사람임을 의미했습니다. 그런 사람이 방에 들어오면 방 전체가 그를 중심으로 재편되기를 기대했습니다.</p>
+<p>그런데 두 번째 사람은 어떤가요? 이 사람은 아무것도 제공할 것이 없습니다. 재정적으로만이 아니라 관계적인 자본도 없습니다. 이 사람은 입을 열기도 전에 이미 판단받는 사람입니다.</p>
+<p>야고보가 말하는 것은 바로 이것입니다 &mdash; 이런 종류의 계산은 그리스도인에게 허용되지 않습니다. 왜냐하면 이것은 세상의 수학이기 때문입니다. 부자: 가장 좋은 자리. 가난한 자: 구석에 서거나 발치에 앉으라. 야고보는 말합니다: 그렇게 할 때, 당신은 내면에 있는 무언가를 드러내는 것이라고.</p>
+<p>솔직히 말해서, 저는 우리가 이렇게 하지 않는다고 생각합니다 &mdash; 적어도 여기 TIF에서는요. 그리고 우리 대부분은 스스로를 그런 사람이라고 생각하지 않습니다. 우리는 의식적으로 가난한 사람을 바닥에 앉히거나 인상적인 사람에게 더 좋은 자리를 내주지는 않습니다.</p>
+<p>하지만 우리는 그 계산을 합니다.</p>
+<p>당신이 자연스럽게 끌리는 사람이 누구인지 생각해보세요. 당신이 스스로 소개하려고 노력하는 사람이 누구인지.</p>
+<p>그 계산은 인사가 시작되기도 전에 이미 시작됩니다. 옷차림, 머리 스타일, 냄새. 그런 다음 말이 시작되면 직함, 회사 이름, 대학교, 국적. 그러면서 생각하기 시작합니다. 이 사람이 내게 어떤 문을 열어줄 수 있을까, 아니면 닫을 수 있을까. 이 사람이 내 시간과 관심을 투자할 만한 가치가 있을까.</p>
+<p>우리는 심지어 이런 행동을 '전략적 인맥 쌓기'라고 정당화하기도 합니다.</p>
+<p>그것이 현대판 금반지입니다. 비즈니스나 다른 환경에서는 때로 필요할 수 있습니다. 하지만 우리는 이것이 교회 안에서, 우리 교회 안에서 살아 자라도록 내버려둘 수 없습니다.</p>
+<p>저도 이렇게 해봤습니다. 방에 들어가서 정확히 이 계산을 해봤습니다 &mdash; 누가 내 사회적 가치를 높여줄 수 있을까?</p>
+<p>그리고 반대편 입장에도 서봤습니다 &mdash; 가치 있다고 여겨지지 않는 사람. 아무도 말하지 않아도 압니다. 알고 느낍니다.</p>
+<p>하지만 들으세요, 야고보는 우리에게 매우 중요한 것을 말하고 있습니다. 이것은 단순한 사회적 문제가 아닙니다. 이것은 신학적인 문제입니다.</p>
+<div class="scripture-quote">내 사랑하는 형제들아 들을지어다 하나님이 세상에서 가난한 자를 택하사 믿음에 부요하게 하시고 또 자기를 사랑하는 자들에게 약속하신 나라를 상속으로 받게 하지 아니하셨느냐 너희는 도리어 가난한 자를 업신여겼도다 부자는 너희를 억압하며 법정으로 끌고 가지 아니하느냐 그들은 너희에게 대하여 일컫는 바 그 아름다운 이름을 모독하지 아니하느냐.<cite>야고보서 2:5&ndash;7</cite></div>
+<p>야고보가 여기서 무엇을 하는지 주목하세요. 그는 다시 새로운 수학 방정식을 우리에게 제시하고 있습니다. 이번에는 역전이 지위에 관한 것입니다.</p>
+<p>바로 이것입니다: 세상의 가치 체계와 하나님의 가치 체계는 반대 방향으로 움직입니다.</p>
+<p>야고보는 하나님이 가난한 자들을 믿음에 부요하게, 나라의 상속자로 택하셨다고 말합니다. '가난한 자'를 재정적으로 가난한 사람으로 이해하기 쉽고, 당시에는 그런 의미였을 것입니다. 가난해지는 방법은 여러 가지가 있습니다. 저는 성령께서 세상의 눈으로 보기에 가난한 자들에 대해 우리를 가르치시려 한다고 생각합니다. 그리고 바로 그 가난함 속에서 그들은 돈으로 살 수 없는 것을 받았습니다: 믿음의 보화.</p>
+<p>분명히 하자면, 야고보는 부가 자동으로 타락시킨다고 말하는 것이 아닙니다. 또한 가난이 자동으로 덕스럽다고 말하는 것도 아닙니다. 그가 말하는 것은 이것입니다: 편애는 효과도 없습니다.</p>
+<p>그는 명백한 사실을 지적합니다. 세상의 부자를 존중할 때 &mdash; 당신은 그들의 지위, 승인, 인맥에 접근하고 싶기 때문에 그렇게 합니다. 다시 이기적입니다. 세상의 가난한 자들과 거리를 둘 때 &mdash; 그것도 이기적입니다. 그들이 당신에게서 무언가를 빼앗아갈 것이라고 생각하기 때문입니다.</p>
+<p>야고보는 당신의 수학이 통하지 않는다고 말합니다. 당신이 편애하는 바로 그 사람들이 당신을 법정으로 끌고 가는 사람들입니다. 그들은 당신의 믿음을 조롱합니다. 당신이 그들을 이용하고 있다고 생각하지만, 실제로 이용당하는 것은 당신입니다. 그래서 그는 계속해서 말합니다.</p>
+<div class="scripture-quote">너희는 자유의 율법대로 심판 받을 자처럼 말도 하고 행동도 하라 긍휼을 행하지 아니하는 자에게는 긍휼 없는 심판이 있으리라 긍휼은 심판을 이기고 자랑하느니라.<cite>야고보서 2:12&ndash;13</cite></div>
+<div class="scripture-quote">너희가 만일 성경에 기록된 대로 네 이웃 사랑하기를 네 몸과 같이 하라 하신 최고의 법을 지키면 잘하는 것이거니와 만일 너희가 사람을 차별하여 대하면 죄를 짓는 것이니 율법이 너희를 범법자로 정죄하리라 누구든지 온 율법을 지키다가 그 하나를 범하면 모두 범한 자가 되나니.<cite>야고보서 2:8&ndash;10</cite></div>
+<p>네 이웃을 네 자신과 같이 사랑하라. 예수님은 이것을 두 번째로 큰 계명이라고 하셨습니다. 바울은 율법의 후반부 전체가 이 안에 요약된다고 했습니다.</p>
+<p>야고보는 하나님을 향한 율법의 부분은 지키면서 다른 사람들을 향한 율법의 부분에서 실패하면, 사실은 전부 실패한 것이라고 말합니다. 율법은 점수표가 아니라 하나님의 성품의 표현이기 때문입니다. 율법의 한 부분을 깨는 것은 당신의 마음이 여전히 하나님과 이웃에 대한 사랑이 아닌 다른 것을 중심으로 돌고 있음을 드러내는 것입니다.</p>
+<p>실제로는 이렇게 나타납니다: "네, 저는 약간의 편애를 보입니다. 하지만 적어도 저는 도둑이 아닙니다. 적어도 저는 아내를 때리지 않습니다. 편애는 사소한 문제입니다." 우리는 죄에 등급을 매기고 스스로를 안심시킵니다.</p>
+<p>그렇다면 잠시 멈추고 우리가 왜 편애를 보이는지 알아봅시다.</p>
+<p>이미 암시했듯이 &mdash; 이기심입니다. 하지만 그 답으로는 뿌리에 이르지 못합니다.</p>
+<p>그 이기심 아래에 우리는 무언가를 확보하려 합니다.</p>
+<p>그 부유한 사람 쪽으로 방을 가로질러 갈 때 실제로 무엇을 찾고 있는지 생각해보세요. 당신은 볼 가치가 있는 사람에게 보이고 싶어합니다. 그들과의 교류나 그들의 평가가 당신의 지위를 바꿔주기를 원합니다. 그리고 그것이 이루어질 때, 당신은 중요한 사람이 된 것 같은 느낌을 받습니다.</p>
+<p>이것은 또 다른 정체성 우상에 불과합니다. 당신은 상대방을 우상으로 만들고, 그 우상이 당신 자신의 우상 &mdash; 자기 자신 &mdash; 을 섬기도록 하려 합니다.</p>
+<p>그리고 우상에 대해 우리가 배운 것을 기억하세요. 우상은 항상 제물을 요구합니다.</p>
+<p>이것이 어떻게 작동하는지입니다. 우리는 방에 들어가서 처음 몇 초 안에 계산이 완료됩니다. 여기 누가 있는가? 그들은 무엇을 하는가? 이것이 내 시간의 가치가 있는가? 의식적으로 하는 것이 아닙니다. 그냥 일어납니다. 모든 상호작용에 대한 지속적인 낮은 수준의 평가: 이것의 수익은 무엇인가?</p>
+<p>당신의 인맥이 당신의 안보라면, 당신은 인맥 쌓기를 멈출 수 없습니다. 모든 방이 공연장입니다. 모든 대화가 오디션입니다. 당신은 항상 재판 중이고, 당신의 가치는 항상 마지막 상호작용을 기준으로 재계산됩니다.</p>
+<p>심지어 성공했을 때도, 성공한 것이 아닙니다. 그 연락처를 얻고, 거래를 성사시키고, 소개를 받더라도 &mdash; 잠시 느끼지만 그러고 나면 다시 시작됩니다. 왜냐하면 항상 더 인상적인 사람이 있기 때문입니다. 항상 아직 갖지 못한 더 좋은 자리가 있습니다. 우상은 결코 충분하다고 말하지 않습니다. 항상 아직 부족하다고 말합니다.</p>
+<p>당신은 당신에게 결코 안보를 주지 않을 것 위에 당신의 안보를 쌓았습니다. 그리고 깊은 내면에서 당신도 알고 있습니다.</p>
+<p>방 저편에 금반지를 낀 사람 &mdash; 부사장, 파트너, 기조연설자. 당신의 마음의 운영 체계에서 그들은 구원자로 기능하고 있습니다. 당신은 당신의 삶에 판결을 내릴 힘을 가진 누군가를 찾고 있습니다. 당신에게 말해줄 사람을: 당신은 여기에 속해 있습니다. 당신은 중요합니다. 당신은 충분합니다.</p>
+<p>때로는 계산된 것입니다. 때로는 자동적입니다. 때로는 그냥 순전한 이기심입니다.</p>
+<p>이것이 하나의 종교입니다. 의식이 있습니다 &mdash; 악수, 명함, 후속 이메일. 사제 계층이 있습니다 &mdash; 인맥이 좋고, 영향력 있고, 인상적인 사람들. 그리고 전례가 있습니다: 모든 대화는 오디션이고, 모든 상호작용은 제물이고, 모든 인맥은 칭의를 위한 기도입니다.</p>
+<p>야고보는 우리의 예배가 무질서하다는 것을 우리에게 보여주고 있습니다. 당신은 오직 하나님만이 선포할 권위를 가진 판결을 인간에게서 선포받으려 하고 있습니다.</p>
+<p>야고보는 이것을 두 마음을 품는 것이라고 불렀습니다. 당신은 동시에 두 왕국에서 살려 하고 있고, 당신의 발걸음이 그것을 드러냅니다. 인상적인 사람이 문으로 들어올 때 어느 방향으로 움직이나요? 부담이 되는 사람이 들어올 때는?</p>
+<p>편애는 두 마음이 행동으로 나타났을 때의 모습입니다.</p>
+<p>당신에게 필요한 것은 우상을 파괴하고 당신을 자유하게 하는 안보와 정체성이 당신에게 주어지는 것입니다.</p>
+<p>예수님은 그것을 하실 수 있습니다. 그분은 십자가에서 그것을 하셨습니다. 그분은 최고의 영예의 자리를 가지고 계셨습니다. 그리고 그 자리를 떠나셨습니다. 그분은 우주에서 가장 큰 거리를 가로질러 오셨습니다. 우리가 가난 속에서 부유해질 수 있도록 스스로 가난하게 되셨습니다. 그분은 우리를 그분의 명성에 대한 잠재적 비용이나 이익으로 관리하지 않으셨습니다. 당신이 의의 옷을 입을 수 있도록 벌거벗은 채 십자가에 달리셨습니다.</p>
+<p>실제 삶에서 이것은 어떤 모습일까요? 예수님이 일하시는 것을 보세요. 제가 보여드리겠습니다. 누가복음 19장 &mdash; 예수님과 삭개오의 만남.</p>
+<div class="scripture-quote">예수께서 여리고에 들어 지나가시더라 삭개오라 이름하는 자가 있으니 세리장이요 또한 부자라 그가 예수께서 어떠한 사람인가 하여 보고자 하되 키가 작고 사람이 많아 할 수 없어 앞으로 달려가서 보기 위하여 돌무화과나무에 올라가니 이는 예수께서 그리로 지나가시게 됨이러라 예수께서 그 곳에 이르사 쳐다보시고 이르시되 삭개오야 속히 내려오라 내가 오늘 네 집에 유하여야 하겠다 하시니 급히 내려와 즐거워하며 영접하거늘 뭇 사람이 보고 수군거려 이르되 저가 죄인의 집에 유하러 들어갔도다 하더라 삭개오가 서서 주께 여짜오되 주여 보시옵소서 내 소유의 절반을 가난한 자들에게 주겠사오며 만일 누구의 것을 속여 빼앗은 일이 있으면 네 갑절이나 갚겠나이다 예수께서 이르시되 오늘 구원이 이 집에 이르렀으니 이 사람도 아브라함의 자손임이로다 인자가 온 것은 잃어버린 자를 찾아 구원하려 함이니라.<cite>누가복음 19:1&ndash;10</cite></div>
+<p>삭개오는 마침내 계산하지 않는 누군가를 만났습니다. 그리고 그것이 그를 완전히 열어버렸습니다.</p>
+<p>예수님은 삭개오에게서 아무것도 필요로 하지 않으셨습니다. 하지만 그분은 삭개오에게 돈으로 살 수 없는 것을 줄 수 있으셨습니다.</p>
+<p>당신이 봐야 할 것이 또 있습니다. 군중도 같은 계산을 하고 있었습니다. 삭개오는 부채 &mdash; 예수님이 죄인과 어울리고 있다. 하지만 군중의 예수님에 대한 판결은 그분에게 아무 의미가 없었습니다. 예수님은 군중에게서 아무것도 필요로 하지 않으셨기 때문입니다.</p>
+<p>야고보는 계속합니다 &mdash;</p>
+<div class="scripture-quote">너희는 자유의 율법대로 심판 받을 자처럼 말도 하고 행동도 하라 긍휼을 행하지 아니하는 자에게는 긍휼 없는 심판이 있으리라 긍휼은 심판을 이기고 자랑하느니라.<cite>야고보서 2:12&ndash;13</cite></div>
+<p>긍휼은 심판을 이깁니다.</p>
+<p>이것이 무엇인지 아시나요? 이것은 묘사입니다. 예수님에 대한 묘사.</p>
+<p>당신과 저는 심판을 받아 마땅합니다. 우리는 율법을 한 가지 점에서만이 아니라 많은 점에서 어겼습니다.</p>
+<p>우리는 편애했습니다. 우리는 사람들이 우리를 위해 무엇을 해줄 수 있는지 때문에 그들을 사랑했고, 다른 사람들은 너무 비용이 많이 든다는 이유로 거리를 두었습니다.</p>
+<p>심판은 적절한 판결입니다. 하지만 심판 대신 우리는 긍휼을 받았습니다 &mdash; 그리고 긍휼은 우리에게 승리와 소망을 가져다주었습니다.</p>
+<p>심판은 취소되지 않았습니다 &mdash; 지불되었습니다. 십자가에서, 당신과 내가 받아 마땅한 심판의 전체 무게가 예수님 위에 떨어졌습니다.</p>
+<p>그분은 누가 투자의 가치가 있는지 계산하지 않으셨습니다. 그분은 우리 모두를 위해 그것을 하셨습니다.</p>
+<p>당신이 그것을 믿을 뿐만 아니라 직접 받아들일 때, 당신이 제물을 바쳐온 우상들이 파괴되고 당신은 자유로워집니다.</p>
+<p>왜냐하면 당신은 이해하기 때문입니다 &mdash; 당신의 삶에 대한 가장 중요한 평가는 이미 주어졌고, 그것은 당신의 이력서나 인맥이나 성과를 기반으로 한 것이 아니었습니다.</p>
+<p>그것이 진실일 때 &mdash; 당신이 동의하는 개념으로서가 아니라 당신 내면에서 실제로 진실일 때 &mdash; 당신이 만나는 사람은 이익이나 부채가 아닙니다. 왜냐하면 당신은 더 이상 그들이 당신을 위해 무엇을 할 수 있는지 또는 그들이 얼마나 많은 비용을 초래할지를 기준으로 누군가의 가치를 결정하지 않기 때문입니다. 우리 모두의 가치는 십자가에서 확정되었다는 것을 당신이 진정으로 이해하기 때문입니다.</p>
+<p>잠깐 멈추고 한 가지 말하겠습니다. 여러분 중 일부는 이미 무엇을 해야 할지 생각하고 있습니다. 대화에서 소외된 그 사람을 찾아가서 이야기를 나누려 하고 있습니다. 그리고 그것이 이 설교의 목적이라고 느낄 것입니다. 멈추세요. 잠깐 멈추세요.</p>
+<p>복음이 당신 안에 뿌리를 내렸다는 것을 스스로에게 증명하기 위해 그 사람에게 다가간다면 &mdash; 그것은 여전히 옛날 수학입니다. 당신은 그저 자신을 위해 하는 것이거나, 더 나쁘게는 하나님을 위해 하는 것일 수 있습니다.</p>
+<p>복음은 새로운 프로젝트를 주지 않습니다. 다른 마음을 줍니다.</p>
+<p>실제로 어떤 모습인지 말씀드리겠습니다. 당신은 여전히 이러한 상황에 놓일 것입니다. 그리고 여전히 옛 수학의 끌림을 보고 느낄 것입니다. 그것이 그냥 사라지지는 않을 것입니다. 하지만 이것이 다른 점입니다. 그것이 더 이상 당신을 소유하지 않습니다.</p>
+<p>왜냐하면 당신은 변했기 때문입니다. 당신의 마음이 변했습니다 &mdash; 사람들은 더 이상 당신을 구원할 수 없고, 당신도 그들을 구원할 수 없습니다. 당신은 그들을 명확하게 볼 수 있습니다, 아마 처음으로: 모든 사람은 하나님의 형상대로 만들어진 사람입니다.</p>
+<p>당신은 좋은 그리스도인임을 증명하기 위해 그곳에 가는 것이 아닙니다. 당신은 그들에게서 아무것도 필요하지 않습니다. 그들도 당신에게서 아무것도 필요하지 않습니다 &mdash; 그들에게는 진정한 구원자가 필요합니다. 그것은 아마 처음으로, 당신이 자유롭게 줄 수 있다는 것을 의미합니다. 어떤 의도 없이 자유롭게 사랑할 수 있습니다.</p>
+<p>예수님은 편애하지 않으셨습니다. 하늘의 사랑받는 아들은 최고의 영예의 자리, 하나님의 오른손 &mdash; 우주에서 그보다 더 좋은 곳은 없는 그 자리를 떠나셨습니다. 그리고 가장 큰 거리를 가로질러 당신과 저 곁에 앉아 우리를 구원하셨습니다.</p>
+</article>
+
+</main>
+
+<footer>
+  <p>Taichung International Fellowship</p>
+  <p style="margin-top:8px;"><a href="archive.html">Sermon Archive</a> &nbsp;&middot;&nbsp; <a href="https://taichunginternationalfellowship.org/sermon-translations" target="_blank">Sermon Translations</a></p>
 </footer>
 
-<!-- ═══ LANGUAGE REQUEST MODAL ═══════════════════════════════════════ -->
-<div class="modal-overlay" id="langModal" role="dialog" aria-modal="true"
-     aria-labelledby="modalTitle" onclick="closeModalIfOverlay(event)">
-  <div class="modal-box">
-
-    <div class="modal-head">
-      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
-      <h2 id="modalTitle">Request a Language Translation</h2>
-      <p>Help make TIF sermons accessible in your language.</p>
-    </div>
-
-    <div id="formView" class="form-view">
-      <div class="modal-body">
-        <form id="reqForm" onsubmit="submitRequest(event)" novalidate>
-
-          <div class="form-group">
-            <label class="form-label" for="fLang">Language <span class="req">*</span></label>
-            <select class="form-select" id="fLang" required onchange="toggleOther(this)">
-              <option value="">— Select a language —</option>
-              <option>Japanese (日本語)</option>
-              <option>Korean (한국어)</option>
-              <option>Thai (ภาษาไทย)</option>
-              <option>Vietnamese (Tiếng Việt)</option>
-              <option>Filipino / Tagalog</option>
-              <option>German (Deutsch)</option>
-              <option>French (Français)</option>
-              <option>Spanish (Español)</option>
-              <option>Portuguese (Português)</option>
-              <option>Hindi (हिन्दी)</option>
-              <option>Malay (Bahasa Melayu)</option>
-              <option>Burmese (မြန်မာဘာသာ)</option>
-              <option>Russian (Русский)</option>
-              <option>Arabic (العربية)</option>
-              <option>Dutch (Nederlands)</option>
-              <option>Italian (Italiano)</option>
-              <option>Hebrew (עברית)</option>
-              <option>Ukrainian (Українська)</option>
-              <option>Bengali (বাংলা)</option>
-              <option>Swahili</option>
-              <option value="other">Other — specify below</option>
-            </select>
-            <div class="other-row" id="otherRow">
-              <input class="form-input" id="fOther" type="text" placeholder="Type your language name" maxlength="60">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="fName">Full Name <span class="req">*</span></label>
-            <input class="form-input" id="fName" type="text" placeholder="Your full name" required maxlength="100">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="fStatus">Your Connection to TIF <span class="req">*</span></label>
-            <select class="form-select" id="fStatus" required>
-              <option value="">— Select your status —</option>
-              <option>Considering TIF</option>
-              <option>Regular Attender</option>
-              <option>Member</option>
-              <option>Just Visiting — Don't Plan to Return</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="fEmail">Email Address <span class="req">*</span></label>
-            <input class="form-input" id="fEmail" type="email" placeholder="you@example.com" required maxlength="120">
-            <div class="form-hint">We'll let you know when your language is added.</div>
-          </div>
-
-          <button type="submit" class="form-submit" id="fSubmit">Submit Request</button>
-        </form>
+<!-- LANGUAGE SHEET -->
+<div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
+<div class="lang-sheet" id="langSheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title">Choose Language</div>
+  <div class="lang-option selected" id="opt-en" onclick="setLang('en','EN','English')">
+    <div class="lang-info"><span class="flag">&#127482;&#127480;</span><div><div class="lang-name">English</div><div class="lang-native">English</div></div></div>
+    <span class="check">&#10003;</span>
+  </div>
+  <div class="lang-option" id="opt-zh" onclick="setLang('zh','&#20013;&#25991;','&#20013;&#25991;')">
+    <div class="lang-info"><span class="flag">&#127481;&#127484;</span><div><div class="lang-name">Traditional Chinese</div><div class="lang-native">&#32321;&#39636;&#20013;&#25991;</div></div></div>
+    <span class="check">&#10003;</span>
+  </div>
+  <div class="lang-option" id="opt-id" onclick="setLang('id','ID','Indonesia')">
+    <div class="lang-info"><span class="flag">&#127470;&#127465;</span><div><div class="lang-name">Bahasa Indonesia</div><div class="lang-native">Indonesia</div></div></div>
+    <span class="check">&#10003;</span>
+  </div>
+  <div class="lang-option" id="opt-ko" onclick="setLang('ko','&#54620;&#44397;&#50612;','&#54620;&#44397;&#50612;')">
+    <div class="lang-info"><span class="flag">&#127472;&#127479;</span><div><div class="lang-name">Korean</div><div class="lang-native">&#54620;&#44397;&#50612;</div></div></div>
+    <span class="check">&#10003;</span>
+  </div>
+  <div class="request-section">
+    <button class="request-btn" onclick="toggleRequestForm()">+ Request another language</button>
+    <div class="request-form" id="requestForm">
+      <div class="form-group"><label>Language Requested</label>
+        <select id="reqLang"><option>Spanish</option><option>French</option><option>German</option><option>Japanese</option><option>Tagalog / Filipino</option><option>Thai</option><option>Vietnamese</option><option>Malay</option><option>Portuguese</option><option>Italian</option><option>Russian</option><option>Hindi</option><option>Arabic</option><option>Dutch</option><option>Swedish</option><option>Polish</option><option>Turkish</option><option>Burmese</option><option>Khmer</option><option>Other</option></select>
       </div>
+      <div class="form-group"><label>Full Name</label><input type="text" id="reqName" placeholder="Your name"></div>
+      <div class="form-group"><label>Status</label><input type="text" id="reqStatus" placeholder="Member / Visitor / etc."></div>
+      <div class="form-group"><label>Email</label><input type="email" id="reqEmail" placeholder="your@email.com"></div>
+      <button class="submit-btn" onclick="submitRequest()">Submit Request</button>
+      <div class="form-msg" id="formMsg">Thank you! Your request has been sent.</div>
     </div>
-
-    <div class="modal-success" id="successView">
-      <div class="success-icon">✓</div>
-      <div class="success-title">Request Received!</div>
-      <div class="success-body" id="successMsg">Your request has been sent to the TIF team.</div>
-      <button class="done-btn" onclick="closeModal()">Done</button>
-    </div>
-
   </div>
 </div>
 
 <script>
-  /* ── LANGUAGE META ── */
-  var LANG_META = {
-    en: { flag: '🇺🇸', name: 'English',          htmlLang: 'en',    scripture: 'James 2:1\u201313' },
-    zh: { flag: '🇹🇼', name: '繁體中文', htmlLang: 'zh-TW', scripture: '\u96c5\u5404\u66f8 2:1\u201313' },
-    id: { flag: '🇮🇩', name: 'Bahasa Indonesia',  htmlLang: 'id',    scripture: 'Yakobus 2:1\u201313' },
-    tl: { flag: '🇵🇭', name: 'Filipino',          htmlLang: 'tl',    scripture: 'Santiago 2:1\u201313' },
-    ko: { flag: '🇰🇷', name: '한국어', htmlLang: 'ko', scripture: '서고배서 2:1–13' },
-  };
-
-  /* ── SHEET HELPERS ── */
-  function openLangSheet() {
-    document.getElementById('langSheetOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLangSheet(e) {
-    if (!e || e.target === document.getElementById('langSheetOverlay')) {
-      document.getElementById('langSheetOverlay').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-  }
-
-  /* ── LANGUAGE SWITCHER ── */
-  function _applyLangMeta(lang) {
-    var meta = LANG_META[lang] || LANG_META.en;
-    document.getElementById('langCurrentFlag').textContent = meta.flag;
-    document.getElementById('langCurrentName').textContent = meta.name;
-    document.documentElement.lang = meta.htmlLang;
-    document.querySelectorAll('.lang-sheet-item').forEach(function(li) {
-      li.classList.remove('active');
-      var chk = li.querySelector('.lang-check'); if (chk) chk.remove();
-    });
-    var activeLi = document.getElementById('btn-' + lang);
-    if (activeLi) {
-      activeLi.classList.add('active');
-      var chk = document.createElement('span');
-      chk.className = 'lang-check'; chk.textContent = '\u2713';
-      activeLi.appendChild(chk);
-    }
-    ['en','zh','id'].forEach(function(l) {
-      var el = document.getElementById('hero-title-' + l); if (el) el.style.display = 'none';
-    });
-    var heroKey = (['en','zh','id'].indexOf(lang) >= 0) ? lang : 'en';
-    var heroEl  = document.getElementById('hero-title-' + heroKey);
-    if (heroEl) heroEl.style.display = 'block';
-    if (meta.scripture) {
-      var scrEl = document.getElementById('hero-scripture');
-      if (scrEl) scrEl.textContent = meta.scripture;
-    }
-  }
-
-  function setLang(lang) {
-    document.querySelectorAll('article').forEach(a => a.classList.remove('active'));
-    var art = document.getElementById('content-' + lang);
-    if (art) art.classList.add('active');
-    _applyLangMeta(lang);
-    closeLangSheet();
-  }
-
-  /* ── CUSTOM LANGUAGE SWITCHER (for dynamically added preview languages) ── */
-  function setLangCustom(langId) {
-    document.querySelectorAll('article').forEach(a => a.classList.remove('active'));
-    var art = document.getElementById('content-' + langId);
-    if (art) art.classList.add('active');
-    if (LANG_META[langId]) {
-      _applyLangMeta(langId);
-    } else {
-      document.querySelectorAll('.lang-sheet-item').forEach(function(li) {
-        li.classList.remove('active');
-        var chk = li.querySelector('.lang-check'); if (chk) chk.remove();
-      });
-      var li = document.getElementById('btn-' + langId);
-      if (li) li.classList.add('active');
-    }
-    closeLangSheet();
-  }
-
-  /* ── MODAL ── */
-  function openRequestModal() {
-    document.getElementById('langModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-    setTimeout(function(){ document.getElementById('fLang').focus(); }, 80);
-  }
-  function closeModal() {
-    document.getElementById('langModal').classList.remove('open');
-    document.body.style.overflow = '';
-    setTimeout(function(){
-      document.getElementById('reqForm').reset();
-      document.getElementById('otherRow').classList.remove('show');
-      document.getElementById('formView').classList.remove('hide');
-      document.getElementById('successView').classList.remove('show');
-      document.getElementById('fSubmit').disabled = false;
-      document.getElementById('fSubmit').textContent = 'Submit Request';
-      ['fLang','fOther','fName','fStatus','fEmail'].forEach(function(id){
-        var el = document.getElementById(id); if(el) el.classList.remove('err');
-      });
-    }, 300);
-  }
-  function closeModalIfOverlay(e) { if (e.target === document.getElementById('langModal')) closeModal(); }
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
-
-  function toggleOther(sel) {
-    var row = document.getElementById('otherRow');
-    var inp = document.getElementById('fOther');
-    var show = sel.value === 'other';
-    row.classList.toggle('show', show);
-    show ? inp.setAttribute('required','') : inp.removeAttribute('required');
-  }
-
-  /* ── LANGUAGE MAPS ── */
-  var LC = {
-    'Japanese':{'lc':'ja','nat':'日本語'}, 'Korean':{'lc':'ko','nat':'한국어'},
-    'Thai':{'lc':'th','nat':'ภาษาไทย'}, 'Vietnamese':{'lc':'vi','nat':'Tiếng Việt'},
-    'Filipino':{'lc':'tl','nat':'Filipino'}, 'German':{'lc':'de','nat':'Deutsch'},
-    'French':{'lc':'fr','nat':'Français'}, 'Spanish':{'lc':'es','nat':'Español'},
-    'Portuguese':{'lc':'pt','nat':'Português'}, 'Hindi':{'lc':'hi','nat':'हिन्दी'},
-    'Malay':{'lc':'ms','nat':'Bahasa Melayu'}, 'Burmese':{'lc':'my','nat':'မြန်မာ'},
-    'Russian':{'lc':'ru','nat':'Русский'}, 'Arabic':{'lc':'ar','nat':'العربية'},
-    'Dutch':{'lc':'nl','nat':'Nederlands'}, 'Italian':{'lc':'it','nat':'Italiano'},
-    'Hebrew':{'lc':'he','nat':'עברית'}, 'Ukrainian':{'lc':'uk','nat':'Українська'},
-    'Bengali':{'lc':'bn','nat':'বাংলা'}, 'Swahili':{'lc':'sw','nat':'Kiswahili'}
-  };
-
-  function baseLangName(val) {
-    // Strip native script in parens, e.g. "Japanese (日本語)" → "Japanese"
-    return val.replace(/\s*\(.*\)/, '').replace(' / Tagalog','').trim();
-  }
-
-  /* ── TRANSLATION HELPER (MyMemory free API) ── */
-  function tx(text, lc) {
-    return fetch('https://api.mymemory.translated.net/get?q=' + encodeURIComponent(text) + '&langpair=en|' + lc)
-      .then(function(r){ return r.json(); })
-      .then(function(d){ return d.responseStatus === 200 ? d.responseData.translatedText : text; })
-      .catch(function(){ return text; });
-  }
-
-  /* ── BUILD PREVIEW TRANSLATION (injects into current page DOM) ── */
-  function buildPreview(langName, lc, langId) {
-    var en = document.getElementById('content-en');
-    var bigIdea = (en.querySelector('.big-idea-text') || {}).textContent || '';
-    var labels  = ['Big Idea','Scripture','Sermon Flow','Key Words','Anchor Statements','Listening Cues','Application Focus'];
-    var notice  = 'Machine-generated preview. A full pastoral translation is being prepared by the TIF team.';
-    var pending = 'Full translation in progress\u2026';
-
-    return Promise.all(
-      [tx(bigIdea, lc)]
-        .concat(labels.map(function(l) { return tx(l, lc); }))
-        .concat([tx(notice, lc), tx(pending, lc)])
-    ).then(function(res) {
-      var biT     = res[0];
-      var labT    = res.slice(1, 8);
-      var noticeT = res[8];
-      var pendT   = res[9];
-
-      var art = document.createElement('article');
-      art.id  = 'content-' + langId;
-      art.lang = lc;
-
-      // Preview notice banner
-      var pn = document.createElement('div');
-      pn.className = 'preview-notice';
-      pn.innerHTML = '<strong>Translation Preview</strong>' + noticeT;
-      art.appendChild(pn);
-
-      // Big Idea card — fully translated
-      var biCard = en.querySelector('.big-idea-card');
-      if (biCard) {
-        var biClone = biCard.cloneNode(true);
-        var biLabel = biClone.querySelector('.big-idea-label');
-        var biText  = biClone.querySelector('.big-idea-text');
-        if (biLabel) biLabel.textContent = labT[0];
-        if (biText)  biText.textContent  = biT;
-        art.appendChild(biClone);
-      }
-
-      // Section cards — translated heading, body replaced with pending placeholder
-      var sectionTitles = en.querySelectorAll('.section-title');
-      var sectionCards  = en.querySelectorAll('.section-card');
-      var titleMap = {};
-      sectionTitles.forEach(function(t, i) { titleMap[t.textContent.trim()] = labT[i + 1] || t.textContent; });
-
-      sectionCards.forEach(function(card) {
-        var clone   = card.cloneNode(true);
-        var titleEl = clone.querySelector('.section-title');
-        if (titleEl && titleMap[titleEl.textContent.trim()]) {
-          titleEl.textContent = titleMap[titleEl.textContent.trim()];
-        }
-        // Replace English body content with translated pending placeholder
-        var body = clone.querySelector('.section-body');
-        if (body) {
-          body.innerHTML =
-            '<p style="color:var(--muted-text);font-style:italic;font-size:0.85rem;' +
-            'padding:0.4rem 0 0.2rem;">' + pendT + '</p>';
-        }
-        art.appendChild(clone);
-      });
-
-      // Insert before footer
-      var footer = document.querySelector('footer.site-footer');
-      footer.parentNode.insertBefore(art, footer);
-      return art;
-    });
-  }
-
-  /* ── FORM SUBMISSION ── */
-  function submitRequest(e) {
-    e.preventDefault();
-
-    var fLang   = document.getElementById('fLang');
-    var fOther  = document.getElementById('fOther');
-    var fName   = document.getElementById('fName');
-    var fStatus = document.getElementById('fStatus');
-    var fEmail  = document.getElementById('fEmail');
-
-    [fLang,fOther,fName,fStatus,fEmail].forEach(function(el){ el.classList.remove('err'); });
-
-    var ok = true;
-    if (!fLang.value)                                                       { fLang.classList.add('err');   ok=false; }
-    if (fLang.value==='other' && !fOther.value.trim())                      { fOther.classList.add('err');  ok=false; }
-    if (!fName.value.trim())                                                 { fName.classList.add('err');   ok=false; }
-    if (!fStatus.value)                                                      { fStatus.classList.add('err'); ok=false; }
-    if (!fEmail.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fEmail.value)) { fEmail.classList.add('err'); ok=false; }
-    if (!ok) return;
-
-    var rawLang    = fLang.value === 'other' ? fOther.value.trim() : fLang.value;
-    var langName   = baseLangName(rawLang);
-    var info       = LC[langName] || {};
-    var lc         = info.lc || null;
-    var langId     = langName.toLowerCase().replace(/[^a-z0-9]/g,'_');
-    var reqName    = fName.value.trim();
-    var reqEmail   = fEmail.value.trim();
-    var reqStatus  = fStatus.value;
-
-    document.getElementById('fSubmit').disabled = true;
-    document.getElementById('fSubmit').textContent = 'Submitting…';
-
-    // Show success immediately
-    document.getElementById('formView').classList.add('hide');
-    document.getElementById('successView').classList.add('show');
-    document.getElementById('successMsg').innerHTML =
-      '<strong>' + reqName + '</strong>, a <strong>' + langName + '</strong> translation is being generated now.' +
-      (lc ? ' A quick preview is loading in the language bar.' : '') +
-      '<br><br>The full translation will appear on this page within 30 minutes.';
-
-    // Send email via Web3Forms — translation will be generated automatically
-    var base  = 'https://toddblackhurst.github.io/tif-sermons/approve.html';
-    var qs    = '?lang=' + encodeURIComponent(langName) +
-                '&name=' + encodeURIComponent(reqName) +
-                '&email=' + encodeURIComponent(reqEmail) +
-                '&status=' + encodeURIComponent(reqStatus);
-    var urlOngoing = base + qs + '&mode=ongoing';
-    var urlDeny    = base + qs + '&mode=deny';
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({
-        access_key: '3fc0c694-adc2-4cda-8191-c4f6993a9a55',
-        subject: 'TIF Language Request: ' + langName + ' from ' + reqName,
-        from_name: 'TIF Sermon Site',
-        name: reqName, email: reqEmail,
-        message: [
-          'TIF-LANG-REQUEST',
-          '════════════════════════════════════',
-          'Language: ' + langName,
-          'Name:     ' + reqName,
-          'Status:   ' + reqStatus,
-          'Email:    ' + reqEmail,
-          '',
-          'A ' + langName + ' translation is being generated automatically',
-          'and will appear on the sermon page within 30 minutes.',
-          '',
-          '── DECIDE PERSISTENCE ───────────────',
-          '',
-          '▶ Keep for all future sermons (ongoing):',
-          '  ' + urlOngoing,
-          '',
-          '▶ This week only — no action needed.',
-          '  (Translation will be removed when the next sermon publishes.)',
-          '',
-          '▶ Remove from this week:',
-          '  ' + urlDeny,
-          '',
-          '════════════════════════════════════',
-          'Sent from TIF Sermon Listening Aid'
-        ].join('\n')
-      })
-    }).catch(function(){});
-
-    // Generate in-session preview — add entry to language sheet
-    if (lc) {
-      var list  = document.getElementById('langSheetList');
-      var sepEl = document.querySelector('.lang-sheet-sep');
-      var li    = document.createElement('li');
-      li.className = 'lang-sheet-item generating';
-      li.id = 'btn-' + langId;
-      li.innerHTML = '<span class="lang-item-flag">&#x1F310;</span>'
-                   + '<span class="lang-item-name">' + langName + ' \u00b7 loading\u2026</span>';
-      li.onclick = function(){ setLangCustom(langId); };
-      if (sepEl) list.parentNode.insertBefore(li, sepEl);
-      else list.appendChild(li);
-
-      buildPreview(langName, lc, langId).then(function(){
-        li.className = 'lang-sheet-item';
-        li.innerHTML = '<span class="lang-item-flag">&#x1F310;</span>'
-                     + '<span class="lang-item-name">' + langName + '</span>';
-        li.onclick = function(){ setLangCustom(langId); };
-      }).catch(function(){ li.remove(); });
-    }
-  }
+var currentLang='en';
+var langs=['en','zh','id','ko'];
+function openSheet(){document.getElementById('sheetOverlay').classList.add('open');document.getElementById('langSheet').classList.add('open');}
+function closeSheet(){document.getElementById('sheetOverlay').classList.remove('open');document.getElementById('langSheet').classList.remove('open');}
+function setLang(code,flag,name){
+  langs.forEach(function(l){document.getElementById('content-'+l).classList.remove('active');document.getElementById('opt-'+l).classList.remove('selected');});
+  document.getElementById('content-'+code).classList.add('active');
+  document.getElementById('opt-'+code).classList.add('selected');
+  document.getElementById('current-flag').innerHTML=flag;
+  document.getElementById('current-lang-name').textContent=name;
+  currentLang=code;closeSheet();window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleRequestForm(){document.getElementById('requestForm').classList.toggle('open');}
+function submitRequest(){
+  var lang=document.getElementById('reqLang').value;
+  var name=document.getElementById('reqName').value;
+  var status=document.getElementById('reqStatus').value;
+  var email=document.getElementById('reqEmail').value;
+  if(!name||!status||!email){alert('Please fill in all fields.');return;}
+  var fd=new FormData();
+  fd.append('access_key','3fc0c694-adc2-4cda-8191-c4f6993a9a55');
+  fd.append('subject','TIF Language Request: '+lang);
+  fd.append('from_name',name);
+  fd.append('email',email);
+  fd.append('message','Language: '+lang+'\nName: '+name+'\nStatus: '+status+'\nEmail: '+email+'\nSermon: Mercy Triumphs (James 2:1-13) — April 12, 2026');
+  fetch('https://api.web3forms.com/submit',{method:'POST',body:fd})
+    .then(function(r){return r.json();})
+    .then(function(){document.getElementById('formMsg').style.display='block';document.getElementById('formMsg').textContent='Request received for '+lang+'. We\'ll follow up at '+email;})
+    .catch(function(){document.getElementById('formMsg').style.display='block';document.getElementById('formMsg').textContent='Request received. Thank you!';});
+}
 </script>
-
-<article id="content-tl" class="lang-content" lang="tl"><div class="big-idea-card"><div class="big-idea-label">Pangunahing Kaisipan</div><div class="big-idea-text">Ang pagtatangi ay nagpapakita ng pusong naghahanap pa rin sa tao para sa bagay na Diyos lamang ang makapagbibigay.</div><div class="sermon-meta-inline"><span class="meta-badge">Santiago 2:1–13</span><span class="meta-badge">Serye: Santiago</span><span class="meta-badge">Linggo 3</span></div></div><div class="section-card"><div class="section-header"><span class="section-num">§2</span><span class="section-title">Kasulatan</span></div><div class="section-body"><div class="scripture-ref">Santiago 2:1–13</div><div class="scripture-support">Karagdagang talata: Lucas 19:1–10 (si Zaqueo)</div></div></div><div class="section-card"><div class="section-header"><span class="section-num">§3</span><span class="section-title">Takbo ng Mensahe</span></div><div class="section-body"><div class="flow-part"><div class="flow-part-title">Bahagi 1 — Nagtatangi Tayong Lahat (Santiago 2:1–4)</div><ul class="flow-bullets"><li>Pagtatangi = pagkalkula ng halaga ng isang tao batay sa maidudulot niya sa iyo</li><li>Larawan ni Santiago: gintong singsing vs. maruming damit — pinakamainam na upuan vs. sahig</li><li>Ginagawa rin natin ito: hitsura, titulo sa trabaho, koneksyon, nasyonalidad</li><li>Ang “estrategikong pakikipagkaibigan” ang modernong gintong singsing</li></ul></div><div class="flow-part"><div class="flow-part-title">Bahagi 2 — Hindi Gumagana ang Pagtatangi (Santiago 2:5–7)</div><ul class="flow-bullets"><li>Ang sistema ng halaga ng Diyos at ng mundo ay magkasalungat ang direksyon</li><li>Ang “mahirap” ay mayaman sa pananampalataya — tagapagmana ng kaharian</li><li>Ang mga taong pinapaboran mo ay madalas na sinasamantala ka; nabigo ang pagkalkula</li><li>Hindi lang ito problema sa lipunan — ito ay teolohikal na problema</li></ul></div><div class="flow-part"><div class="flow-part-title">Bahagi 3 — Walang Pabor ang Batas (Santiago 2:8–10)</div><ul class="flow-bullets"><li>“Ibigin mo ang iyong kapwa gaya ng iyong sarili” = ang Panghariang Kautusan</li><li>Ang batas ay hindi isang talaan ng marka — ito ay nagpapahayag ng katangian ng Diyos</li><li>Makatisod sa isang bahagi = nagkasala sa lahat; hindi natin maaaring i-ranggo pababa ang ating mga kasalanan</li></ul></div><div class="flow-part"><div class="flow-part-title">Bahagi 4 — Ang Idolo sa Likod ng Pagkalkula (Santiago 2:8–11)</div><ul class="flow-bullets"><li>Sa ilalim ng pagkamakasarili: sinisigurado mo ang isang bagay para sa iyong sarili</li><li>Ang kahanga-hangang tao sa silid ay gumaganap ng papel na tagapagligtas sa iyong puso</li><li>Ang bawat silid ay nagiging entablado; ang bawat usapan ay isang audisyon</li><li>Ang mga idolo ay hindi kailanman nagsasabing “sapat na” — palagi nilang sinasabing “hindi pa sapat”</li><li>Ang pagtatangi ay dalawang-pusong ugali — pamumuhay sa dalawang kaharian nang sabay</li></ul></div><div class="flow-part"><div class="flow-part-title">Bahagi 5 — Binago ni Jesus ang Pagkalkula (Santiago 2:12–13; Lucas 19)</div><ul class="flow-bullets"><li>Si Zaqueo: hindi nagkalkula si Jesus — at ito ay ganap na nagpabago sa kanya</li><li>Iniwan ni Jesus ang pinakamataas na upuan at tinawid ang pinakamalaking distansya</li><li>Ang hatol sa iyong buhay ay nagsalita sa krus — hindi ng sinuman sa silid</li><li>Hindi nagbibigay ng bagong proyekto ang ebanghelyo — nagbibigay ito ng bagong puso</li><li>Kapag hindi ka na maliligtas ng mga tao, malaya kang magmahal nang walang agenda</li></ul></div></div></div><div class="section-card"><div class="section-header"><span class="section-num">§4</span><span class="section-title">Mahahalagang Salita</span></div><div class="section-body"><div class="keyword-item"><div class="keyword-term">Pagtatangi</div><div class="keyword-def">Pagkalkula ng halaga ng isang tao batay sa maidudulot niya sa iyo</div></div><div class="keyword-item"><div class="keyword-term">Panghariang Kautusan</div><div class="keyword-def">Ibigin mo ang iyong kapwa gaya ng iyong sarili — ang utos na buod ng lahat ng buhay tungo sa iba</div></div><div class="keyword-item"><div class="keyword-term">Dalawang-puso</div><div class="keyword-def">Termino ni Santiago: pagsisikap na mabuhay sa dalawang kaharian nang sabay (Diyos at mundo)</div></div><div class="keyword-item"><div class="keyword-term">Idolo ng Pagkakakilanlan</div><div class="keyword-def">Paglalagay ng isang tao o bagay sa papel na Diyos lamang ang dapat punan — paghahanap ng iyong halaga mula sa kanila</div></div><div class="keyword-item"><div class="keyword-term">Habag</div><div class="keyword-def">Ang pagtanggap ng kabaligtaran ng nararapat sa atin — ang hatol na ibinibigay ni Jesus sa krus</div></div></div></div><div class="section-card"><div class="section-header"><span class="section-num">§5</span><span class="section-title">Mga Pangunahing Pahayag</span></div><div class="section-body"><div class="anchor-item">“Ang sistema ng halaga ng mundo at ang sistema ng halaga ng Diyos ay magkasalungat ang direksyon.”</div><div class="anchor-item">“Ang taong may gintong singsing sa silid ay gumaganap ng papel na tagapagligtas sa sistema ng iyong puso.”</div><div class="anchor-item">“Hindi nagbibigay ng bagong proyekto ang ebanghelyo. Nagbibigay ito ng ibang puso.”</div><div class="anchor-item">“Ang habag ay nagtatagumpay laban sa paghatol.”</div></div></div><div class="section-card"><div class="section-header"><span class="section-num">§6</span><span class="section-title">Mga Gabay sa Pakikinig</span></div><div class="section-body"><div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">Abangan ang “bagong pagkalkula” — ginamit na ni Santiago ang ideyang ito noon. Pansinin kung paano niya muli itong ginagamit dito.</span></div><div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">Kapag narinig mo ang “masamang motibo” (t.4) — mas malalim kaysa sa masamang gawi ang sinasabi ni Santiago. Ito ang mahalagang sandali.</span></div><div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">Ito ang kinalabasan: ang diagnosis ng idolo. Tinatawag ni Santiago na maling pagsamba ang tinatawag nating pagtatangi.</span></div><div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">Pansinin kung paano si Jesus kay Zaqueo ang buong mensahe sa pagkilos — tandaan kung ano ang hindi ginawa ni Jesus.</span></div><div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">Makinig sa pangwakas na babala: binabago ng ebanghelyo ang isang puso, hindi lang isang listahan ng gagawin.</span></div></div></div><div class="section-card"><div class="section-header"><span class="section-num">§7</span><span class="section-title">Pagninilay</span></div><div class="section-body"><div class="app-item"><div class="app-num">1</div><div class="app-text">Saan mo nararamdaman ang hila ng “pagkalkula”? Tukuyin ito nang tapat — ang silid, ang sitwasyon, ang uri ng tao.</div></div><div class="app-item"><div class="app-num">2</div><div class="app-text">Mayroon bang taong pinapanatili mong malayo dahil mukhang “mahal”? Ano ang magiging hitsura ng habag para sa kanila ngayong linggo?</div></div><div class="app-item"><div class="app-num">3</div><div class="app-text">Tanggapin ang hatol na sinasabi ng krus sa iyong buhay — at hayaan itong palayain ka mula sa pangangailangan ng pagpapatunay ng silid.</div></div></div></div></article>
-<article id="content-ko" class="lang-content" lang="ko">  <div class="big-idea-card">    <div class="big-idea-label">핵심 메시지</div>    <div class="big-idea-text">편애는 오직 하나님만이 주실 수 있는 것을 여전히 사람들에게서 구하는 마음을 드러냅니다.</div>    <div class="sermon-meta-inline">      <span class="meta-badge">야고보서 2:1–13</span>      <span class="meta-badge">시리즈: 야고보서</span>      <span class="meta-badge">3주차</span>    </div>  </div>  <div class="section-card">    <div class="section-header"><span class="section-num">§2</span><span class="section-title">성경 본문</span></div>    <div class="section-body">      <div class="scripture-ref">야고보서 2:1–13</div>      <div class="scripture-support">보충 본문: 누가복음 19:1–10 (삭개오)</div>    </div>  </div>  <div class="section-card">    <div class="section-header"><span class="section-num">§3</span><span class="section-title">설교 흐름</span></div>    <div class="section-body">      <div class="flow-part">        <div class="flow-part-title">1부 — 우리 모두가 계산을 합니다 (야고보서 2:1–4)</div>        <ul class="flow-bullets">          <li>편애 = 상대방이 나에게 무엇을 해줄 수 있는지에 따라 그 가치를 계산하는 것</li>          <li>야고보의 묘사: 금반지 vs. 더러운 옷 — 좋은 자리 vs. 바닥</li>          <li>우리도 그렇게 합니다: 외모, 직함, 인맥, 국적</li>          <li>“전략적 네트워킹”이 현대의 금반지입니다</li>        </ul>      </div>      <div class="flow-part">        <div class="flow-part-title">2부 — 그 계산은 맞지 않습니다 (야고보서 2:5–7)</div>        <ul class="flow-bullets">          <li>하나님의 가치 체계와 세상의 가치 체계는 반대 방향으로 움직이고 있습니다</li>          <li>“가난한 자들”은 믿음이 부요한 자들 — 나라의 상속자들</li>          <li>당신이 편애하는 사람들이 오히려 당신을 착취합니다; 그 계산은 실패합니다</li>          <li>이것은 단순히 사회적 문제가 아니라 신학적 문제입니다</li>        </ul>      </div>      <div class="flow-part">        <div class="flow-part-title">3부 — 율법은 점수를 올려주지 않습니다 (야고보서 2:8–10)</div>        <ul class="flow-bullets">          <li>“네 이웃을 네 자신같이 사랑하라” = 왕의 법</li>          <li>율법은 점수표가 아닙니다 — 그것은 하나님의 성품을 표현합니다</li>          <li>한 점에서 넘어지면 모든 것에서 죄를 범한 것입니다</li>        </ul>      </div>      <div class="flow-part">        <div class="flow-part-title">4부 — 그 계산 뒤에 있는 우상 (야고보서 2:8–11)</div>        <ul class="flow-bullets">          <li>이기심 뒤에는: 무언가를 확보하려는 욕심이 있습니다</li>          <li>방 안의 인상적인 사람이 당신 마음속에서 구원자의 역할을 하고 있습니다</li>          <li>모든 방이 무대가 되고, 모든 대화가 오디션이 됩니다</li>          <li>우상들은 결코 “충분하다”고 말하지 않습니다 — 항상 “절대 충분하지 않다”고 말합니다</li>          <li>편애는 행동 속의 두 마음 — 두 왕국에서 동시에 사는 것</li>        </ul>      </div>      <div class="flow-part">        <div class="flow-part-title">5부 — 예수님이 계산을 다시 쓰십니다 (야고보서 2:12–13; 누가복음 19)</div>        <ul class="flow-bullets">          <li>삭개오: 예수님은 계산하지 않으셨습니다 — 그리고 그것이 삭개오를 완전히 변화시켰습니다</li>          <li>예수님은 가장 높은 자리를 떠나 가장 먼 거리를 건너셨습니다</li>          <li>당신의 삶에 대한 판결은 십자가에서 선언되었습니다 — 방 안의 어떤 사람에 의해서가 아닙니다</li>          <li>복음은 당신에게 새로운 과제를 주지 않습니다 — 새로운 마음을 줍니다</li>          <li>사람들이 당신을 구원할 수 없을 때, 당신은 의도 없이 자유롭게 사랑할 수 있습니다</li>        </ul>      </div>    </div>  </div>  <div class="section-card">    <div class="section-header"><span class="section-num">§4</span><span class="section-title">핵심 단어</span></div>    <div class="section-body">      <div class="keyword-item"><div class="keyword-term">편애 (Favoritism)</div><div class="keyword-def">상대방이 나에게 무엇을 제공할 수 있는지에 따라 가치를 계산하는 것</div></div>      <div class="keyword-item"><div class="keyword-term">왕의 법 (Royal Law)</div><div class="keyword-def">네 이웃을 네 자신같이 사랑하라 — 다른 이들을 향한 삶 전체를 요약하는 명령</div></div>      <div class="keyword-item"><div class="keyword-term">두 마음 (Double-mindedness)</div><div class="keyword-def">야고보의 표현: 두 왕국(하나님의 나라와 세상)에서 동시에 살려는 것</div></div>      <div class="keyword-item"><div class="keyword-term">정체성 우상 (Identity Idol)</div><div class="keyword-def">오직 하나님만이 채울 수 있는 역할에 사람이나 사물을 두는 것 — 그들에게서 자신의 가치를 찾는 것</div></div>      <div class="keyword-item"><div class="keyword-term">긍휼 (Mercy)</div><div class="keyword-def">우리가 받아 마땅한 것의 반대를 받는 것 — 십자가에서 예수님이 주시는 판결</div></div>    </div>  </div>  <div class="section-card">    <div class="section-header"><span class="section-num">§5</span><span class="section-title">기억할 문장</span></div>    <div class="section-body">      <div class="anchor-item">“세상의 가치 체계와 하나님의 가치 체계는 반대 방향으로 움직이고 있습니다.”</div>      <div class="anchor-item">“금반지를 낀 방 안의 그 사람이 당신 마음의 운영 체계에서 구원자의 역할을 하고 있습니다.”</div>      <div class="anchor-item">“복음은 당신에게 새로운 과제를 주지 않습니다. 다른 마음을 줍니다.”</div>      <div class="anchor-item">“긍휼이 심판을 이깁니다.”</div>    </div>  </div>  <div class="section-card">    <div class="section-header"><span class="section-num">§6</span><span class="section-title">듣기 포인트</span></div>    <div class="section-body">      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">“새로운 계산법”을 주목하십시오 — 야고보는 이 개념을 이전에도 사용했습니다. 여기서 그가 다시 방정식을 뒤집는 방식을 주목하십시오.</span></div>      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">“악한 의도”(4절)를 들을 때 — 야고보는 나쁜 예절보다 더 깊이 들어가고 있습니다. 이것이 전환점입니다.</span></div>      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">이것이 핵심 전환점입니다: 우상 진단. 우리가 편애라고 부르는 것을 야고보는 거짓 예배라고 부릅니다.</span></div>      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">삭개오와 함께하는 예수님이 설교 전체를 어떻게 행동으로 보여주는지 주목하십시오 — 예수님이 하지 않으신 것에 주목하십시오.</span></div>      <div class="cue-item"><span class="cue-icon">◈</span><span class="cue-text">마지막 경고를 들으십시오: 복음은 마음을 변화시키지, 할 일 목록을 바꾸는 것이 아닙니다.</span></div>    </div>  </div>  <div class="section-card">    <div class="section-header"><span class="section-num">§7</span><span class="section-title">적용 포인트</span></div>    <div class="section-body">      <div class="app-item"><div class="app-num">1</div><div class="app-text">당신은 어디서 “계산”의 유혹을 느끼십니까? 솔직하게 말씀해 보세요 — 그 상황, 그 맥락, 그 유형의 사람을.</div></div>      <div class="app-item"><div class="app-num">2</div><div class="app-text">너무 “비용이 많이 드는” 것 같아서 거리를 두고 있는 사람이 있습니까? 이번 주에 그들을 향한 긍휼이 어떤 모습일까요?</div></div>      <div class="app-item"><div class="app-num">3</div><div class="app-text">십자가가 당신의 삶에 선언하는 판결을 받으십시오 — 그리고 방의 인정이 필요하지 않도록 자유롭게 되십시오.</div></div>    </div>  </div></article>
 </body>
 </html>
