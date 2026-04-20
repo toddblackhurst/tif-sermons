@@ -12,244 +12,213 @@
   <style>
     :root {
       --dark: #1b2327;
-      --extra-dark: #121b20;
+      --xdark: #121b20;
       --accent: #27b7d8;
       --text: #333333;
-      --white: #ffffff;
-      --light-text: #f0f0f0;
-      --muted: rgba(240,240,240,0.6);
-      --bg-light: #f7fbfc;
-      --card-border: #e2ecf0;
+      --white: #f0f0f0;
+      --bg: #ffffff;
+      --bg-light: #f4f9fb;
+      --border: #e2ecf0;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Asap', Arial, sans-serif; color: var(--text); background: var(--white); line-height: 1.75; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'Asap', Arial, sans-serif; color: var(--text); background: var(--bg); line-height: 1.72; }
 
-    /* ===== HEADER ===== */
+    /* HEADER */
     .site-header {
-      background: var(--extra-dark);
+      background: var(--xdark);
       padding: 14px 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      position: sticky; top: 0; z-index: 100;
     }
-    .header-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; }
-    .header-mark {
-      width: 38px; height: 38px;
-      background: var(--accent); border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Asul', sans-serif; font-weight: 700; color: white; font-size: 0.95rem;
-      flex-shrink: 0;
-    }
-    .header-text { line-height: 1.2; }
-    .header-name { font-family: 'Asul', sans-serif; color: white; font-size: 0.95rem; font-weight: 700; }
-    .header-sub { color: var(--muted); font-size: 0.72rem; }
-    .header-nav { display: flex; align-items: center; gap: 18px; }
-    .nav-link { color: var(--muted); font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
-    .nav-link:hover { color: var(--accent); }
-    .lang-btn {
+    .header-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .header-logo { width: 36px; height: 36px; background: var(--accent); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-family: 'Asul', sans-serif; font-weight: 700; color: white; font-size: 0.9rem; flex-shrink: 0; }
+    .header-name { font-family: 'Asul', sans-serif; color: white; font-size: 0.92rem; font-weight: 700; line-height: 1.2; }
+    .header-sub { color: rgba(255,255,255,0.45); font-size: 0.72rem; margin-top: 1px; }
+    .header-right { display: flex; align-items: center; gap: 16px; }
+    .header-archive-link { color: rgba(255,255,255,0.55); font-size: 0.8rem; text-decoration: none; }
+    .header-archive-link:hover { color: var(--accent); }
+    .lang-trigger {
       display: flex; align-items: center; gap: 7px;
       background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
       color: white; font-family: 'Asap', sans-serif; font-size: 0.82rem; font-weight: 600;
-      padding: 7px 14px; border-radius: 100px; cursor: pointer;
-      transition: background 0.2s, border-color 0.2s;
+      padding: 7px 14px; border-radius: 100px; cursor: pointer; transition: background 0.18s;
     }
-    .lang-btn:hover { background: rgba(255,255,255,0.14); border-color: var(--accent); }
-    .lang-btn-label { display: flex; align-items: center; gap: 6px; }
+    .lang-trigger:hover { background: rgba(39,183,216,0.18); }
 
-    /* ===== HERO ===== */
+    /* HERO */
     .hero {
-      background: linear-gradient(155deg, var(--extra-dark) 0%, #1a3040 60%, #1b2f3c 100%);
-      color: white; padding: 60px 28px 52px; text-align: center;
+      background: linear-gradient(150deg, var(--dark) 0%, #1a3040 100%);
+      color: white; padding: 52px 28px 44px; text-align: center;
     }
-    .hero-eyebrow {
-      display: inline-block; font-size: 0.7rem; letter-spacing: 2.8px;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 12px; font-weight: 600;
+    .hero-eyebrow { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 16px; display: block; }
+    .hero-title { font-family: 'Asul', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.15; margin-bottom: 10px; }
+    .hero-scripture { font-size: 1rem; color: rgba(255,255,255,0.65); margin-bottom: 6px; font-style: italic; }
+    .hero-date { font-size: 0.82rem; color: rgba(255,255,255,0.4); letter-spacing: 0.5px; }
+    .hero-divider { width: 48px; height: 3px; background: var(--accent); margin: 22px auto 0; border-radius: 2px; }
+    .hero-langs { margin-top: 20px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+    .hero-lang-chip {
+      background: rgba(39,183,216,0.18); border: 1px solid rgba(39,183,216,0.35);
+      color: rgba(255,255,255,0.9); font-size: 0.75rem; padding: 4px 12px;
+      border-radius: 100px; cursor: pointer; transition: background 0.15s;
     }
-    .hero-title {
-      font-family: 'Asul', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 700; line-height: 1.15; margin-bottom: 14px;
-    }
-    .hero-scripture {
-      color: var(--accent); font-size: 1.05rem; font-weight: 600; margin-bottom: 8px;
-    }
-    .hero-meta { color: var(--muted); font-size: 0.88rem; }
-    .hero-divider { width: 44px; height: 3px; background: var(--accent); margin: 24px auto 0; border-radius: 2px; }
-    .hero-badge {
-      display: inline-block; background: rgba(39,183,216,0.15); border: 1px solid rgba(39,183,216,0.35);
-      color: var(--accent); font-size: 0.72rem; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 16px;
-    }
+    .hero-lang-chip:hover, .hero-lang-chip.active { background: var(--accent); color: white; border-color: var(--accent); }
 
-    /* ===== MAIN CONTENT ===== */
-    .content-outer { max-width: 780px; margin: 0 auto; padding: 52px 28px 80px; }
-    .lang-article { display: none; }
-    .lang-article.active { display: block; }
+    /* MAIN CONTENT */
+    .content-wrapper { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
+    article.lang-section { display: none; }
+    article.lang-section.visible { display: block; }
 
-    /* ===== LISTENING AID SECTIONS ===== */
-    .aid-section { margin-bottom: 34px; }
-    .aid-heading {
-      font-family: 'Asul', sans-serif; font-size: 1.05rem; font-weight: 700;
-      color: var(--dark); margin-bottom: 12px; padding-bottom: 8px;
-      border-bottom: 2px solid var(--bg-light);
-      display: flex; align-items: center; gap: 8px;
-    }
-    .aid-heading .section-icon {
-      width: 24px; height: 24px; background: var(--accent); border-radius: 50%;
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 0.68rem; color: white; font-weight: 700; flex-shrink: 0;
+    /* LISTENING AID SECTIONS */
+    .section-block { margin-bottom: 32px; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin-bottom: 10px;
     }
 
     /* Big Idea */
-    .big-idea-box {
-      background: linear-gradient(135deg, var(--extra-dark) 0%, #1a3040 100%);
-      color: var(--light-text); border-radius: 12px; padding: 24px 28px; margin-bottom: 34px;
+    .big-idea {
+      background: var(--dark);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
     }
-    .big-idea-label {
-      font-size: 0.68rem; text-transform: uppercase; letter-spacing: 2.5px;
-      color: var(--accent); font-weight: 700; margin-bottom: 10px;
-    }
-    .big-idea-title {
-      font-family: 'Asul', sans-serif; font-size: clamp(1.4rem, 3vw, 1.9rem);
-      font-weight: 700; line-height: 1.2; margin-bottom: 14px;
-    }
-    .big-idea-text { font-size: 1.05rem; line-height: 1.7; color: rgba(240,240,240,0.9); }
+    .big-idea .section-label { color: var(--accent); margin-bottom: 8px; }
+    .big-idea-title { font-family: 'Asul', sans-serif; font-size: 1.5rem; font-weight: 700; line-height: 1.25; color: white; margin-bottom: 12px; }
+    .big-idea-sentence { font-size: 1.05rem; color: rgba(240,240,240,0.88); line-height: 1.65; }
 
-    /* Sermon flow */
-    .flow-item { margin-bottom: 22px; }
-    .flow-heading {
-      font-weight: 700; font-size: 0.95rem; color: var(--dark);
-      margin-bottom: 8px; padding: 6px 12px;
-      background: var(--bg-light); border-left: 3px solid var(--accent);
-      border-radius: 0 6px 6px 0;
+    /* Scripture */
+    .scripture-block {
+      background: var(--bg-light);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-bottom: 32px;
     }
-    .flow-list { list-style: none; padding-left: 16px; }
-    .flow-list li {
-      position: relative; padding: 4px 0 4px 18px; font-size: 0.93rem; color: #444;
-    }
-    .flow-list li::before {
-      content: ''; position: absolute; left: 0; top: 12px;
-      width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0;
-    }
+    .scripture-ref { font-family: 'Asul', sans-serif; font-size: 1rem; font-weight: 700; color: var(--dark); }
 
-    /* Key words */
-    .keyword-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
-    .keyword-card {
-      border: 1.5px solid var(--card-border); border-radius: 8px; padding: 14px 16px;
-      background: #fafcfd;
+    /* Sermon Flow */
+    .flow-block { margin-bottom: 32px; }
+    .flow-movement {
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      overflow: hidden;
     }
-    .keyword-term { font-weight: 700; color: var(--dark); font-size: 0.92rem; margin-bottom: 4px; }
-    .keyword-def { font-size: 0.85rem; color: #555; line-height: 1.55; }
-
-    /* Anchor statements */
-    .anchor-list { list-style: none; }
-    .anchor-list li {
-      border-left: 3px solid var(--accent); padding: 10px 16px; margin-bottom: 10px;
-      font-size: 0.97rem; font-style: italic; color: #333;
-      background: rgba(39,183,216,0.04); border-radius: 0 8px 8px 0;
+    .flow-movement-header {
+      background: var(--bg-light);
+      padding: 12px 18px;
+      font-family: 'Asul', sans-serif;
+      font-size: 0.95rem; font-weight: 700; color: var(--dark);
+    }
+    .flow-movement-body { padding: 12px 18px 14px; }
+    .flow-movement-body ul { list-style: none; padding: 0; }
+    .flow-movement-body li {
+      padding: 4px 0 4px 18px;
+      position: relative; font-size: 0.92rem; color: #444;
+    }
+    .flow-movement-body li::before {
+      content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700;
     }
 
-    /* Listening cues */
-    .cue-list { list-style: none; }
-    .cue-list li {
-      font-size: 0.9rem; font-style: italic; color: #666; padding: 5px 0 5px 22px;
-      position: relative;
+    /* Key Words */
+    .keyword-grid { display: grid; gap: 10px; }
+    .keyword-item { background: var(--bg-light); border-radius: 8px; padding: 12px 16px; }
+    .keyword-term { font-weight: 700; font-size: 0.92rem; color: var(--dark); margin-bottom: 3px; }
+    .keyword-def { font-size: 0.88rem; color: #555; }
+
+    /* Anchor Statements */
+    .anchor-list { display: flex; flex-direction: column; gap: 12px; }
+    .anchor-item {
+      border-left: 4px solid var(--accent);
+      padding: 10px 16px;
+      background: var(--bg-light);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.96rem; font-style: italic; color: var(--dark);
+      line-height: 1.55;
     }
-    .cue-list li::before {
-      content: '→'; position: absolute; left: 0; color: var(--accent); font-style: normal; font-weight: 700;
+
+    /* Listening Cues */
+    .cue-list { display: flex; flex-direction: column; gap: 8px; }
+    .cue-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.88rem; color: #666; font-style: italic;
     }
+    .cue-icon { color: var(--accent); font-style: normal; font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
 
     /* Application */
-    .app-list { list-style: none; }
-    .app-list li {
-      background: #f0fbfe; border: 1px solid #c8eaf4; border-radius: 8px;
-      padding: 12px 16px; margin-bottom: 10px; font-size: 0.93rem; line-height: 1.6;
-    }
+    .app-block { background: var(--xdark); border-radius: 12px; padding: 24px 28px; }
+    .app-block .section-label { color: var(--accent); }
+    .app-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .app-list li { color: rgba(240,240,240,0.85); font-size: 0.93rem; padding-left: 22px; position: relative; line-height: 1.55; }
+    .app-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
 
-    /* ===== LANGUAGE SHEET (bottom sheet) ===== */
+    /* LANGUAGE SHEET */
     .sheet-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.55);
-      z-index: 200; display: none; align-items: flex-end;
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45); z-index: 200;
     }
-    .sheet-overlay.open { display: flex; }
-    .sheet {
-      background: white; width: 100%; max-height: 82vh; border-radius: 20px 20px 0 0;
-      overflow-y: auto; padding: 0 0 32px;
-      box-shadow: 0 -4px 32px rgba(0,0,0,0.18);
-      animation: slideUp 0.25s ease;
+    .sheet-overlay.open { display: flex; align-items: flex-end; }
+    .lang-sheet {
+      background: white; width: 100%; max-width: 480px; margin: 0 auto;
+      border-radius: 20px 20px 0 0; padding: 0 0 32px;
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.18);
+      max-height: 90vh; overflow-y: auto;
+      animation: slideUp 0.22s ease-out;
     }
-    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-    .sheet-handle {
-      display: flex; justify-content: center; padding: 14px 0 6px;
-    }
-    .sheet-handle span {
-      width: 40px; height: 4px; border-radius: 2px; background: #ddd;
-    }
-    .sheet-title {
-      font-family: 'Asul', sans-serif; font-size: 1.05rem; font-weight: 700;
-      padding: 8px 24px 16px; color: var(--dark); border-bottom: 1px solid #eee;
-    }
+    @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .sheet-handle { width: 40px; height: 4px; background: #ddd; border-radius: 2px; margin: 14px auto 20px; }
+    .sheet-title { font-family: 'Asul', sans-serif; font-size: 1rem; font-weight: 700; color: var(--dark); padding: 0 22px 14px; border-bottom: 1px solid #eee; }
     .lang-option {
-      display: flex; align-items: center; gap: 14px;
-      padding: 14px 24px; cursor: pointer; transition: background 0.15s;
-      border: none; background: none; width: 100%; text-align: left;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 22px; cursor: pointer; transition: background 0.12s;
     }
     .lang-option:hover { background: var(--bg-light); }
-    .lang-option.current { background: rgba(39,183,216,0.07); }
+    .lang-option.active { background: #edf8fc; }
+    .lang-option-left { display: flex; align-items: center; gap: 12px; }
     .lang-flag { font-size: 1.4rem; }
-    .lang-name { font-size: 0.97rem; font-weight: 600; color: var(--dark); }
-    .lang-name-sub { font-size: 0.8rem; color: #888; font-weight: 400; margin-top: 1px; }
-    .lang-check { margin-left: auto; color: var(--accent); font-size: 1.1rem; font-weight: 700; opacity: 0; }
-    .lang-option.current .lang-check { opacity: 1; }
-    .request-divider { height: 1px; background: #eee; margin: 8px 0; }
+    .lang-name { font-size: 0.95rem; font-weight: 600; color: var(--dark); }
+    .lang-native { font-size: 0.78rem; color: #888; }
+    .lang-check { color: var(--accent); font-weight: 700; font-size: 1.1rem; }
+    .sheet-divider { border: none; border-top: 1px solid #eee; margin: 8px 0; }
     .request-toggle {
-      display: flex; align-items: center; gap: 12px;
-      padding: 14px 24px; cursor: pointer; transition: background 0.15s;
-      background: none; border: none; width: 100%; text-align: left;
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 22px; cursor: pointer; color: #666; font-size: 0.88rem;
     }
-    .request-toggle:hover { background: var(--bg-light); }
-    .request-icon { font-size: 1.3rem; }
-    .request-label { font-size: 0.92rem; color: #555; }
-    .request-form-wrap { padding: 0 24px; display: none; }
-    .request-form-wrap.visible { display: block; }
-    .rform-title { font-family: 'Asul', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 14px; color: var(--dark); }
-    .rform-row { margin-bottom: 12px; }
-    .rform-row label { font-size: 0.8rem; font-weight: 600; color: #555; display: block; margin-bottom: 5px; }
-    .rform-row select, .rform-row input {
-      width: 100%; padding: 9px 12px; border: 1.5px solid #ddd; border-radius: 8px;
-      font-family: 'Asap', sans-serif; font-size: 0.9rem; color: var(--dark);
-      transition: border-color 0.2s;
+    .request-toggle:hover { color: var(--accent); }
+    .request-form-wrap { padding: 0 22px; display: none; }
+    .request-form-wrap.open { display: block; }
+    .req-form { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+    .req-form label { font-size: 0.78rem; font-weight: 600; color: #555; margin-bottom: 3px; display: block; }
+    .req-form select, .req-form input {
+      width: 100%; padding: 9px 12px; border: 1.5px solid var(--border);
+      border-radius: 7px; font-size: 0.9rem; font-family: 'Asap', sans-serif;
+      outline: none; transition: border-color 0.15s;
     }
-    .rform-row select:focus, .rform-row input:focus { outline: none; border-color: var(--accent); }
-    .rform-submit {
-      width: 100%; padding: 11px; background: var(--dark); color: white;
-      border: none; border-radius: 8px; font-family: 'Asap', sans-serif;
-      font-size: 0.93rem; font-weight: 700; cursor: pointer; transition: background 0.2s;
-      margin-top: 4px;
+    .req-form select:focus, .req-form input:focus { border-color: var(--accent); }
+    .req-submit {
+      background: var(--accent); color: white; border: none; border-radius: 100px;
+      padding: 11px; font-family: 'Asap', sans-serif; font-size: 0.9rem; font-weight: 700;
+      cursor: pointer; margin-top: 4px; transition: opacity 0.15s;
     }
-    .rform-submit:hover { background: var(--accent); }
-    .rform-success { background: #e8faf0; border: 1px solid #a8dfc0; border-radius: 8px; padding: 14px; text-align: center; font-size: 0.9rem; color: #27a060; display: none; margin-top: 12px; }
+    .req-submit:hover { opacity: 0.88; }
+    .req-success { color: #2a9d5c; font-size: 0.88rem; font-weight: 600; text-align: center; padding: 8px; display: none; }
 
-    /* ===== FOOTER ===== */
-    .site-footer {
-      background: var(--extra-dark); color: var(--muted); text-align: center;
-      padding: 28px 24px; font-size: 0.82rem;
-    }
-    .site-footer strong { color: white; }
+    /* FOOTER */
+    .site-footer { background: var(--xdark); color: rgba(255,255,255,0.4); text-align: center; padding: 28px 24px; font-size: 0.78rem; line-height: 1.8; }
     .site-footer a { color: var(--accent); text-decoration: none; }
+    .site-footer strong { color: rgba(255,255,255,0.7); }
 
-    /* ===== RESPONSIVE ===== */
+    /* RESPONSIVE */
     @media (max-width: 600px) {
-      .site-header { padding: 12px 18px; }
-      .hero { padding: 44px 20px 40px; }
-      .content-outer { padding: 36px 18px 60px; }
+      .site-header { padding: 12px 16px; }
+      .header-name { font-size: 0.82rem; }
       .header-sub { display: none; }
-      .keyword-grid { grid-template-columns: 1fr; }
+      .hero { padding: 36px 16px 32px; }
+      .content-wrapper { padding: 28px 16px 60px; }
+      .big-idea { padding: 18px 20px; }
+      .app-block { padding: 18px 20px; }
     }
   </style>
 </head>
@@ -257,668 +226,686 @@
 
 <!-- HEADER -->
 <header class="site-header">
-  <a class="header-brand" href="#" aria-label="TIF Home">
-    <div class="header-mark">TIF</div>
-    <div class="header-text">
+  <a href="#" class="header-brand">
+    <div class="header-logo">TIF</div>
+    <div>
       <div class="header-name">Taichung International Fellowship</div>
-      <div class="header-sub">Sermon Listening Aid</div>
+      <div class="header-sub">台中國際團契 · Persekutuan Internasional Taichung</div>
     </div>
   </a>
-  <nav class="header-nav">
-    <a class="nav-link" href="archive.html">← Sermon Archive</a>
-    <button class="lang-btn" onclick="openSheet()" aria-label="Select language">
-      🌐 <span class="lang-btn-label" id="langBtnLabel">English</span>
-    </button>
-  </nav>
+  <div class="header-right">
+    <a href="archive.html" class="header-archive-link">← Sermon Archive</a>
+    <button class="lang-trigger" onclick="openSheet()">🌐 Language</button>
+  </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">James Series · Week 4</div>
-  <p class="hero-eyebrow">Sermon Listening Aid · April 19, 2026</p>
+  <span class="hero-eyebrow">James — Week 4 · Sermon Listening Aid</span>
   <h1 class="hero-title">Dead or Alive</h1>
   <p class="hero-scripture">James 2:14–26</p>
-  <p class="hero-meta">Taichung International Fellowship</p>
+  <p class="hero-date">April 19, 2026 · Todd Blackhurst</p>
   <div class="hero-divider"></div>
+  <div class="hero-langs">
+    <button class="hero-lang-chip active" onclick="setLang('en')">🇺🇸 English</button>
+    <button class="hero-lang-chip" onclick="setLang('zh')">🇹🇼 中文</button>
+    <button class="hero-lang-chip" onclick="setLang('id')">🇮🇩 Indonesia</button>
+    <button class="hero-lang-chip" onclick="setLang('ko')">🇰🇷 한국어</button>
+  </div>
 </section>
 
-<!-- CONTENT -->
-<main class="content-outer">
+<div class="content-wrapper">
 
-  <!-- ===== ENGLISH ===== -->
-  <article class="lang-article active" id="content-en" lang="en">
+<!-- ============================================================
+     ENGLISH
+============================================================ -->
+<article class="lang-section visible" id="content-en">
 
-    <div class="big-idea-box">
-      <div class="big-idea-label">Big Idea</div>
-      <div class="big-idea-title">Dead or Alive</div>
-      <div class="big-idea-text">Real faith doesn't just claim to believe — it changes how you live. If your faith hasn't moved your hands and feet, James asks the hardest question: <em>Can that faith actually save you?</em></div>
+  <div class="big-idea">
+    <div class="section-label">Big Idea</div>
+    <div class="big-idea-title">Dead or Alive</div>
+    <div class="big-idea-sentence">Real faith doesn't just accept a verdict — it walks out and lives completely differently because of it.</div>
+  </div>
+
+  <div class="scripture-block">
+    <div class="section-label">Main Passage</div>
+    <div class="scripture-ref">James 2:14–26 (CSB)</div>
+    <div style="margin-top:8px; font-size:0.9rem; color:#555;">Key verse: "For just as the body without the spirit is dead, so also faith without works is dead." — v. 26</div>
+  </div>
+
+  <div class="flow-block">
+    <div class="section-label">Sermon Flow</div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-header">1. The Problem: A Faith That Doesn't Work</div>
+      <div class="flow-movement-body"><ul>
+        <li>James isn't targeting people who reject God — he's addressing those who <em>claim</em> faith but show nothing</li>
+        <li>The smoke detector with a dead battery: the form is there, the protection isn't</li>
+        <li>Key word: "claims" — he's attacking counterfeit faith, not genuine faith</li>
+        <li>The person who says "be warm and well fed" but does nothing — this is what empty religion looks like</li>
+      </ul></div>
     </div>
 
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">1</span> Scripture</div>
-      <p style="font-size:0.95rem; color:#444;"><strong>James 2:14–26</strong> — What good is it if someone claims to have faith but does not have works? Can such faith save him? ... For just as the body without the spirit is dead, so also faith without works is dead.</p>
+    <div class="flow-movement">
+      <div class="flow-movement-header">2. The Objection: Even the Demons Believe</div>
+      <div class="flow-movement-body"><ul>
+        <li>Faith is invisible — works are the only evidence we can actually see</li>
+        <li>The surgeon illustration: knowing the procedure perfectly but refusing to lie on the table</li>
+        <li>Demons have accurate theology and still don't surrender — knowledge is not the same as saving faith</li>
+        <li>The real question: Has my faith actually produced any fruit?</li>
+      </ul></div>
     </div>
 
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">2</span> Sermon Flow</div>
-      <div class="flow-item">
-        <div class="flow-heading">A. The Problem — The Smoke Detector Without a Battery (vv. 14–17)</div>
-        <ul class="flow-list">
-          <li>James isn't attacking people who reject God — he's attacking the counterfeit faith</li>
-          <li>"Claims to have faith" — not "has faith." That one word is doing enormous work</li>
-          <li>A brother in need gets warm words but no real help — the form is there, the function isn't</li>
-          <li>Verdict: faith without works is dead by itself</li>
-        </ul>
-      </div>
-      <div class="flow-item">
-        <div class="flow-heading">B. The Objection — Even the Demons Believe (vv. 18–19)</div>
-        <ul class="flow-list">
-          <li>Argument: "Different gifts — you have faith, I have works"</li>
-          <li>Faith is invisible. Works are the only evidence anyone can actually see</li>
-          <li>Demons have perfect theology — and they shudder. Knowledge without surrender is not saving faith</li>
-          <li>Surgeon illustration: believing in the procedure isn't the same as getting on the table</li>
-        </ul>
-      </div>
-      <div class="flow-item">
-        <div class="flow-heading">C. Example 1 — Abraham (vv. 20–24)</div>
-        <ul class="flow-list">
-          <li>Paul and James are not in conflict — they're fighting two different errors</li>
-          <li>Paul fights legalism (you can't earn it); James fights easy believism (you can't just claim it)</li>
-          <li>Paul: faith is the root. James: works are the fruit. Same truth, two angles</li>
-          <li>The mountain didn't make Abraham faithful — it showed us he already was</li>
-        </ul>
-      </div>
-      <div class="flow-item">
-        <div class="flow-heading">D. Example 2 — Rahab (vv. 25–26)</div>
-        <ul class="flow-list">
-          <li>Canaanite, Gentile, woman, prostitute — same verdict as Abraham: justified by works</li>
-          <li>Rahab heard the reports about God and reorganized her entire life around that faith</li>
-          <li>Genuine saving faith, in anyone, always moves your hands and feet</li>
-          <li>Rahab is in the genealogy of Jesus — God is not impressed by credentials</li>
-        </ul>
-      </div>
-      <div class="flow-item">
-        <div class="flow-heading">E. The Gospel Answer — The Source of Living Faith</div>
-        <ul class="flow-list">
-          <li>Dead things can't animate themselves — willpower cannot resurrect dead faith</li>
-          <li>The cross answers every idol: money, reputation, comfort, performance</li>
-          <li>Courtroom: you've been declared "not guilty" — James asks you to walk out, not pay off the verdict</li>
-        </ul>
-      </div>
+    <div class="flow-movement">
+      <div class="flow-movement-header">3. Two Examples of Living Faith: Abraham and Rahab</div>
+      <div class="flow-movement-body"><ul>
+        <li>Paul vs. James: not a contradiction — Paul fights legalism (faith is the root); James fights easy believism (works are the fruit)</li>
+        <li>Abraham on the mountain: his obedience didn't create faith — it revealed what was already there. The mountain showed us he already was faithful.</li>
+        <li>Rahab: a Canaanite prostitute gets the same verdict as the patriarch — genuine faith is universal. It doesn't matter who you are.</li>
+        <li>Both took real risks. Genuine saving faith always costs something and always moves your hands.</li>
+      </ul></div>
     </div>
 
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">3</span> Key Words</div>
-      <div class="keyword-grid">
-        <div class="keyword-card">
-          <div class="keyword-term">Justification</div>
-          <div class="keyword-def">Being declared right before God — the courtroom verdict that changes everything</div>
-        </div>
-        <div class="keyword-card">
-          <div class="keyword-term">Easy Believism</div>
-          <div class="keyword-def">The error of thinking mental agreement with the gospel equals saving faith</div>
-        </div>
-        <div class="keyword-card">
-          <div class="keyword-term">Legalism</div>
-          <div class="keyword-def">The error of thinking you earn standing before God through religious performance</div>
-        </div>
-        <div class="keyword-card">
-          <div class="keyword-term">Works</div>
-          <div class="keyword-def">The visible evidence of living faith — not the root, but the fruit</div>
-        </div>
+    <div class="flow-movement">
+      <div class="flow-movement-header">4. Three Forms of Dead Faith — Which One Is Yours?</div>
+      <div class="flow-movement-body"><ul>
+        <li><strong>Performance faith:</strong> worth is measured in test scores and achievement — grace feels nearly impossible to receive in your bones</li>
+        <li><strong>Cultural faith:</strong> propped up by community approval — it evaporated when you moved to Taiwan and the social pressure disappeared</li>
+        <li><strong>Comfort faith:</strong> life is arranged for maximum sovereignty and ease — real community feels like too much trouble</li>
+        <li>All three are forms of self-salvation. James calls it what it is: dead.</li>
+      </ul></div>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-header">5. The Solution: Life Only Comes from Outside</div>
+      <div class="flow-movement-body"><ul>
+        <li>Dead things cannot animate themselves — turning the key harder doesn't charge a dead battery</li>
+        <li>Genesis 22 as a preview: God provided a substitute for Isaac → on another hill, God gave his own Son</li>
+        <li>The cross absorbs our specific idols: security through money, vindication through reputation, freedom through comfort</li>
+        <li>The courtroom verdict: "Not guilty" — you can walk out free, or spend your life trying to pay it off</li>
+        <li>The works James is looking for flow from people who know the debt is settled — not from people still trying to settle it</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-label">Key Words</div>
+    <div class="keyword-grid">
+      <div class="keyword-item">
+        <div class="keyword-term">Justification</div>
+        <div class="keyword-def">Being declared righteous before God — Paul says it comes through faith alone; James says real faith proves itself through action. They're not fighting — they're completing each other.</div>
       </div>
-    </div>
-
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">4</span> Anchor Statements</div>
-      <ul class="anchor-list">
-        <li>"The mountain didn't make Abraham faithful. It showed us he already was."</li>
-        <li>"Paul is saying faith is the root. James is saying works are the fruit."</li>
-        <li>"James is not asking you to pay off the verdict. He's asking you to actually walk out."</li>
-        <li>"The demons are not theologically confused. Their knowledge doesn't lead to surrender — it leads to defiance."</li>
-      </ul>
-    </div>
-
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">5</span> Listening Cues</div>
-      <ul class="cue-list">
-        <li>Watch for the smoke detector moment — that's where James frames the whole problem</li>
-        <li>When he gets to Abraham and Paul: this is the most important theological reconciliation in the sermon</li>
-        <li>Notice how Rahab flips every expectation about who counts as a person of faith</li>
-        <li>The courtroom illustration at the end — is he talking about you?</li>
-        <li>Three types of people named near the end — which one fits you?</li>
-      </ul>
-    </div>
-
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">6</span> Application Focus</div>
-      <ul class="app-list">
-        <li>Is your faith producing visible evidence — generosity, sacrifice, love of neighbor? Not just in general, but in the last week?</li>
-        <li>Are you "paying off the verdict" — performing to justify the grace you know you've already received?</li>
-        <li>What idol did the cross address this week: money, reputation, or comfort? Let that specific truth move from your head to your chest.</li>
-      </ul>
-    </div>
-
-  </article>
-
-  <!-- ===== TRADITIONAL CHINESE ===== -->
-  <article class="lang-article" id="content-zh" lang="zh-TW">
-
-    <div class="big-idea-box">
-      <div class="big-idea-label">核心信息</div>
-      <div class="big-idea-title">死的信心，還是活的信心？</div>
-      <div class="big-idea-text">真正的信心不只是聲稱相信——它會改變你的生命。如果你的信心沒有帶動你的雙手和雙腳，雅各問出了最嚴肅的問題：<em>那樣的信心真的能拯救你嗎？</em></div>
-    </div>
-
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">1</span> 經文</div>
-      <p style="font-size:0.95rem; color:#444;"><strong>雅各書 (Yǎgè shū) 2:14–26</strong> — 我的弟兄們，若有人說自己有信心，卻沒有行為，有什麼益處呢？這信心能救他嗎？…身體沒有靈魂是死的，信心沒有行為也是死的。</p>
-    </div>
-
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">2</span> 講道結構</div>
-      <div class="flow-item">
-        <div class="flow-heading">A. 問題——沒有電池的煙霧偵測器（14-17節）</div>
-        <ul class="flow-list">
-          <li>雅各並非攻擊拒絕上帝的人，而是攻擊假冒的信心 (xìnxīn)</li>
-          <li>「聲稱有信心」而非「有信心」——這個詞語非常關鍵</li>
-          <li>有需要的弟兄只得到溫暖的話語，卻沒有實際的幫助——外形在，功能卻不在</li>
-          <li>結論：沒有行為 (xíngwéi) 的信心，本身就是死的</li>
-        </ul>
+      <div class="keyword-item">
+        <div class="keyword-term">Works</div>
+        <div class="keyword-def">Not religious performance to earn salvation — the visible evidence that living faith is genuinely present. The fruit that reveals the root.</div>
       </div>
-      <div class="flow-item">
-        <div class="flow-heading">B. 反對的聲音——連鬼魔都相信（18-19節）</div>
-        <ul class="flow-list">
-          <li>有人爭辯：各人恩賜不同——你有信心，我有行為</li>
-          <li>信心是看不見的；行為才是唯一可見的證據</li>
-          <li>鬼魔有完美的神學知識，卻戰兢。知識若不導向降服，就不是得救的信心</li>
-          <li>外科醫生的比喻：相信手術是對的，跟躺上手術台是完全不同的兩件事</li>
-        </ul>
-      </div>
-      <div class="flow-item">
-        <div class="flow-heading">C. 例一——亞伯拉罕（20-24節）</div>
-        <ul class="flow-list">
-          <li>保羅和雅各並非互相矛盾——他們在對抗兩種不同的錯誤</li>
-          <li>保羅對抗律法主義 (lǜfǎ zhǔyì)；雅各對抗廉價信仰 (liánjià xìnyǎng)</li>
-          <li>保羅：信心 (xìnxīn) 是根；雅各：行為是果。同一個真理，兩個角度</li>
-          <li>那座山沒有使亞伯拉罕成為信心之人——那只是顯明他本來就是</li>
-        </ul>
-      </div>
-      <div class="flow-item">
-        <div class="flow-heading">D. 例二——喇合（25-26節）</div>
-        <ul class="flow-list">
-          <li>迦南人、外邦人、女性、妓女——卻與亞伯拉罕得到同樣的裁決：因行為稱義 (chēngyì)</li>
-          <li>喇合聽到關於上帝的報告，就用信心重整了她整個生命</li>
-          <li>真正得救的信心，在任何人身上，都會帶動雙手和雙腳</li>
-          <li>喇合在耶穌的家譜中——上帝不在乎你的資歷</li>
-        </ul>
-      </div>
-      <div class="flow-item">
-        <div class="flow-heading">E. 福音的答案——活信心的源頭</div>
-        <ul class="flow-list">
-          <li>死的東西無法自行復活——意志力無法使死的信心復活</li>
-          <li>十字架回應每一個偶像：金錢、名譽、舒適、表現</li>
-          <li>法庭比喻：你已被宣告「無罪」——雅各要你真正走出去，而不是試圖還清裁決</li>
-        </ul>
+      <div class="keyword-item">
+        <div class="keyword-term">Easy Believism</div>
+        <div class="keyword-def">Claiming faith without transformation — the error James is fighting. Right vocabulary, right attendance, but no changed life.</div>
       </div>
     </div>
+  </div>
 
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">3</span> 重要詞彙</div>
-      <div class="keyword-grid">
-        <div class="keyword-card">
-          <div class="keyword-term">稱義 (chēngyì)</div>
-          <div class="keyword-def">在上帝面前被宣告為義——改變一切的法庭裁決</div>
-        </div>
-        <div class="keyword-card">
-          <div class="keyword-term">廉價信仰 (liánjià xìnyǎng)</div>
-          <div class="keyword-def">以為心智上同意福音就等同於得救信心的錯誤</div>
-        </div>
-        <div class="keyword-card">
-          <div class="keyword-term">律法主義 (lǜfǎ zhǔyì)</div>
-          <div class="keyword-def">以為靠宗教表現來換取上帝面前的地位的錯誤</div>
-        </div>
-        <div class="keyword-card">
-          <div class="keyword-term">行為 (xíngwéi)</div>
-          <div class="keyword-def">活信心的可見證據——不是根，而是果</div>
-        </div>
+  <div class="section-block">
+    <div class="section-label">Anchor Statements</div>
+    <div class="anchor-list">
+      <div class="anchor-item">"The form is there. The protection isn't."</div>
+      <div class="anchor-item">"Paul says faith is the root. James says works are the fruit. They're not in conflict — they're completing each other."</div>
+      <div class="anchor-item">"Dead things only get life from one direction. From outside. From a source that actually has it."</div>
+      <div class="anchor-item">"James is not asking you to pay off the verdict. He's asking you to actually walk out."</div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-label">Listening Cues</div>
+    <div class="cue-list">
+      <div class="cue-item"><span class="cue-icon">👂</span><span>Notice the word "claims" in verse 14 — James is being very precise about exactly who he is talking to.</span></div>
+      <div class="cue-item"><span class="cue-icon">👂</span><span>Watch how James and Paul use the same word "justified" but aim at completely different errors.</span></div>
+      <div class="cue-item"><span class="cue-icon">👂</span><span>The contrast between Abraham (patriarch) and Rahab (Canaanite prostitute) is intentional — don't miss that pairing.</span></div>
+      <div class="cue-item"><span class="cue-icon">👂</span><span>When the three portraits of dead faith come — try each one on honestly before looking around.</span></div>
+      <div class="cue-item"><span class="cue-icon">👂</span><span>The courtroom image near the end is the turning point. Listen for the two options — which one tempts you?</span></div>
+    </div>
+  </div>
+
+  <div class="app-block">
+    <div class="section-label">Application Focus</div>
+    <div style="font-family:'Asul',sans-serif; font-size:1.05rem; font-weight:700; color:white; margin-bottom:14px;">Take This With You</div>
+    <ul class="app-list">
+      <li>Which form of dead faith is most familiar to you — performance, cultural, or comfort? Ask the Spirit to show you where the root hasn't gone deep.</li>
+      <li>The gospel changes you when it moves from head to chest. This week, sit with one cross moment — not as doctrine, but as something done for you personally. Let it land.</li>
+      <li>What one act of love, sacrifice, or inconvenience would living faith produce in you this week? Do that thing.</li>
+    </ul>
+  </div>
+
+</article>
+
+<!-- ============================================================
+     TRADITIONAL CHINESE (ZH)
+============================================================ -->
+<article class="lang-section" id="content-zh">
+
+  <div class="big-idea">
+    <div class="section-label">核心信息</div>
+    <div class="big-idea-title">死的信心，還是活的信心？</div>
+    <div class="big-idea-sentence">真實的信心 (xìn xīn) 不只是接受一個宣判——它走出去，因這宣判而活得全然不同。</div>
+  </div>
+
+  <div class="scripture-block">
+    <div class="section-label">主要經文</div>
+    <div class="scripture-ref">雅各書 2:14–26（基督徒標準聖經 CSB）</div>
+    <div style="margin-top:8px; font-size:0.9rem; color:#555;">關鍵節：「身體沒有靈魂是死的，信心沒有行為也是死的。」——第 26 節</div>
+  </div>
+
+  <div class="flow-block">
+    <div class="section-label">講道脈絡</div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-header">一、問題：一個不起作用的信心</div>
+      <div class="flow-movement-body"><ul>
+        <li>雅各不是在攻擊拒絕神的人——他針對的是那些「聲稱」有信心卻毫無果效的人</li>
+        <li>沒有電池的煙霧警報器：外型俱在，保護卻不存在</li>
+        <li>關鍵字：「聲稱」——雅各攻擊的是假冒的信心，不是真實的信心</li>
+        <li>對有需要的人說「願你溫飽」卻什麼都不做——這就是空洞的宗教</li>
+      </ul></div>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-header">二、反駁：連鬼魔也相信</div>
+      <div class="flow-movement-body"><ul>
+        <li>信心是看不見的——行為才是我們唯一可見的憑據</li>
+        <li>外科醫生的比喻：完全了解手術程序，卻拒絕躺上手術台</li>
+        <li>鬼魔有準確的神學知識，卻不肯降服——知識不等於救恩的信心</li>
+        <li>真正值得深思的問題：我的信心真的結出果子了嗎？</li>
+      </ul></div>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-header">三、活信心的兩個例子：亞伯拉罕與喇合</div>
+      <div class="flow-movement-body"><ul>
+        <li>保羅與雅各並不矛盾——保羅對抗律法主義 (lǜ fǎ zhǔ yì)（信心是根）；雅各對抗廉價的相信（行為是果）</li>
+        <li>亞伯拉罕在山上：他的順服不是創造了信心，而是顯明了本已存在的信心</li>
+        <li>喇合，一位迦南妓女，與這位族長得到同樣的宣判——真實的信心 (xìn xīn) 是普世性的，不論你是誰</li>
+        <li>兩人都付出了真實的代價。真實的救恩信心永遠有代價，永遠驅動行動。</li>
+      </ul></div>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-header">四、死信心的三種形態——你是哪一種？</div>
+      <div class="flow-movement-body"><ul>
+        <li><strong>表現型信心：</strong>以成績和成就衡量自我價值——恩典 (ēn diǎn) 在靈魂深處難以真正領受</li>
+        <li><strong>文化型信心：</strong>靠社群認可支撐——一旦來到台灣，社會壓力消失，信心也隨之蒸發</li>
+        <li><strong>舒適型信心：</strong>把生活安排成最大限度的自主與安逸——真實的群體生活感覺太費力</li>
+        <li>這三種形態都是自我救贖 (zì wǒ jiù shú) 的方式。雅各直稱其為：死的。</li>
+      </ul></div>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-header">五、解決之道：生命只從外而來</div>
+      <div class="flow-movement-body"><ul>
+        <li>死的東西無法自我復甦——使勁轉鑰匙，也無法為沒電的電池充電</li>
+        <li>創世記 22 章作為預示：神為以撒預備了代替品→在另一座山上，神獻上了自己的兒子</li>
+        <li>十字架承受了我們每一個具體的偶像：以金錢換取安全感、以名聲換取公義、以安逸換取自由</li>
+        <li>法庭宣判：「無罪」——你可以自由走出去，或花一生試圖還清這筆債</li>
+        <li>雅各所尋找的行為，源自那些知道債已清償之人——而非那些仍在設法清償的人</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-label">關鍵詞語</div>
+    <div class="keyword-grid">
+      <div class="keyword-item">
+        <div class="keyword-term">稱義 (chēng yì)</div>
+        <div class="keyword-def">在神面前被宣告為義——保羅說這透過信心而來；雅各說真實的信心必然顯於行動。二者相輔相成，並不矛盾。</div>
+      </div>
+      <div class="keyword-item">
+        <div class="keyword-term">行為 (xíng wéi)</div>
+        <div class="keyword-def">不是為贏得救恩而做的宗教表現——而是活信心真實存在的可見憑據。是顯明根的果。</div>
+      </div>
+      <div class="keyword-item">
+        <div class="keyword-term">廉價的信仰 (liánjià de xìnyǎng)</div>
+        <div class="keyword-def">聲稱有信心卻沒有生命改變——雅各所對抗的錯誤。有正確的語言、正確的出席，卻沒有改變的生命。</div>
       </div>
     </div>
+  </div>
 
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">4</span> 記住這些話</div>
-      <ul class="anchor-list">
-        <li>「那座山沒有使亞伯拉罕成為信心之人——那只是顯明他本來就是。」</li>
-        <li>「保羅說信心是根；雅各說行為是果。」</li>
-        <li>「雅各不是要你還清裁決——他要你真正走出去。」</li>
-        <li>「鬼魔在神學上並不困惑——他們的知識不導向降服，而是導向反抗。」</li>
-      </ul>
+  <div class="section-block">
+    <div class="section-label">核心金句</div>
+    <div class="anchor-list">
+      <div class="anchor-item">「外型俱在，保護卻不存在。」</div>
+      <div class="anchor-item">「保羅說信心是根；雅各說行為是果。他們不是在對抗——他們是在互補。」</div>
+      <div class="anchor-item">「死的東西只能從一個方向得著生命——從外而來，從真正擁有生命的源頭。」</div>
+      <div class="anchor-item">「雅各不是要你還清那個宣判。他要你真的走出去，活在其中。」</div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-label">聆聽提示</div>
+    <div class="cue-list">
+      <div class="cue-item"><span class="cue-icon">👂</span><span>留意第 14 節中的「聲稱」——雅各對他所針對的對象非常精確。</span></div>
+      <div class="cue-item"><span class="cue-icon">👂</span><span>注意雅各和保羅如何使用同一個詞「稱義」，卻各自針對截然不同的對象。</span></div>
+      <div class="cue-item"><span class="cue-icon">👂</span><span>亞伯拉罕（族長）與喇合（迦南妓女）的對比是刻意安排的——不要錯過這個配對。</span></div>
+      <div class="cue-item"><span class="cue-icon">👂</span><span>當三種死信心的畫像出現時——先誠實地對照自己，再去看身旁的人。</span></div>
+      <div class="cue-item"><span class="cue-icon">👂</span><span>接近結尾的法庭畫面是轉折點——聆聽那兩個選項，思考自己更傾向哪一個。</span></div>
+    </div>
+  </div>
+
+  <div class="app-block">
+    <div class="section-label">應用焦點</div>
+    <div style="font-family:'Asul',sans-serif; font-size:1.05rem; font-weight:700; color:white; margin-bottom:14px;">帶著這些離開</div>
+    <ul class="app-list">
+      <li>辨認哪種死信心的形態對你最熟悉：表現型、文化型，還是舒適型？求聖靈讓你看見根沒有紮深的地方。</li>
+      <li>當福音從頭腦落入心臟，你才真的被改變。這週，以個人的角度默想十字架上的一個時刻——不是作為教義，而是作為為你所做的事。讓它落地。</li>
+      <li>如果你的信心真的活著，本週它會結出什麼樣的愛、犧牲或不方便的果子？去做那件事。</li>
+    </ul>
+  </div>
+
+</article>
+
+<!-- ============================================================
+     BAHASA INDONESIA (ID)
+============================================================ -->
+<article class="lang-section" id="content-id">
+
+  <div class="big-idea">
+    <div class="section-label">Pesan Utama</div>
+    <div class="big-idea-title">Mati atau Hidup</div>
+    <div class="big-idea-sentence">Iman yang sejati tidak sekadar menerima vonis bebas — ia berjalan keluar dan hidup sepenuhnya berbeda karena vonis itu.</div>
+  </div>
+
+  <div class="scripture-block">
+    <div class="section-label">Bacaan Utama</div>
+    <div class="scripture-ref">Yakobus 2:14–26 (CSB)</div>
+    <div style="margin-top:8px; font-size:0.9rem; color:#555;">Ayat kunci: "Seperti tubuh tanpa roh adalah mati, demikian juga iman tanpa perbuatan adalah mati." — ayat 26</div>
+  </div>
+
+  <div class="flow-block">
+    <div class="section-label">Alur Khotbah</div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-header">1. Masalah: Iman yang Tidak Bekerja</div>
+      <div class="flow-movement-body"><ul>
+        <li>Yakobus bukan menyerang orang yang menolak Allah — ia menyoroti mereka yang <em>mengaku</em> beriman tapi tidak menunjukkan apa pun</li>
+        <li>Detektor asap dengan baterai mati: bentuknya ada, perlindungannya tidak ada</li>
+        <li>Kata kunci: "mengaku" — ia menyerang iman palsu, bukan iman yang sejati</li>
+        <li>Orang yang berkata "semoga kamu hangat dan kenyang" tapi tidak melakukan apa pun — itulah agama yang kosong</li>
+      </ul></div>
     </div>
 
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">5</span> 聆聽提示</div>
-      <ul class="cue-list">
-        <li>留意煙霧偵測器的比喻——那是雅各整個問題的框架起點</li>
-        <li>當他談到亞伯拉罕和保羅時——這是講道中最重要的神學調和</li>
-        <li>注意喇合如何顛覆所有關於「信仰之人」的期待</li>
-        <li>結尾的法庭比喻——他說的是你嗎？</li>
-        <li>最後提到三種人——哪一種符合你？</li>
-      </ul>
+    <div class="flow-movement">
+      <div class="flow-movement-header">2. Bantahan: Bahkan Setan pun Percaya</div>
+      <div class="flow-movement-body"><ul>
+        <li>Iman tidak terlihat — perbuatan adalah satu-satunya bukti yang bisa kita lihat</li>
+        <li>Ilustrasi dokter bedah: tahu prosedurnya dengan sempurna tapi menolak berbaring di meja operasi</li>
+        <li>Setan punya teologi yang akurat namun tetap tidak menyerah — pengetahuan bukan iman yang menyelamatkan</li>
+        <li>Pertanyaan sesungguhnya: Apakah imanku benar-benar menghasilkan buah?</li>
+      </ul></div>
     </div>
 
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">6</span> 應用方向</div>
-      <ul class="app-list">
-        <li>誠實地問自己：你的信心是否產生可見的證據——慷慨、犧牲、愛鄰舍？不只是泛泛而言，上個星期有嗎？</li>
-        <li>你是否在「還清裁決」——靠著表現來證明你所知道已白白得到的恩典 (ēn diǎn)？</li>
-        <li>這週十字架回應了哪個偶像：金錢、名譽，還是舒適？讓那個具體的真理從你的頭腦進入你的心。</li>
-      </ul>
+    <div class="flow-movement">
+      <div class="flow-movement-header">3. Dua Contoh Iman yang Hidup: Abraham dan Rahab</div>
+      <div class="flow-movement-body"><ul>
+        <li>Paulus vs. Yakobus: bukan pertentangan — Paulus melawan legalisme (iman adalah akar); Yakobus melawan iman murahan (perbuatan adalah buah)</li>
+        <li>Abraham di gunung: ketaatannya tidak menciptakan iman — itu mengungkapkan apa yang sudah ada sebelumnya</li>
+        <li>Rahab: seorang pelacur Kanaan mendapat vonis yang sama dengan leluhur bangsa — iman sejati bersifat universal, siapapun kamu</li>
+        <li>Keduanya mengambil risiko nyata. Iman yang menyelamatkan selalu ada harganya dan selalu menggerakkan tangan.</li>
+      </ul></div>
     </div>
 
-  </article>
-
-  <!-- ===== BAHASA INDONESIA ===== -->
-  <article class="lang-article" id="content-id" lang="id">
-
-    <div class="big-idea-box">
-      <div class="big-idea-label">Inti Pesan</div>
-      <div class="big-idea-title">Mati atau Hidup</div>
-      <div class="big-idea-text">Iman yang menyelamatkan selalu menghasilkan buah — jika tidak ada buktinya, itu bukan iman yang hidup. Jika imanmu belum menggerakkan tangan dan kakimu, Yakobus mengajukan pertanyaan paling berat: <em>Bisakah iman seperti itu menyelamatkanmu?</em></div>
+    <div class="flow-movement">
+      <div class="flow-movement-header">4. Tiga Bentuk Iman Mati — Yang Mana Milikmu?</div>
+      <div class="flow-movement-body"><ul>
+        <li><strong>Iman prestasi:</strong> nilai diri diukur dari pencapaian — kasih karunia terasa hampir mustahil untuk diterima sepenuhnya</li>
+        <li><strong>Iman budaya:</strong> ditopang oleh penerimaan komunitas — menguap saat pindah ke Taiwan dan tekanan sosial hilang</li>
+        <li><strong>Iman kenyamanan:</strong> hidup diatur untuk kedaulatan dan kenyamanan maksimal — komunitas nyata terasa terlalu merepotkan</li>
+        <li>Ketiganya adalah bentuk keselamatan diri. Yakobus menyebutnya dengan lugas: mati.</li>
+      </ul></div>
     </div>
 
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">1</span> Bacaan</div>
-      <p style="font-size:0.95rem; color:#444;"><strong>Yakobus 2:14–26</strong> — Apakah gunanya, saudara-saudaraku, jika seorang mengatakan bahwa ia mempunyai iman, padahal ia tidak mempunyai perbuatan? Dapatkah iman itu menyelamatkan dia? ... Sebab seperti tubuh tanpa roh adalah mati, demikian jugalah iman tanpa perbuatan-perbuatan adalah mati.</p>
+    <div class="flow-movement">
+      <div class="flow-movement-header">5. Solusi: Hidup Hanya Bisa Datang dari Luar</div>
+      <div class="flow-movement-body"><ul>
+        <li>Sesuatu yang mati tidak bisa menghidupkan dirinya sendiri — memutar kunci lebih keras tidak akan mengisi baterai yang mati</li>
+        <li>Kejadian 22 sebagai bayangan: Allah menyediakan pengganti bagi Ishak → di bukit lain, Allah memberikan Anak-Nya sendiri</li>
+        <li>Salib menyerap setiap berhala spesifik kita: keamanan melalui uang, pembenaran melalui reputasi, kebebasan melalui kenyamanan</li>
+        <li>Vonis pengadilan: "Tidak bersalah" — kamu bisa berjalan keluar dengan bebas, atau menghabiskan hidup mencoba melunasinya</li>
+        <li>Perbuatan yang dicari Yakobus mengalir dari orang yang tahu utangnya sudah lunas — bukan dari orang yang masih berusaha melunasi</li>
+      </ul></div>
     </div>
+  </div>
 
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">2</span> Alur Khotbah</div>
-      <div class="flow-item">
-        <div class="flow-heading">A. Masalah — Detektor Asap Tanpa Baterai (ay. 14–17)</div>
-        <ul class="flow-list">
-          <li>Yakobus bukan menyerang orang yang menolak Tuhan — ia menyerang iman yang palsu</li>
-          <li>"Mengaku beriman," bukan "beriman" — perbedaan kata ini sangat penting</li>
-          <li>Saudara yang membutuhkan hanya mendapat kata-kata hangat, bukan pertolongan nyata</li>
-          <li>Kesimpulan: iman tanpa perbuatan, pada dirinya sendiri, sudah mati</li>
-        </ul>
+  <div class="section-block">
+    <div class="section-label">Kata Kunci</div>
+    <div class="keyword-grid">
+      <div class="keyword-item">
+        <div class="keyword-term">Pembenaran</div>
+        <div class="keyword-def">Dinyatakan benar di hadapan Allah — Paulus berkata ini terjadi melalui iman; Yakobus berkata iman sejati menunjukkan dirinya dalam tindakan. Keduanya saling melengkapi, bukan bertentangan.</div>
       </div>
-      <div class="flow-item">
-        <div class="flow-heading">B. Keberatan — Bahkan Setan pun Percaya (ay. 18–19)</div>
-        <ul class="flow-list">
-          <li>Ada yang berargumen: orang punya karunia berbeda — kamu punya iman, aku punya perbuatan</li>
-          <li>Iman tidak terlihat. Perbuatanlah satu-satunya bukti yang bisa dilihat</li>
-          <li>Setan memiliki teologi sempurna — dan mereka gemetar. Pengetahuan tanpa penyerahan bukan iman sejati</li>
-          <li>Ilustrasi dokter bedah: percaya pada prosedur tidak sama dengan berbaring di meja operasi</li>
-        </ul>
+      <div class="keyword-item">
+        <div class="keyword-term">Perbuatan</div>
+        <div class="keyword-def">Bukan penampilan keagamaan untuk mendapat keselamatan — melainkan bukti nyata bahwa iman yang hidup sungguh-sungguh ada. Buah yang mengungkapkan akarnya.</div>
       </div>
-      <div class="flow-item">
-        <div class="flow-heading">C. Contoh 1 — Abraham (ay. 20–24)</div>
-        <ul class="flow-list">
-          <li>Paulus dan Yakobus tidak bertentangan — mereka melawan dua kesalahan yang berbeda</li>
-          <li>Paulus melawan legalisme; Yakobus melawan iman murahan</li>
-          <li>Paulus: iman adalah akar. Yakobus: perbuatan adalah buah. Kebenaran yang sama, dua sudut pandang</li>
-          <li>Gunung itu tidak menjadikan Abraham beriman — itu hanya menunjukkan bahwa ia memang sudah begitu</li>
-        </ul>
-      </div>
-      <div class="flow-item">
-        <div class="flow-heading">D. Contoh 2 — Rahab (ay. 25–26)</div>
-        <ul class="flow-list">
-          <li>Orang Kanaan, bangsa asing, perempuan, pelacur — putusan yang sama dengan Abraham: dibenarkan oleh perbuatan</li>
-          <li>Rahab mendengar tentang Tuhan dan menata ulang seluruh hidupnya berdasarkan iman itu</li>
-          <li>Iman sejati yang menyelamatkan, pada siapa pun, selalu menggerakkan tangan dan kaki</li>
-          <li>Rahab ada dalam silsilah Yesus — Tuhan tidak terkesan oleh latar belakang atau prestasi</li>
-        </ul>
-      </div>
-      <div class="flow-item">
-        <div class="flow-heading">E. Jawaban Injil — Sumber Iman yang Hidup</div>
-        <ul class="flow-list">
-          <li>Yang mati tidak bisa menghidupkan diri sendiri — tekad keras tidak bisa membangkitkan iman yang mati</li>
-          <li>Salib menjawab setiap berhala: uang, reputasi, kenyamanan, prestasi</li>
-          <li>Ilustrasi ruang sidang: kamu sudah dinyatakan "tidak bersalah" — Yakobus mengajakmu melangkah keluar, bukan melunasi putusan itu</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">3</span> Kata Kunci</div>
-      <div class="keyword-grid">
-        <div class="keyword-card">
-          <div class="keyword-term">Pembenaran</div>
-          <div class="keyword-def">Dinyatakan benar di hadapan Tuhan — putusan ruang sidang yang mengubah segalanya</div>
-        </div>
-        <div class="keyword-card">
-          <div class="keyword-term">Iman Murahan</div>
-          <div class="keyword-def">Kesalahan berpikir bahwa sekadar setuju secara mental dengan Injil sama dengan iman yang menyelamatkan</div>
-        </div>
-        <div class="keyword-card">
-          <div class="keyword-term">Legalisme</div>
-          <div class="keyword-def">Kesalahan berpikir bahwa kamu mendapat posisi di hadapan Tuhan melalui prestasi agama</div>
-        </div>
-        <div class="keyword-card">
-          <div class="keyword-term">Perbuatan</div>
-          <div class="keyword-def">Bukti nyata dari iman yang hidup — bukan akar, melainkan buah</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">4</span> Kalimat Kunci</div>
-      <ul class="anchor-list">
-        <li>"Gunung itu tidak menjadikan Abraham beriman. Itu hanya menunjukkan bahwa ia memang sudah begitu."</li>
-        <li>"Paulus berkata iman adalah akar. Yakobus berkata perbuatan adalah buah."</li>
-        <li>"Yakobus tidak mengajakmu melunasi putusan itu. Ia mengajakmu untuk benar-benar melangkah keluar."</li>
-        <li>"Setan tidak bingung secara teologis. Pengetahuan mereka tidak membawa pada penyerahan — itu membawa pada perlawanan."</li>
-      </ul>
-    </div>
-
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">5</span> Petunjuk Menyimak</div>
-      <ul class="cue-list">
-        <li>Perhatikan ilustrasi detektor asap — di sanalah Yakobus membingkai seluruh masalahnya</li>
-        <li>Saat ia membahas Abraham dan Paulus: ini adalah rekonsiliasi teologis terpenting dalam khotbah ini</li>
-        <li>Perhatikan bagaimana Rahab membalik semua ekspektasi tentang siapa yang disebut "orang beriman"</li>
-        <li>Ilustrasi ruang sidang di akhir — apakah ia sedang berbicara tentang kamu?</li>
-        <li>Tiga tipe orang disebutkan di bagian akhir — mana yang paling mencerminkan dirimu?</li>
-      </ul>
-    </div>
-
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">6</span> Fokus Penerapan</div>
-      <ul class="app-list">
-        <li>Pertanyaan jujur: Apakah imanmu menghasilkan bukti nyata — kemurahan hati, pengorbanan, kasih kepada sesama? Bukan hanya secara umum, tapi dalam seminggu terakhir?</li>
-        <li>Apakah kamu sedang "melunasi putusan" — berusaha membenarkan anugerah yang sudah kamu terima secara cuma-cuma?</li>
-        <li>Berhala mana yang dijawab oleh salib minggu ini: uang, reputasi, atau kenyamanan? Biarkan kebenaran spesifik itu bergerak dari pikiranmu ke hatimu.</li>
-      </ul>
-    </div>
-
-  </article>
-
-  <!-- ===== KOREAN ===== -->
-  <article class="lang-article" id="content-ko" lang="ko">
-
-    <div class="big-idea-box">
-      <div class="big-idea-label">핵심 메시지</div>
-      <div class="big-idea-title">죽은 믿음인가, 살아있는 믿음인가?</div>
-      <div class="big-idea-text">참된 믿음은 단지 믿는다고 주장하는 것이 아닙니다 — 그것은 삶을 바꿉니다. 당신의 믿음이 손과 발을 움직이지 않았다면, 야고보는 가장 무거운 질문을 던집니다: <em>그 믿음이 정말 당신을 구원할 수 있을까요?</em></div>
-    </div>
-
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">1</span> 본문</div>
-      <p style="font-size:0.95rem; color:#444;"><strong>야고보서 2:14–26</strong> — 내 형제들아 만일 사람이 믿음이 있노라 하고 행함이 없으면 무슨 유익이 있으리요 그 믿음이 능히 자기를 구원하겠느냐 ... 영혼 없는 몸이 죽은 것 같이 행함이 없는 믿음은 죽은 것이니라</p>
-    </div>
-
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">2</span> 설교 흐름</div>
-      <div class="flow-item">
-        <div class="flow-heading">A. 문제 — 배터리 없는 화재경보기 (14-17절)</div>
-        <ul class="flow-list">
-          <li>야고보는 하나님을 거부하는 사람들이 아니라 가짜 믿음을 공격합니다</li>
-          <li>"믿음을 가졌다"가 아니라 "믿음이 있다고 주장한다" — 이 단어 하나가 핵심입니다</li>
-          <li>필요한 형제자매가 따뜻한 말은 듣지만 실제 도움을 받지 못합니다</li>
-          <li>결론: 행함이 없는 믿음은 그 자체로 죽은 것입니다</li>
-        </ul>
-      </div>
-      <div class="flow-item">
-        <div class="flow-heading">B. 반론 — 귀신들도 믿는다 (18-19절)</div>
-        <ul class="flow-list">
-          <li>어떤 이는 주장합니다: 사람마다 은사가 다르다 — 당신은 믿음, 나는 행함</li>
-          <li>믿음은 보이지 않습니다. 행함만이 볼 수 있는 유일한 증거입니다</li>
-          <li>귀신들은 완벽한 신학 지식을 가졌지만 항복하지 않습니다 — 지식이 항복으로 이어지지 않으면 구원하는 믿음이 아닙니다</li>
-          <li>외과의사 비유: 수술을 믿는 것과 수술대에 눕는 것은 전혀 다른 일입니다</li>
-        </ul>
-      </div>
-      <div class="flow-item">
-        <div class="flow-heading">C. 예시 1 — 아브라함 (20-24절)</div>
-        <ul class="flow-list">
-          <li>바울과 야고보는 서로 모순되지 않습니다 — 두 가지 다른 오류를 맞서고 있습니다</li>
-          <li>바울은 율법주의와 싸우고, 야고보는 값싼 믿음과 싸웁니다</li>
-          <li>바울: 믿음은 뿌리. 야고보: 행함은 열매. 같은 진리, 두 가지 각도</li>
-          <li>산은 아브라함을 믿음의 사람으로 만들지 않았습니다 — 그가 이미 그랬음을 드러냈을 뿐입니다</li>
-        </ul>
-      </div>
-      <div class="flow-item">
-        <div class="flow-heading">D. 예시 2 — 라합 (25-26절)</div>
-        <ul class="flow-list">
-          <li>가나안 사람, 이방인, 여성, 창기 — 아브라함과 같은 판결: 행함으로 의롭다 함을 받음</li>
-          <li>라합은 하나님에 대한 보고를 듣고 그 믿음으로 자신의 온 삶을 재편했습니다</li>
-          <li>진정한 구원의 믿음은 누구에게서든 손과 발을 움직입니다</li>
-          <li>라합은 예수님의 족보에 있습니다 — 하나님은 스펙에 감동받지 않으십니다</li>
-        </ul>
-      </div>
-      <div class="flow-item">
-        <div class="flow-heading">E. 복음의 답 — 살아있는 믿음의 원천</div>
-        <ul class="flow-list">
-          <li>죽은 것은 스스로 살아날 수 없습니다 — 의지력으로 죽은 믿음을 부활시킬 수 없습니다</li>
-          <li>십자가는 모든 우상에 답합니다: 돈, 명예, 안락함, 업적</li>
-          <li>법정 비유: 당신은 이미 "무죄" 선고를 받았습니다 — 야고보는 판결을 갚으려 하지 말고 진짜로 걸어 나가라고 말합니다</li>
-        </ul>
+      <div class="keyword-item">
+        <div class="keyword-term">Iman Murahan</div>
+        <div class="keyword-def">Mengaku beriman tanpa transformasi — kesalahan yang dilawan Yakobus. Kosa kata benar, kehadiran benar, tapi hidup tidak berubah.</div>
       </div>
     </div>
+  </div>
 
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">3</span> 주요 단어</div>
-      <div class="keyword-grid">
-        <div class="keyword-card">
-          <div class="keyword-term">칭의 (稱義)</div>
-          <div class="keyword-def">하나님 앞에서 의롭다고 선언됨 — 모든 것을 바꾸는 법정 판결</div>
-        </div>
-        <div class="keyword-card">
-          <div class="keyword-term">값싼 믿음</div>
-          <div class="keyword-def">복음에 지적으로 동의하는 것이 구원의 믿음과 같다는 오류</div>
-        </div>
-        <div class="keyword-card">
-          <div class="keyword-term">율법주의</div>
-          <div class="keyword-def">종교적 행위로 하나님 앞에서 지위를 얻을 수 있다는 오류</div>
-        </div>
-        <div class="keyword-card">
-          <div class="keyword-term">행함</div>
-          <div class="keyword-def">살아있는 믿음의 눈에 보이는 증거 — 뿌리가 아니라 열매</div>
-        </div>
+  <div class="section-block">
+    <div class="section-label">Kalimat Pegangan</div>
+    <div class="anchor-list">
+      <div class="anchor-item">"Bentuknya ada. Perlindungannya tidak ada."</div>
+      <div class="anchor-item">"Paulus berkata iman adalah akar. Yakobus berkata perbuatan adalah buah. Mereka tidak bertentangan — mereka saling melengkapi."</div>
+      <div class="anchor-item">"Sesuatu yang mati hanya bisa mendapat hidup dari satu arah — dari luar, dari sumber yang sungguh-sungguh memilikinya."</div>
+      <div class="anchor-item">"Yakobus tidak memintamu melunasi vonis itu. Ia memintamu untuk benar-benar berjalan keluar."</div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-label">Petunjuk Mendengarkan</div>
+    <div class="cue-list">
+      <div class="cue-item"><span class="cue-icon">👂</span><span>Perhatikan kata "mengaku" di ayat 14 — Yakobus sangat tepat tentang siapa yang ia bicarakan.</span></div>
+      <div class="cue-item"><span class="cue-icon">👂</span><span>Perhatikan bagaimana Yakobus dan Paulus menggunakan kata "dibenarkan" yang sama tapi menyasar target yang berbeda.</span></div>
+      <div class="cue-item"><span class="cue-icon">👂</span><span>Kontras antara Abraham (leluhur) dan Rahab (pelacur Kanaan) disengaja — jangan lewatkan pasangan ini.</span></div>
+      <div class="cue-item"><span class="cue-icon">👂</span><span>Saat tiga potret iman mati muncul — coba jujur pada dirimu sendiri dulu sebelum melihat ke sekeliling.</span></div>
+      <div class="cue-item"><span class="cue-icon">👂</span><span>Gambaran ruang sidang di akhir adalah titik balik — dengarkan dua pilihan itu dan mana yang lebih menggodamu.</span></div>
+    </div>
+  </div>
+
+  <div class="app-block">
+    <div class="section-label">Fokus Penerapan</div>
+    <div style="font-family:'Asul',sans-serif; font-size:1.05rem; font-weight:700; color:white; margin-bottom:14px;">Bawa Ini Pulang</div>
+    <ul class="app-list">
+      <li>Identifikasi bentuk iman mati yang paling kamu kenal: prestasi, budaya, atau kenyamanan. Minta Roh Kudus menunjukkan di mana akarmu belum tumbuh dalam.</li>
+      <li>Injil mengubahmu saat bergerak dari kepala ke dada. Minggu ini, renungkan satu momen di salib — bukan sebagai doktrin, tapi sebagai sesuatu yang dilakukan untukmu secara pribadi. Biarkan itu mendarat.</li>
+      <li>Tindakan kasih, pengorbanan, atau ketidaknyamanan apa yang akan dihasilkan imanmu minggu ini jika ia benar-benar hidup? Lakukan hal itu.</li>
+    </ul>
+  </div>
+
+</article>
+
+<!-- ============================================================
+     KOREAN (KO)
+============================================================ -->
+<article class="lang-section" id="content-ko">
+
+  <div class="big-idea">
+    <div class="section-label">핵심 메시지</div>
+    <div class="big-idea-title">죽은 믿음인가, 살아있는 믿음인가?</div>
+    <div class="big-idea-sentence">진정한 믿음은 무죄 판결을 받는 것에서 끝나지 않습니다 — 그 판결로 인해 완전히 다른 삶을 살아냅니다.</div>
+  </div>
+
+  <div class="scripture-block">
+    <div class="section-label">본문 말씀</div>
+    <div class="scripture-ref">야고보서 2:14–26 (CSB)</div>
+    <div style="margin-top:8px; font-size:0.9rem; color:#555;">핵심 절: "영혼 없는 몸이 죽은 것같이, 행함이 없는 믿음도 죽은 것이니라." — 26절</div>
+  </div>
+
+  <div class="flow-block">
+    <div class="section-label">설교 흐름</div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-header">1. 문제: 작동하지 않는 믿음</div>
+      <div class="flow-movement-body"><ul>
+        <li>야고보는 하나님을 거부하는 사람들을 공격하는 게 아니라 — 믿음이 있다고 <em>주장</em>하지만 아무런 열매가 없는 사람들을 향해 말합니다</li>
+        <li>배터리 없는 화재 감지기: 형태는 있지만 보호 기능은 없습니다</li>
+        <li>핵심 단어: "주장한다" — 가짜 믿음을 겨냥하는 것이지, 진정한 믿음이 아닙니다</li>
+        <li>필요한 사람에게 "따뜻하고 배부르게 지내시오"라고 말하면서 아무것도 하지 않는 것 — 이것이 텅 빈 종교의 모습입니다</li>
+      </ul></div>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-header">2. 반론: 귀신들도 믿는다</div>
+      <div class="flow-movement-body"><ul>
+        <li>믿음은 보이지 않습니다 — 행함만이 우리가 볼 수 있는 유일한 증거입니다</li>
+        <li>외과 의사 비유: 수술 절차를 완벽히 알지만 수술대에 눕기를 거부합니다</li>
+        <li>귀신들은 정확한 신학 지식을 갖고 있지만 여전히 항복하지 않습니다 — 지식은 구원의 믿음이 아닙니다</li>
+        <li>진짜 질문: 내 믿음이 실제로 열매를 맺고 있는가?</li>
+      </ul></div>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-header">3. 살아있는 믿음의 두 예: 아브라함과 라합</div>
+      <div class="flow-movement-body"><ul>
+        <li>바울 대 야고보: 모순이 아닙니다 — 바울은 율법주의에 맞서고(믿음이 뿌리), 야고보는 값싼 믿음에 맞섭니다(행함이 열매)</li>
+        <li>산 위의 아브라함: 그의 순종이 믿음을 만들어낸 것이 아니라 — 이미 있던 믿음을 드러낸 것입니다</li>
+        <li>라합: 가나안 기생이 족장과 동일한 판결을 받습니다 — 진정한 믿음은 보편적입니다, 누구든지</li>
+        <li>둘 다 진정한 위험을 감수했습니다. 구원하는 믿음에는 항상 대가가 따르고 항상 손발을 움직입니다.</li>
+      </ul></div>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-header">4. 죽은 믿음의 세 가지 형태 — 당신은 어느 쪽인가요?</div>
+      <div class="flow-movement-body"><ul>
+        <li><strong>성취 중심 믿음:</strong> 자신의 가치를 성적과 업적으로 측정 — 은혜를 뼛속 깊이 받아들이는 것이 거의 불가능하게 느껴집니다</li>
+        <li><strong>문화적 믿음:</strong> 공동체의 인정으로 지탱되는 믿음 — 대만으로 이주하고 사회적 압력이 사라지면 함께 증발합니다</li>
+        <li><strong>편안함 추구 믿음:</strong> 최대한의 자율과 안락함을 위해 삶을 정리함 — 진정한 공동체가 너무 번거롭게 느껴집니다</li>
+        <li>이 세 가지 모두 자기 구원의 형태입니다. 야고보는 직접적으로 말합니다: 죽은 것이라고.</li>
+      </ul></div>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-header">5. 해결책: 생명은 오직 외부에서 옵니다</div>
+      <div class="flow-movement-body"><ul>
+        <li>죽은 것은 스스로 살아날 수 없습니다 — 열쇠를 더 세게 돌린다고 방전된 배터리가 충전되지 않습니다</li>
+        <li>창세기 22장이 예표: 하나님이 이삭을 위해 대속물을 준비하셨습니다 → 다른 산 위에서 하나님은 자신의 아들을 주셨습니다</li>
+        <li>십자가는 우리의 구체적인 우상 하나하나를 흡수합니다: 돈을 통한 안전, 명예를 통한 인정, 편안함을 통한 자유</li>
+        <li>법정 판결: "무죄" — 자유롭게 걸어 나올 수도 있고, 평생 그 빚을 갚으려 할 수도 있습니다</li>
+        <li>야고보가 찾는 행함은 빚이 이미 청산되었음을 아는 사람들에게서 흘러나옵니다 — 청산하려 애쓰는 사람들이 아니라</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-label">핵심 단어</div>
+    <div class="keyword-grid">
+      <div class="keyword-item">
+        <div class="keyword-term">칭의 (稱義)</div>
+        <div class="keyword-def">하나님 앞에서 의롭다고 선언됨 — 바울은 믿음을 통해 온다고 말하고, 야고보는 진정한 믿음은 행동으로 나타난다고 말합니다. 둘은 서로 완성합니다.</div>
+      </div>
+      <div class="keyword-item">
+        <div class="keyword-term">행함</div>
+        <div class="keyword-def">구원을 얻기 위한 종교적 퍼포먼스가 아니라 — 살아있는 믿음이 진짜로 존재한다는 눈에 보이는 증거입니다. 뿌리를 드러내는 열매.</div>
+      </div>
+      <div class="keyword-item">
+        <div class="keyword-term">값싼 믿음</div>
+        <div class="keyword-def">변화 없이 믿음을 주장하는 것 — 야고보가 싸우는 오류입니다. 올바른 어휘, 올바른 출석, 그러나 변화된 삶은 없습니다.</div>
       </div>
     </div>
+  </div>
 
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">4</span> 기억할 말씀</div>
-      <ul class="anchor-list">
-        <li>"산은 아브라함을 믿음의 사람으로 만들지 않았습니다. 그가 이미 그랬음을 드러냈을 뿐입니다."</li>
-        <li>"바울은 믿음이 뿌리라고 말합니다. 야고보는 행함이 열매라고 말합니다."</li>
-        <li>"야고보는 판결을 갚으라는 것이 아닙니다. 진짜로 걸어 나가라는 것입니다."</li>
-        <li>"귀신들은 신학적으로 혼란스럽지 않습니다. 그들의 지식은 항복이 아니라 반항으로 이어집니다."</li>
-      </ul>
+  <div class="section-block">
+    <div class="section-label">핵심 문장</div>
+    <div class="anchor-list">
+      <div class="anchor-item">"형태는 있습니다. 보호 기능은 없습니다."</div>
+      <div class="anchor-item">"바울은 믿음이 뿌리라고 말합니다. 야고보는 행함이 열매라고 말합니다. 그들은 대립하는 것이 아니라 — 서로를 완성하고 있습니다."</div>
+      <div class="anchor-item">"죽은 것은 오직 한 방향에서만 생명을 얻을 수 있습니다 — 외부에서, 실제로 생명을 가진 근원에서."</div>
+      <div class="anchor-item">"야고보는 그 판결을 갚으라고 요청하는 것이 아닙니다. 그는 당신이 실제로 걸어 나오기를 원합니다."</div>
     </div>
+  </div>
 
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">5</span> 듣는 포인트</div>
-      <ul class="cue-list">
-        <li>화재경보기 비유를 주목하세요 — 야고보가 문제 전체를 설정하는 곳입니다</li>
-        <li>아브라함과 바울 이야기가 나올 때 — 설교에서 가장 중요한 신학적 조화입니다</li>
-        <li>라합이 어떻게 믿음의 사람에 대한 모든 기대를 뒤집는지 주목하세요</li>
-        <li>마지막 법정 비유 — 그가 지금 당신에 대해 말하고 있나요?</li>
-        <li>마지막에 세 종류의 사람이 언급됩니다 — 나는 어느 쪽인가요?</li>
-      </ul>
+  <div class="section-block">
+    <div class="section-label">경청 포인트</div>
+    <div class="cue-list">
+      <div class="cue-item"><span class="cue-icon">👂</span><span>14절의 "주장한다"는 단어에 주목하세요 — 야고보는 자신이 누구를 향해 말하는지 매우 정확합니다.</span></div>
+      <div class="cue-item"><span class="cue-icon">👂</span><span>야고보와 바울이 어떻게 같은 단어 "의롭다 함"을 사용하지만 완전히 다른 오류를 겨냥하는지 주목하세요.</span></div>
+      <div class="cue-item"><span class="cue-icon">👂</span><span>아브라함(족장)과 라합(가나안 기생)의 대비는 의도적입니다 — 이 짝을 놓치지 마세요.</span></div>
+      <div class="cue-item"><span class="cue-icon">👂</span><span>죽은 믿음의 세 가지 모습이 나올 때 — 주위를 둘러보기 전에 먼저 솔직하게 자신에게 적용해보세요.</span></div>
+      <div class="cue-item"><span class="cue-icon">👂</span><span>마지막 부분의 법정 이미지가 전환점입니다 — 두 가지 선택을 듣고 어느 쪽에 더 끌리는지 생각해보세요.</span></div>
     </div>
+  </div>
 
-    <div class="aid-section">
-      <div class="aid-heading"><span class="section-icon">6</span> 적용 포인트</div>
-      <ul class="app-list">
-        <li>솔직한 질문: 당신의 믿음이 실제 증거를 만들어내고 있나요 — 관대함, 희생, 이웃 사랑? 일반적인 이야기가 아니라, 지난주에 그런 일이 있었나요?</li>
-        <li>판결을 갚으려 하고 있나요 — 이미 받은 은혜를 정당화하기 위해 성과를 내려 하고 있나요?</li>
-        <li>이번 주 십자가가 어떤 우상에 답했나요: 돈, 명예, 안락함? 그 구체적인 진리가 머리에서 마음으로 내려오게 하세요.</li>
-      </ul>
-    </div>
+  <div class="app-block">
+    <div class="section-label">적용 포인트</div>
+    <div style="font-family:'Asul',sans-serif; font-size:1.05rem; font-weight:700; color:white; margin-bottom:14px;">이것을 가지고 가세요</div>
+    <ul class="app-list">
+      <li>자신에게 가장 익숙한 죽은 믿음의 형태를 파악하세요: 성취 중심, 문화적, 편안함 추구. 뿌리가 깊지 않은 곳을 보여달라고 성령님께 구하세요.</li>
+      <li>복음이 머리에서 가슴으로 이동할 때 당신은 변화됩니다. 이번 주, 십자가의 한 장면을 교리가 아닌 당신을 위해 행해진 일로서 묵상하세요. 그것이 당신 안에 착지하게 하세요.</li>
+      <li>당신의 믿음이 진정으로 살아있다면, 이번 주 어떤 사랑, 희생, 또는 불편함의 행동을 낳을 것입니까? 그 일을 하세요.</li>
+    </ul>
+  </div>
 
-  </article>
+</article>
 
-</main>
+</div><!-- /.content-wrapper -->
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <strong>Taichung International Fellowship</strong><br>
+  TIF North: Morrison Academy, Beitun · TIF South: SYME, Xitun<br>
+  <a href="https://taichunginternationalfellowship.org">taichunginternationalfellowship.org</a> · +886 437 007 933
+  <br><br>
+  <span style="font-size:0.7rem;">
+    Listening aids translated for the benefit of our multilingual congregation.<br>
+    繁體中文翻譯服務我們說中文的會眾。Terjemahan tersedia dalam Bahasa Indonesia. 한국어 번역이 제공됩니다.<br>
+    <a href="archive.html">← Sermon Archive</a>
+  </span>
+</footer>
 
 <!-- LANGUAGE SHEET -->
-<div class="sheet-overlay" id="langSheet" onclick="handleOverlayClick(event)">
-  <div class="sheet" role="dialog" aria-label="Select language">
-    <div class="sheet-handle"><span></span></div>
-    <div class="sheet-title">🌐 Choose Language</div>
+<div class="sheet-overlay" id="langSheet" onclick="closeSheetIfOverlay(event)">
+  <div class="lang-sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">Select Language / 選擇語言 / Pilih Bahasa / 언어 선택</div>
 
-    <button class="lang-option current" id="opt-en" onclick="setLang('en', '🇺🇸', 'English')">
-      <span class="lang-flag">🇺🇸</span>
-      <div><div class="lang-name">English</div></div>
-      <span class="lang-check">✓</span>
-    </button>
-    <button class="lang-option" id="opt-zh" onclick="setLang('zh', '🇹🇼', '繁體中文')">
-      <span class="lang-flag">🇹🇼</span>
-      <div><div class="lang-name">繁體中文</div><div class="lang-name-sub">Traditional Chinese</div></div>
-      <span class="lang-check">✓</span>
-    </button>
-    <button class="lang-option" id="opt-id" onclick="setLang('id', '🇮🇩', 'Bahasa Indonesia')">
-      <span class="lang-flag">🇮🇩</span>
-      <div><div class="lang-name">Bahasa Indonesia</div></div>
-      <span class="lang-check">✓</span>
-    </button>
-    <button class="lang-option" id="opt-ko" onclick="setLang('ko', '🇰🇷', '한국어')">
-      <span class="lang-flag">🇰🇷</span>
-      <div><div class="lang-name">한국어</div><div class="lang-name-sub">Korean</div></div>
-      <span class="lang-check">✓</span>
-    </button>
+    <div class="lang-option active" id="opt-en" onclick="setLang('en')">
+      <div class="lang-option-left">
+        <span class="lang-flag">🇺🇸</span>
+        <div><div class="lang-name">English</div><div class="lang-native">English</div></div>
+      </div>
+      <span class="lang-check" id="check-en">✓</span>
+    </div>
 
-    <div class="request-divider"></div>
+    <div class="lang-option" id="opt-zh" onclick="setLang('zh')">
+      <div class="lang-option-left">
+        <span class="lang-flag">🇹🇼</span>
+        <div><div class="lang-name">Traditional Chinese</div><div class="lang-native">繁體中文</div></div>
+      </div>
+      <span class="lang-check" id="check-zh" style="display:none">✓</span>
+    </div>
 
-    <button class="request-toggle" onclick="toggleRequestForm()">
-      <span class="request-icon">＋</span>
-      <span class="request-label">Request another language</span>
-    </button>
+    <div class="lang-option" id="opt-id" onclick="setLang('id')">
+      <div class="lang-option-left">
+        <span class="lang-flag">🇮🇩</span>
+        <div><div class="lang-name">Bahasa Indonesia</div><div class="lang-native">Bahasa Indonesia</div></div>
+      </div>
+      <span class="lang-check" id="check-id" style="display:none">✓</span>
+    </div>
 
-    <div class="request-form-wrap" id="requestFormWrap">
-      <div class="rform-title">Request a language translation</div>
-      <form id="requestForm" onsubmit="submitRequest(event)">
-        <div class="rform-row">
-          <label for="reqLang">Language requested *</label>
-          <select id="reqLang" required>
-            <option value="">Select a language…</option>
+    <div class="lang-option" id="opt-ko" onclick="setLang('ko')">
+      <div class="lang-option-left">
+        <span class="lang-flag">🇰🇷</span>
+        <div><div class="lang-name">Korean</div><div class="lang-native">한국어</div></div>
+      </div>
+      <span class="lang-check" id="check-ko" style="display:none">✓</span>
+    </div>
+
+    <hr class="sheet-divider">
+
+    <div class="request-toggle" onclick="toggleRequestForm()">
+      <span>➕</span> Request another language
+    </div>
+    <div class="request-form-wrap" id="reqFormWrap">
+      <form class="req-form" onsubmit="submitRequest(event)">
+        <div>
+          <label>Language you need</label>
+          <select name="language" required>
+            <option value="">— Select —</option>
             <option>Tagalog / Filipino</option>
-            <option>Japanese (日本語)</option>
-            <option>Thai (ภาษาไทย)</option>
-            <option>Vietnamese (Tiếng Việt)</option>
-            <option>Spanish (Español)</option>
-            <option>French (Français)</option>
-            <option>German (Deutsch)</option>
-            <option>Portuguese (Português)</option>
-            <option>Hindi (हिन्दी)</option>
-            <option>Arabic (العربية)</option>
-            <option>Burmese (မြန်မာဘာသာ)</option>
-            <option>Khmer (ភាសាខ្មែរ)</option>
-            <option>Malay (Bahasa Melayu)</option>
-            <option>Russian (Русский)</option>
-            <option>Turkish (Türkçe)</option>
-            <option>Dutch (Nederlands)</option>
-            <option>Polish (Polski)</option>
-            <option>Swahili</option>
-            <option>Amharic (አማርኛ)</option>
-            <option>Other</option>
+            <option>Japanese / 日本語</option>
+            <option>Thai / ภาษาไทย</option>
+            <option>Vietnamese / Tiếng Việt</option>
+            <option>French / Français</option>
+            <option>German / Deutsch</option>
+            <option>Spanish / Español</option>
+            <option>Portuguese / Português</option>
+            <option>Hindi / हिन्दी</option>
+            <option>Malay / Bahasa Melayu</option>
+            <option>Dutch / Nederlands</option>
+            <option>Russian / Русский</option>
+            <option>Arabic / العربية</option>
+            <option>Amharic / አማርኛ</option>
+            <option>Swahili / Kiswahili</option>
+            <option>Burmese / မြန်မာဘာသာ</option>
+            <option>Other (specify in name field)</option>
           </select>
         </div>
-        <div class="rform-row">
-          <label for="reqName">Full name *</label>
-          <input type="text" id="reqName" placeholder="Your name" required>
+        <div>
+          <label>Full Name</label>
+          <input type="text" name="name" placeholder="Your name" required>
         </div>
-        <div class="rform-row">
-          <label for="reqStatus">Status *</label>
-          <select id="reqStatus" required>
-            <option value="">Select…</option>
-            <option>Regular attendee</option>
-            <option>New visitor</option>
-            <option>TIF member</option>
-            <option>Other</option>
-          </select>
+        <div>
+          <label>Status (member / visitor / other)</label>
+          <input type="text" name="status" placeholder="e.g. Regular visitor" required>
         </div>
-        <div class="rform-row">
-          <label for="reqEmail">Email address *</label>
-          <input type="email" id="reqEmail" placeholder="your@email.com" required>
+        <div>
+          <label>Email</label>
+          <input type="email" name="email" placeholder="your@email.com" required>
         </div>
-        <button type="submit" class="rform-submit">Submit Request</button>
-        <div class="rform-success" id="reqSuccess">
-          ✅ Request sent! Todd will be notified. Thank you for helping TIF serve more people.
-        </div>
+        <button type="submit" class="req-submit">Submit Request</button>
+        <div class="req-success" id="reqSuccess">✅ Request sent! Todd will be in touch soon.</div>
       </form>
     </div>
   </div>
 </div>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-  <strong>Taichung International Fellowship</strong><br>
-  James Series · Week 4 · April 19, 2026<br>
-  <a href="archive.html" style="margin-top:8px; display:inline-block;">← Sermon Archive</a>
-</footer>
-
 <script>
-  var currentLang = 'en';
+  const LANGS = ['en','zh','id','ko'];
+  let currentLang = 'en';
 
-  function setLang(code, flag, name) {
-    // Hide all articles
-    document.querySelectorAll('.lang-article').forEach(function(a) { a.classList.remove('active'); });
-    // Show selected
-    var el = document.getElementById('content-' + code);
-    if (el) el.classList.add('active');
-    // Update button label
-    document.getElementById('langBtnLabel').textContent = flag + ' ' + name;
-    // Update sheet options
-    document.querySelectorAll('.lang-option').forEach(function(o) { o.classList.remove('current'); });
-    var opt = document.getElementById('opt-' + code);
-    if (opt) opt.classList.add('current');
-    // Store current lang
+  function setLang(code) {
+    LANGS.forEach(function(l) {
+      document.getElementById('content-' + l).classList.remove('visible');
+      document.getElementById('opt-' + l).classList.remove('active');
+      var chk = document.getElementById('check-' + l);
+      if (chk) chk.style.display = 'none';
+    });
+    document.getElementById('content-' + code).classList.add('visible');
+    document.getElementById('opt-' + code).classList.add('active');
+    var chk = document.getElementById('check-' + code);
+    if (chk) chk.style.display = 'inline';
+    var chips = document.querySelectorAll('.hero-lang-chip');
+    chips.forEach(function(c) { c.classList.remove('active'); });
+    var idx = LANGS.indexOf(code);
+    if (chips[idx]) chips[idx].classList.add('active');
     currentLang = code;
-    // Close sheet
     closeSheet();
-    // Scroll to top of content
-    document.querySelector('.content-outer').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  function openSheet() {
-    document.getElementById('langSheet').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeSheet() {
-    document.getElementById('langSheet').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function handleOverlayClick(e) {
-    if (e.target === document.getElementById('langSheet')) closeSheet();
-  }
-
-  function toggleRequestForm() {
-    var wrap = document.getElementById('requestFormWrap');
-    wrap.classList.toggle('visible');
-  }
+  function openSheet() { document.getElementById('langSheet').classList.add('open'); }
+  function closeSheet() { document.getElementById('langSheet').classList.remove('open'); }
+  function closeSheetIfOverlay(e) { if (e.target === document.getElementById('langSheet')) closeSheet(); }
+  function toggleRequestForm() { document.getElementById('reqFormWrap').classList.toggle('open'); }
 
   function submitRequest(e) {
     e.preventDefault();
-    var lang = document.getElementById('reqLang').value;
-    var name = document.getElementById('reqName').value;
-    var status = document.getElementById('reqStatus').value;
-    var email = document.getElementById('reqEmail').value;
-
-    var formData = new FormData();
-    formData.append('access_key', '3fc0c694-adc2-4cda-8191-c4f6993a9a55');
-    formData.append('subject', 'TIF Language Request: ' + lang + ' — ' + name);
-    formData.append('message', 'Language: ' + lang + '\nName: ' + name + '\nStatus: ' + status + '\nEmail: ' + email + '\nSermon: Dead or Alive (James 2:14-26, Week 4)');
-    formData.append('from_name', name);
-    formData.append('reply_to', email);
-
-    fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
-      .then(function(r) { return r.json(); })
-      .then(function(data) {
+    var form = e.target;
+    var data = {
+      access_key: '3fc0c694-adc2-4cda-8191-c4f6993a9a55',
+      subject: 'TIF Language Request: ' + form.language.value,
+      from_name: form.name.value,
+      language: form.language.value,
+      name: form.name.value,
+      status: form.status.value,
+      email: form.email.value,
+      message: 'Language: ' + form.language.value + ' | Name: ' + form.name.value + ' | Status: ' + form.status.value + ' | Email: ' + form.email.value
+    };
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    }).then(function(r) { return r.json(); }).then(function(res) {
+      if (res.success) {
         document.getElementById('reqSuccess').style.display = 'block';
-        document.getElementById('requestForm').reset();
-      })
-      .catch(function() {
-        document.getElementById('reqSuccess').style.display = 'block';
-      });
+        form.reset();
+      }
+    }).catch(function() {
+      var s = document.getElementById('reqSuccess');
+      s.textContent = '✅ Request noted! We will follow up soon.';
+      s.style.display = 'block';
+    });
   }
-
-  // Keyboard close
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeSheet();
-  });
 </script>
 
 </body>
