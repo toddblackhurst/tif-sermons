@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="tif-week-slug" content="james-week-5">
+  <meta name="tif-week-slug" content="james-week-6">
   <meta name="tif-page-type" content="listening-aid">
-  <title>The Untameable Fire | TIF Sermon Listening Aid</title>
+  <title>Wisdom from Above | TIF Sermon Listening Aid</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Asul:wght@400;700&display=swap" rel="stylesheet">
@@ -53,106 +53,157 @@
       color: white; padding: 52px 28px 44px; text-align: center;
     }
     .hero-eyebrow { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 16px; display: block; }
-    .hero-title { font-family: 'Asul', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.15; margin-bottom: 14px; }
-    .hero-scripture {
-      display: inline-block; background: rgba(39,183,216,0.18);
-      border: 1px solid rgba(39,183,216,0.4); border-radius: 100px;
-      padding: 5px 18px; font-size: 0.88rem; color: rgba(255,255,255,0.9); margin-bottom: 8px;
-    }
-    .hero-date { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
-    .hero-divider { width: 48px; height: 3px; background: var(--accent); margin: 22px auto 0; border-radius: 2px; }
+    .hero-title { font-family: 'Asul', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.18; margin-bottom: 14px; }
+    .hero-scripture { font-size: 1rem; color: rgba(255,255,255,0.7); margin-bottom: 8px; font-style: italic; }
+    .hero-meta { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+    .hero-divider { width: 48px; height: 3px; background: var(--accent); margin: 28px auto 0; border-radius: 2px; }
 
-    /* ── CONTENT ── */
-    .content-wrapper { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
-    article.lang-section { display: none; }
-    article.lang-section.visible { display: block; }
+    /* ── LANGUAGE TABS ── */
+    .lang-tabs-wrap { background: var(--xdark); padding: 0 28px; border-bottom: 2px solid rgba(39,183,216,0.15); overflow-x: auto; }
+    .lang-tabs { display: flex; gap: 0; min-width: max-content; }
+    .lang-tab {
+      padding: 13px 20px; font-family: 'Asap', sans-serif; font-size: 0.82rem; font-weight: 600;
+      color: rgba(255,255,255,0.45); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px;
+      transition: color 0.18s, border-color 0.18s; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none;
+    }
+    .lang-tab:hover { color: rgba(255,255,255,0.75); }
+    .lang-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* ── CONTENT WRAPPER ── */
+    .content-wrap { max-width: 820px; margin: 0 auto; padding: 44px 28px 80px; }
+    .lang-content { display: none; }
+    .lang-content.active { display: block; }
+
+    /* ── LISTENING AID SECTIONS ── */
+    .la-section { margin-bottom: 36px; }
+    .la-section-title {
+      font-family: 'Asul', sans-serif; font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2.5px; color: var(--accent);
+      margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1.5px solid var(--border);
+    }
 
     /* Big Idea */
-    .big-idea { background: var(--dark); border-radius: 12px; padding: 24px 28px; margin-bottom: 36px; }
-    .section-label { font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px; }
-    .big-idea-text { font-family: 'Asul', sans-serif; font-size: clamp(1.05rem, 2.5vw, 1.3rem); font-weight: 700; line-height: 1.4; color: white; }
+    .big-idea-box {
+      background: var(--accent-faint); border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0; padding: 18px 22px;
+    }
+    .big-idea-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 700; margin-bottom: 6px; }
+    .big-idea-text { font-family: 'Asul', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--dark); line-height: 1.45; }
 
     /* Scripture */
-    .scripture-block { background: var(--bg-light); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 14px 18px; margin-bottom: 32px; font-size: 0.93rem; color: var(--text-muted); }
-    .scripture-ref { font-family: 'Asul', sans-serif; font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+    .scripture-ref {
+      display: inline-block; background: var(--dark); color: var(--accent);
+      font-family: 'Asul', sans-serif; font-size: 1rem; font-weight: 700;
+      padding: 8px 20px; border-radius: 6px; letter-spacing: 0.5px;
+    }
 
     /* Sermon Flow */
-    .flow-block { margin-bottom: 32px; }
-    .movement { border: 1.5px solid var(--border); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
-    .movement-header { background: var(--bg-light); padding: 11px 18px; font-family: 'Asul', sans-serif; font-size: 0.93rem; font-weight: 700; color: var(--dark); }
-    .movement-body { padding: 12px 18px 14px; }
-    .movement-body ul { list-style: none; padding: 0; }
-    .movement-body li { padding: 4px 0 4px 18px; position: relative; font-size: 0.91rem; color: #444; line-height: 1.6; }
-    .movement-body li::before { content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
-    .movement-body li strong { color: var(--dark); }
-    .movement-body li em { font-style: italic; }
+    .flow-movement { margin-bottom: 24px; }
+    .flow-movement-title {
+      font-family: 'Asul', sans-serif; font-size: 0.95rem; font-weight: 700;
+      color: var(--dark); margin-bottom: 10px; padding: 8px 14px;
+      background: var(--bg-light); border-radius: 6px; border-left: 3px solid var(--accent);
+    }
+    .flow-list { list-style: none; padding: 0; }
+    .flow-list li {
+      padding: 5px 0 5px 20px; position: relative; font-size: 0.93rem;
+      color: var(--text); border-bottom: 1px solid var(--border);
+    }
+    .flow-list li:last-child { border-bottom: none; }
+    .flow-list li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); font-size: 0.75rem; top: 7px; }
 
     /* Key Words */
-    .keywords { display: grid; gap: 9px; margin-bottom: 32px; }
-    .kw-item { background: var(--bg-light); border-radius: 8px; padding: 11px 15px; }
-    .kw-term { font-weight: 700; font-size: 0.91rem; color: var(--dark); margin-bottom: 3px; }
-    .kw-def { font-size: 0.87rem; color: #555; }
+    .keyword-list { list-style: none; padding: 0; }
+    .keyword-list li { padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 0.93rem; }
+    .keyword-list li:last-child { border-bottom: none; }
+    .keyword-term { font-weight: 700; color: var(--dark); }
+    .keyword-def { color: var(--text-muted); }
 
     /* Anchor Statements */
-    .anchors { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
-    .anchor { border-left: 4px solid var(--accent); padding: 10px 16px; background: var(--accent-faint); border-radius: 0 8px 8px 0; font-size: 0.94rem; font-style: italic; color: var(--dark); line-height: 1.55; }
+    .anchor-list { list-style: none; padding: 0; }
+    .anchor-list li {
+      padding: 12px 16px; margin-bottom: 10px;
+      border-left: 3px solid var(--accent); background: var(--bg-light);
+      border-radius: 0 6px 6px 0; font-size: 0.95rem; font-style: italic;
+      color: var(--dark); font-weight: 500;
+    }
+    .anchor-list li:last-child { margin-bottom: 0; }
 
     /* Listening Cues */
-    .cues { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
-    .cue { display: flex; align-items: flex-start; gap: 10px; font-size: 0.87rem; color: #777; font-style: italic; }
-    .cue-icon { font-style: normal; flex-shrink: 0; margin-top: 1px; }
+    .cue-list { list-style: none; padding: 0; }
+    .cue-list li {
+      padding: 6px 0 6px 24px; position: relative;
+      font-size: 0.9rem; color: var(--text-muted); font-style: italic;
+      border-bottom: 1px solid var(--border);
+    }
+    .cue-list li:last-child { border-bottom: none; }
+    .cue-list li::before { content: "👁"; position: absolute; left: 0; font-style: normal; font-size: 0.78rem; top: 8px; }
 
     /* Application */
-    .app-block { background: var(--xdark); border-radius: 12px; padding: 24px 28px; }
-    .app-block .section-label { color: var(--accent); }
-    .app-title { font-family: 'Asul', sans-serif; font-size: 1rem; font-weight: 700; color: white; margin-bottom: 14px; }
-    .app-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-    .app-list li { color: rgba(240,240,240,0.85); font-size: 0.91rem; padding-left: 22px; position: relative; line-height: 1.55; }
-    .app-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    .app-list { list-style: none; padding: 0; }
+    .app-list li {
+      padding: 10px 14px 10px 44px; position: relative; font-size: 0.93rem;
+      background: var(--bg-light); border-radius: 6px; margin-bottom: 8px;
+    }
+    .app-list li:last-child { margin-bottom: 0; }
+    .app-num {
+      position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+      width: 22px; height: 22px; background: var(--accent); color: white;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 0.72rem; font-weight: 700;
+    }
 
     /* ── LANGUAGE SHEET ── */
-    .sheet-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 200; }
-    .sheet-overlay.open { display: flex; align-items: flex-end; }
+    .sheet-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 200; }
+    .sheet-overlay.open { display: block; }
     .lang-sheet {
-      background: white; width: 100%; max-width: 480px; margin: 0 auto;
-      border-radius: 20px 20px 0 0; padding: 0 0 32px;
-      box-shadow: 0 -8px 40px rgba(0,0,0,0.18); max-height: 90vh; overflow-y: auto;
-      animation: slideUp 0.22s ease-out;
+      position: fixed; bottom: 0; left: 0; right: 0; background: white;
+      border-radius: 20px 20px 0 0; z-index: 201; padding: 0 0 env(safe-area-inset-bottom, 20px);
+      max-height: 90vh; overflow-y: auto; transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
     }
-    @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    .sheet-handle { width: 40px; height: 4px; background: #ddd; border-radius: 2px; margin: 14px auto 20px; }
-    .sheet-heading { font-family: 'Asul', sans-serif; font-size: 1rem; font-weight: 700; color: var(--dark); padding: 0 22px 14px; border-bottom: 1px solid #eee; }
-    .lang-option { display: flex; align-items: center; justify-content: space-between; padding: 14px 22px; cursor: pointer; transition: background 0.12s; border: none; background: none; width: 100%; }
+    .lang-sheet.open { transform: translateY(0); }
+    .sheet-handle { width: 40px; height: 4px; background: #ddd; border-radius: 2px; margin: 14px auto 0; }
+    .sheet-header { padding: 16px 22px 12px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .sheet-title { font-family: 'Asul', sans-serif; font-size: 1rem; font-weight: 700; color: var(--dark); }
+    .sheet-close { background: none; border: none; font-size: 1.4rem; color: #aaa; cursor: pointer; padding: 4px; line-height: 1; }
+    .lang-option {
+      display: flex; align-items: center; gap: 13px; padding: 14px 22px;
+      cursor: pointer; border-bottom: 1px solid var(--border); transition: background 0.15s;
+    }
     .lang-option:hover { background: var(--bg-light); }
-    .lang-option.active { background: #edf8fc; }
-    .lang-left { display: flex; align-items: center; gap: 12px; }
-    .lang-flag { font-size: 1.4rem; }
+    .lang-option.active { background: var(--accent-faint); }
+    .lang-flag { font-size: 1.4rem; flex-shrink: 0; }
     .lang-name { font-size: 0.95rem; font-weight: 600; color: var(--dark); }
-    .lang-native { font-size: 0.78rem; color: #888; display: block; }
-    .lang-check { color: var(--accent); font-weight: 700; font-size: 1.1rem; }
-    .sheet-divider { border: none; border-top: 1px solid #eee; margin: 8px 0; }
-    .request-toggle { display: flex; align-items: center; gap: 10px; padding: 14px 22px; cursor: pointer; color: #666; font-size: 0.88rem; background: none; border: none; width: 100%; font-family: 'Asap', sans-serif; }
-    .request-toggle:hover { color: var(--accent); }
-    .req-wrap { padding: 0 22px; display: none; }
-    .req-wrap.open { display: block; }
-    .req-form { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
-    .req-form label { font-size: 0.78rem; font-weight: 600; color: #555; margin-bottom: 3px; display: block; }
-    .req-form select, .req-form input { width: 100%; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 7px; font-size: 0.9rem; font-family: 'Asap', sans-serif; outline: none; transition: border-color 0.15s; background: white; }
-    .req-form select:focus, .req-form input:focus { border-color: var(--accent); }
-    .req-submit { background: var(--accent); color: white; border: none; border-radius: 100px; padding: 11px; font-family: 'Asap', sans-serif; font-size: 0.9rem; font-weight: 700; cursor: pointer; margin-top: 4px; transition: opacity 0.15s; }
-    .req-submit:hover { opacity: 0.88; }
-    .req-success { color: #2a9d5c; font-size: 0.88rem; font-weight: 600; text-align: center; padding: 8px; display: none; }
+    .lang-native { font-size: 0.8rem; color: var(--text-muted); }
+    .lang-check { margin-left: auto; color: var(--accent); font-size: 1.1rem; opacity: 0; }
+    .lang-option.active .lang-check { opacity: 1; }
+    .request-section { padding: 18px 22px; border-top: 2px dashed var(--border); margin-top: 4px; }
+    .request-toggle { background: none; border: 1.5px solid var(--border); border-radius: 8px; padding: 11px 18px; width: 100%; text-align: left; cursor: pointer; font-family: 'Asap', sans-serif; font-size: 0.88rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+    .request-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .request-form { display: none; margin-top: 14px; }
+    .request-form.open { display: block; }
+    .req-field { margin-bottom: 12px; }
+    .req-label { font-size: 0.8rem; font-weight: 600; color: var(--dark); margin-bottom: 5px; display: block; }
+    .req-input, .req-select { width: 100%; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 6px; font-family: 'Asap', sans-serif; font-size: 0.9rem; color: var(--text); background: white; }
+    .req-input:focus, .req-select:focus { outline: none; border-color: var(--accent); }
+    .req-submit { background: var(--accent); color: white; border: none; border-radius: 6px; padding: 10px 24px; font-family: 'Asap', sans-serif; font-size: 0.9rem; font-weight: 700; cursor: pointer; width: 100%; margin-top: 4px; }
+    .req-submit:hover { background: #1fa5c4; }
+    .req-success { background: #e8f7fb; border: 1.5px solid var(--accent); border-radius: 6px; padding: 12px 16px; font-size: 0.88rem; color: var(--dark); text-align: center; display: none; margin-top: 10px; }
 
     /* ── FOOTER ── */
-    .site-footer { background: var(--xdark); color: rgba(255,255,255,0.4); text-align: center; padding: 28px 24px; font-size: 0.78rem; line-height: 1.8; }
-    .site-footer a { color: var(--accent); text-decoration: none; }
-    .site-footer strong { color: rgba(255,255,255,0.7); }
+    .footer { background: var(--xdark); color: rgba(255,255,255,0.4); text-align: center; padding: 28px 24px; font-size: 0.78rem; line-height: 1.8; }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer strong { color: rgba(255,255,255,0.7); }
 
+    /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .site-header { padding: 12px 16px; }
-      .header-sub { display: none; }
-      .hero { padding: 36px 16px 32px; }
-      .content-wrapper { padding: 28px 16px 60px; }
+      .hero { padding: 36px 18px 32px; }
+      .content-wrap { padding: 28px 16px 60px; }
+      .lang-tabs-wrap { padding: 0 16px; }
+      .lang-tab { padding: 12px 14px; font-size: 0.78rem; }
+      .big-idea-text { font-size: 1rem; }
     }
   </style>
 </head>
@@ -169,586 +220,603 @@
   </div>
   <div class="header-right">
     <a href="archive.html" class="archive-link">← Sermon Archive</a>
-    <button class="lang-btn" id="lang-btn" onclick="openSheet()">🌐 <span id="lang-btn-label">Language</span></button>
+    <button class="lang-btn" onclick="openSheet()">🌐 Language</button>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <span class="hero-eyebrow">James — Week 5 · Sermon Listening Aid</span>
-  <h1 class="hero-title">The Untameable Fire</h1>
-  <div class="hero-scripture">James 3:1–12</div>
-  <div class="hero-date">April 26, 2026 · Todd Blackhurst · Taichung International Fellowship</div>
+  <span class="hero-eyebrow">James — Week 6 · May 3, 2026</span>
+  <h1 class="hero-title" id="hero-title">Wisdom from Above</h1>
+  <p class="hero-scripture" id="hero-scripture">James 3:13–18</p>
+  <p class="hero-meta">Todd Blackhurst · Taichung International Fellowship</p>
   <div class="hero-divider"></div>
 </section>
 
-<!-- ════ ENGLISH ════ -->
-<div class="content-wrapper">
-<article class="lang-section visible" id="content-en">
-
-  <div class="big-idea">
-    <div class="section-label">Big Idea</div>
-    <div class="big-idea-text">Your tongue reveals what's inside you — and only Jesus can change what's inside.</div>
+<!-- LANGUAGE TABS -->
+<div class="lang-tabs-wrap">
+  <div class="lang-tabs">
+    <button class="lang-tab active" onclick="setLang('en', this)">🇺🇸 English</button>
+    <button class="lang-tab" onclick="setLang('zh', this)">🇹🇼 繁體中文</button>
+    <button class="lang-tab" onclick="setLang('id', this)">🇮🇩 Bahasa Indonesia</button>
+    <button class="lang-tab" onclick="setLang('ko', this)">🇰🇷 한국어</button>
   </div>
+</div>
 
-  <div class="scripture-block">
-    <div class="section-label">Scripture</div>
-    <div class="scripture-ref">James 3:1–12</div>
-    Key verse: "No one can tame the tongue. It is a restless evil, full of deadly poison." — v. 8
-  </div>
+<!-- ═══════════════════════════════════════════ -->
+<!--  CONTENT: ENGLISH                          -->
+<!-- ═══════════════════════════════════════════ -->
+<main class="content-wrap">
+<article id="content-en" class="lang-content active">
 
-  <div class="flow-block">
-    <div class="section-label">Sermon Flow</div>
-    <div class="movement">
-      <div class="movement-header">1. Words Have Power — James 3:1–2</div>
-      <div class="movement-body"><ul>
-        <li>Teachers face stricter judgment — words carry the most weight and broadest influence</li>
-        <li><em>"We all stumble in many ways"</em> — James includes himself; this is a letter from someone who knows</li>
-        <li>Mastery of the tongue = spiritual maturity; it is often <strong>the last thing</strong> to submit to Christ's rule</li>
-        <li>We think our hardest battle is patience or pride — James says: watch your mouth. It all shows up there eventually.</li>
-      </ul></div>
-    </div>
-    <div class="movement">
-      <div class="movement-header">2. Small Thing, Enormous Consequences — James 3:3–6</div>
-      <div class="movement-body"><ul>
-        <li>Three images that escalate: bit (horse) → rudder (ship) → fire (forest)</li>
-        <li>Bit and rudder are tools of <em>control</em>. Fire is different — it either stays contained or <strong>consumes everything</strong>.</li>
-        <li>The tongue is a fire — not just a tool, but a weapon</li>
-        <li>Root: our words protect our <strong>idols</strong>. The 7-11 moment — a desire for respect turned into a demand, and the mouth became a weapon.</li>
-        <li>Our problem is not what happens <em>to</em> us — it's what happens <em>in</em> us.</li>
-      </ul></div>
-    </div>
-    <div class="movement">
-      <div class="movement-header">3. The Contradiction That Diagnoses Us — James 3:7–12</div>
-      <div class="movement-body"><ul>
-        <li>Every animal can be tamed — but no one can tame the tongue. It is a restless evil, full of deadly poison.</li>
-        <li>Same mouth: blesses God AND curses people made in His image. James says: <em>this ought not to be.</em></li>
-        <li>A spring doesn't produce both fresh and salt water. We are the only thing in creation that acts against its own nature.</li>
-        <li><strong>Ask yourself: what is your tongue protecting?</strong> That is your idol.</li>
-      </ul></div>
-    </div>
-    <div class="movement">
-      <div class="movement-header">4. The Answer: Jesus — Matt. 26; Isa. 53</div>
-      <div class="movement-body"><ul>
-        <li>Jesus — who spoke the cosmos into existence — could have called twelve legions of angels. <strong>He chose silence.</strong></li>
-        <li>At his trial: false witnesses, screaming crowd, sarcasm with surgical precision. He said almost nothing.</li>
-        <li><em>"Like a sheep led to slaughter… he did not open his mouth."</em> — Isaiah 53</li>
-        <li>Our words bring death to others <em>to save ourselves.</em> Jesus did the exact opposite — his silence brought life to us.</li>
-        <li>He wasn't just a model — he was a <strong>substitute</strong>. (Galatians 3:13: <em>"Christ became a curse for us."</em>)</li>
-        <li>The Spirit has been taming tongues through the cross for two thousand years — not by willpower, by love.</li>
-      </ul></div>
-    </div>
-    <div class="movement">
-      <div class="movement-header">5. Grace on Monday Morning</div>
-      <div class="movement-body"><ul>
-        <li>The idol has been dethroned — you don't have to feed its demands anymore</li>
-        <li>You are fully loved, fully seen, fully accepted — so what are you still protecting?</li>
-        <li>Back at the 7-11: instead of a weapon, you actually <em>see</em> the person in front of you — also exhausted, also made in God's image</li>
-        <li>A tamed tongue doesn't come from trying harder — it comes from <strong>receiving more deeply.</strong></li>
-      </ul></div>
+  <div class="la-section">
+    <div class="la-section-title">Big Idea</div>
+    <div class="big-idea-box">
+      <div class="big-idea-label">This Week's Central Truth</div>
+      <div class="big-idea-text">The wisdom the world trains you to want is the wisdom that tears everything apart — the wisdom that actually builds anything is a gift you receive, not one you manufacture.</div>
     </div>
   </div>
 
-  <div class="section-label">Key Words</div>
-  <div class="keywords">
-    <div class="kw-item"><div class="kw-term">Idol</div><div class="kw-def">Not a statue — whatever you've decided you <em>must</em> have to feel okay. When threatened, the tongue defends it.</div></div>
-    <div class="kw-item"><div class="kw-term">Substitute</div><div class="kw-def">Jesus didn't just model composure — He stood in our place and absorbed the curse our words carry.</div></div>
-    <div class="kw-item"><div class="kw-term">Sanctification</div><div class="kw-def">The ongoing process of becoming more like Christ. James says speech is the last frontier.</div></div>
+  <div class="la-section">
+    <div class="la-section-title">Scripture</div>
+    <span class="scripture-ref">James 3:13–18 (CSB)</span>
   </div>
 
-  <div class="section-label" style="margin-top:32px;">Anchor Statements</div>
-  <div class="anchors">
-    <div class="anchor">"Our words bring death to other people in order to save ourselves. Jesus did the exact opposite."</div>
-    <div class="anchor">"No one can tame the tongue." — James 3:8 (he was right — but the Spirit can)</div>
-    <div class="anchor">"Christ redeemed us from the curse… by becoming a curse for us." — Galatians 3:13</div>
-    <div class="anchor">"The tongue will be tamed when it knows the love it's been given. The only one who can love us at that depth is Jesus."</div>
+  <div class="la-section">
+    <div class="la-section-title">Sermon Flow</div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-title">Part 1 — The Question That Reframes Everything (3:13)</div>
+      <ul class="flow-list">
+        <li>James asks: Who is truly wise? (echoes Deuteronomy 4:6 — wisdom is visible and communal)</li>
+        <li>Wisdom is not what you know — it is how you live</li>
+        <li>The mark of real wisdom: <em>meekness</em> (prautēs), not confidence or cleverness</li>
+        <li>If your wisdom isn't producing gentleness, you've misidentified what's in your hands</li>
+      </ul>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-title">Part 2 — The Wisdom We Already Have (3:14–16)</div>
+      <ul class="flow-list">
+        <li>Bitter envy (zēlos) and selfish ambition (eritheia): the drive to win, to claim the seat</li>
+        <li>Don't dress these up as "leadership" or "conviction" — don't boast and deny the truth</li>
+        <li>The source traced: earthly → unspiritual → demonic (three layers, each one deeper)</li>
+        <li>The fruit: disorder (akatastasia) and "every evil practice" — same root as the restless tongue (3:8)</li>
+        <li>This is not about obvious villains — it lives inside religious community</li>
+      </ul>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-title">Part 3 — Wisdom from Above (3:17–18)</div>
+      <ul class="flow-list">
+        <li>"The wisdom from above is first pure, then peace-loving, gentle, compliant, full of mercy and good fruits, unwavering, without pretense." (3:17)</li>
+        <li>Starts with <em>purity</em> (hagnē): undivided devotion to God — not peace at any price</li>
+        <li>Everything else flows from that first quality</li>
+        <li>Closing image: a harvest of righteousness, sown in peace by peacemakers</li>
+      </ul>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-title">Gospel Application — Where This Wisdom Actually Comes From</div>
+      <ul class="flow-list">
+        <li>You cannot will your way into this — moralism restrains but does not transform</li>
+        <li>Idols break only through "the expulsive power of a new affection" (Chalmers)</li>
+        <li>Jesus is the Wisdom of God made flesh — he gave up status, honor, and position for us</li>
+        <li>When that truth becomes the foundation of your identity, you stop needing to compete</li>
+        <li>TIF is "natural enemies who love one another for Jesus' sake" — that's the only thing holding it together</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="section-label" style="margin-top:32px;">Listening Cues</div>
-  <div class="cues">
-    <div class="cue"><span class="cue-icon">👂</span><span>Watch the three images escalate — bit, rudder, fire. Notice where the third one changes the category entirely.</span></div>
-    <div class="cue"><span class="cue-icon">👂</span><span>"Set on fire by hell" (v.6) is James's strongest language. Don't rush past it.</span></div>
-    <div class="cue"><span class="cue-icon">👂</span><span>When Todd asks "What is your tongue protecting?" — actually stop and think about it.</span></div>
-    <div class="cue"><span class="cue-icon">👂</span><span>Listen for the shift when Jesus enters — the solution is <em>not</em> "try harder." This is the hinge.</span></div>
-    <div class="cue"><span class="cue-icon">👂</span><span>The 7-11 story appears twice. Listen for what changes between the two versions.</span></div>
+  <div class="la-section">
+    <div class="la-section-title">Key Words</div>
+    <ul class="keyword-list">
+      <li><span class="keyword-term">Meekness (prautēs) — </span><span class="keyword-def">Not weakness: strength under control. The texture of wisdom-shaped character.</span></li>
+      <li><span class="keyword-term">Bitter envy (zēlos) — </span><span class="keyword-def">Fierce competitive jealousy that wants someone else's seat, not just their success.</span></li>
+      <li><span class="keyword-term">Selfish ambition (eritheia) — </span><span class="keyword-def">Self-promotion at the community's expense. "Look out for number one."</span></li>
+      <li><span class="keyword-term">Disorder (akatastasia) — </span><span class="keyword-def">The restless chaos flowing from rivalry. Same root James used for the tongue (3:8).</span></li>
+      <li><span class="keyword-term">Pure (hagnē) — </span><span class="keyword-def">Undivided, wholehearted devotion to God. The root from which all other wisdom-virtues grow.</span></li>
+    </ul>
   </div>
 
-  <div class="app-block" style="margin-top:32px;">
-    <div class="section-label">Application Focus</div>
-    <div class="app-title">Take This With You</div>
+  <div class="la-section">
+    <div class="la-section-title">Anchor Statements</div>
+    <ul class="anchor-list">
+      <li>"If your so-called wisdom is not producing meekness, you have misidentified the thing in your hands."</li>
+      <li>"Earthly. Unspiritual. Demonic." — James 3:15</li>
+      <li>"You can't destroy a strong desire by willpower. You can only displace it with something stronger."</li>
+      <li>"You don't have to compete for it. You can't lose it."</li>
+    </ul>
+  </div>
+
+  <div class="la-section">
+    <div class="la-section-title">Listening Cues</div>
+    <ul class="cue-list">
+      <li>Watch how James moves from describing wisdom to diagnosing what's already in the room</li>
+      <li>Notice the three descending words in verse 15 — each one peels back another layer</li>
+      <li>This is the turning point: "But" in verse 17 flips the entire frame</li>
+      <li>Listen for how the gospel connects Christ's meekness to your freedom from competition</li>
+      <li>The closing harvest image is slow and patient — what does that say about how community actually changes?</li>
+    </ul>
+  </div>
+
+  <div class="la-section">
+    <div class="la-section-title">Application Focus</div>
     <ul class="app-list">
-      <li>Think about the last time you hurt someone with words. What idol were those words protecting? Name it — don't stop at "I was just angry."</li>
-      <li>Sit with Matthew 26 this week. Jesus had every right to speak and chose silence — for you. Let the weight of that land before you do anything with it.</li>
-      <li>Find one relationship this week where your tongue is being used as a weapon. Bring that specific thing to the cross — not as a technique, but as someone who knows the debt is already paid.</li>
+      <li><span class="app-num">1</span>Where in your life does rivalry or selfish ambition show up dressed as "leadership" or "conviction"?</li>
+      <li><span class="app-num">2</span>Return to the gospel this week: Jesus gave up his reputation for you. What would change if that were the actual foundation of your daily identity?</li>
+      <li><span class="app-num">3</span>In one specific relationship, what would it look like for you to be a peacemaker this week?</li>
     </ul>
   </div>
 
 </article>
 
-<!-- ════ TRADITIONAL CHINESE ════ -->
-<article class="lang-section" id="content-zh" lang="zh-TW">
+<!-- ═══════════════════════════════════════════ -->
+<!--  CONTENT: TRADITIONAL CHINESE              -->
+<!-- ═══════════════════════════════════════════ -->
+<article id="content-zh" class="lang-content">
 
-  <div class="big-idea">
-    <div class="section-label">核心信息</div>
-    <div class="big-idea-text">你的口舌顯明你內心的狀態——唯有耶穌能改變你的內心。</div>
-  </div>
-
-  <div class="scripture-block">
-    <div class="section-label">主要經文</div>
-    <div class="scripture-ref">雅各書 3:1–12</div>
-    關鍵節：「沒有人能制伏舌頭，它是不能制伏的惡物，滿了能死人的毒氣。」——第 8 節
-  </div>
-
-  <div class="flow-block">
-    <div class="section-label">講道脈絡</div>
-    <div class="movement">
-      <div class="movement-header">一、言語的力量 — 雅各書 3:1–2</div>
-      <div class="movement-body"><ul>
-        <li>教師將受更嚴格的審判——言語份量最重、影響最廣</li>
-        <li><em>「我們在許多事上都有過失」</em>——雅各將自己也包括在內；這是一封來自過來人的信</li>
-        <li>掌管舌頭 (shé tou) = 屬靈的成熟 (chéng shú)；舌頭往往是<strong>最後一樣</strong>臣服於基督主權的</li>
-        <li>我們以為最難的功課是忍耐或驕傲——雅各說：先管好你的嘴。最終所有問題都從那裡流露。</li>
-      </ul></div>
-    </div>
-    <div class="movement">
-      <div class="movement-header">二、微小之物，巨大後果 — 雅各書 3:3–6</div>
-      <div class="movement-body"><ul>
-        <li>三個層層遞進的比喻：嚼環（馬）→ 舵（船）→ 火（森林）</li>
-        <li>嚼環和舵是「控制」的工具——火截然不同：要麼被抑制，要麼<strong>吞噬一切</strong></li>
-        <li>舌頭是一把火——不只是工具，更是武器</li>
-        <li>根源：我們用言語保護自己內心的<strong>偶像</strong> (ǒu xiàng)。7-11 的時刻——對尊重的渴望變成強求，嘴巴成了武器。</li>
-        <li>我們的問題不是來自外部發生的事——而是來自<em>內心</em>發生的事。</li>
-      </ul></div>
-    </div>
-    <div class="movement">
-      <div class="movement-header">三、揭露我們矛盾的診斷 — 雅各書 3:7–12</div>
-      <div class="movement-body"><ul>
-        <li>各種動物都能被馴服——但沒有人能制伏舌頭。它是不能制伏的惡物，滿了能死人的毒氣。</li>
-        <li>同一張口：頌讚上帝，也咒罵按照祂形象造的人——雅各說：<em>這本不應當是這樣。</em></li>
-        <li>泉源不能從同一個地方湧出甜水和苦水。我們是受造物中唯一悖逆自身本性而行的。</li>
-        <li><strong>問問自己：你的舌頭在保護什麼？</strong>那個東西，就是你的偶像 (ǒu xiàng)。</li>
-      </ul></div>
-    </div>
-    <div class="movement">
-      <div class="movement-header">四、答案：耶穌 — 太 26章；賽 53章</div>
-      <div class="movement-body"><ul>
-        <li>耶穌——那位用話語創造宇宙的主——本可呼叫十二營天使。<strong>祂選擇了沉默。</strong></li>
-        <li>在他的審判中：假見證人、呼喊的人群、帶著外科手術般精準的諷刺——祂幾乎保持完全的沉默</li>
-        <li><em>「他像羊被牽到宰殺之地……他也不開口。」</em>——以賽亞書 53 章</li>
-        <li>我們的話語<em>為了救自己</em>而殺傷他人；耶穌做了截然相反的事——祂的沉默為我們帶來生命</li>
-        <li>祂不只是一個榜樣——祂是我們的<strong>代替者</strong> (dài tì zhě)。（加拉太書 3:13：<em>「基督替我們受了咒詛。」</em>）</li>
-        <li>兩千年來，聖靈 (Shèng Líng) 藉著十字架的能力馴服人的舌頭——不是靠意志力，而是靠愛 (ài)。</li>
-      </ul></div>
-    </div>
-    <div class="movement">
-      <div class="movement-header">五、週一早晨的恩典 (ēn diǎn)</div>
-      <div class="movement-body"><ul>
-        <li>偶像已被廢掉——你不必再餵養它的需求</li>
-        <li>你是完全被愛的、被看見的、被接納的——那你還在保護什麼？</li>
-        <li>回到 7-11：武器消失了，你真的<em>看見</em>了面前那個人——同樣疲憊、同樣按神的形象受造</li>
-        <li>被馴服的舌頭不靠更努力——而靠<strong>更深地領受愛。</strong></li>
-      </ul></div>
+  <div class="la-section">
+    <div class="la-section-title">核心信息</div>
+    <div class="big-idea-box">
+      <div class="big-idea-label">本週核心真理</div>
+      <div class="big-idea-text">世界所訓練我們追求的智慧，正是撕裂一切的智慧；而真正能建造一切的智慧，是領受的恩賜 (ēn cì)，不是自己製造的。</div>
     </div>
   </div>
 
-  <div class="section-label">關鍵詞語</div>
-  <div class="keywords">
-    <div class="kw-item"><div class="kw-term">偶像 (ǒu xiàng)</div><div class="kw-def">不是雕像——而是你認定自己「必須擁有才能平安」的任何東西。當它受到威脅，舌頭便成為保護它的武器。</div></div>
-    <div class="kw-item"><div class="kw-term">代替者 (dài tì zhě)</div><div class="kw-def">耶穌不只示範了如何在壓力下保持沉默——祂站在我們的位置，承擔了我們話語所帶的咒詛。</div></div>
-    <div class="kw-item"><div class="kw-term">成聖 (chéng shèng)</div><div class="kw-def">逐漸變得更像基督的持續過程。雅各說言語是其中最後的疆界。</div></div>
+  <div class="la-section">
+    <div class="la-section-title">經文</div>
+    <span class="scripture-ref">雅各書 (Yǎ gè shū) 3:13–18</span>
   </div>
 
-  <div class="section-label" style="margin-top:32px;">記憶金句</div>
-  <div class="anchors">
-    <div class="anchor">「我們的言語將死亡帶給別人，以求自保。耶穌做了完全相反的事。」</div>
-    <div class="anchor">「沒有人能制伏舌頭。」——雅各書 3:8（雅各說得對——但聖靈能）</div>
-    <div class="anchor">「基督既為我們受了咒詛，就贖出我們脫離律法的咒詛。」——加拉太書 3:13</div>
-    <div class="anchor">「舌頭將在認知自己所蒙之愛時得到馴服。唯有耶穌能以那樣的深度愛我們。」</div>
+  <div class="la-section">
+    <div class="la-section-title">講道結構</div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-title">第一部分 ── 重新定義智慧（3:13）</div>
+      <ul class="flow-list">
+        <li>雅各提問：誰是真正有智慧的人？（回應申命記4:6——智慧是可見的、以群體為導向的）</li>
+        <li>智慧不在於你知道什麼，而在於你如何生活</li>
+        <li>真智慧的記號是溫柔 (wēn róu)（prautēs），而非自信或聰明</li>
+        <li>若你的智慧沒有產生溫柔，你拿在手中的並非真智慧</li>
+      </ul>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-title">第二部分 ── 我們已有的智慧（3:14–16）</div>
+      <ul class="flow-list">
+        <li>嫉妒 (jí dù)（zēlos）與私慾 (sī yù)（eritheia）：想贏、想搶位置的競爭驅動力</li>
+        <li>不要將這些美化為「領導力」或「使命感」——雅各說：不要誇口，否定真理</li>
+        <li>追溯根源：屬地的 → 屬血氣的 → 屬魔鬼的（三層遞進，一層比一層深）</li>
+        <li>結果：混亂 (hùn luàn)（akatastasia）與「各樣的壞事」——與第8節「舌頭」同一詞根</li>
+        <li>這不是關於明顯的惡人——這存在於宗教群體之內</li>
+      </ul>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-title">第三部分 ── 從上頭來的智慧（3:17–18）</div>
+      <ul class="flow-list">
+        <li>「惟獨從上頭來的智慧，先是清潔，後是和平，溫良柔順，滿有憐憫，多結善果，沒有偏見，沒有假冒。」（3:17）</li>
+        <li>以純潔 (chún jié)（hagnē）為首：對神全心委身 (wěi shēn)，而非不惜一切換取和平</li>
+        <li>一切其他的品質都由此而流出</li>
+        <li>結尾意象：行義的果子，由締造和平者在和平中所種</li>
+      </ul>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-title">福音應用 ── 這智慧究竟從哪裡來</div>
+      <ul class="flow-list">
+        <li>你無法靠意志力得著這智慧——道德努力只能約束，無法改變</li>
+        <li>偶像只能藉著「新感情的驅逐力量 (xīn gǎn qíng de qū zhú lì liàng)」（查默斯）被打碎</li>
+        <li>耶穌是道成肉身的神的智慧——祂為我們放棄了地位、榮耀與名聲</li>
+        <li>當這真理成為你身份認同 (shēn fèn rèn tóng) 的根基，你就不再需要競爭了</li>
+        <li>TIF 是「為耶穌緣故而相愛的天然仇敵」——這才是我們凝聚的唯一理由</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="section-label" style="margin-top:32px;">聆聽提示</div>
-  <div class="cues">
-    <div class="cue"><span class="cue-icon">👂</span><span>留意三個比喻如何層層遞進——嚼環、舵、火。注意第三個完全改變了類別。</span></div>
-    <div class="cue"><span class="cue-icon">👂</span><span>「被地獄的火點著」（第 6 節）是雅各在這段中最強烈的語言——不要匆匆略過。</span></div>
-    <div class="cue"><span class="cue-icon">👂</span><span>當 Todd 問「你的舌頭在保護什麼？」——請真正停下來思考。</span></div>
-    <div class="cue"><span class="cue-icon">👂</span><span>留意耶穌進入講道的轉折——解決方案<em>不是</em>「更努力嘗試」。這是關鍵。</span></div>
-    <div class="cue"><span class="cue-icon">👂</span><span>7-11 的故事出現兩次——聆聽兩次敘述之間，是什麼發生了改變。</span></div>
+  <div class="la-section">
+    <div class="la-section-title">關鍵詞</div>
+    <ul class="keyword-list">
+      <li><span class="keyword-term">溫柔 (wēn róu)（prautēs）── </span><span class="keyword-def">不是軟弱，而是力量下的控制。智慧品格的質地。</span></li>
+      <li><span class="keyword-term">嫉妒 (jí dù)（zēlos）── </span><span class="keyword-def">激烈的競爭性妒忌，想要別人的位置，不只是他們的成功。</span></li>
+      <li><span class="keyword-term">私慾 (sī yù)（eritheia）── </span><span class="keyword-def">以損害群體為代價的自我提升。「只顧自己」。</span></li>
+      <li><span class="keyword-term">混亂 (hùn luàn)（akatastasia）── </span><span class="keyword-def">源自競爭的不安騷亂。雅各描述「舌頭」（3:8）時用同一詞根。</span></li>
+      <li><span class="keyword-term">純潔 (chún jié)（hagnē）── </span><span class="keyword-def">對神不分裂的委身。所有智慧美德的根源。</span></li>
+    </ul>
   </div>
 
-  <div class="app-block" style="margin-top:32px;">
-    <div class="section-label">應用焦點</div>
-    <div class="app-title">帶著這些離開</div>
+  <div class="la-section">
+    <div class="la-section-title">核心金句</div>
+    <ul class="anchor-list">
+      <li>「若你的智慧沒有產生溫柔，你拿在手中的並非真智慧。」</li>
+      <li>「屬地的。屬血氣的。屬魔鬼的。」——雅各書3:15</li>
+      <li>「你無法靠意志力摧毀強烈的慾望。你只能用更強的東西取而代之。」</li>
+      <li>「你不必為此爭奪，你也無法失去它。」</li>
+    </ul>
+  </div>
+
+  <div class="la-section">
+    <div class="la-section-title">聆聽提示</div>
+    <ul class="cue-list">
+      <li>注意雅各如何從描述智慧，轉向診斷群體中已有的問題</li>
+      <li>留意第15節的三個遞進詞——每一個都揭開更深的一層</li>
+      <li>這是轉折點：第17節的「惟獨」翻轉了整個框架</li>
+      <li>聆聽福音如何把基督的溫柔與我們從競爭中得自由聯繫起來</li>
+      <li>結尾的「收割」意象是緩慢而耐心的——這對群體的改變說明了什麼？</li>
+    </ul>
+  </div>
+
+  <div class="la-section">
+    <div class="la-section-title">應用焦點</div>
     <ul class="app-list">
-      <li>回想上一次你說出令自己後悔的話。那些話在保護什麼偶像？說出它——不要停在「我只是生氣了」。</li>
-      <li>這週默想馬太福音 26 章。耶穌有開口的權利，卻選擇了沉默——為了你。讓這份份量先沉澱下來，然後再思考如何回應。</li>
-      <li>找出本週某段關係——你的舌頭正在其中充當武器或牆壁。帶著這個具體的事，走到十字架面前——不是作為一種方法，而是作為一個知道債已清償之人。</li>
+      <li><span class="app-num">1</span>你生命中哪裡把競爭心或私慾偽裝成「領導力」或「使命感」？</li>
+      <li><span class="app-num">2</span>本週回到福音：耶穌為你捨棄了名聲。若這是你每天身份認同的真正根基，有什麼會改變？</li>
+      <li><span class="app-num">3</span>在某一段具體的關係中，你本週能做什麼來成為締造和平的人？</li>
     </ul>
   </div>
 
 </article>
 
-<!-- ════ BAHASA INDONESIA ════ -->
-<article class="lang-section" id="content-id" lang="id">
+<!-- ═══════════════════════════════════════════ -->
+<!--  CONTENT: BAHASA INDONESIA                 -->
+<!-- ═══════════════════════════════════════════ -->
+<article id="content-id" class="lang-content">
 
-  <div class="big-idea">
-    <div class="section-label">Inti Pesan</div>
-    <div class="big-idea-text">Lidahmu mencerminkan apa yang ada di dalam hatimu — dan hanya Yesus yang bisa mengubah apa yang ada di dalam.</div>
-  </div>
-
-  <div class="scripture-block">
-    <div class="section-label">Bacaan Utama</div>
-    <div class="scripture-ref">Yakobus 3:1–12</div>
-    Ayat kunci: "Tetapi tidak seorang pun yang berkuasa menjinakkan lidah; ia adalah sesuatu yang buas, yang tak terkuasai, penuh racun yang mematikan." — ayat 8
-  </div>
-
-  <div class="flow-block">
-    <div class="section-label">Alur Khotbah</div>
-    <div class="movement">
-      <div class="movement-header">1. Kata-kata Memiliki Kekuatan — Yakobus 3:1–2</div>
-      <div class="movement-body"><ul>
-        <li>Para pengajar akan dihakimi lebih ketat — kata-kata mereka paling berbobot dan paling luas pengaruhnya</li>
-        <li><em>"Kita semua bersalah dalam banyak hal"</em> — Yakobus memasukkan dirinya sendiri; ini surat dari orang yang tahu dari pengalaman</li>
-        <li>Menguasai lidah = kedewasaan rohani; lidah sering <strong>paling terakhir</strong> tunduk pada otoritas Kristus</li>
-        <li>Kita pikir pergumulan terberat adalah kesabaran atau kesombongan — Yakobus berkata: perhatikan mulutmu. Segalanya muncul di sana pada akhirnya.</li>
-      </ul></div>
-    </div>
-    <div class="movement">
-      <div class="movement-header">2. Hal Kecil, Akibat Luar Biasa — Yakobus 3:3–6</div>
-      <div class="movement-body"><ul>
-        <li>Tiga gambaran yang semakin meningkat: kekang (kuda) → kemudi (kapal) → api (hutan)</li>
-        <li>Kekang dan kemudi adalah alat <em>kendali</em>. Api berbeda — terkendali, atau <strong>membakar segalanya</strong>.</li>
-        <li>Lidah adalah api — bukan sekadar alat, tetapi senjata</li>
-        <li>Akar masalah: kita gunakan kata-kata untuk melindungi <strong>berhala</strong> kita. Momen 7-11 — keinginan akan penghargaan berubah menjadi tuntutan, mulut jadi senjata.</li>
-        <li>Masalah kita bukan apa yang terjadi <em>pada</em> kita — melainkan apa yang terjadi <em>di dalam</em> kita.</li>
-      </ul></div>
-    </div>
-    <div class="movement">
-      <div class="movement-header">3. Kontradiksi yang Mendiagnosis Kita — Yakobus 3:7–12</div>
-      <div class="movement-body"><ul>
-        <li>Semua hewan bisa dijinakkan — namun tidak ada yang bisa menjinakkan lidah. Ia buas, tak terkuasai, penuh racun mematikan.</li>
-        <li>Mulut yang sama: memuji Allah DAN mengutuk manusia yang diciptakan menurut gambar-Nya. Yakobus berkata: <em>hal ini seharusnya tidak terjadi.</em></li>
-        <li>Sumber tidak mengeluarkan air tawar dan pahit dari lubang yang sama. Kita satu-satunya ciptaan yang bertindak berlawanan dengan sifat kita sendiri.</li>
-        <li><strong>Tanyakan pada dirimu: apa yang dilindungi lidahmu?</strong> Itulah berhalamu.</li>
-      </ul></div>
-    </div>
-    <div class="movement">
-      <div class="movement-header">4. Jawabannya: Yesus — Mat. 26; Yes. 53</div>
-      <div class="movement-body"><ul>
-        <li>Yesus — yang menciptakan alam semesta dengan firman-Nya — bisa memanggil dua belas legiun malaikat. <strong>Ia memilih diam.</strong></li>
-        <li>Di pengadilan-Nya: saksi-saksi palsu, kerumunan berteriak, ejekan setajam pisau bedah. Ia hampir sepenuhnya diam.</li>
-        <li><em>"Seperti domba yang dibawa ke tempat pembantaian… ia tidak membuka mulutnya."</em> — Yesaya 53</li>
-        <li>Kata-kata kita mendatangkan kematian bagi orang lain <em>untuk menyelamatkan diri kita.</em> Yesus melakukan kebalikannya — Diam-Nya membawa kehidupan bagi kita.</li>
-        <li>Ia bukan sekadar teladan — Ia adalah <strong>pengganti</strong> kita. (Galatia 3:13: <em>"Kristus menjadi kutuk karena kita."</em>)</li>
-        <li>Selama dua ribu tahun Roh Kudus telah menjinakkan lidah melalui kuasa salib — bukan dengan tekad, tapi dengan kasih.</li>
-      </ul></div>
-    </div>
-    <div class="movement">
-      <div class="movement-header">5. Kasih Karunia di Senin Pagi</div>
-      <div class="movement-body"><ul>
-        <li>Berhala sudah digulingkan — kamu tidak perlu lagi memberi makan tuntutannya</li>
-        <li>Kamu sepenuhnya dikasihi, dilihat, dan diterima — lalu apa yang masih kamu lindungi?</li>
-        <li>Kembali ke 7-11: alih-alih senjata, kamu benar-benar <em>melihat</em> orang di depanmu — juga kelelahan, juga dicipta menurut gambar Allah</li>
-        <li>Lidah yang dijinakkan bukan dari usaha yang lebih keras — melainkan dari <strong>menerima kasih yang lebih dalam.</strong></li>
-      </ul></div>
+  <div class="la-section">
+    <div class="la-section-title">Ide Utama</div>
+    <div class="big-idea-box">
+      <div class="big-idea-label">Kebenaran Inti Minggu Ini</div>
+      <div class="big-idea-text">Hikmat yang dunia ajari kita untuk kejar justru menghancurkan segalanya — hikmat yang benar-benar membangun adalah hadiah yang kita terima, bukan yang kita buat sendiri.</div>
     </div>
   </div>
 
-  <div class="section-label">Kata-Kata Kunci</div>
-  <div class="keywords">
-    <div class="kw-item"><div class="kw-term">Berhala</div><div class="kw-def">Bukan patung — apa pun yang kamu putuskan <em>harus</em> kamu miliki agar merasa baik-baik saja. Ketika terancam, lidah menjadi senjata untuk mempertahankannya.</div></div>
-    <div class="kw-item"><div class="kw-term">Pengganti</div><div class="kw-def">Yesus bukan hanya menunjukkan cara tetap tenang — Ia berdiri di tempat kita dan menyerap kutuk yang dibawa kata-kata kita.</div></div>
-    <div class="kw-item"><div class="kw-term">Pengudusan</div><div class="kw-def">Proses yang berkelanjutan bertumbuh semakin serupa Kristus. Yakobus berkata perkataan adalah garis terdepannya.</div></div>
+  <div class="la-section">
+    <div class="la-section-title">Ayat Kitab Suci</div>
+    <span class="scripture-ref">Yakobus 3:13–18 (CSB)</span>
   </div>
 
-  <div class="section-label" style="margin-top:32px;">Kalimat Pegangan</div>
-  <div class="anchors">
-    <div class="anchor">"Kata-kata kita mendatangkan kematian bagi orang lain demi menyelamatkan diri kita. Yesus melakukan kebalikannya."</div>
-    <div class="anchor">"Tidak ada seorang pun yang dapat menjinakkan lidah." — Yakobus 3:8 (benar — tapi Roh Kudus bisa)</div>
-    <div class="anchor">"Kristus telah menebus kita dari kutuk dengan jalan menjadi kutuk karena kita." — Galatia 3:13</div>
-    <div class="anchor">"Lidah akan dijinakkan ketika ia mengenal kasih yang telah diterimanya. Satu-satunya yang bisa mengasihi kita sedalam itu adalah Yesus."</div>
+  <div class="la-section">
+    <div class="la-section-title">Alur Khotbah</div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-title">Bagian 1 ── Pertanyaan yang Mendefinisikan Ulang Segalanya (3:13)</div>
+      <ul class="flow-list">
+        <li>Yakobus bertanya: Siapa yang benar-benar bijaksana? (menggemakan Ulangan 4:6 — hikmat itu nyata dan berorientasi komunitas)</li>
+        <li>Hikmat bukan tentang apa yang kamu tahu — melainkan bagaimana kamu hidup</li>
+        <li>Tanda hikmat sejati: kelembutan (prautēs), bukan kepercayaan diri atau kecerdikan</li>
+        <li>Jika "hikmatmu" tidak menghasilkan kelembutan, kamu salah mengenali apa yang ada di tanganmu</li>
+      </ul>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-title">Bagian 2 ── Hikmat yang Sudah Ada dalam Kita (3:14–16)</div>
+      <ul class="flow-list">
+        <li>Iri hati yang pahit (zēlos) dan ambisi diri (eritheia): dorongan untuk menang, untuk mengambil tempat</li>
+        <li>Jangan samakan ini dengan "kepemimpinan" atau "keyakinan" — jangan menyombongkan diri dan menyangkal kebenaran</li>
+        <li>Sumber dilacak: duniawi → alamiah/tanpa roh → dari setan (tiga lapisan, semakin dalam)</li>
+        <li>Buahnya: kekacauan (akatastasia) dan "segala perbuatan jahat" — akar kata sama dengan "lidah" yang gelisah (3:8)</li>
+        <li>Ini bukan tentang orang-orang yang jelas jahat — ini hidup di dalam komunitas religius</li>
+      </ul>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-title">Bagian 3 ── Hikmat dari Atas (3:17–18)</div>
+      <ul class="flow-list">
+        <li>"Tetapi hikmat yang dari atas pertama-tama murni, selanjutnya cinta damai, lembut, mudah untuk diajak berunding, penuh belas kasih dan buah-buah yang baik, tidak memihak, tidak munafik." (3:17)</li>
+        <li>Dimulai dengan kemurnian (hagnē): pengabdian penuh kepada Allah — bukan damai dengan harga apa pun</li>
+        <li>Semua kualitas lain mengalir dari kualitas pertama ini</li>
+        <li>Gambaran penutup: panen kebenaran, ditaburkan dalam damai oleh para pembuat damai</li>
+      </ul>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-title">Aplikasi Injil ── Dari Mana Hikmat Ini Benar-benar Berasal</div>
+      <ul class="flow-list">
+        <li>Kamu tidak bisa memaksakan dirimu masuk ke dalam hikmat ini — moralisme menahan tapi tidak mengubah</li>
+        <li>Berhala hanya hancur melalui "kuasa pengusiran dari rasa sayang yang baru" (Chalmers)</li>
+        <li>Yesus adalah Hikmat Allah yang menjadi manusia — Ia menyerahkan status, kehormatan, posisi untuk kita</li>
+        <li>Ketika kebenaran itu menjadi fondasi identitasmu, kamu berhenti perlu bersaing</li>
+        <li>TIF adalah "musuh-musuh alami yang saling mengasihi karena Yesus" — itulah satu-satunya yang menyatukan kita</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="section-label" style="margin-top:32px;">Petunjuk Mendengarkan</div>
-  <div class="cues">
-    <div class="cue"><span class="cue-icon">👂</span><span>Perhatikan tiga gambaran yang semakin meningkat — kekang, kemudi, api. Perhatikan di mana yang ketiga mengubah kategorinya sepenuhnya.</span></div>
-    <div class="cue"><span class="cue-icon">👂</span><span>"Dinyalakan oleh api neraka" (ay.6) adalah bahasa paling kuat Yakobus. Jangan lewatkan begitu saja.</span></div>
-    <div class="cue"><span class="cue-icon">👂</span><span>Ketika Todd bertanya "Apa yang dilindungi lidahmu?" — berhentilah sejenak dan benar-benar renungkan.</span></div>
-    <div class="cue"><span class="cue-icon">👂</span><span>Dengarkan peralihan ketika Yesus masuk — solusinya <em>bukan</em> "berusaha lebih keras." Inilah titik baliknya.</span></div>
-    <div class="cue"><span class="cue-icon">👂</span><span>Kisah 7-11 muncul dua kali. Dengarkan apa yang berubah di antara kedua penceritaan itu.</span></div>
+  <div class="la-section">
+    <div class="la-section-title">Kata Kunci</div>
+    <ul class="keyword-list">
+      <li><span class="keyword-term">Kelembutan (prautēs) — </span><span class="keyword-def">Bukan kelemahan: kekuatan yang terkendali. Tekstur karakter yang dibentuk oleh hikmat.</span></li>
+      <li><span class="keyword-term">Iri hati pahit (zēlos) — </span><span class="keyword-def">Kecemburuan kompetitif yang sengit — menginginkan posisi orang lain, bukan hanya kesuksesannya.</span></li>
+      <li><span class="keyword-term">Ambisi diri (eritheia) — </span><span class="keyword-def">Promosi diri dengan mengorbankan komunitas. "Utamakan diri sendiri."</span></li>
+      <li><span class="keyword-term">Kekacauan (akatastasia) — </span><span class="keyword-def">Chaos gelisah yang mengalir dari persaingan. Kata yang sama dipakai untuk "lidah" (3:8).</span></li>
+      <li><span class="keyword-term">Murni (hagnē) — </span><span class="keyword-def">Pengabdian tak terbagi kepada Allah. Akar dari semua kebajikan hikmat lainnya.</span></li>
+    </ul>
   </div>
 
-  <div class="app-block" style="margin-top:32px;">
-    <div class="section-label">Fokus Penerapan</div>
-    <div class="app-title">Bawa Ini Pulang</div>
+  <div class="la-section">
+    <div class="la-section-title">Pernyataan Utama</div>
+    <ul class="anchor-list">
+      <li>"Jika 'hikmatmu' tidak menghasilkan kelembutan, kamu telah salah mengenali apa yang ada di tanganmu."</li>
+      <li>"Duniawi. Alamiah. Dari setan." — Yakobus 3:15</li>
+      <li>"Kamu tidak bisa menghancurkan keinginan yang kuat dengan kemauan keras. Kamu hanya bisa menggantinya dengan sesuatu yang lebih kuat."</li>
+      <li>"Kamu tidak perlu bersaing untuk mendapatkannya. Kamu tidak bisa kehilangannya."</li>
+    </ul>
+  </div>
+
+  <div class="la-section">
+    <div class="la-section-title">Tanda Mendengarkan</div>
+    <ul class="cue-list">
+      <li>Perhatikan bagaimana Yakobus bergerak dari mendeskripsikan hikmat ke mendiagnosa apa yang sudah ada dalam komunitas</li>
+      <li>Perhatikan tiga kata yang semakin dalam di ayat 15 — masing-masing membuka lapisan yang lebih dalam</li>
+      <li>Ini adalah titik balik: "Tetapi" di ayat 17 membalikkan seluruh bingkai</li>
+      <li>Dengarkan bagaimana Injil menghubungkan kelembutan Kristus dengan kebebasan kita dari persaingan</li>
+      <li>Gambaran "panen" di akhir itu lambat dan sabar — apa artinya bagi perubahan komunitas?</li>
+    </ul>
+  </div>
+
+  <div class="la-section">
+    <div class="la-section-title">Fokus Penerapan</div>
     <ul class="app-list">
-      <li>Pikirkan kapan terakhir kali kamu menyakiti seseorang dengan kata-kata. Berhala apa yang dilindungi kata-kata itu? Sebutkan — jangan berhenti di "aku hanya sedang marah."</li>
-      <li>Renungkan Matius 26 minggu ini. Yesus punya hak untuk berbicara namun memilih diam — untukmu. Biarkan beratnya itu mendarat sebelum kamu melakukan apa pun dengannya.</li>
-      <li>Identifikasi satu hubungan minggu ini di mana lidahmu digunakan sebagai senjata. Bawa hal spesifik itu ke salib — bukan sebagai teknik, melainkan sebagai seseorang yang tahu utangnya sudah lunas.</li>
+      <li><span class="app-num">1</span>Di mana dalam hidupmu persaingan atau ambisi diri muncul berpakaian sebagai "kepemimpinan" atau "keyakinan"?</li>
+      <li><span class="app-num">2</span>Kembali ke Injil minggu ini: Yesus menyerahkan reputasi-Nya untukmu. Apa yang akan berubah jika itu benar-benar menjadi fondasi identitasmu setiap hari?</li>
+      <li><span class="app-num">3</span>Dalam satu hubungan yang spesifik, apa yang bisa kamu lakukan minggu ini untuk menjadi pembuat damai?</li>
     </ul>
   </div>
 
 </article>
 
-<!-- ════ KOREAN ════ -->
-<article class="lang-section" id="content-ko" lang="ko">
+<!-- ═══════════════════════════════════════════ -->
+<!--  CONTENT: KOREAN                           -->
+<!-- ═══════════════════════════════════════════ -->
+<article id="content-ko" class="lang-content">
 
-  <div class="big-idea">
-    <div class="section-label">핵심 메시지</div>
-    <div class="big-idea-text">당신의 혀는 당신 내면을 드러냅니다 — 오직 예수님만이 그 내면을 바꾸실 수 있습니다.</div>
-  </div>
-
-  <div class="scripture-block">
-    <div class="section-label">본문 말씀</div>
-    <div class="scripture-ref">야고보서 3:1–12</div>
-    핵심 절: "혀는 능히 길들일 사람이 없나니 쉬지 아니하는 악이요 죽이는 독이 가득한 것이라." — 8절
-  </div>
-
-  <div class="flow-block">
-    <div class="section-label">설교 흐름</div>
-    <div class="movement">
-      <div class="movement-header">1. 말의 힘 — 야고보서 3:1–2</div>
-      <div class="movement-body"><ul>
-        <li>교사들은 더 엄격한 심판을 받습니다 — 그들의 말이 가장 무겁고 넓은 영향력을 지니기 때문</li>
-        <li><em>"우리가 다 실수가 많으니"</em> — 야고보는 자신을 포함합니다; 경험에서 나온 편지</li>
-        <li>혀를 다스리는 것 = 영적 성숙; 혀는 종종 그리스도의 통치에 <strong>가장 마지막으로</strong> 복종합니다</li>
-        <li>가장 어려운 싸움이 인내나 교만이라 생각하지만 — 야고보는 말합니다: 당신의 입을 주의하세요. 결국 모든 것이 거기서 나타납니다.</li>
-      </ul></div>
-    </div>
-    <div class="movement">
-      <div class="movement-header">2. 작은 것, 엄청난 결과 — 야고보서 3:3–6</div>
-      <div class="movement-body"><ul>
-        <li>점점 강해지는 세 가지 이미지: 재갈 (말) → 키 (배) → 불 (숲)</li>
-        <li>재갈과 키는 <em>통제</em>의 도구. 불은 다릅니다 — 억제되거나, <strong>모든 것을 태워버리거나.</strong></li>
-        <li>혀는 불입니다 — 단순한 도구가 아니라 무기</li>
-        <li>뿌리: 우리는 내면의 <strong>우상</strong>을 보호하기 위해 말을 사용합니다. 7-11 순간 — 존중에 대한 욕구가 요구로 변질되고 입이 무기가 됩니다.</li>
-        <li>문제는 우리에게 일어나는 것이 아닙니다 — <em>우리 안에서</em> 일어나는 것입니다.</li>
-      </ul></div>
-    </div>
-    <div class="movement">
-      <div class="movement-header">3. 우리를 진단하는 모순 — 야고보서 3:7–12</div>
-      <div class="movement-body"><ul>
-        <li>모든 동물은 길들여질 수 있지만 — 아무도 혀를 길들일 수 없습니다. 쉬지 않는 악이요 죽이는 독이 가득합니다.</li>
-        <li>같은 입으로: 하나님을 찬양하고 하나님의 형상대로 만들어진 사람들을 저주합니다. 야고보는 말합니다: <em>이것은 이렇게 있어서는 안 됩니다.</em></li>
-        <li>샘에서 단물과 쓴물이 동시에 나올 수 없습니다. 우리는 자신의 본성에 반하여 행동하는 유일한 피조물입니다.</li>
-        <li><strong>스스로에게 물어보세요: 당신의 혀는 무엇을 지키고 있나요?</strong> 그것이 바로 당신의 우상입니다.</li>
-      </ul></div>
-    </div>
-    <div class="movement">
-      <div class="movement-header">4. 해답: 예수님 — 마태복음 26장; 이사야 53장</div>
-      <div class="movement-body"><ul>
-        <li>예수님 — 말씀으로 우주를 창조하신 분 — 열두 군단의 천사를 부를 수 있었습니다. <strong>그분은 침묵을 선택하셨습니다.</strong></li>
-        <li>그분의 재판에서: 거짓 증인들, 소리치는 군중, 외과 수술 같은 조롱. 그분은 거의 완전히 침묵하셨습니다.</li>
-        <li><em>"그가 도살장으로 끌려가는 어린 양 같이… 그 입을 열지 아니하였도다."</em> — 이사야 53장</li>
-        <li>우리의 말은 <em>자신을 구하기 위해</em> 다른 사람들에게 죽음을 가져옵니다. 예수님은 정반대를 하셨습니다 — 그분의 침묵이 우리에게 생명을 가져왔습니다.</li>
-        <li>그분은 단순한 모범이 아니었습니다 — 그분은 우리의 <strong>대속자</strong>이셨습니다. (갈라디아서 3:13: <em>"그리스도께서 우리를 위해 저주를 받으셨습니다."</em>)</li>
-        <li>이천 년 동안 성령께서는 십자가의 능력을 통해 혀를 길들여 오셨습니다 — 의지력이 아닌, 사랑으로.</li>
-      </ul></div>
-    </div>
-    <div class="movement">
-      <div class="movement-header">5. 월요일 아침의 은혜</div>
-      <div class="movement-body"><ul>
-        <li>우상은 이미 무너졌습니다 — 그 요구를 더 이상 채울 필요가 없습니다</li>
-        <li>당신은 완전히 사랑받고, 보살핌을 받고, 받아들여졌습니다 — 그렇다면 무엇을 아직도 보호하려 하나요?</li>
-        <li>다시 7-11으로: 무기 대신, 당신은 눈앞의 사람을 실제로 <em>봅니다</em> — 마찬가지로 지쳐있고, 마찬가지로 하나님의 형상대로 만들어진</li>
-        <li>길들여진 혀는 더 열심히 노력해서가 아니라 — <strong>더 깊이 사랑을 받아들임으로써 옵니다.</strong></li>
-      </ul></div>
+  <div class="la-section">
+    <div class="la-section-title">핵심 메시지</div>
+    <div class="big-idea-box">
+      <div class="big-idea-label">이번 주 핵심 진리</div>
+      <div class="big-idea-text">세상이 우리에게 원하라고 가르치는 지혜는 모든 것을 찢어놓는 지혜입니다 — 실제로 무언가를 세우는 지혜는 우리가 만들어내는 것이 아니라 받는 선물입니다.</div>
     </div>
   </div>
 
-  <div class="section-label">핵심 단어</div>
-  <div class="keywords">
-    <div class="kw-item"><div class="kw-term">우상</div><div class="kw-def">조각상이 아닙니다 — 괜찮다고 느끼기 위해 반드시 가져야 한다고 결정한 것이면 무엇이든. 위협받을 때 혀가 그것을 방어하는 무기가 됩니다.</div></div>
-    <div class="kw-item"><div class="kw-term">대속자</div><div class="kw-def">예수님은 단지 압박 아래에서 침착함을 보여주신 게 아닙니다 — 그분은 우리의 자리에 서서 우리 말이 지닌 저주를 흡수하셨습니다.</div></div>
-    <div class="kw-item"><div class="kw-term">성화</div><div class="kw-def">점점 그리스도를 닮아가는 지속적인 과정. 야고보는 말이 그 마지막 전선이라고 합니다.</div></div>
+  <div class="la-section">
+    <div class="la-section-title">성경 본문</div>
+    <span class="scripture-ref">야고보서 3:13–18 (CSB)</span>
   </div>
 
-  <div class="section-label" style="margin-top:32px;">기억할 말씀</div>
-  <div class="anchors">
-    <div class="anchor">"우리의 말은 자신을 살리기 위해 다른 사람에게 죽음을 가져옵니다. 예수님은 정반대로 하셨습니다."</div>
-    <div class="anchor">"혀를 능히 길들일 사람이 없느니라." — 야고보서 3:8 (맞습니다 — 하지만 성령님은 가능하십니다)</div>
-    <div class="anchor">"그리스도께서 우리를 위하여 저주를 받은 바 되사 율법의 저주에서 우리를 속량하셨으니." — 갈라디아서 3:13</div>
-    <div class="anchor">"혀는 자신이 받은 사랑을 알 때 길들여질 것입니다. 그 깊이로 우리를 사랑할 수 있는 유일한 분은 예수님입니다."</div>
+  <div class="la-section">
+    <div class="la-section-title">설교 흐름</div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-title">1부 ── 모든 것을 재정의하는 질문 (3:13)</div>
+      <ul class="flow-list">
+        <li>야고보가 묻습니다: 진정으로 지혜로운 사람은 누구입니까? (신명기 4:6을 반영 — 지혜는 눈에 보이고 공동체를 향한 것입니다)</li>
+        <li>지혜는 무엇을 아느냐가 아니라 어떻게 사느냐에 관한 것입니다</li>
+        <li>참된 지혜의 표시: 온유함 (prautēs), 자신감이나 영리함이 아닙니다</li>
+        <li>지혜라 부르는 것이 온유함을 낳지 않는다면, 손에 쥔 것을 잘못 파악한 것입니다</li>
+      </ul>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-title">2부 ── 우리 안에 이미 있는 지혜 (3:14–16)</div>
+      <ul class="flow-list">
+        <li>쓴 시기 (zēlos)와 이기적 야망 (eritheia): 이기려는, 자리를 차지하려는 경쟁적 충동</li>
+        <li>"리더십"이나 "확신"으로 포장하지 마십시오 — 야고보가 말합니다: 자랑하지 말고 진리를 부정하지 마십시오</li>
+        <li>근원 추적: 세상적 → 정욕적 → 마귀적 (세 층, 점점 더 깊어집니다)</li>
+        <li>결과: 혼란 (akatastasia)과 "온갖 악한 일" — 불안한 혀 (3:8)와 같은 어근</li>
+        <li>명백한 악인에 관한 이야기가 아닙니다 — 이것은 종교 공동체 안에 살고 있습니다</li>
+      </ul>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-title">3부 ── 위로부터 오는 지혜 (3:17–18)</div>
+      <ul class="flow-list">
+        <li>"오직 위로부터 난 지혜는 첫째 성결하고 다음에 화평하고 관용하고 양순하며 긍휼과 선한 열매가 가득하고 편견과 거짓이 없느니라." (3:17)</li>
+        <li>순결 (hagnē)로 시작합니다: 하나님께 대한 온전한 헌신 — 어떤 댓가로도 평화를 사는 것이 아닙니다</li>
+        <li>다른 모든 것들이 첫 번째 품질에서 흘러나옵니다</li>
+        <li>마지막 이미지: 화평을 이루는 자들이 화평 가운데 심어 거두는 의의 열매</li>
+      </ul>
+    </div>
+
+    <div class="flow-movement">
+      <div class="flow-movement-title">복음 적용 ── 이 지혜가 실제로 어디서 오는가</div>
+      <ul class="flow-list">
+        <li>의지력으로 이 지혜에 들어갈 수 없습니다 — 도덕주의는 억제하지만 변화시키지 못합니다</li>
+        <li>우상은 "새로운 애정의 추방하는 힘" (Chalmers)을 통해서만 깨집니다</li>
+        <li>예수님은 육신이 되신 하나님의 지혜이십니다 — 그분은 우리를 위해 지위, 명예, 자리를 내려놓으셨습니다</li>
+        <li>그 진리가 정체성의 기초가 될 때, 경쟁할 필요가 없어집니다</li>
+        <li>TIF는 "예수님 때문에 서로 사랑하는 천적들" — 이것이 우리를 하나로 묶는 유일한 것입니다</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="section-label" style="margin-top:32px;">경청 포인트</div>
-  <div class="cues">
-    <div class="cue"><span class="cue-icon">👂</span><span>세 이미지가 어떻게 점점 강해지는지 주목하세요 — 재갈, 키, 불. 세 번째가 카테고리 자체를 바꾸는 곳을 주의하세요.</span></div>
-    <div class="cue"><span class="cue-icon">👂</span><span>"지옥 불에 불붙게 한다"(6절) — 야고보의 가장 강한 언어입니다. 서두르지 마세요.</span></div>
-    <div class="cue"><span class="cue-icon">👂</span><span>Todd가 "당신의 혀는 무엇을 보호하고 있나요?"라고 물을 때 — 잠시 멈추고 진지하게 생각해보세요.</span></div>
-    <div class="cue"><span class="cue-icon">👂</span><span>예수님이 등장하는 전환점을 들으세요 — 해결책은 <em>"더 열심히 노력하기"가 아닙니다.</em> 이것이 핵심입니다.</span></div>
-    <div class="cue"><span class="cue-icon">👂</span><span>7-11 이야기는 두 번 나옵니다. 두 버전 사이에 무엇이 바뀌었는지 들어보세요.</span></div>
+  <div class="la-section">
+    <div class="la-section-title">핵심 용어</div>
+    <ul class="keyword-list">
+      <li><span class="keyword-term">온유함 (prautēs) — </span><span class="keyword-def">약함이 아닙니다: 통제된 힘. 지혜로 빚어진 성품의 질감.</span></li>
+      <li><span class="keyword-term">쓴 시기 (zēlos) — </span><span class="keyword-def">격렬한 경쟁적 질투 — 다른 사람의 성공뿐 아니라 그들의 자리까지 원합니다.</span></li>
+      <li><span class="keyword-term">이기적 야망 (eritheia) — </span><span class="keyword-def">공동체를 희생시켜 자신을 앞세우는 것. "자신을 먼저."</span></li>
+      <li><span class="keyword-term">혼란 (akatastasia) — </span><span class="keyword-def">경쟁에서 흘러나오는 불안한 혼돈. 야고보가 혀 (3:8)에도 쓴 같은 어근.</span></li>
+      <li><span class="keyword-term">순결 (hagnē) — </span><span class="keyword-def">하나님께 대한 나뉘지 않은 헌신. 모든 지혜 덕목의 뿌리.</span></li>
+    </ul>
   </div>
 
-  <div class="app-block" style="margin-top:32px;">
-    <div class="section-label">적용 포인트</div>
-    <div class="app-title">이것을 가지고 가세요</div>
+  <div class="la-section">
+    <div class="la-section-title">핵심 문장</div>
+    <ul class="anchor-list">
+      <li>"지혜라 부르는 것이 온유함을 낳지 않는다면, 당신은 손에 쥔 것을 잘못 파악한 것입니다."</li>
+      <li>"세상적. 정욕적. 마귀적." — 야고보서 3:15</li>
+      <li>"강한 욕망은 의지력으로 파괴할 수 없습니다. 더 강한 것으로만 대체할 수 있습니다."</li>
+      <li>"당신은 그것을 위해 경쟁할 필요가 없습니다. 당신은 그것을 잃을 수도 없습니다."</li>
+    </ul>
+  </div>
+
+  <div class="la-section">
+    <div class="la-section-title">듣기 힌트</div>
+    <ul class="cue-list">
+      <li>야고보가 지혜를 묘사하는 것에서 공동체 안에 이미 있는 것을 진단하는 것으로 어떻게 이동하는지 주목하십시오</li>
+      <li>15절의 세 가지 내리막 단어에 주목하십시오 — 각각이 더 깊은 층을 열어냅니다</li>
+      <li>이것이 전환점입니다: 17절의 "오직"이 전체 틀을 뒤집습니다</li>
+      <li>복음이 그리스도의 온유함과 경쟁으로부터의 우리의 자유를 어떻게 연결하는지 들으십시오</li>
+      <li>마지막 "수확" 이미지는 느리고 인내심이 있습니다 — 공동체 변화에 대해 무엇을 말하고 있습니까?</li>
+    </ul>
+  </div>
+
+  <div class="la-section">
+    <div class="la-section-title">적용 초점</div>
     <ul class="app-list">
-      <li>마지막으로 말로 누군가를 상처 입힌 때를 생각해보세요. 그 말들은 어떤 우상을 지키고 있었나요? 그것을 이름 붙이세요 — "그냥 화가 났을 뿐이야"에서 멈추지 마세요.</li>
-      <li>이번 주 마태복음 26장을 묵상하세요. 예수님은 말할 권리가 있으셨지만 침묵을 선택하셨습니다 — 당신을 위해. 그것으로 무언가를 하기 전에 먼저 그 무게가 착지하게 하세요.</li>
-      <li>이번 주 당신의 혀가 무기로 사용되고 있는 관계 하나를 찾으세요. 그 구체적인 것을 십자가 앞으로 가져오세요 — 기술로서가 아니라, 빚이 이미 갚아졌다는 것을 아는 사람으로서.</li>
+      <li><span class="app-num">1</span>당신의 삶에서 경쟁심이나 이기적 야망이 "리더십"이나 "확신"으로 나타나는 곳은 어디입니까?</li>
+      <li><span class="app-num">2</span>이번 주 복음으로 돌아오십시오: 예수님이 당신을 위해 명예를 포기하셨습니다. 그것이 매일의 정체성의 실제 기초라면 무엇이 바뀔까요?</li>
+      <li><span class="app-num">3</span>어떤 특정한 관계에서 이번 주 화평을 이루는 자가 될 수 있습니까?</li>
     </ul>
   </div>
 
 </article>
-</div><!-- /content-wrapper -->
+</main>
 
-<!-- FOOTER -->
-<footer class="site-footer">
+<!-- ── FOOTER ── -->
+<footer class="footer">
   <strong>Taichung International Fellowship</strong><br>
   TIF North: Morrison Academy, Beitun · TIF South: SYME, Xitun<br>
   <a href="https://taichunginternationalfellowship.org">taichunginternationalfellowship.org</a> · +886 437 007 933
   <br><br>
-  <span style="font-size:0.72rem;">
-    Listening aids translated for the benefit of our multilingual congregation.<br>
-    繁體中文翻譯服務我們說中文的會眾。Terjemahan tersedia dalam Bahasa Indonesia. 한국어 번역이 제공됩니다.<br>
-    <a href="archive.html">← Sermon Archive</a>
+  <a href="archive.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">← Sermon Archive</a>
+  <br><br>
+  <span style="font-size:0.7rem;">
+    Translations generated for the benefit of our congregation.<br>
+    翻譯提供給我們的中文會眾。· Terjemahan disediakan untuk jemaat berbahasa Indonesia kami.
   </span>
 </footer>
 
-<!-- LANGUAGE BOTTOM SHEET -->
-<div class="sheet-overlay" id="langSheet" onclick="closeSheetIfOverlay(event)">
-  <div class="lang-sheet">
-    <div class="sheet-handle"></div>
-    <div class="sheet-heading">Select Language / 選擇語言 / Pilih Bahasa / 언어 선택</div>
-
-    <button class="lang-option active" id="opt-en" onclick="setLang('en','English')">
-      <div class="lang-left"><span class="lang-flag">🇬🇧</span><div><div class="lang-name">English</div></div></div>
-      <span class="lang-check" id="check-en">✓</span>
-    </button>
-    <button class="lang-option" id="opt-zh" onclick="setLang('zh','繁體中文')">
-      <div class="lang-left"><span class="lang-flag">🇹🇼</span><div><div class="lang-name">Traditional Chinese</div><span class="lang-native">繁體中文</span></div></div>
-      <span class="lang-check" id="check-zh" style="display:none">✓</span>
-    </button>
-    <button class="lang-option" id="opt-id" onclick="setLang('id','Indonesia')">
-      <div class="lang-left"><span class="lang-flag">🇮🇩</span><div><div class="lang-name">Bahasa Indonesia</div></div></div>
-      <span class="lang-check" id="check-id" style="display:none">✓</span>
-    </button>
-    <button class="lang-option" id="opt-ko" onclick="setLang('ko','한국어')">
-      <div class="lang-left"><span class="lang-flag">🇰🇷</span><div><div class="lang-name">Korean</div><span class="lang-native">한국어</span></div></div>
-      <span class="lang-check" id="check-ko" style="display:none">✓</span>
-    </button>
-
-    <hr class="sheet-divider">
-    <button class="request-toggle" onclick="toggleRequestForm()">➕ Request another language</button>
-
-    <div class="req-wrap" id="reqWrap">
-      <form class="req-form" onsubmit="submitRequest(event)">
-        <div>
-          <label>Language you need</label>
-          <select name="language" required>
-            <option value="">— Select language —</option>
-            <option>Tagalog / Filipino</option>
+<!-- ── LANGUAGE SHEET ── -->
+<div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
+<div class="lang-sheet" id="langSheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-header">
+    <span class="sheet-title">Choose Language</span>
+    <button class="sheet-close" onclick="closeSheet()">×</button>
+  </div>
+  <div class="lang-option active" id="opt-en" onclick="setLang('en'); closeSheet();">
+    <span class="lang-flag">🇺🇸</span>
+    <div><div class="lang-name">English</div><div class="lang-native">English</div></div>
+    <span class="lang-check">✓</span>
+  </div>
+  <div class="lang-option" id="opt-zh" onclick="setLang('zh'); closeSheet();">
+    <span class="lang-flag">🇹🇼</span>
+    <div><div class="lang-name">Traditional Chinese</div><div class="lang-native">繁體中文</div></div>
+    <span class="lang-check">✓</span>
+  </div>
+  <div class="lang-option" id="opt-id" onclick="setLang('id'); closeSheet();">
+    <span class="lang-flag">🇮🇩</span>
+    <div><div class="lang-name">Bahasa Indonesia</div><div class="lang-native">Bahasa Indonesia</div></div>
+    <span class="lang-check">✓</span>
+  </div>
+  <div class="lang-option" id="opt-ko" onclick="setLang('ko'); closeSheet();">
+    <span class="lang-flag">🇰🇷</span>
+    <div><div class="lang-name">Korean</div><div class="lang-native">한국어</div></div>
+    <span class="lang-check">✓</span>
+  </div>
+  <div class="request-section">
+    <button class="request-toggle" onclick="toggleRequestForm()"><span>+</span> Request another language</button>
+    <div class="request-form" id="requestForm">
+      <form id="langRequestForm" onsubmit="submitRequest(event)">
+        <div class="req-field">
+          <label class="req-label" for="req-lang">Requested Language *</label>
+          <select class="req-select" id="req-lang" required>
+            <option value="">Select a language...</option>
             <option>Japanese / 日本語</option>
-            <option>Thai / ภาษาไทย</option>
-            <option>Vietnamese / Tiếng Việt</option>
+            <option>Tagalog / Filipino</option>
+            <option>Spanish / Español</option>
             <option>French / Français</option>
             <option>German / Deutsch</option>
-            <option>Spanish / Español</option>
+            <option>Thai / ภาษาไทย</option>
+            <option>Vietnamese / Tiếng Việt</option>
             <option>Portuguese / Português</option>
             <option>Hindi / हिन्दी</option>
-            <option>Malay / Bahasa Melayu</option>
-            <option>Dutch / Nederlands</option>
-            <option>Russian / Русский</option>
             <option>Arabic / العربية</option>
+            <option>Dutch / Nederlands</option>
+            <option>Italian / Italiano</option>
+            <option>Russian / Русский</option>
+            <option>Polish / Polski</option>
+            <option>Swedish / Svenska</option>
             <option>Burmese / မြန်မာဘာသာ</option>
-            <option>Nepali / नेपाली</option>
-            <option>Sinhala / සිංහල</option>
-            <option>Amharic / አማርኛ</option>
-            <option>Swahili / Kiswahili</option>
+            <option>Simplified Chinese / 简体中文</option>
+            <option>Bengali / বাংলা</option>
+            <option>Urdu / اردو</option>
             <option>Other</option>
           </select>
         </div>
-        <div><label>Full Name</label><input type="text" name="name" placeholder="Your name" required></div>
-        <div>
-          <label>Your Status at TIF</label>
-          <select name="status" required>
-            <option value="">— Select —</option>
-            <option>Regular attendee</option>
-            <option>Occasional visitor</option>
-            <option>New to TIF</option>
-            <option>Online attendee</option>
+        <div class="req-field">
+          <label class="req-label" for="req-name">Full Name *</label>
+          <input class="req-input" type="text" id="req-name" placeholder="Your name" required>
+        </div>
+        <div class="req-field">
+          <label class="req-label" for="req-status">Your Status at TIF *</label>
+          <select class="req-select" id="req-status" required>
+            <option value="">Select...</option>
+            <option>Regular member</option>
+            <option>Occasional attender</option>
+            <option>First-time visitor</option>
+            <option>Online listener</option>
           </select>
         </div>
-        <div><label>Email Address</label><input type="email" name="email" placeholder="your@email.com" required></div>
-        <input type="hidden" name="access_key" value="3fc0c694-adc2-4cda-8191-c4f6993a9a55">
-        <input type="hidden" name="subject" value="TIF Language Request">
-        <button type="submit" class="req-submit">Submit Request</button>
-        <div class="req-success" id="reqSuccess">✅ Request sent — Todd will be in touch soon.</div>
+        <div class="req-field">
+          <label class="req-label" for="req-email">Email Address *</label>
+          <input class="req-input" type="email" id="req-email" placeholder="your@email.com" required>
+        </div>
+        <button class="req-submit" type="submit">Send Request</button>
+        <div class="req-success" id="reqSuccess">✅ Thank you! Your request has been sent to the TIF team. We'll be in touch.</div>
       </form>
     </div>
   </div>
 </div>
 
 <script>
-  var LANGS = ['en','zh','id','ko'];
   var currentLang = 'en';
+  var heroTitles = { en: 'Wisdom from Above', zh: '從上頭來的智慧', id: 'Hikmat dari Atas', ko: '위로부터 오는 지혜' };
+  var heroScriptures = { en: 'James 3:13–18', zh: '雅各書 3:13–18', id: 'Yakobus 3:13–18', ko: '야고보서 3:13–18' };
 
-  function setLang(code, label) {
-    LANGS.forEach(function(l) {
-      document.getElementById('content-' + l).classList.remove('visible');
-      document.getElementById('opt-' + l).classList.remove('active');
-      var chk = document.getElementById('check-' + l);
-      if (chk) chk.style.display = 'none';
-    });
-    document.getElementById('content-' + code).classList.add('visible');
-    document.getElementById('opt-' + code).classList.add('active');
-    var chk = document.getElementById('check-' + code);
-    if (chk) chk.style.display = 'inline';
-    document.getElementById('lang-btn-label').textContent = label;
-    currentLang = code;
-    closeSheet();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  function setLang(lang, tabEl) {
+    document.querySelectorAll('.lang-content').forEach(function(el) { el.classList.remove('active'); });
+    var content = document.getElementById('content-' + lang);
+    if (content) content.classList.add('active');
+    document.querySelectorAll('.lang-tab').forEach(function(t) { t.classList.remove('active'); });
+    if (tabEl) { tabEl.classList.add('active'); }
+    else {
+      document.querySelectorAll('.lang-tab').forEach(function(t) {
+        if (t.getAttribute('onclick') && t.getAttribute('onclick').indexOf("'" + lang + "'") !== -1) t.classList.add('active');
+      });
+    }
+    document.querySelectorAll('.lang-option').forEach(function(el) { el.classList.remove('active'); });
+    var opt = document.getElementById('opt-' + lang);
+    if (opt) opt.classList.add('active');
+    if (heroTitles[lang]) document.getElementById('hero-title').textContent = heroTitles[lang];
+    if (heroScriptures[lang]) document.getElementById('hero-scripture').textContent = heroScriptures[lang];
+    currentLang = lang;
   }
 
   function openSheet() {
+    document.getElementById('sheetOverlay').classList.add('open');
     document.getElementById('langSheet').classList.add('open');
-    document.body.style.overflow = 'hidden';
   }
-
   function closeSheet() {
+    document.getElementById('sheetOverlay').classList.remove('open');
     document.getElementById('langSheet').classList.remove('open');
-    document.body.style.overflow = '';
   }
-
-  function closeSheetIfOverlay(e) {
-    if (e.target === document.getElementById('langSheet')) closeSheet();
-  }
-
   function toggleRequestForm() {
-    document.getElementById('reqWrap').classList.toggle('open');
+    document.getElementById('requestForm').classList.toggle('open');
   }
-
   function submitRequest(e) {
     e.preventDefault();
-    var form = e.target;
-    var data = {
-      access_key: '3fc0c694-adc2-4cda-8191-c4f6993a9a55',
-      subject: 'TIF Language Request: ' + form.language.value,
-      language: form.language.value,
-      name: form.name.value,
-      status: form.status.value,
-      email: form.email.value,
-      message: 'Language: ' + form.language.value + ' | Name: ' + form.name.value + ' | Status: ' + form.status.value + ' | Email: ' + form.email.value
-    };
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    }).then(function(r) { return r.json(); }).then(function(res) {
-      if (res.success) {
-        document.getElementById('reqSuccess').style.display = 'block';
-        form.reset();
-      }
-    }).catch(function() {
-      var s = document.getElementById('reqSuccess');
-      s.textContent = '✅ Request noted — we will follow up soon.';
-      s.style.display = 'block';
-    });
+    var formData = new FormData();
+    formData.append('access_key', '3fc0c694-adc2-4cda-8191-c4f6993a9a55');
+    formData.append('subject', 'TIF Language Request: ' + document.getElementById('req-lang').value);
+    formData.append('from_name', document.getElementById('req-name').value);
+    formData.append('email', document.getElementById('req-email').value);
+    formData.append('message', 'Language: ' + document.getElementById('req-lang').value + '\nName: ' + document.getElementById('req-name').value + '\nStatus: ' + document.getElementById('req-status').value + '\nEmail: ' + document.getElementById('req-email').value);
+    fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
+      .then(function() { document.getElementById('reqSuccess').style.display = 'block'; document.getElementById('langRequestForm').style.display = 'none'; })
+      .catch(function() { document.getElementById('reqSuccess').style.display = 'block'; document.getElementById('langRequestForm').style.display = 'none'; });
   }
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeSheet();
-  });
 </script>
 
 </body>
