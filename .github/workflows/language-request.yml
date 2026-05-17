@@ -39,12 +39,8 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: pip install anthropic
-
-      - name: Run translation
+      - name: Record approved language
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GITHUB_TOKEN_PUSH: ${{ github.token }}
           REQUEST_LANGUAGE: ${{ github.event.client_payload.language || inputs.language }}
           REQUEST_MODE: ${{ github.event.client_payload.mode || inputs.mode }}
@@ -56,4 +52,5 @@ jobs:
             --mode "$REQUEST_MODE" \
             --name "$REQUESTER_NAME" \
             --email "$REQUESTER_EMAIL" \
+            --config-only \
             --force
