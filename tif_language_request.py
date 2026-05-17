@@ -14,10 +14,8 @@ Usage
   python tif_language_request.py --language "Korean" --mode once \
     --name "John Kim" --email "john@example.com"
 
-Requirements
-────────────
-  pip install anthropic --break-system-packages
-  export ANTHROPIC_API_KEY="sk-ant-..."   (or set it in the CONFIG block below)
+  Use --config-only to approve a language for the Codex weekly pipeline.
+  Use --translated-html-file to publish a human/Codex-produced translation now.
 """
 
 import argparse
@@ -29,19 +27,11 @@ import re
 import sys
 import os
 
-try:
-    import anthropic
-except ImportError:
-    print('ERROR: anthropic package not installed.')
-    print('  Run: pip install anthropic --break-system-packages')
-    sys.exit(1)
-
 # ══════════════════════════════════════════════════════════════════════════════
 # CONFIG
 # ══════════════════════════════════════════════════════════════════════════════
 GITHUB_TOKEN     = os.environ.get('GITHUB_TOKEN_PUSH') or os.environ.get('GITHUB_TOKEN') or ''
 REPO             = 'toddblackhurst/tif-sermons'
-ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY', '')   # or hardcode here
 # ══════════════════════════════════════════════════════════════════════════════
 
 BASE    = f'https://api.github.com/repos/{REPO}/contents/'
@@ -126,38 +116,11 @@ def gh_put(path: str, message: str, content_str: str, sha: str = None):
         return False, e.read().decode('utf-8')
 
 
-# ── Translation via Claude ────────────────────────────────────────────────────
+# ── Translation input ─────────────────────────────────────────────────────────
 
-def translate_sermon(language: str, english_html: str, api_key: str) -> str:
-    """
-    Send the English article HTML to Claude and get back fully translated HTML.
-    All tags are preserved; only text nodes are translated.
-    """
-    client = anthropic.Anthropic(api_key=api_key)
-
-    prompt = f"""You are a skilled pastoral translator working for Taichung International Fellowship (TIF), \
-an international church in Taiwan. Your task is to translate a sermon listening aid from English into {language}.
-
-RULES — follow every one precisely:
-1. Translate ALL visible text. Preserve ALL HTML tags exactly as written (tag names, class names, IDs, attributes).
-2. Proper nouns:
-   - Bible book names → use the standard {language} equivalent (e.g., "James" → "야고보서" in Korean)
-   - Chapter:verse references (e.g., "2:1–13") → keep the numeric format exactly
-   - Personal names (Zacchaeus, Todd Blackhurst) → transliterate naturally in {language}
-3. Theological terms must be accurate and natural to {language}-speaking Christians.
-4. Preserve all <em>, <strong>, <span class="flow-num">, <span class="kw-term"> tags with their content translated inside.
-5. Section labels ("Big Idea", "Scripture", "Sermon Flow", "Key Words", "Anchor Statements", "Listening Cues", "Application Focus") → translate to the natural {language} equivalent.
-6. Return ONLY the translated HTML. No preamble, no explanation, no markdown code fences.
-
-ENGLISH HTML TO TRANSLATE:
-{english_html}"""
-
-    message = client.messages.create(
-        model='claude-opus-4-5',
-        max_tokens=8000,
-        messages=[{'role': 'user', 'content': prompt}],
-    )
-    return message.content[0].text.strip()
+def read_translated_html(path: str) -> str:
+    with open(path, 'r', encoding='utf-8') as f:
+        return f.read().strip()
 
 
 # ── HTML manipulation ─────────────────────────────────────────────────────────
@@ -273,7 +236,11 @@ def main():
     parser.add_argument('--name',  default='', help='Requester full name (for commit message)')
     parser.add_argument('--email', default='', help='Requester email (for confirmation note)')
     parser.add_argument('--api-key', default='',
-                        help='Anthropic API key (overrides ANTHROPIC_API_KEY env var)')
+                        help='Deprecated. External translation APIs are no longer used here.')
+    parser.add_argument('--translated-html-file', default='',
+                        help='Path to a completed translated inner HTML file to publish now.')
+    parser.add_argument('--config-only', action='store_true',
+                        help='Only record ongoing language approval; Codex weekly pipeline publishes translations.')
     parser.add_argument('--force', action='store_true',
                         help='Skip interactive prompts (used by GitHub Actions)')
     args = parser.parse_args()
@@ -282,12 +249,6 @@ def main():
     if args.mode == 'deny':
         print('Mode = deny — no translation will be created. Request ignored.')
         sys.exit(0)
-
-    api_key = args.api_key or ANTHROPIC_API_KEY
-    if not api_key:
-        print('ERROR: Anthropic API key required.')
-        print('  Set the ANTHROPIC_API_KEY environment variable, or pass --api-key "sk-ant-..."')
-        sys.exit(1)
 
     language  = normalize_language(args.language)
     lid       = lang_id(language)
@@ -301,6 +262,20 @@ def main():
     print(f'║  Mode     : {args.mode}')
     print(f'║  Requester: {requester}')
     print(f'╚══════════════════════════════════════════════════════')
+
+    if args.config_only:
+        if args.mode == 'ongoing':
+            print('\n[config-only] Updating languages_config.json for ongoing pipeline...')
+            update_languages_config(language, lid, ldisplay)
+            print('Done. Codex will publish this language through the sermon website pipeline.')
+        else:
+            print(f'[config-only] Mode {args.mode} does not change ongoing language config.')
+        sys.exit(0)
+
+    if not args.translated_html_file:
+        print('ERROR: No translation source provided.')
+        print('  Use --translated-html-file with Codex-produced translated HTML, or --config-only for ongoing approval.')
+        sys.exit(1)
 
     # ── Step 1: Fetch index.html ───────────────────────────────────────────
     print('\n[1/5] Fetching index.html from GitHub…')
@@ -318,15 +293,10 @@ def main():
                 print('   Aborted.')
                 sys.exit(0)
 
-    # ── Step 3: Extract English content ───────────────────────────────────
-    print('\n[2/5] Extracting English article HTML…')
-    en_inner = extract_english_article(idx_html)
-    print(f'      {len(en_inner):,} chars of English HTML extracted')
-
-    # ── Step 4: Translate via Claude ──────────────────────────────────────
-    print(f'\n[3/5] Generating {language} translation via Claude (20–45 sec)…')
-    translated = translate_sermon(language, en_inner, api_key)
-    print(f'      Translation complete: {len(translated):,} chars')
+    # ── Step 3: Read completed translation ─────────────────────────────────
+    print('\n[2/5] Reading completed translated HTML...')
+    translated = read_translated_html(args.translated_html_file)
+    print(f'      Translation loaded: {len(translated):,} chars')
 
     # ── Step 5: Inject into HTML ──────────────────────────────────────────
     print('\n[4/5] Injecting translation into index.html…')
