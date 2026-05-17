@@ -1,0 +1,59 @@
+name: Language Request Approval
+
+on:
+  workflow_dispatch:
+    inputs:
+      language:
+        description: Language to translate
+        required: true
+      mode:
+        description: once or ongoing
+        required: true
+        default: ongoing
+        type: choice
+        options:
+          - once
+          - ongoing
+          - deny
+      requester_name:
+        description: Requester name
+        required: false
+      requester_email:
+        description: Requester email
+        required: false
+  repository_dispatch:
+    types: [approve-language]
+
+permissions:
+  contents: write
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Run translation
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN_PUSH: ${{ github.token }}
+          REQUEST_LANGUAGE: ${{ github.event.client_payload.language || inputs.language }}
+          REQUEST_MODE: ${{ github.event.client_payload.mode || inputs.mode }}
+          REQUESTER_NAME: ${{ github.event.client_payload.requester_name || inputs.requester_name }}
+          REQUESTER_EMAIL: ${{ github.event.client_payload.requester_email || inputs.requester_email }}
+        run: |
+          python tif_language_request.py \
+            --language "$REQUEST_LANGUAGE" \
+            --mode "$REQUEST_MODE" \
+            --name "$REQUESTER_NAME" \
+            --email "$REQUESTER_EMAIL" \
+            --force
