@@ -53,7 +53,7 @@ LANG_IDS = {
 
 LANG_DISPLAY = {
     'Japanese': '日本語', 'Korean': '한국어', 'Thai': 'ภาษาไทย', 'Vietnamese': 'Tiếng Việt',
-    'Filipino': 'Filipino', 'German': 'Deutsch', 'French': 'Français', 'Spanish': 'Español',
+    'Filipino': 'Filipino / Tagalog', 'German': 'Deutsch', 'French': 'Français', 'Spanish': 'Español',
     'Portuguese': 'Português', 'Hindi': 'हिन्दी', 'Malay': 'Bahasa Melayu', 'Burmese': 'မြန်မာ',
     'Russian': 'Русский', 'Arabic': 'العربية', 'Dutch': 'Nederlands', 'Italian': 'Italiano',
     'Hebrew': 'עברית', 'Ukrainian': 'Українська', 'Bengali': 'বাংলা', 'Swahili': 'Kiswahili',
@@ -80,6 +80,8 @@ def lang_display(language: str) -> str:
     native = LANG_DISPLAY.get(language)
     if native == language:
         return language
+    if language == 'Filipino':
+        return native
     return f'{language} ({native})' if native else language
 
 
@@ -320,7 +322,6 @@ def main():
         print('\n[+] Updating languages_config.json for ongoing pipeline…')
         update_languages_config(language, lid, ldisplay)
         print('    ✅ Future sermons will automatically include this language.')
-        print('    NOTE: Also update tif_push.py to call the translation step for this language.')
 
     print(f'\n✅ Done! {language} is now live on the TIF sermon page.')
     if args.email:
