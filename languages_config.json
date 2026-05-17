@@ -4,6 +4,13 @@
       "name": "Korean",
       "code": "ko",
       "display": "한국어"
+    },
+    {
+      "name": "Filipino",
+      "code": "tl",
+      "display": "Filipino / Tagalog",
+      "active": true,
+      "ongoing": true
     }
   ]
 }
