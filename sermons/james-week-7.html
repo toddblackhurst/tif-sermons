@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="tif-week-slug" content="james-week-7">
+  <meta name="tif-page-type" content="full-manuscript">
+  <title>The Source | TIF Full Sermon Manuscript</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Asul:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --dark: #1b2327; --xdark: #121b20; --accent: #27b7d8;
+      --body-text: #333333; --light-text: #f0f0f0; --mid-text: #b0bec5;
+      --font-body: 'Asap', sans-serif; --font-head: 'Asul', serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: #f5f5f5; color: var(--body-text); font-size: 18px; line-height: 1.7; }
+    .site-header { background: var(--xdark); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid var(--accent); }
+    .site-header a.archive-link { color: var(--accent); text-decoration: none; font-family: var(--font-body); font-size: 14px; font-weight: 600; letter-spacing: .03em; display: flex; align-items: center; gap: 6px; }
+    .site-header a.archive-link:hover { color: #fff; }
+    .lang-btn { background: transparent; border: 1.5px solid var(--accent); color: var(--accent); font-family: var(--font-body); font-size: 14px; font-weight: 600; padding: 7px 16px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: background .2s, color .2s; }
+    .lang-btn:hover { background: var(--accent); color: #fff; }
+    .hero { background: var(--dark); color: var(--light-text); padding: 56px 24px 48px; text-align: center; }
+    .hero .badge { display: inline-block; background: var(--accent); color: var(--xdark); font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 4px 14px; border-radius: 12px; margin-bottom: 20px; }
+    .hero h1 { font-family: var(--font-head); font-size: clamp(2rem,5vw,3.2rem); font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 16px; }
+    .hero .scripture { font-size: 1.1rem; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
+    .hero .meta { font-size: .9rem; color: var(--mid-text); }
+    .hero .series-info { margin-top: 8px; font-size: .85rem; color: var(--mid-text); letter-spacing: .04em; }
+    .content-wrapper { max-width: 780px; margin: 0 auto; padding: 40px 24px 60px; }
+    article { display: none; }
+    article.active { display: block; }
+    article h2 { font-family: var(--font-head); color: var(--accent); font-size: 1.35rem; font-weight: 700; margin: 2rem 0 .6rem; border-left: 4px solid var(--accent); padding-left: 14px; }
+    article p { margin-bottom: 1.1rem; }
+    article .scripture-block { border-left: 4px solid var(--accent); background: #f0f9fc; padding: 16px 20px; margin: 1.5rem 0; font-style: italic; color: #1a4a56; border-radius: 0 6px 6px 0; }
+    article .scripture-block strong { font-style: normal; color: var(--accent); font-size: .85rem; letter-spacing: .05em; display: block; margin-bottom: 6px; font-family: var(--font-head); }
+    article .closing-prayer { background: var(--dark); color: var(--light-text); border-radius: 10px; padding: 28px; margin-top: 2.5rem; font-style: italic; }
+    article .closing-prayer h3 { font-family: var(--font-head); color: var(--accent); margin-bottom: 12px; font-style: normal; }
+    footer { background: var(--xdark); color: var(--mid-text); text-align: center; padding: 32px 24px; font-size: .88rem; }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer strong { color: var(--light-text); }
+    .sheet-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 200; }
+    .sheet-overlay.open { display: block; }
+    .lang-sheet { position: fixed; bottom: 0; left: 0; right: 0; background: var(--dark); border-radius: 18px 18px 0 0; padding: 24px 20px 36px; z-index: 201; transform: translateY(100%); transition: transform .3s ease; max-height: 80vh; overflow-y: auto; }
+    .lang-sheet.open { transform: translateY(0); }
+    .sheet-handle { width: 40px; height: 4px; background: #455a64; border-radius: 2px; margin: 0 auto 20px; }
+    .sheet-title { font-family: var(--font-head); color: var(--light-text); font-size: 1.1rem; margin-bottom: 16px; text-align: center; }
+    .lang-option { display: flex; align-items: center; gap: 14px; padding: 13px 16px; border-radius: 10px; cursor: pointer; transition: background .15s; color: var(--light-text); border: none; background: transparent; width: 100%; text-align: left; font-family: var(--font-body); font-size: 1rem; }
+    .lang-option:hover { background: rgba(39,183,216,.12); }
+    .lang-option.active { background: rgba(39,183,216,.18); }
+    .lang-option .check { margin-left: auto; color: var(--accent); font-size: 1.1rem; }
+    .lang-flag { font-size: 1.4rem; }
+    .request-divider { border-top: 1px solid #2e3e47; margin: 18px 0 14px; }
+    .request-lang-btn { width: 100%; background: transparent; border: 1.5px solid #455a64; color: var(--mid-text); font-family: var(--font-body); font-size: .95rem; padding: 12px 16px; border-radius: 10px; cursor: pointer; text-align: center; transition: border-color .2s, color .2s; }
+    .request-lang-btn:hover { border-color: var(--accent); color: var(--light-text); }
+    .request-form-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.65); z-index: 300; align-items: center; justify-content: center; padding: 20px; }
+    .request-form-overlay.open { display: flex; }
+    .request-form-box { background: var(--dark); border-radius: 14px; padding: 28px 24px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; }
+    .request-form-box h3 { font-family: var(--font-head); color: var(--accent); margin-bottom: 6px; }
+    .request-form-box p { color: var(--mid-text); font-size: .9rem; margin-bottom: 20px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; color: var(--mid-text); font-size: .85rem; margin-bottom: 5px; font-weight: 600; letter-spacing: .04em; }
+    .form-group input, .form-group select { width: 100%; background: #243038; border: 1.5px solid #37474f; color: var(--light-text); font-family: var(--font-body); font-size: 1rem; padding: 10px 14px; border-radius: 8px; outline: none; transition: border-color .2s; }
+    .form-group input:focus, .form-group select:focus { border-color: var(--accent); }
+    .form-group select option { background: #243038; }
+    .form-submit-btn { width: 100%; background: var(--accent); color: var(--xdark); font-family: var(--font-head); font-size: 1rem; font-weight: 700; border: none; padding: 13px; border-radius: 8px; cursor: pointer; margin-top: 4px; transition: opacity .2s; }
+    .form-submit-btn:hover { opacity: .85; }
+    .form-close-btn { background: transparent; border: none; color: var(--mid-text); width: 100%; padding: 10px; cursor: pointer; font-family: var(--font-body); margin-top: 8px; font-size: .9rem; }
+    .form-success { text-align: center; padding: 20px 0; }
+    .form-success .check-icon { font-size: 2.5rem; margin-bottom: 10px; }
+    .form-success p { color: var(--mid-text); }
+    @media (max-width:600px) { .content-wrapper { padding: 28px 16px 50px; } .hero { padding: 40px 16px 36px; } }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="../archive.html" class="archive-link">&#8592; Sermon Archive</a>
+  <button class="lang-btn" onclick="openSheet()" aria-label="Select language">
+    &#127760; <span id="lang-label">Language</span>
+  </button>
+</header>
+
+<section class="hero">
+  <div class="badge">&#128214; Full Manuscript &mdash; James Series, Week 7</div>
+  <h1>The Source</h1>
+  <div class="scripture">James 4:1&ndash;10</div>
+  <div class="meta">Sunday, May 10, 2026 &middot; Taichung International Fellowship</div>
+  <div class="series-info">Available in 4 languages &middot; Select your language above</div>
+</section>
+
+<main class="content-wrapper">
+
+<!-- ==================== ENGLISH ==================== -->
+<article id="content-en" class="active">
+<h2>Introduction</h2>
+<p>Last week, as we looked at the passage in chapter three, we saw that James showed us two kinds of wisdom. There's the wisdom from above, which is pure and peace-loving and gentle, kind, merciful, and produces good fruit. And then there's the wisdom from below &mdash; that's earthly wisdom, even demonic wisdom &mdash; and that wisdom is marked by envy and ambition.</p>
+<p>James told us that using that kind of worldly wisdom leads to disorder. Another way to say that: it doesn't actually build community, it breaks community, because of the ambition it creates in us. We need to win, or we need to make sure somebody else loses.</p>
+<p>Last week we saw smoke. This week we find the fire. We're going to see where the smoke is coming from.</p>
+
+<h2>Where Does Conflict Come From?</h2>
+<p>Have you ever considered this? You've been part of a group &mdash; a group of friends, a group of people who love each other &mdash; and then something happens, and it fractures. It's just never quite the same again. Or families. Maybe some of you are in a family right now that is broken, and something happened that started that, and you don't know how to repair it. Churches &mdash; some of you come from churches that have been broken in the past, broken by leadership, broken by members, broken by theology.</p>
+<p>Friends &mdash; personal friends &mdash; and one day everything is fine, then something happens, and you're not friends anymore. You don't know how to get back.</p>
+<p>James is telling us over and over again that what we tend to do is look outside of ourselves for the source of our problem. We say, "She's the reason I'm angry. He's the reason I'm upset." James says: no. Your problem has an address. It's not across the street. It's you. You're the source of your problem.</p>
+
+<h2>Scripture: James 4:1&ndash;10</h2>
+<div class="scripture-block">
+<strong>James 4:1&ndash;10 (CSB)</strong>
+What is the source of wars and fights among you? Don't they come from your passions that wage war inside of you? You desire and you do not have. You murder and covet and cannot obtain. You fight and wage war. You do not have because you do not ask. You ask and don't receive because you ask with wrong motives so that you may spend it on your pleasures. You adulterous people! Don't you know that friendship with the world is hostility toward God? So whoever wants to be the friend of the world becomes the enemy of God. Or do you think it's without reason that the scripture says, "The spirit he made to dwell in us envies intensely"? But he gives greater grace. Therefore it says: God resists the proud but gives grace to the humble. Therefore, submit to God. Resist the devil, and he will flee from you. Draw near to God, and he will draw near to you. Cleanse your hands, sinners, and purify your hearts, you double-minded. Be miserable and mourn and weep. Let your laughter be turned to mourning and your joy to gloom. Humble yourselves before the Lord, and he will exalt you.
+</div>
+
+<h2>The Argument You Didn't Know You Were Having</h2>
+<p>Have you ever been in an argument with somebody and halfway through you realize &mdash; whatever you're arguing about, that's actually not what you're arguing about? You thought you were arguing about this, but actually you were arguing about something underneath that.</p>
+<p>It starts with something small. Somebody was late. Somebody forgot to reply. Somebody makes a comment. Somebody doesn't help when you think they should have. Somebody didn't notice you. Somebody made a decision without asking you. Somebody said something in a tone that probably wasn't meant to be offensive, but it was offensive to you.</p>
+<p>Now you're not just responding to what happened. You're responding to what you think it meant. And what you think in your mind is: they don't actually care about me. They're not paying attention to me. They're not loving me the way I deserve. They're taking advantage of me. They're making me feel small.</p>
+<p>Before long, this conversation that started reasonably is no longer about the schedule or the dishes or the decision. Something deeper inside of you has been touched and it feels threatened. And when we feel threatened, we go to war. That's why some arguments feel so much bigger than the issue that started them.</p>
+<p>James is asking us a question we usually avoid: what's the source? Not just what started it, not just who said what &mdash; but what is the source of these feelings? James is going to help us get down underneath to the heart.</p>
+
+<h2>From Desire to War: The Escalation</h2>
+<p>Where does this come from? James says it comes from our desires inside. We all have desires &mdash; God-given desires to be loved, to belong, to be safe, to be respected, to have peace, to be understood, to feel at home. Those are not bad desires. James is not saying desire is the problem.</p>
+<p>But a good desire gets twisted. It gets elevated to a status it doesn't deserve. So we begin to say internally: I don't just desire to belong &mdash; I believe if I belong, then I'm somebody. I don't just desire to be respected &mdash; I believe if I'm respected, then I matter. I don't just desire control &mdash; I start to believe if I can control this, then my world will finally be right.</p>
+<p>A desire becomes a demand, a demand becomes a need, a need becomes a right, and when our rights get violated &mdash; we go to war.</p>
+<p>This is idolatry, friends. That's really what it boils down to. It's what happens when a good thing becomes an ultimate thing &mdash; when belonging, or respect, or comfort becomes the thing you believe you must have in order to be okay.</p>
+
+<h2>Diagnostic Questions</h2>
+<p>When somebody doesn't give you what you think you need &mdash; what happens? Do you ever say internally: "I'll punish them"? Not physically &mdash; but you withdraw. You don't respond to their messages as quickly. You avoid them at church. And inside, you begin that slow burn of resentment.</p>
+<p>Maybe they said something, so you replay that conversation in your head &mdash; sometimes you even rewrite it. You build a case. You become a little lawyer on the inside. "I can see how they were wrong and I was right." Then you recruit members of your jury. You find other people: "Can you believe what so-and-so said to me?"</p>
+<p>Or: "I'll pray about it." Sometimes we use prayer as a weapon &mdash; asking God to take our side rather than praying for a real resolution. "God, if you could just help them see that I was right."</p>
+
+<h2>Prayer and Wrong Motives</h2>
+<p>What are we fighting <em>for</em>? James says: you ask and don't receive because you ask with wrong motives. Some examples from my own life. Lord, would you please help my wife be a better person? &mdash; but what I'm really praying is: God, would you make my life easier by fixing her the way I want. Or: Lord, would you grow the church? &mdash; but sometimes that's tied to wanting my leadership validated. Or: Lord, help them see the truth &mdash; which really means: help them see I was right.</p>
+<p>We use prayer to take the desires we know are wrong and make them feel more right. The issue is not prayer. The issue is our heart. It's always our heart. In the battle over who will be Lord &mdash; are we the Lord, or is he?</p>
+
+<h2>Spiritual Adultery</h2>
+<p>That's why the next section takes a serious turn. James says: "You adulterous people. Don't you know that friendship with the world is hostility toward God?"</p>
+<p>In the Bible, God describes his relationship with Israel &mdash; and now with the church &mdash; as a marriage. A covenant relationship. He rescued us. So when we run after other idols and desires, God calls it adultery. He says: you're breaking your covenant with me.</p>
+<p>If you're a Christian, it's like a cosmic love triangle &mdash; you and God, and money, power, sex, comfort, approval, or a person. God is jealous. The Bible tells us he doesn't give up his bride. He is fighting for us. The world is also fighting for you &mdash; but because it wants to destroy you. The things we have an idolatrous love relationship with &mdash; they don't love us back. They use us and ultimately destroy us.</p>
+<p>What you're fighting for will tell you what you love.</p>
+
+<h2>He Gives Greater Grace</h2>
+<p>James says: he gives greater grace. Grace has a name. His name is Jesus.</p>
+<p>James does not say: you need a stronger will. He doesn't say: you need better conflict management skills. He says: I'm doing something for you that you can't do for yourself. That's what grace is.</p>
+<p>The reason we so easily fall in love with idols is because we're sinners. We're broken since Genesis. And we cannot fix that brokenness. What you need is what the Bible teaches over and over: a rescue. Someone who can do for you what you can't do for yourself &mdash; and that is what Jesus came to do.</p>
+<p>On the cross, Jesus was treated like an adulterer. He was cut off. The only truly faithful partner in the universe was treated as though he were his unfaithful bride. If you believe in him &mdash; if you receive his life, death, and resurrection as done for you &mdash; you can be rescued.</p>
+<p>Which means: when your idol lovers come calling, you look at them, you look at the cross, and you see what your God did for you. That idol will never love you. Jesus was treated in a way he did not deserve so you could be treated in a way you do not deserve. That's grace.</p>
+
+<h2>The Matsu Illustration</h2>
+<p>A few weeks ago I went to Miaoli to the Baishatun Matsu Festival &mdash; one of the largest religious pilgrimages in Taiwan. They carry the sea goddess on a palanquin for about 400 kilometers, bringing her back to her temple. I was there as they brought her in.</p>
+<p>As the palanquin approached, the crowd started screaming: "Matsu, we love you! Matsu, we love you!" And I thought: she doesn't love you. It's a piece of wood that a human carved. It's easy to look at that and say, "How sad." But we do the exact same thing with whatever has consumed our hearts. That's why we need a rescuer. When sex or money or power comes calling, you look at Jesus Christ, your living Savior on the cross. Those things would never die for you. They will cut you off. Jesus was treated in a way he didn't deserve so that you could be treated in a way you don't deserve. That's grace.</p>
+
+<h2>Commands That Follow Grace</h2>
+<p>After James tells us all this &mdash; after he says he gives greater grace &mdash; then he gives commands. The order matters. Commands come after grace. You don't do these to get grace. You get grace in order to follow them. You do these because God did something for you.</p>
+
+<h2>Submit to God &middot; Resist the Devil</h2>
+<p>Submit was originally a military word &mdash; to submit to your commander. Submission meant giving yourself to the protection and care of someone with greater power and authority. What does it mean to submit to God? If you're not submitted to God, who are you submitted to? The world, the flesh, and the devil. Who do you think is better able to care for you?</p>
+<p>You can only resist the devil if you're submitted to God. The devil's trick: when you want to sin, he says, "It's no big deal, just try it." Then after you do it, and you feel terrible, he says: "Oh, that was a big deal. I don't know if God will ever forgive you." Before: no big deal. After: a big deal. He is crafty, friends. Do not listen to his lies.</p>
+
+<h2>Draw Near &middot; Cleanse &middot; Mourn &middot; Humble</h2>
+<p>Draw near to God, and he will draw near to you. Isn't that a good feeling &mdash; when you move toward somebody, and they move toward you?</p>
+<p>Cleanse your hands, purify your hearts. Not just what did you do, but why did you do it. Not just: Lord, change my behavior &mdash; but: Lord, change my love.</p>
+<p>Be miserable and mourn and weep. I think this is repentance. Grace does not make sin less serious. It makes it more serious. Repentance is not just confessing your sin &mdash; it's grieving over the effects of your sin.</p>
+<p>If you're a Christian, draw near, look up at Jesus Christ, and think about all the ways this week you did dirty with your idol lover. Let our affections be turned toward Christ.</p>
+
+<h2>Gospel Invitation</h2>
+<p>If you're not a Christian tonight &mdash; the gospel is not about making bad people a little better. It's not about making good people great. It's about taking broken people and making them whole, bringing them home where you were meant to be, in a relationship with God. If you need that, come talk to me. I can't help you, but God can. I'll just take you to the cross. That's all I'll ever do.</p>
+
+<div class="closing-prayer">
+<h3>Closing Prayer</h3>
+<p>Heavenly Father, thank you so much for the cross &mdash; the grace that you have given us in Jesus Christ. Lord Jesus, we confess individually and corporately that we have allowed ourselves to be friends with the world, sometimes in small ways and sometimes in really terrible ways. We have allowed ourselves an idolatrous, adulterous love with a dumb idol that will never love us back. And you loved us before the world was ever created. You set your affection on us and purposed in your heart to rescue us from our own sin and unbelief. I pray that you would remind us of that grace and draw us closer to you tonight. In Jesus' name, amen.</p>
+</div>
+</article>
+
+<!-- ==================== TRADITIONAL CHINESE ==================== -->
+<article id="content-zh">
+<h2>引言</h2>
+<p>上週，我們查考了雅各書第三章，看見雅各向我們展示了兩種智慧 (zhì huì)。從上而來的智慧，是純潔的、愛好和平的、溫柔的、仁慈的、憐憫的，並且結出好果子。另一種是從下而來的智慧——屬世的智慧，甚至是屬魔鬼的智慧——這種智慧的標誌是嫉妒 (jì dù) 和野心。</p>
+<p>雅各告訴我們，使用這種世俗智慧的結果實際上會導致混亂。換句話說：它不是建立群體，而是破壞群體，因為它在我們內心製造了一種必須贏的衝動，或者必須讓別人輸的慾望。</p>
+<p>上週我們看見了煙霧。這週我們要找到火源。我們要看看煙是從哪裡來的。</p>
+
+<h2>衝突從何而來？</h2>
+<p>你有沒有思考過這個問題？你曾經是某個群體的一份子——一群朋友，一群相愛的人——然後某件事發生了，它破裂了。就再也不一樣了。或者家庭。也許你現在就身處一個破碎的家庭，某件事引發了一切，你不知道如何修復。還有教會——有些人來自過去曾經破裂的教會，被領袖傷害過，被成員傷害過，被錯誤的神學傷害過。</p>
+<p>朋友——你的個人朋友——某天一切都好好的，然後某件事發生了，你們不再是朋友。你不知道怎麼回頭。</p>
+<p>雅各一再告訴我們：我們的傾向是向外尋找問題的根源。我們說，「她才是讓我憤怒的原因。他才是讓我沮喪的原因。」雅各說：不。你的問題有一個住址。不是在街對面，而是你自己。你才是你問題的根源。</p>
+
+<h2>聖經：雅各書 4:1&ndash;10</h2>
+<div class="scripture-block">
+<strong>雅各書 4:1&ndash;10（CSB 聖經）</strong>
+你們中間的爭戰鬥毆是從哪裡來的呢？不是從你們百體中戰鬥之私慾來的嗎？你們貪戀，還是得不著；你們殺害嫉妒，又鬥毆爭戰，也不能得，因為你們不求。你們求也得不著，是因為你們妄求，要花費在你們的宴樂中。你們這些淫亂的人哪，豈不知與世俗為友，就是與神為敵嗎？所以凡想要與世俗為友的，就是把自己立為神的仇敵了。你們想經上的話是徒然說的嗎？神所賜住在我們裡面的靈是戀愛至於嫉妒嗎？但他賜更多的恩典 (ēn diǎn)，所以經上說：「神阻擋驕傲的人，賜恩典給謙卑 (qiān bēi) 的人。」故此，你們要順服 (shùn fú) 神，務要抵擋魔鬼，魔鬼就必離開你們逃跑了。你們親近神，神就必親近你們。有罪的人哪，要潔淨你們的手；心懷二意的人哪，要清潔你們的心。你們要愁苦，悲哀，哭泣，將喜笑變作悲哀，歡樂變作憂愁。務要在主面前自卑，主就必叫你們升高。
+</div>
+
+<h2>你不知道自己真正在爭論什麼</h2>
+<p>你有沒有和某人爭吵過，爭到一半突然意識到——你們爭論的那件事，其實根本不是真正爭論的重點？你以為你在爭這件事，但其實你在爭的是更深層的某樣東西。</p>
+<p>從一件小事開始。有人遲到了。有人忘記回覆。有人說了一句話。有人沒有在你認為應該幫忙的時候伸出援手。有人沒有注意到你做的事。有人做了一個沒有問你的決定。</p>
+<p>現在，你的反應已經不僅僅是針對發生的事情本身。你在心裡想：他們根本不在乎我。他們不關注我。他們沒有以我應得的方式愛我。他們在佔我便宜。他們讓我覺得自己渺小。</p>
+<p>不知不覺地，這場原本理智的對話，已經不再是關於日程、家務或某個決定了。你內心更深的某樣東西被觸碰到了，感到受了威脅。而當我們感到威脅時，我們就宣戰了。這就是為什麼有些爭吵感覺比引發它的事情大得多。</p>
+<p>雅各問的是我們通常迴避的問題：根源是什麼？不只是什麼事情引發了它，不只是誰說了什麼，不只是誰對誰錯——而是這些感受的根源是什麼？雅各要幫助我們深入到內心最深處。</p>
+
+<h2>從渴望到戰爭：升級的過程</h2>
+<p>這從哪裡來？雅各說，這來自我們內心的私慾 (sī yù)。我們都有慾望——神所賜的慾望：被愛、被接納、被保護、被尊重、擁有平安、被理解、有家的感覺。這些不是壞的慾望。雅各並不是說慾望本身是問題。</p>
+<p>但問題是：一個好的渴望被扭曲了，被提升到了一個它不應佔有的地位。我們內心開始說：我不只是渴望被接納——我相信如果我被接納，我才算是個人。我不只是渴望被尊重——我內心相信，只有被尊重，我才算有價值。我不只是渴望掌控——我開始相信，如果我能控制這件事，我的世界才會終於對了。</p>
+<p>渴望變成了要求，要求變成了需要，需要變成了權利，而當我們的權利被侵犯——我們就宣戰了。</p>
+<p>這就是偶像崇拜 (ǒu xiàng chóng bài)，朋友們。這才是問題的根源。這是當一件好事成為終極之物時所發生的——當歸屬感、尊重、掌控或舒適，成為你認為必須擁有才能安好的東西。</p>
+
+<h2>自我診斷的問題</h2>
+<p>當某人沒有給你你認為你需要的東西時，你的反應是什麼？你有沒有在心裡說過：「我要懲罰他們。」不是用身體——而是你退縮了。你不那麼快回覆他們的消息。你在教會刻意迴避他們。你內心開始慢慢燃燒著怨恨。</p>
+<p>也許他們說了什麼，所以你把那段對話在腦海中一遍遍重播——有時甚至重新改寫它。你開始蒐集證據。你成了自己心裡的小律師。然後你開始招募陪審團，找其他人說：「你能相信他對我說的話嗎？我只是想幫他！」</p>
+<p>或者我們這樣做：「我會為此禱告。」有時我們把禱告當作武器——不是真的在尋求和解，而是在禱告：「神啊，如果你能讓他們看到我是對的，那就太好了。」</p>
+
+<h2>禱告與錯誤的動機</h2>
+<p>真正的問題不是我們在爭什麼，而是我們在為什麼而爭。讓我從自己的生命中舉幾個例子：主啊，請讓我妻子成為更好的人——但我真正在禱告的是：神啊，請按照我想要的方式修復她。或者：主啊，幫助他們看見真相——真正的意思是：幫助他們看見我是對的。</p>
+<p>我們用禱告，把我們知道是錯的慾望變得感覺正當一點。問題不在於禱告本身，問題在於我們的心。永遠都是我們的心。在誰是主的爭戰中——是我們自己，還是祂？</p>
+
+<h2>靈魂的姦淫</h2>
+<p>因此接下來的段落語氣驟然嚴肅。雅各說：「你們這些淫亂的人哪，豈不知與世俗為友，就是與神為敵嗎？」</p>
+<p>在聖經中，神把他與以色列——現在也與教會——的關係描述為婚姻。這是他與我們所立的盟約關係。他救贖了我們。所以當我們追逐其他的渴望和偶像時，神稱之為姦淫 (jiān yín)。他說：你在背叛你與我的盟約。</p>
+<p>如果你是基督徒，這就像一個宇宙級的三角戀——你、神，以及金錢、權力、性、舒適、認可，或某個人。神是忌邪的神，朋友們。他不會放棄他的新婦。他在為我們爭戰。而世界也在為你爭戰——但方式截然不同。神為我們爭戰，是因為他愛我們。世界為你爭戰，是因為它想毀滅你。那些我們與之有著偶像式愛情關係的事物——它們不愛我們，它們只是利用我們，最終摧毀我們。你在為什麼而爭戰，這就告訴了你你愛什麼。</p>
+
+<h2>祂賜下更大的恩典</h2>
+<p>雅各說：祂賜下更大的恩典 (ēn diǎn)。恩典有一個名字。祂的名字是耶穌 (Yē sū)。</p>
+<p>雅各沒有說：你只需要更強的意志力。他沒有說：你需要更好的衝突管理技巧。他說：我正在為你做一件你自己做不到的事。這就是恩典——恩典是神為我們所做的我們自己做不到的事。</p>
+<p>我們為何如此容易愛上偶像？原因是我們是罪人 (zuì rén)。我們是破碎的。自從創世記以來，我們就已經破碎了。沒有任何東西——沒有任何修復方法——能修復你生命中的那種破碎。你需要的，是聖經一再教導的：拯救 (zhěng jiù)。你需要一位能為你做你自己做不到的事的人，而那正是耶穌來做的。</p>
+<p>在十字架上，耶穌被當作姦淫者對待。他被切斷了。這位宇宙中唯一真正忠實的伴侶，卻被當作他那不忠的新婦對待。如果你信他——如果你接受那是為你成就的——那麼你就能夠被拯救。</p>
+<p>這意味著，當你的偶像情人前來呼喚時，你要看著它們，然後看著十字架，看見你的神為你做了什麼。那個偶像永遠不會愛你。耶穌受到了他不應受的對待，為的是讓你得到你所不應得到的對待。那就是恩典。</p>
+
+<h2>媽祖廟的比喻</h2>
+<p>幾週前，我去了苗栗參加白沙屯媽祖繞境——台灣規模第二大的宗教朝聖活動。他們把海神媽祖抬在轎子上，走大約四百公里的路程，將她迎回廟中。我恰好在廟門口的那一刻站在那裡。</p>
+<p>當那頂轎子被抬進來時，人群擠滿了街道。當轎子靠近時，台灣人開始大聲歡呼：「媽祖，我們愛你！」我心想：她不愛你們。那只是一塊人類雕刻的木頭。我們很容易看著那景象說：「哦，多可悲啊。」但我們和那些已經佔據了我們心的事物做著完全一樣的事。這就是為什麼我們需要一位拯救者。耶穌受到了他不應受的對待，為的是讓你得到你所不應得的。那才是恩典。</p>
+
+<h2>恩典之後的命令</h2>
+<p>雅各告訴我們這一切之後——在說完祂賜下更大的恩典之後——才給我們命令。順序很重要：命令在恩典之後。你不是靠這些命令來獲得恩典，而是得到了恩典，才能夠遵行這些命令。你遵行這些，是因為神已經為你做了什麼。</p>
+
+<h2>順服神 &middot; 抵擋魔鬼</h2>
+<p>順服 (shùn fú) 在古時是一個軍事用語——服從你的指揮官。順服不是失去自己，而是把自己交託給一位擁有比你更大權力和權威者的保護之下。如果你不順服神，你在順服誰？世界、肉體，和魔鬼。你認為誰能更好地照顧你？</p>
+<p>你只有在順服神的前提下，才能抵擋魔鬼。魔鬼多狡猾——當你想要犯罪時，他對你說：「沒什麼大不了的，試試看吧。」然後你犯了罪，你感到非常糟糕，魔鬼又說：「哦，這可是大事。我不知道神是否會原諒你。」犯罪之前：沒什麼大不了。犯罪之後：大事一件。他確實很狡猾，朋友們。不要聽他的謊言。</p>
+
+<h2>親近神 &middot; 潔淨 &middot; 悲哀 &middot; 謙卑</h2>
+<p>親近神——就是字面的意思。你們親近神，神就必親近你們。當你走向某人，他們也走向你，這種感覺難道不好嗎？</p>
+<p>潔淨你們的手，清潔你們的心。不只是你做了什麼，也在乎你為什麼這樣做。不只是禱告：主啊，改變我的行為——而是：主啊，改變我的愛。</p>
+<p>你們要愁苦，悲哀，哭泣。我認為他的意思是：悔改 (huǐ gǎi)。恩典不會讓罪變得不嚴重，恩典其實讓罪變得更嚴重。悔改不只是承認你的罪，而是為罪的影響而悲傷。</p>
+
+<h2>福音的邀請</h2>
+<p>如果你今晚不是基督徒，也許從未真正聽過福音 (fú yīn)——福音不是要讓壞人變得好一點點，甚至不是要讓好人變得更好。福音是要讓破碎的人得到醫治，讓他們回家——回到你本應所在的地方，與神建立關係。如果你今晚需要這個，請來找我。我幫不了你，但神可以。我只是帶你到十字架面前。那是我唯一會做的事。</p>
+
+<div class="closing-prayer">
+<h3>結束禱告</h3>
+<p>天父，感謝你十字架上的恩典 (ēn diǎn)——你在耶穌基督裡賜給我們的恩典。主耶穌，我們個人地和群體地承認，我們允許自己與世界為友，有時是在小事上，有時卻是非常嚴重的方式。我們允許自己與那些永遠不會愛我們的愚蠢偶像有著偶像崇拜式的愛情關係。而你在世界被創造之前就愛了我們，你定意要從我們自己的罪和不信中拯救我們。所以我禱告，求你提醒我們你所賜的恩典，今晚使我們更靠近你。奉耶穌的名禱告，阿們。</p>
+</div>
+</article>
+
+<!-- ==================== BAHASA INDONESIA ==================== -->
+<article id="content-id">
+<h2>Pendahuluan</h2>
+<p>Minggu lalu, ketika kita melihat bagian di pasal tiga, kita mendapati bahwa Yakobus menunjukkan kepada kita dua jenis hikmat. Ada hikmat yang dari atas &mdash; yang murni, suka damai, lembut, baik hati, penuh belas kasihan, dan menghasilkan buah yang baik. Lalu ada hikmat yang dari bawah &mdash; hikmat duniawi, bahkan hikmat yang bersifat jahat &mdash; dan hikmat itu ditandai dengan iri hati dan ambisi.</p>
+<p>Yakobus memberitahu kita bahwa menggunakan hikmat duniawi menghasilkan kekacauan. Dengan kata lain: itu tidak membangun komunitas, melainkan menghancurkannya. Kita harus menang, atau kita harus memastikan orang lain kalah.</p>
+<p>Minggu lalu kita melihat asapnya. Minggu ini kita menemukan apinya. Kita akan melihat dari mana asap itu berasal.</p>
+
+<h2>Dari Mana Konflik Itu Datang?</h2>
+<p>Pernahkah kamu memikirkan ini? Kamu pernah menjadi bagian dari sebuah kelompok &mdash; sekelompok teman, sekelompok orang yang saling mengasihi &mdash; dan kemudian sesuatu terjadi, dan semuanya retak. Tidak pernah sama lagi. Atau dalam keluarga. Mungkin sebagian dari kamu sekarang ada dalam keluarga yang hancur, dan ada sesuatu yang memulainya, dan kamu tidak tahu bagaimana memperbaikinya. Atau gereja &mdash; sebagian dari kamu berasal dari gereja yang pernah hancur di masa lalu, dirusak oleh kepemimpinan, oleh anggota, oleh teologi yang salah.</p>
+<p>Yakobus berulang kali memberitahu kita: kecenderungan kita adalah mencari sumber masalah di luar diri sendiri. Kita berkata, "Dialah yang membuat saya kesal. Dialah yang membuat saya marah." Yakobus berkata: tidak. Masalahmu punya alamat. Bukan di seberang jalan. Kamu sendiri. Kamu adalah sumber masalahmu.</p>
+
+<h2>Alkitab: Yakobus 4:1&ndash;10</h2>
+<div class="scripture-block">
+<strong>Yakobus 4:1&ndash;10 (CSB)</strong>
+Dari manakah datangnya sengketa dan pertengkaran di antara kamu? Bukankah datangnya dari hawa nafsumu yang berjuang di dalam anggota-anggota tubuhmu? Kamu menginginkan sesuatu, tetapi tidak memperolehnya, lalu kamu membunuh; kamu iri hati, tetapi tidak dapat mencapai tujuanmu, lalu kamu bertengkar dan berkelahi. Kamu tidak memperoleh apa-apa, karena kamu tidak berdoa. Atau kamu berdoa juga, tetapi kamu tidak menerima apa-apa, karena kamu berdoa dengan motif yang salah untuk memuaskan hawa nafsumu. Hai kamu, orang-orang yang tidak setia! Tidakkah kamu tahu, bahwa persahabatan dengan dunia adalah permusuhan dengan Allah? Jadi barangsiapa hendak menjadi sahabat dunia ini, ia menjadikan dirinya musuh Allah. Tetapi kasih karunia yang dianugerahkan-Nya kepada kita lebih besar dari pada itu. Karena itu Ia berkata: "Allah menentang orang yang congkak, tetapi mengasihani orang yang rendah hati." Karena itu tunduklah kepada Allah, dan lawanlah Iblis, maka ia akan lari dari padamu! Mendekatlah kepada Allah, dan Ia akan mendekat kepadamu. Tahirkanlah tanganmu, hai kamu orang-orang berdosa! dan sucikanlah hatimu, hai kamu yang mendua hati! Merataplah, berdukacita dan menangislah; hendaklah tawamu kamu ganti dengan ratapan dan kegembiraanmu dengan dukacita. Rendahkanlah dirimu di hadapan Tuhan, dan Ia akan meninggikan kamu.
+</div>
+
+<h2>Pertengkaran yang Tidak Kamu Sadari</h2>
+<p>Pernahkah kamu bertengkar dengan seseorang dan di tengah pertengkaran itu kamu menyadari &mdash; hal yang kalian perdebatkan itu sebenarnya bukan inti masalahnya? Kamu pikir kamu sedang berdebat soal ini, tapi ternyata kamu sedang memperdebatkan sesuatu yang lebih dalam.</p>
+<p>Dimulai dari hal kecil. Seseorang terlambat. Seseorang lupa membalas pesan. Seseorang membuat komentar. Seseorang tidak membantu padahal seharusnya. Seseorang tidak memperhatikanmu. Seseorang membuat keputusan tanpa bertanya padamu.</p>
+<p>Dan sekarang kamu tidak hanya merespons apa yang terjadi. Kamu merespons apa yang kamu pikir itu artinya. Dalam pikiranmu: mereka tidak peduli padaku. Mereka tidak memperhatikanku. Mereka tidak mencintaiku sebagaimana mestinya. Mereka memanfaatkanku. Mereka membuat saya merasa kecil.</p>
+<p>Sebelum disadari, percakapan yang awalnya wajar ini tidak lagi tentang jadwal, tentang pekerjaan rumah, atau keputusan tertentu. Sesuatu yang lebih dalam di dalam dirimu telah tersentuh dan merasa terancam. Dan ketika kita merasa terancam, kita berperang. Itulah mengapa beberapa pertengkaran terasa jauh lebih besar dari masalah yang memulainya.</p>
+<p>Yakobus mengajukan pertanyaan yang biasanya kita hindari: apa sumbernya? Bukan hanya apa yang memulainya, bukan hanya siapa yang berkata apa &mdash; tapi apa sumber dari perasaan-perasaan ini? Yakobus akan membantu kita menggali ke inti hati.</p>
+
+<h2>Dari Keinginan ke Peperangan: Eskalasi</h2>
+<p>Dari mana ini datang? Yakobus berkata: ini datang dari hawa nafsu di dalam diri kita. Dan kita semua punya keinginan &mdash; keinginan yang Tuhan berikan: untuk dikasihi, untuk diterima, untuk aman, untuk dihormati, untuk memiliki damai, untuk dipahami, untuk merasa punya rumah. Itu bukan keinginan yang buruk. Yakobus tidak mengatakan bahwa keinginan itu sendiri adalah masalah.</p>
+<p>Tapi yang terjadi adalah keinginan yang baik menjadi terpelintir. Ia diangkat ke posisi yang tidak seharusnya. Kita mulai berkata dalam hati: Saya tidak hanya ingin diterima &mdash; saya percaya jika saya diterima, baru saya menjadi seseorang. Saya tidak hanya ingin dihormati &mdash; saya percaya bahwa jika saya dihormati, baru saya berarti. Saya tidak hanya ingin mengendalikan situasi &mdash; saya mulai percaya bahwa jika saya bisa mengendalikan ini, hidup saya akhirnya akan baik-baik saja.</p>
+<p>Keinginan menjadi tuntutan, tuntutan menjadi kebutuhan, kebutuhan menjadi hak, dan ketika hak kita dilanggar &mdash; kita berperang.</p>
+<p>Inilah penyembahan berhala, saudara-saudara. Itulah inti masalahnya. Inilah yang terjadi ketika hal yang baik menjadi hal yang paling utama &mdash; ketika rasa memiliki, rasa hormat, kendali, atau kenyamanan menjadi sesuatu yang kamu percayai harus kamu miliki agar kamu bisa baik-baik saja.</p>
+
+<h2>Pertanyaan Diagnostik</h2>
+<p>Ketika seseorang tidak memberikan apa yang kamu pikir kamu butuhkan &mdash; apa yang terjadi? Pernahkah kamu berkata dalam hati: "Saya akan menghukum mereka"? Bukan secara fisik &mdash; tapi kamu menarik diri. Kamu tidak membalas pesan mereka secepat biasanya. Kamu menghindari mereka di gereja. Dan di dalam hati, mulai ada bara kebencian yang perlahan membara.</p>
+<p>Mungkin mereka berkata sesuatu, jadi kamu memutar ulang percakapan itu di kepalamu &mdash; bahkan kadang menulis ulangnya. Kamu membangun kasus. Kamu menjadi pengacara kecil di dalam dirimu sendiri. Lalu kamu merekrut anggota juri. Kamu mencari orang lain untuk berkata: "Kamu bisa bayangkan apa yang dia katakan padaku?"</p>
+<p>Atau: "Saya akan mendoakannya." Kadang kita menggunakan doa sebagai senjata. Kita tidak benar-benar berdoa untuk penyelesaian &mdash; kita berdoa: "Tuhan, kalau bisa, tolong buat mereka sadar bahwa saya yang benar."</p>
+
+<h2>Doa dan Motif yang Salah</h2>
+<p>Pertanyaan sesungguhnya bukan tentang apa yang kita perjuangkan &mdash; melainkan untuk apa kita berjuang. Kita memakai doa untuk membuat keinginan yang kita tahu salah terasa lebih bisa dibenarkan. Masalahnya bukan doa itu sendiri. Masalahnya adalah hati kita. Selalu hati kita. Dalam pertarungan tentang siapa yang menjadi Tuhan &mdash; apakah kita sendiri, ataukah Dia?</p>
+
+<h2>Perzinaan Rohani</h2>
+<p>Itulah mengapa bagian selanjutnya mengambil giliran yang serius. Yakobus berkata: "Hai kamu orang-orang yang tidak setia! Tidakkah kamu tahu bahwa persahabatan dengan dunia adalah permusuhan dengan Allah?"</p>
+<p>Dalam Alkitab, Allah menggambarkan hubungan-Nya dengan Israel &mdash; dan kini dengan gereja &mdash; sebagai pernikahan. Sebuah hubungan perjanjian yang telah Ia buat dengan kita. Ia menyelamatkan kita. Jadi ketika kita mengejar keinginan-keinginan lain, berhala-berhala, Allah menyebutnya perzinaan. Ia berkata: kamu sedang mengkhianati perjanjianmu dengan-Ku.</p>
+<p>Jika kamu adalah orang Kristen, ini seperti segitiga cinta kosmis &mdash; kamu, Allah, dan uang, kekuasaan, seks, kenyamanan, pengakuan, atau seseorang. Allah itu cemburu. Alkitab memberitahu kita demikian, dan Ia tidak menyerahkan mempelai-Nya. Ia berjuang untuk kita. Dunia juga berjuang untukmu &mdash; tapi karena ia ingin menghancurkanmu. Hal-hal yang kita miliki hubungan cinta berhala itu &mdash; mereka tidak mencintai kita balik. Mereka hanya memanfaatkan kita dan pada akhirnya menghancurkan kita. Apa yang kamu perjuangkan, itu yang memberitahumu apa yang kamu cintai.</p>
+
+<h2>Ia Memberikan Kasih Karunia yang Lebih Besar</h2>
+<p>Yakobus berkata: Ia memberikan kasih karunia yang lebih besar. Kasih karunia punya nama. Nama-Nya adalah Yesus.</p>
+<p>Yakobus tidak mengatakan: kamu hanya perlu kemauan yang lebih kuat. Ia tidak mengatakan: kamu butuh keterampilan manajemen konflik yang lebih baik. Apa yang ia katakan? Ia berkata: Aku sedang melakukan sesuatu untukmu yang tidak bisa kamu lakukan untuk dirimu sendiri. Itulah kasih karunia.</p>
+<p>Alasan kita begitu mudah jatuh cinta pada berhala adalah karena kita orang berdosa. Kita sudah rusak sejak Kejadian. Dan kamu dan aku tidak bisa memperbaiki kerusakan itu. Yang kamu butuhkan adalah apa yang Alkitab ajarkan berulang kali: penyelamatan. Kamu membutuhkan seseorang yang bisa melakukan untukmu apa yang tidak bisa kamu lakukan untuk dirimu sendiri, dan itulah mengapa Yesus datang.</p>
+<p>Di atas kayu salib, Yesus diperlakukan seperti seorang yang berzina. Ia terputus. Satu-satunya mitra yang benar-benar setia yang pernah ada di alam semesta ini diperlakukan seolah-olah ia adalah mempelai yang tidak setia. Alkitab berkata: jika kamu percaya kepada-Nya &mdash; jika kamu menerima itu sebagai sesuatu yang dilakukan untuk kamu &mdash; maka kamu bisa diselamatkan.</p>
+<p>Artinya, ketika berhala-berhalamu memanggilmu, inilah yang kamu lakukan: kamu memandang mereka, lalu memandang salib, dan melihat apa yang Tuhanmu lakukan untukmu. Berhala itu tidak akan pernah mencintaimu. Yesus diperlakukan dengan cara yang tidak Ia layak terima, agar kamu bisa diperlakukan dengan cara yang tidak kamu layak terima. Itulah kasih karunia.</p>
+
+<h2>Ilustrasi Festival Matsu</h2>
+<p>Beberapa minggu yang lalu, saya pergi ke Miaoli untuk Festival Matsu Baishatun &mdash; salah satu ziarah keagamaan terbesar di Taiwan. Mereka membawa dewi laut itu di atas tandu sejauh sekitar 400 kilometer, membawanya kembali ke kuilnya. Saya kebetulan ada di sana ketika mereka membawanya masuk.</p>
+<p>Saat tandu itu mendekat, kerumunan mulai berteriak: "Matsu, kami mencintaimu! Matsu, kami mencintaimu!" Dan saya berpikir: dia tidak mencintai kalian. Itu hanya sepotong kayu yang diukir oleh manusia. Mudah untuk melihat itu dan berkata, "Betapa menyedihkan." Tapi kita melakukan hal yang sama persis dengan apa pun yang telah mengisi hati kita. Itulah mengapa kita membutuhkan seorang penolong. Yesus diperlakukan dengan cara yang tidak Ia layak terima agar kamu bisa diperlakukan dengan cara yang tidak kamu layak terima. Itulah kasih karunia.</p>
+
+<h2>Perintah yang Mengikuti Kasih Karunia</h2>
+<p>Setelah Yakobus memberitahu kita semua ini &mdash; barulah ia memberikan perintah. Dan urutannya penting. Perintah-perintah datang setelah kasih karunia. Kamu tidak melakukan perintah-perintah ini untuk mendapatkan kasih karunia. Kamu mendapatkan kasih karunia agar kamu bisa mengikuti perintah-perintah ini.</p>
+
+<h2>Tunduk kepada Allah &middot; Lawan Iblis</h2>
+<p>Tunduk dulunya adalah kata militer &mdash; artinya taat kepada komandanmu. Ketundukan bukan berarti kehilangan dirimu; artinya kamu menyerahkan dirimu kepada perlindungan dan pemeliharaan seseorang yang memiliki kuasa dan otoritas lebih besar darimu. Apa artinya tunduk kepada Allah? Jika kamu tidak tunduk kepada Allah, kepada siapa kamu tunduk? Dunia, daging, dan Iblis. Siapa yang lebih mampu merawatmu?</p>
+<p>Kamu hanya bisa melawan Iblis jika kamu tunduk kepada Allah. Inilah kelicikan Iblis: ketika kamu ingin berbuat dosa, ia berkata, "Tidak masalah kok, coba saja." Lalu setelah kamu melakukannya dan kamu merasa sangat buruk, Iblis berkata: "Oh, itu masalah besar. Entah Tuhan mau mengampunimu atau tidak." Sebelum berbuat dosa: tidak masalah. Setelah berbuat dosa: masalah besar. Ia licik, saudara-saudara. Jangan dengarkan kebohongannya.</p>
+
+<h2>Dekat kepada Allah &middot; Tahirkan &middot; Berduka &middot; Rendah Hati</h2>
+<p>Mendekatlah kepada Allah, dan Ia akan mendekat kepadamu. Bukankah itu perasaan yang menyenangkan, ketika kamu melangkah menuju seseorang, dan mereka melangkah menuju kamu?</p>
+<p>Tahirkanlah tanganmu, sucikanlah hatimu. Bukan hanya apa yang kamu lakukan, tapi mengapa kamu melakukannya. Bukan hanya: Tuhan, ubah perilakuku &mdash; tapi: Tuhan, ubah kecintaanku.</p>
+<p>Merataplah, berdukacita dan menangislah. Saya pikir inilah yang ia maksud &mdash; pertobatan. Kasih karunia tidak membuat dosa menjadi kurang serius. Kasih karunia justru membuat dosa menjadi lebih serius. Pertobatan bukan hanya mengakui dosamu &mdash; ini adalah berduka atas dampak dari dosamu.</p>
+
+<h2>Undangan Injil</h2>
+<p>Jika kamu malam ini bukan seorang Kristen &mdash; Injil bukan tentang membuat orang jahat menjadi sedikit lebih baik. Bukan juga tentang membuat orang baik menjadi lebih baik lagi. Ini tentang mengambil orang yang hancur dan membuatnya utuh &mdash; membawa mereka pulang ke tempat mereka seharusnya berada, dalam hubungan dengan Allah. Jika kamu membutuhkan itu malam ini, temui saya. Saya tidak bisa menolongmu, tapi Allah bisa. Saya hanya akan membawamu ke salib. Itu satu-satunya yang akan saya lakukan.</p>
+
+<div class="closing-prayer">
+<h3>Doa Penutup</h3>
+<p>Bapa di surga, terima kasih banyak untuk salib &mdash; kasih karunia yang telah Engkau berikan kepada kami di dalam Yesus Kristus. Tuhan Yesus, kami mengakui secara pribadi dan bersama-sama bahwa kami telah membiarkan diri kami bersahabat dengan dunia, kadang dalam hal-hal kecil, dan kadang dengan cara yang sangat buruk. Kami telah membiarkan diri kami menjalin hubungan cinta penyembahan berhala dengan berhala yang bodoh yang tidak akan pernah mencintai kami balik. Padahal Engkau mengasihi kami bahkan sebelum dunia diciptakan. Engkau menetapkan kasih-Mu atas kami dan bertujuan dalam hati-Mu untuk menyelamatkan kami dari dosa dan ketidakpercayaan kami sendiri. Maka saya berdoa agar Engkau mengingatkan kami tentang kasih karunia yang telah Engkau berikan, dan menarik kami lebih dekat kepada-Mu malam ini. Dalam nama Yesus, amin.</p>
+</div>
+</article>
+
+<!-- ==================== KOREAN ==================== -->
+<article id="content-ko">
+<h2>서론</h2>
+<p>지난 주에 우리는 3장 말씀을 살펴보면서, 야고보가 두 종류의 지혜를 보여준다는 것을 알았습니다. 위로부터 오는 지혜는 순결하고, 화평을 사랑하며, 온유하고, 친절하고, 자비롭고, 좋은 열매를 맺습니다. 반면 아래로부터 오는 지혜 &mdash; 세상적인 지혜, 심지어 마귀적인 지혜 &mdash; 는 시기와 이기적인 야망으로 특징지어집니다.</p>
+<p>야고보는 세상적인 지혜를 사용하면 결국 무질서로 이어진다고 말합니다. 그것은 공동체를 세우는 게 아니라, 오히려 공동체를 무너뜨립니다. 이겨야 한다는 욕심, 혹은 남이 지는 꼴을 봐야 한다는 욕심 때문입니다.</p>
+<p>지난 주에는 연기를 보았습니다. 이번 주에는 불을 찾습니다. 연기가 어디서 오는지 알아볼 것입니다.</p>
+
+<h2>갈등은 어디서 오는가?</h2>
+<p>이런 생각을 해본 적 있으신가요? 한 그룹에 속했을 때 &mdash; 친구들, 서로 사랑하는 사람들의 모임 &mdash; 그런데 무언가가 일어나고, 금이 갑니다. 예전과 절대 같아지지 않습니다. 아니면 가족. 지금 깨어진 가정 속에 있는 분도 계실 텐데, 무언가가 시작되었고, 어떻게 회복해야 할지 모르겠는 상황입니다. 교회도 마찬가지입니다 &mdash; 리더십에 의해, 교인들에 의해, 잘못된 신학에 의해 상처 입은 교회 출신인 분들도 있을 것입니다.</p>
+<p>야고보는 반복해서 말합니다: 우리는 문제의 근원을 자신 밖에서 찾으려 한다고요. 우리는 말합니다, "그 사람 때문에 화가 납니다. 그녀 때문에 속상합니다." 야고보는 말합니다: 아니요. 당신의 문제에는 주소가 있습니다. 길 건너편이 아닙니다. 바로 당신입니다. 당신이 문제의 근원입니다.</p>
+
+<h2>성경: 야고보서 4:1&ndash;10</h2>
+<div class="scripture-block">
+<strong>야고보서 4:1&ndash;10 (CSB)</strong>
+너희 중에 싸움이 어디서, 다툼이 어디서 납니까? 너희 지체 중에서 싸우는 정욕에서 나는 것이 아닙니까? 너희가 욕심을 내어도 얻지 못하고, 살인하며 시기하여도 능히 취하지 못하므로 다투고 싸우는도다. 너희가 얻지 못함은 구하지 아니하기 때문이요, 구하여도 받지 못함은 정욕으로 쓰려고 잘못 구하기 때문이라. 음란한 여인들아, 세상과 벗된 것이 하나님과 원수됨을 알지 못하느냐? 그런즉 누구든지 세상과 벗이 되고자 하는 자는 스스로 하나님과 원수되는 것이니라. 그러나 더욱 큰 은혜를 주시나니, 그러므로 일렀으되 하나님이 교만한 자를 물리치시고 겸손한 자에게 은혜를 주신다 하였느니라. 그런즉 너희는 하나님께 복종할지어다. 마귀를 대적하라, 그리하면 너희를 피하리라. 하나님을 가까이하라, 그리하면 너희를 가까이하시리라. 죄인들아, 손을 깨끗이 하라. 두 마음을 품은 자들아, 마음을 성결하게 하라. 슬퍼하며 애통하며 울지어다. 너희 웃음을 애통으로, 너희 즐거움을 근심으로 바꿀지어다. 주 앞에서 낮추라, 그리하면 주께서 너희를 높이시리라.
+</div>
+
+<h2>당신이 몰랐던 논쟁</h2>
+<p>누군가와 다투다가, 다투는 중간에 문득 깨달은 적 있으신가요 &mdash; 사실 우리가 싸우는 이유가 진짜 이유가 아니라는 것을? 겉으로는 이것 때문에 싸운다고 생각했는데, 실제로는 더 깊은 무언가 때문에 싸우고 있었던 경험 말입니다.</p>
+<p>사소한 것에서 시작합니다. 누군가가 늦었습니다. 누군가가 답장을 잊었습니다. 누군가가 한마디를 했습니다. 누군가가 당연히 도와줘야 했는데 돕지 않았습니다. 누군가가 당신을 알아보지 못했거나, 당신이 한 일을 몰라줬습니다. 누군가가 당신에게 묻지 않고 결정했습니다.</p>
+<p>이제 당신은 단순히 일어난 일에 반응하는 게 아닙니다. 그것이 의미한다고 생각하는 것에 반응하고 있습니다. 마음속에 이런 생각이 자리합니다: 그들은 나를 신경 쓰지 않아. 나를 귀하게 여기지 않아. 내가 받아야 할 방식으로 나를 사랑하지 않아. 나를 이용하고 있어. 나를 작게 느끼게 해.</p>
+<p>어느새 합리적으로 시작했던 대화가 일정, 집안일, 또는 결정에 관한 것이 아니게 됩니다. 내면 깊은 무언가가 건드려졌고, 위협을 느낍니다. 위협을 느낄 때 우리는 어떻게 합니까? 싸울 준비를 합니다. 전쟁을 선포합니다. 어떤 다툼이 그 발단보다 훨씬 크게 느껴지는 이유가 여기 있습니다.</p>
+<p>야고보는 우리가 보통 피하는 질문을 합니다: 근원이 무엇인가? 무엇이 시작했느냐가 아니라, 누가 뭐라고 했느냐가 아니라 &mdash; 이 감정들의 근원은 무엇인가? 야고보는 우리를 마음 깊은 곳까지 데려가려 합니다.</p>
+
+<h2>욕망에서 전쟁으로: 단계적 상승</h2>
+<p>이것은 어디서 옵니까? 야고보는 말합니다: 우리 안의 욕심에서 나옵니다. 우리 모두에게는 욕구가 있습니다 &mdash; 하나님이 주신 욕구: 사랑받고 싶고, 소속되고 싶고, 안전하고 싶고, 존중받고 싶고, 평화를 누리고 싶고, 이해받고 싶고, 집처럼 편안하게 느끼고 싶은 욕구. 이것들은 나쁜 욕구가 아닙니다. 야고보는 욕구 자체가 문제라고 말하지 않습니다.</p>
+<p>그런데 좋은 욕구가 뒤틀립니다. 마땅하지 않은 지위로 올라갑니다. 우리는 내심 이렇게 말하기 시작합니다: 나는 그냥 소속되기를 원하는 게 아니라 &mdash; 소속되어야만 내가 누군가가 된다고 믿는다. 나는 그냥 존중받기를 원하는 게 아니라 &mdash; 존중받아야만 내가 중요한 사람이 된다고 믿는다. 나는 그냥 통제하기를 원하는 게 아니라 &mdash; 통제할 수 있어야만 내 세상이 드디어 제자리를 찾는다고 믿는다.</p>
+<p>욕구가 요구가 되고, 요구가 필요가 되고, 필요가 권리가 되고, 권리가 침해당할 때 &mdash; 우리는 전쟁을 선포합니다.</p>
+<p>이것이 바로 우상 숭배입니다, 여러분. 그게 핵심입니다. 좋은 것이 궁극적인 것이 될 때 일어나는 일입니다 &mdash; 소속감, 존중, 통제, 편안함이 '없으면 괜찮을 수 없는 것'이 될 때.</p>
+
+<h2>진단 질문들</h2>
+<p>누군가가 당신이 필요하다고 생각하는 것을 주지 않을 때 &mdash; 어떻게 됩니까? 속으로 이런 생각을 한 적 있으신가요: "저 사람을 벌줄 거야." 신체적으로가 아니라 &mdash; 그냥 물러섭니다. 메시지에 빨리 답하지 않습니다. 교회에서 모른 척합니다. 그리고 내면 깊은 곳에서 서서히 타오르는 분개가 시작됩니다.</p>
+<p>혹은 그들이 무언가 말을 했고, 그래서 그 대화를 머릿속에서 계속 재생합니다 &mdash; 때로는 다시 쓰기까지 합니다. 증거를 모읍니다. 내면의 작은 변호사가 됩니다. 그리고는 배심원단을 모집합니다. "그 사람이 나한테 한 말 믿어져?"</p>
+<p>또는 이렇게 합니다: "기도할게요." 때때로 우리는 기도를 무기로 씁니다. 진정한 해결을 위해 기도하는 게 아니라: "하나님, 제발 저 사람이 제가 옳았다는 걸 깨닫게 해주세요."</p>
+
+<h2>기도와 잘못된 동기</h2>
+<p>진짜 질문은 우리가 무엇을 위해 싸우느냐가 아니라 &mdash; 무엇을 <em>위해</em> 싸우고 있느냐입니다. 우리는 기도를 이용해서 잘못된 욕구를 조금 더 정당해 보이게 만듭니다. 문제는 기도 자체가 아닙니다. 문제는 우리의 마음입니다. 언제나 우리의 마음입니다. 누가 주님이 되는가의 싸움에서 &mdash; 우리 자신인가, 아니면 그분인가?</p>
+
+<h2>영적 간음</h2>
+<p>그래서 다음 단락은 심각한 방향으로 전환됩니다. 야고보는 말합니다: "음란한 여인들아, 세상과 벗된 것이 하나님과 원수됨을 알지 못하느냐?"</p>
+<p>성경에서 하나님은 이스라엘 &mdash; 그리고 이제 교회 &mdash; 과의 관계를 결혼으로 묘사합니다. 그분이 우리와 맺으신 언약 관계입니다. 그분은 우리를 구원하셨습니다. 그러므로 우리가 다른 욕구와 욕망, 우상을 따를 때, 하나님은 그것을 간음이라 부릅니다. 그분은 말씀하십니다: 너는 나와의 언약을 깨고 있다.</p>
+<p>만약 당신이 그리스도인이라면, 이것은 우주적인 삼각관계와 같습니다 &mdash; 당신과 하나님, 그리고 돈, 권력, 섹스, 편안함, 인정, 또는 어떤 사람. 하나님은 질투하시는 하나님입니다. 그분은 자신의 신부를 포기하지 않으십니다. 그분은 우리를 위해 싸우십니다. 세상도 당신을 위해 싸우지만 &mdash; 당신을 파괴하려고 싸웁니다. 우상적인 사랑 관계를 맺고 있는 것들 &mdash; 그것들은 우리를 사랑하지 않습니다. 이용하고 결국 파괴할 뿐입니다. 당신이 무엇을 위해 싸우는지가, 당신이 무엇을 사랑하는지를 알려줍니다.</p>
+
+<h2>그는 더 큰 은혜를 주신다</h2>
+<p>야고보는 말합니다: 그러나 더욱 큰 은혜를 주시나니. 은혜에는 이름이 있습니다. 그분의 이름은 예수님입니다.</p>
+<p>야고보는 말하지 않습니다: 더 강한 의지력이 필요하다. 더 나은 갈등 관리 기술이 필요하다. 그가 말하는 것은: 나는 당신이 스스로 할 수 없는 일을 당신을 위해 하고 있습니다. 그것이 은혜입니다.</p>
+<p>우리가 왜 그토록 쉽게 우상과 사랑에 빠지느냐 &mdash; 이유는 우리가 죄인이기 때문입니다. 우리는 창세기 이후로 깨어져 왔습니다. 그 깨어짐을 당신이나 나는 고칠 수 없습니다. 당신에게 필요한 것은 성경이 반복해서 가르치는 것입니다: 구원. 당신이 스스로 할 수 없는 것을 해줄 수 있는 분이 필요합니다 &mdash; 그것이 바로 예수님이 오신 이유입니다.</p>
+<p>십자가에서, 예수님은 간음한 자처럼 취급받으셨습니다. 끊어지셨습니다. 우주에서 진정으로 신실하셨던 유일한 분이 신실하지 못한 신부처럼 취급받으셨습니다. 만약 당신이 그분을 믿는다면 &mdash; 그분의 삶과 죽음과 부활을 믿고, 그것이 당신을 위한 것임을 받아들인다면 &mdash; 당신은 구원받을 수 있습니다.</p>
+<p>이것은, 당신의 우상 연인들이 부를 때, 당신이 이렇게 한다는 것입니다: 그것들을 바라보고, 십자가를 바라보며, 당신의 하나님이 당신을 위해 무엇을 하셨는지 봅니다. 그 우상은 절대 당신을 사랑하지 않을 것입니다. 예수님은 그분이 받지 않아야 할 대우를 받으셨고, 그래서 당신은 당신이 받지 않아야 할 대우를 받을 수 있게 되었습니다. 그것이 은혜입니다.</p>
+
+<h2>마쭈 축제 이야기</h2>
+<p>몇 주 전에 저는 먀오리에 가서 바이사툰 마쭈 순례 축제에 참석했습니다 &mdash; 대만에서 두 번째로 큰 종교 순례 행사입니다. 그들은 바다의 여신을 가마에 태워 약 400킬로미터를 이동해 사원으로 돌아옵니다. 저는 그녀가 사원 입구로 들어오는 바로 그 순간에 거기 있었습니다.</p>
+<p>가마가 가까워지자 군중들이 소리를 지르기 시작했습니다: "마쭈, 우리가 사랑해요! 마쭈, 우리가 사랑해요!" 저는 이런 생각이 들었습니다: 그녀는 당신들을 사랑하지 않아요. 그것은 사람이 조각한 나무 조각일 뿐입니다. 그것을 보며 "정말 안타깝다"고 말하기는 쉽습니다. 하지만 우리는 우리의 마음을 채우고 있는 것들에 대해 정확히 똑같이 합니다. 그래서 우리에게 구원자가 필요합니다. 예수님은 그분이 받지 않아야 할 대우를 받으셨고, 그래서 당신은 당신이 받지 않아야 할 대우를 받을 수 있게 되었습니다. 그것이 은혜입니다.</p>
+
+<h2>은혜 이후에 오는 명령들</h2>
+<p>야고보가 이 모든 것을 말한 후 &mdash; 더 큰 은혜를 주신다고 말한 후 &mdash; 그때 명령들이 나옵니다. 순서가 중요합니다. 명령들은 은혜 이후에 옵니다. 은혜를 얻기 위해 이 명령들을 행하는 것이 아닙니다. 은혜를 받았기에 이 명령들을 따를 수 있습니다. 하나님께 무언가를 얻으려고 이것들을 행하는 것이 아닙니다. 하나님이 당신을 위해 무언가를 하셨기 때문에 행하는 것입니다.</p>
+
+<h2>하나님께 복종하라 &middot; 마귀를 대적하라</h2>
+<p>복종은 원래 군사 용어였습니다 &mdash; 지휘관에게 복종한다는 뜻입니다. 복종이란 자신을 잃는 것이 아닙니다; 당신보다 더 큰 권위와 능력을 가진 분의 보호와 돌봄 아래 자신을 드리는 것입니다. 하나님께 복종하지 않는다면, 당신은 누구에게 복종하고 있습니까? 세상, 육체, 그리고 마귀. 누가 더 당신을 잘 돌볼 수 있다고 생각합니까?</p>
+<p>하나님께 복종할 때만 마귀를 대적할 수 있습니다. 마귀의 교활함이 이렇습니다: 당신이 죄를 짓고 싶을 때, 그는 말합니다, "별거 아니야, 한번 해봐." 그리고 당신이 그것을 하고, 잘못되었기에 끔찍한 기분이 들면, 마귀는 말합니다: "오, 이건 큰일이야. 하나님이 이걸 용서하실지 모르겠어." 하기 전에는: 별거 아니야. 하고 나서는: 큰일이야. 그는 교활합니다, 여러분. 그의 거짓말을 듣지 마십시오.</p>
+
+<h2>하나님께 가까이 &middot; 깨끗이 &middot; 애통 &middot; 겸손</h2>
+<p>하나님을 가까이하면, 그분이 당신을 가까이하실 것입니다. 누군가를 향해 다가가고, 그 사람도 당신을 향해 다가오는 느낌 &mdash; 그것이 얼마나 좋습니까?</p>
+<p>손을 깨끗이 하라, 마음을 성결하게 하라. 단지 무엇을 했느냐가 아니라, 왜 그것을 했느냐까지. 주님, 제 행동을 바꿔주세요가 아니라 &mdash; 주님, 제 사랑을 바꿔주세요.</p>
+<p>슬퍼하며 애통하며 울지어다. 이것이 의미하는 것이라고 생각합니다 &mdash; 회개. 은혜는 죄를 덜 심각하게 만들지 않습니다. 오히려 더 심각하게 만듭니다. 회개는 단순히 죄를 고백하는 것이 아닙니다 &mdash; 죄의 결과에 대해 슬퍼하는 것입니다.</p>
+
+<h2>복음의 초대</h2>
+<p>오늘 밤 그리스도인이 아니신 분이 있다면 &mdash; 복음은 나쁜 사람을 조금 더 좋은 사람으로 만드는 것이 아닙니다. 좋은 사람을 더 좋은 사람으로 만드는 것도 아닙니다. 깨어진 사람을 온전하게 만들고, 집으로 데려오는 것입니다 &mdash; 당신이 있어야 할 곳, 하나님과의 관계 속으로. 오늘 밤 그것이 필요하다면, 저에게 오세요. 제가 도울 수는 없지만, 하나님은 할 수 있습니다. 저는 당신을 십자가 앞으로 데려갈 뿐입니다. 그것이 제가 언제나 할 것의 전부입니다.</p>
+
+<div class="closing-prayer">
+<h3>마무리 기도</h3>
+<p>하늘 아버지, 십자가에 감사드립니다 &mdash; 예수 그리스도 안에서 우리에게 주신 은혜에 감사합니다. 주 예수님, 우리는 개인적으로, 그리고 함께 고백합니다. 우리는 때로는 작은 방식으로, 때로는 정말 심각한 방식으로 세상과 벗이 되도록 허락했습니다. 우리는 절대 우리를 사랑해주지 않을 우상과 우상 숭배적인 사랑 관계를 맺도록 허락했습니다. 그러나 당신은 세상이 창조되기도 전에 우리를 사랑하셨습니다. 당신은 우리에게 사랑을 두시고, 우리를 우리 자신의 죄와 불신앙에서 구원하시기로 마음 속에 뜻하셨습니다. 당신이 우리에게 주신 은혜를 기억하게 하시고, 오늘 밤 우리를 당신께로 더 가까이 이끌어 주시기를 기도합니다. 예수님의 이름으로 기도합니다, 아멘.</p>
+</div>
+</article>
+
+</main>
+
+<footer>
+  <strong>Taichung International Fellowship</strong><br>
+  <a href="../archive.html">&#8592; Sermon Archive</a> &nbsp;&middot;&nbsp; <a href="https://taichunginternationalfellowship.org/sermon-translations" target="_blank">Sermon Translations</a>
+</footer>
+
+<div class="sheet-overlay" id="sheet-overlay" onclick="closeSheet()"></div>
+<div class="lang-sheet" id="lang-sheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title">Select Language</div>
+  <button class="lang-option active" id="opt-en" onclick="setLang('en')">
+    <span class="lang-flag">&#127482;&#127480;</span> English <span class="check" id="check-en">&#10003;</span>
+  </button>
+  <button class="lang-option" id="opt-zh" onclick="setLang('zh')">
+    <span class="lang-flag">&#127481;&#127484;</span> &#32321;&#39636;&#20013;&#25991; <span class="check" id="check-zh" style="display:none">&#10003;</span>
+  </button>
+  <button class="lang-option" id="opt-id" onclick="setLang('id')">
+    <span class="lang-flag">&#127470;&#127465;</span> Bahasa Indonesia <span class="check" id="check-id" style="display:none">&#10003;</span>
+  </button>
+  <button class="lang-option" id="opt-ko" onclick="setLang('ko')">
+    <span class="lang-flag">&#127472;&#127479;</span> &#54620;&#44397;&#50612; <span class="check" id="check-ko" style="display:none">&#10003;</span>
+  </button>
+  <div class="request-divider"></div>
+  <button class="request-lang-btn" onclick="openRequestForm()">+ Request another language</button>
+</div>
+
+<div class="request-form-overlay" id="request-form-overlay">
+  <div class="request-form-box">
+    <div id="form-content">
+      <h3>Request a Language</h3>
+      <p>We'll be notified and will work on adding your requested language to future sermons.</p>
+      <form id="lang-request-form" onsubmit="submitRequest(event)">
+        <div class="form-group">
+          <label>LANGUAGE REQUESTED</label>
+          <select name="language" required>
+            <option value="">Select a language...</option>
+            <option>Tagalog / Filipino</option>
+            <option>Japanese / &#26085;&#26412;&#35486;</option>
+            <option>Spanish / Espa&#241;ol</option>
+            <option>French / Fran&#231;ais</option>
+            <option>German / Deutsch</option>
+            <option>Thai / &#3616;&#3634;&#3625;&#3634;&#3652;&#3607;&#3618;</option>
+            <option>Vietnamese / Ti&#7871;ng Vi&#7879;t</option>
+            <option>Hindi / &#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</option>
+            <option>Malay / Bahasa Melayu</option>
+            <option>Arabic / &#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</option>
+            <option>Portuguese / Portugu&#234;s</option>
+            <option>Russian / &#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;</option>
+            <option>Dutch / Nederlands</option>
+            <option>Simplified Chinese / &#31616;&#20307;&#20013;&#25991;</option>
+            <option>Burmese / &#4121;&#4156;&#4116;&#4154;&#4121;&#4140;&#4152;&#4101;&#4140;&#4126;&#4140;</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>FULL NAME</label>
+          <input type="text" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label>STATUS</label>
+          <select name="status" required>
+            <option value="">Select...</option>
+            <option>TIF Regular Attender</option>
+            <option>TIF Member</option>
+            <option>First-time Visitor</option>
+            <option>Online Viewer</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>EMAIL</label>
+          <input type="email" name="email" placeholder="your@email.com" required>
+        </div>
+        <button type="submit" class="form-submit-btn">Submit Request</button>
+        <button type="button" class="form-close-btn" onclick="closeRequestForm()">Cancel</button>
+      </form>
+    </div>
+    <div id="form-success" class="form-success" style="display:none">
+      <div class="check-icon">&#9989;</div>
+      <h3 style="color:var(--accent);font-family:var(--font-head);margin-bottom:8px;">Request Sent!</h3>
+      <p>Thank you &#8212; we've received your request and will notify Todd's team.</p>
+      <button class="form-close-btn" onclick="closeRequestForm()" style="margin-top:16px">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const langs = {en:'English',zh:'繁體中文',id:'Bahasa Indonesia',ko:'한국어'};
+let currentLang='en';
+function setLang(code){
+  document.querySelectorAll('article').forEach(a=>a.classList.remove('active'));
+  const art=document.getElementById('content-'+code);
+  if(art)art.classList.add('active');
+  document.querySelectorAll('.lang-option').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.check').forEach(c=>c.style.display='none');
+  const opt=document.getElementById('opt-'+code);
+  if(opt)opt.classList.add('active');
+  const chk=document.getElementById('check-'+code);
+  if(chk)chk.style.display='inline';
+  document.getElementById('lang-label').textContent=langs[code]||'Language';
+  currentLang=code;
+  closeSheet();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function openSheet(){
+  document.getElementById('sheet-overlay').classList.add('open');
+  document.getElementById('lang-sheet').classList.add('open');
+}
+function closeSheet(){
+  document.getElementById('sheet-overlay').classList.remove('open');
+  document.getElementById('lang-sheet').classList.remove('open');
+}
+function openRequestForm(){
+  closeSheet();
+  document.getElementById('request-form-overlay').classList.add('open');
+}
+function closeRequestForm(){
+  document.getElementById('request-form-overlay').classList.remove('open');
+  document.getElementById('form-content').style.display='block';
+  document.getElementById('form-success').style.display='none';
+  document.getElementById('lang-request-form').reset();
+}
+async function submitRequest(e){
+  e.preventDefault();
+  const form=e.target;
+  const data=new FormData(form);
+  const payload={
+    access_key:'3fc0c694-adc2-4cda-8191-c4f6993a9a55',
+    subject:'TIF Language Request — '+data.get('language'),
+    from_name:data.get('name'),
+    email:data.get('email'),
+    message:'Language: '+data.get('language')+'\nName: '+data.get('name')+'\nStatus: '+data.get('status')+'\nEmail: '+data.get('email')+'\nSermon: The Source (James 4:1-10, Week 7, May 10 2026)'
+  };
+  try{
+    await fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    });
+  }catch(err){}
+  document.getElementById('form-content').style.display='none';
+  document.getElementById('form-success').style.display='block';
+}
+</script>
+</body>
+</html>
