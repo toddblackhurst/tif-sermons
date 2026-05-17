@@ -37,12 +37,9 @@ except ImportError:
     sys.exit(1)
 
 # ══════════════════════════════════════════════════════════════════════════════
-# CONFIG — update these if tokens change
+# CONFIG
 # ══════════════════════════════════════════════════════════════════════════════
-# GITHUB_TOKEN_PUSH env var is used by GitHub Actions (set as repo secret or
-# the automatic GITHUB_TOKEN).  Falls back to the hardcoded PAT for local use.
-GITHUB_TOKEN     = (os.environ.get('GITHUB_TOKEN_PUSH') or
-                    'YOUR_GITHUB_PAT_HERE')
+GITHUB_TOKEN     = os.environ.get('GITHUB_TOKEN_PUSH') or os.environ.get('GITHUB_TOKEN') or ''
 REPO             = 'toddblackhurst/tif-sermons'
 ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY', '')   # or hardcode here
 # ══════════════════════════════════════════════════════════════════════════════
@@ -72,6 +69,18 @@ LANG_DISPLAY = {
     'Hebrew': 'עברית', 'Ukrainian': 'Українська', 'Bengali': 'বাংলা', 'Swahili': 'Kiswahili',
 }
 
+LANG_ALIASES = {
+    'filipino / tagalog': 'Filipino',
+    'tagalog / filipino': 'Filipino',
+    'tagalog': 'Filipino',
+    'filipino': 'Filipino',
+}
+
+
+def normalize_language(language: str) -> str:
+    cleaned = re.sub(r'\s+', ' ', language.strip())
+    return LANG_ALIASES.get(cleaned.lower(), cleaned.split(' / ')[0].split(' (')[0].strip())
+
 
 def lang_id(language: str) -> str:
     return LANG_IDS.get(language, language.lower().replace(' ', '_').replace('/', '_'))
@@ -79,12 +88,16 @@ def lang_id(language: str) -> str:
 
 def lang_display(language: str) -> str:
     native = LANG_DISPLAY.get(language)
+    if native == language:
+        return language
     return f'{language} ({native})' if native else language
 
 
 # ── GitHub API helpers ────────────────────────────────────────────────────────
 
 def gh_get(path: str):
+    if not GITHUB_TOKEN:
+        raise RuntimeError('GitHub token required. Set GITHUB_TOKEN_PUSH or GITHUB_TOKEN.')
     req = urllib.request.Request(BASE + path, headers=HEADERS)
     resp = urllib.request.urlopen(req)
     data = json.loads(resp.read())
@@ -93,6 +106,8 @@ def gh_get(path: str):
 
 
 def gh_put(path: str, message: str, content_str: str, sha: str = None):
+    if not GITHUB_TOKEN:
+        raise RuntimeError('GitHub token required. Set GITHUB_TOKEN_PUSH or GITHUB_TOKEN.')
     encoded = base64.b64encode(content_str.encode('utf-8')).decode('ascii')
     body = {'message': message, 'content': encoded}
     if sha:
@@ -148,56 +163,66 @@ ENGLISH HTML TO TRANSLATE:
 # ── HTML manipulation ─────────────────────────────────────────────────────────
 
 def extract_english_article(html: str) -> str:
-    """Return the inner HTML of <article id="content-en">...</article>."""
+    """Return the inner HTML of the English language content block."""
+    _, _, inner = find_content_block(html, 'content-en')
+    return inner
+
+
+def find_content_block(html: str, element_id: str):
+    """Return (start, end, inner_html) for a div/article block by id."""
     match = re.search(
-        r'<article[^>]*id=["\']content-en["\'][^>]*>(.*?)</article>',
-        html, re.DOTALL,
+        rf'<(?P<tag>article|div)\b[^>]*id=["\']{re.escape(element_id)}["\'][^>]*>',
+        html,
+        re.IGNORECASE,
     )
     if not match:
-        raise ValueError('Could not find <article id="content-en"> in index.html')
-    return match.group(1)
+        raise ValueError(f'Could not find #{element_id} in index.html')
+
+    tag = match.group('tag')
+    token_re = re.compile(rf'</?{tag}\b[^>]*>', re.IGNORECASE)
+    depth = 1
+    for token in token_re.finditer(html, match.end()):
+        if token.group(0).startswith('</'):
+            depth -= 1
+            if depth == 0:
+                return match.start(), token.end(), html[match.end():token.start()]
+        else:
+            depth += 1
+
+    raise ValueError(f'Could not find closing </{tag}> for #{element_id}')
 
 
 def inject_language(html: str, language: str, lid: str, ldisplay: str, translated_inner: str) -> str:
     """
-    1. Insert a language button into the lang-bar (before the separator + Request button).
-    2. Append a new <article> to content-outer.
+    1. Insert a language option into the current bottom-sheet language picker.
+    2. Register the language in the LANGS object.
+    3. Append a new content block before the footer.
     """
-    # ── 1. Language button ─────────────────────────────────────────────────
-    btn_html = (
-        f'\n    <button class="lang-btn" onclick="setLangCustom(\'{lid}\')" '
-        f'aria-pressed="false" id="btn-{lid}">{ldisplay}</button>'
-    )
-    # Insert before the <span class="lang-bar-sep">
-    if '<span class="lang-bar-sep"' in html:
-        html = html.replace(
-            '<span class="lang-bar-sep"',
-            btn_html + '\n    <span class="lang-bar-sep"',
-            1,
+    if f'id="opt-{lid}"' not in html:
+        option_html = (
+            f'    <button class="lang-option" id="opt-{lid}" onclick="setLang(\'{lid}\')">\n'
+            f'      <span class="lang-flag">🌐</span>\n'
+            f'      <div><div class="lang-name">{language}</div><div class="lang-native">{ldisplay}</div></div>\n'
+            f'      <span class="lang-check" id="check-{lid}" style="display:none">&#10003;</span>\n'
+            f'    </button>\n'
         )
-    else:
-        # Fallback: insert before Request Language button
-        html = re.sub(
-            r'(\s*<button[^>]*class="lang-request-btn")',
-            btn_html + r'\1',
-            html,
-            count=1,
-        )
+        html = re.sub(r'(\s*<hr class="sheet-divider">)', '\n' + option_html + r'\1', html, count=1)
 
-    # ── 2. Article content ─────────────────────────────────────────────────
-    article_html = (
-        f'\n\n    <!-- {language.upper()} -->\n'
-        f'    <article id="content-{lid}" class="lang-content" lang="{lid}">\n'
+    if f"'{lid}':" not in html:
+        lang_entry = f"    '{lid}': {{ label: '{ldisplay}', flag: '🌐' }},\n"
+        html = re.sub(r'(  const LANGS = \{\n)', r'\1' + lang_entry, html, count=1)
+
+    content_html = (
+        f'\n\n<!-- {language.upper()} -->\n'
+        f'<div id="content-{lid}" class="lang-content" lang="{lid}">\n'
         f'{translated_inner}\n'
-        f'    </article>\n'
+        f'</div>\n'
     )
-    # Append before the closing </div> of .content-outer (which precedes <footer>)
-    html = re.sub(
-        r'(\s*</div>\s*\n\s*<footer)',
-        article_html + r'\1',
-        html,
-        count=1,
-    )
+    if f'id="content-{lid}"' in html:
+        start, end, _ = find_content_block(html, f'content-{lid}')
+        html = html[:start] + content_html.strip() + html[end:]
+    else:
+        html = re.sub(r'(\s*<footer class="footer">)', content_html + r'\1', html, count=1)
     return html
 
 
@@ -205,26 +230,32 @@ def inject_language(html: str, language: str, lid: str, ldisplay: str, translate
 
 def update_languages_config(language: str, lid: str, ldisplay: str):
     """Add the language to languages_config.json so the weekly pipeline picks it up."""
-    config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'languages_config.json')
-    if os.path.exists(config_path):
-        with open(config_path, 'r', encoding='utf-8') as f:
-            config = json.load(f)
-    else:
-        config = {
-            'languages': [
-                {'id': 'zh', 'name': 'Traditional Chinese', 'display': '繁體中文'},
-                {'id': 'id', 'name': 'Bahasa Indonesia', 'display': 'Bahasa Indonesia'},
-            ]
-        }
-    existing_ids = {lang['id'] for lang in config['languages']}
+    try:
+        sha, content = gh_get('languages_config.json')
+        config = json.loads(content)
+    except urllib.error.HTTPError as e:
+        if e.code != 404:
+            raise
+        sha = None
+        config = {'extra_languages': []}
+
+    extras = config.setdefault('extra_languages', [])
+    existing_ids = {lang.get('code') or lang.get('id') for lang in extras}
     if lid not in existing_ids:
-        config['languages'].append({'id': lid, 'name': language, 'display': ldisplay})
-        with open(config_path, 'w', encoding='utf-8') as f:
-            json.dump(config, f, indent=2, ensure_ascii=False)
+        extras.append({'name': language, 'code': lid, 'display': ldisplay, 'active': True, 'ongoing': True})
+        updated = json.dumps(config, indent=2, ensure_ascii=False) + '\n'
+        ok, result = gh_put(
+            'languages_config.json',
+            f'Add {language} to ongoing sermon languages',
+            updated,
+            sha,
+        )
+        if not ok:
+            raise RuntimeError(f'Failed to update languages_config.json: {result}')
         print(f'  Updated languages_config.json → added {language} ({lid})')
     else:
         print(f'  {language} already in languages_config.json — skipping config update')
-    return config_path
+    return config
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
@@ -258,7 +289,7 @@ def main():
         print('  Set the ANTHROPIC_API_KEY environment variable, or pass --api-key "sk-ant-..."')
         sys.exit(1)
 
-    language  = args.language.strip()
+    language  = normalize_language(args.language)
     lid       = lang_id(language)
     ldisplay  = lang_display(language)
     requester = args.name or 'anonymous'
