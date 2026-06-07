@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="tif-week-slug" content="james-week-11">
+  <meta name="tif-week-slug" content="joshua-week-1">
   <meta name="tif-page-type" content="listening-aid">
-  <title>The Healing Community | TIF Listening Aid</title>
+  <title>Courage for the Promised Rest | TIF Listening Aid</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Asul:wght@400;700&display=swap" rel="stylesheet">
@@ -218,63 +218,84 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 200;
-      align-items: flex-end;
+      background: rgba(18,27,32,0.58);
+      z-index: 999;
+      padding: 24px;
+      align-items: center;
+      justify-content: center;
     }
     .sheet-overlay.open { display: flex; }
     .sheet {
+      width: min(460px, 100%);
       background: var(--white);
-      width: 100%;
-      max-width: 520px;
-      margin: 0 auto;
-      border-radius: 16px 16px 0 0;
-      padding: 20px 0 32px;
+      border-radius: 16px;
+      box-shadow: 0 18px 42px rgba(18,27,32,0.28);
+      padding: 20px;
       max-height: 90vh;
-      overflow-y: auto;
+      overflow: auto;
     }
-    .sheet-handle { width: 40px; height: 4px; background: #ccc; border-radius: 2px; margin: 0 auto 16px; }
-    .sheet-title { font-family: 'Asul', serif; font-size: 1rem; font-weight: 700; text-align: center; color: var(--dark); margin-bottom: 16px; padding: 0 24px; }
+    .sheet-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+    .sheet-title { font-family: 'Asul', serif; font-size: 1.15rem; color: var(--dark); }
+    .sheet-close {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+    .sheet-copy { font-size: 0.9rem; color: #58707d; margin-bottom: 14px; }
     .lang-option {
-      display: flex; align-items: center; gap: 14px;
-      padding: 14px 24px; cursor: pointer;
-      transition: background 0.15s;
-      border: none; background: none; width: 100%; text-align: left;
+      width: 100%;
+      border: 1px solid #dde8ec;
+      background: #fff;
+      border-radius: 12px;
+      padding: 13px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
     }
-    .lang-option:hover { background: var(--bg-light); }
-    .lang-option.selected { background: var(--accent-dim); }
-    .lang-flag { font-size: 1.4rem; line-height: 1; }
-    .lang-name { font-size: 0.95rem; color: var(--dark); font-weight: 500; }
-    .lang-native { font-size: 0.8rem; color: var(--muted); }
-    .lang-check { margin-left: auto; color: var(--accent); font-size: 1.1rem; }
-    .sheet-divider { border: none; border-top: 1px solid #eee; margin: 12px 0; }
-    .request-section { padding: 0 24px; }
-    .request-toggle {
-      background: none; border: 1px solid var(--border); border-radius: 20px;
-      padding: 8px 18px; color: var(--accent); font-size: 0.83rem; cursor: pointer;
-      font-family: 'Asap', sans-serif; display: block; margin: 0 auto;
+    .lang-option:hover, .lang-option.active { border-color: var(--accent); background: var(--bg-light); }
+    .lang-main { display: flex; align-items: center; gap: 12px; }
+    .lang-flag { font-size: 1.2rem; }
+    .lang-name { font-weight: 700; color: var(--dark); font-size: 0.92rem; }
+    .lang-native { font-size: 0.82rem; color: var(--muted); }
+    .lang-check { color: var(--accent); font-weight: 700; font-size: 0.95rem; }
+    .request-box {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid #e6eef2;
     }
-    .request-toggle:hover { background: var(--accent-dim); }
-    .request-form { display: none; margin-top: 16px; }
-    .request-form.open { display: block; }
-    .form-row { margin-bottom: 12px; }
-    .form-row label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
-    .form-row input, .form-row select {
-      width: 100%; border: 1px solid #ddd; border-radius: 6px;
-      padding: 9px 12px; font-size: 0.9rem; font-family: 'Asap', sans-serif;
-      color: var(--dark); background: var(--white); outline: none;
+    .request-box h3 {
+      font-family: 'Asul', serif;
+      font-size: 0.98rem;
+      color: var(--dark);
+      margin-bottom: 6px;
     }
-    .form-row input:focus, .form-row select:focus { border-color: var(--accent); }
-    .form-submit {
-      width: 100%; background: var(--accent); color: var(--white);
-      border: none; border-radius: 8px; padding: 11px;
-      font-size: 0.93rem; font-weight: 600; font-family: 'Asap', sans-serif; cursor: pointer;
+    .request-box p { font-size: 0.84rem; color: #607a87; margin-bottom: 10px; }
+    .request-box a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--dark);
+      color: var(--off-white);
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 600;
     }
-    .form-submit:hover { opacity: 0.88; }
-    .form-success { display: none; text-align: center; color: var(--accent); font-weight: 600; padding: 12px 0; font-size: 0.93rem; }
     .footer {
-      background: var(--extra-dark); color: var(--muted);
-      text-align: center; padding: 28px 24px; font-size: 0.8rem;
+      background: var(--extra-dark);
+      color: rgba(255,255,255,0.68);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 0.84rem;
+      line-height: 1.7;
     }
     .footer a { color: var(--accent); text-decoration: none; }
     .footer a:hover { text-decoration: underline; }
@@ -300,9 +321,9 @@
 </header>
 
 <section class="hero">
-  <div class="hero-badge">Listening Aid &middot; James Series &middot; Week 11</div>
-  <h1>The Healing Community</h1>
-  <div class="hero-scripture">James 5:13&ndash;20</div>
+  <div class="hero-badge">Listening Aid &middot; Joshua Series &middot; Week 1</div>
+  <h1>Courage for the Promised Rest</h1>
+  <div class="hero-scripture">Joshua 1:1&ndash;9</div>
   <div class="hero-meta">June 7, 2026 &middot; Taichung International Fellowship</div>
   <div class="hero-divider"></div>
 </section>
@@ -311,38 +332,38 @@
   <div class="listening-aid">
     <div class="big-idea">
       <div class="big-idea-label">BIG IDEA</div>
-      <div class="big-idea-text">Grace creates a healing community: we pray first, bring sin into the light, and move toward the wandering.</div>
+      <div class="big-idea-text">God's people move toward promised rest, not because they are strong, but because God is with them.</div>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">Scripture</div>
-      <div class="scripture-ref">James 5:13–20</div>
+      <div class="scripture-ref">Joshua 1:1&ndash;9</div>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">Sermon Flow</div>
 
       <div class="movement">
-        <div class="movement-header"><span class="movement-num">1</span> Prayer comes first</div>
+        <div class="movement-header"><span class="movement-num">1</span> Courage begins where self-confidence ends</div>
         <ul>
-          <li>Suffering, joy, and sickness all move us toward God.</li>
-          <li>Prayer is not the emergency button; it is the church&#x27;s first reflex.</li>
+          <li>Moses is dead, the river is real, and Joshua is not enough on his own.</li>
+          <li>God does not tell Joshua to believe in himself; he tells him, “I will be with you.”</li>
         </ul>
       </div>
 
       <div class="movement">
-        <div class="movement-header"><span class="movement-num">2</span> Confession brings healing</div>
+        <div class="movement-header"><span class="movement-num">2</span> Courage listens to God's word when fear wants control</div>
         <ul>
-          <li>Confess to one another, not to manage your image but to walk in the light.</li>
-          <li>You do not confess everything to everyone, but you do confess everything to someone safe.</li>
+          <li>“Be strong and courageous” is tied to meditating on God's word and obeying it.</li>
+          <li>Fear keeps preaching to us, so God's voice must become louder than our anxiety.</li>
         </ul>
       </div>
 
       <div class="movement">
-        <div class="movement-header"><span class="movement-num">3</span> Grace pursues wanderers</div>
+        <div class="movement-header"><span class="movement-num">3</span> Courage moves toward rest together, and Jesus is the greater Joshua</div>
         <ul>
-          <li>When someone drifts, love moves toward them with patience, truth, and tears.</li>
-          <li>Covered sin is not hidden sin; it is sin covered by the blood of the Lamb.</li>
+          <li>God's people cross together; rest is not private heroism but covenant love.</li>
+          <li>Joshua can bring Israel into the land, but only Jesus can bring sinners into final rest.</li>
         </ul>
       </div>
     </div>
@@ -350,43 +371,43 @@
     <div class="aid-section">
       <div class="aid-section-title">Key Words</div>
       <ul class="keyword-list">
-        <li><strong>Prayer of faith:</strong> Trust in the Lord, not confidence in getting a specific result.</li>
-        <li><strong>Anointing with oil:</strong> A visible sign of care and belonging to God.</li>
-        <li><strong>Confession:</strong> Bringing sin into the light with a safe brother or sister.</li>
-        <li><strong>Healing:</strong> God caring for body and soul through prayer, grace, and community.</li>
-        <li><strong>Elijah:</strong> A human being like us whose prayers mattered because God is powerful.</li>
-        <li><strong>Cover a multitude of sins:</strong> Not hiding sin, but being covered by a substitute.</li>
+        <li><strong>Be strong and courageous:</strong> A command rooted in God's presence, not in human personality.</li>
+        <li><strong>I will be with you:</strong> The promise under every step of obedience.</li>
+        <li><strong>Meditate day and night:</strong> Let God's word shape your imagination more than fear does.</li>
+        <li><strong>Promised rest:</strong> A real gift from God that points beyond the land to something deeper.</li>
+        <li><strong>The greater Joshua:</strong> Jesus, who leads his people through judgment into lasting rest.</li>
+        <li><strong>Covenant love:</strong> Moving forward with and for God's people, not just for yourself.</li>
       </ul>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">Anchor Statements</div>
       <ul class="anchor-list">
-        <li>Prayer is the first move of any move.</li>
-        <li>Jesus carried his suffering to the Father, and now he carries us.</li>
-        <li>Light destroys darkness.</li>
-        <li>The power of prayer is not in impressive people but in the impressive God they pray to.</li>
-        <li>Grace does not treat wanderers like projects; it moves toward them as family.</li>
+        <li>Moses is dead, but God is not dead.</li>
+        <li>Biblical courage is not confidence in self; it is confidence in God's presence and promise.</li>
+        <li>Fear is loud, but it is not Lord.</li>
+        <li>The land was a real gift, but it was never the final rest.</li>
+        <li>Stop trying to be your own Joshua. The greater Joshua has come.</li>
       </ul>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">Listening Cues</div>
       <ul class="cue-list">
-        <li>Notice the three situations James names: suffering, cheerful, and sick.</li>
-        <li>Watch how James ties body, soul, sin, prayer, and community together.</li>
-        <li>Listen for the shift from private Christianity to shared healing.</li>
-        <li>Hear the Passover picture behind &#x27;cover a multitude of sins.&#x27;</li>
+        <li>Notice how often God's presence is repeated: “I will be with you... I will not leave you... I will not abandon you.”</li>
+        <li>Watch how the sermon contrasts self-confidence with faith.</li>
+        <li>Listen for the way fear acts like a false preacher in ordinary life.</li>
+        <li>Hear how Joshua points forward to Jesus and to a deeper rest than the land itself.</li>
       </ul>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">Application Focus</div>
       <ul class="apply-list">
-        <li>If you are suffering, pray and ask someone to pray with you.</li>
-        <li>If you are hiding sin, tell one safe person this week.</li>
-        <li>If you are sick, seek wise care and let the church pray over you.</li>
-        <li>If someone is drifting, move toward them gently instead of talking about them from a distance.</li>
+        <li>Name one place where you keep asking, “Am I enough?” and answer it with God's promise instead.</li>
+        <li>Open Scripture before opening the anxiety loop on your phone.</li>
+        <li>Take the next step of obedience, even if you do not control the whole road.</li>
+        <li>Move toward someone else with courage and love instead of protecting your own comfort.</li>
       </ul>
     </div>
   </div>
@@ -396,38 +417,38 @@
   <div class="listening-aid">
     <div class="big-idea">
       <div class="big-idea-label">重點</div>
-      <div class="big-idea-text">恩典會塑造一個醫治的群體：我們先禱告，把罪帶到光中，並主動去尋回走迷的人。</div>
+      <div class="big-idea-text">神的子民走向所應許的安息，不是因為自己剛強，而是因為神與他們同在。</div>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">經文</div>
-      <div class="scripture-ref">雅各書 5:13–20</div>
+      <div class="scripture-ref">約書亞記 1:1&ndash;9</div>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">講道流程</div>
 
       <div class="movement">
-        <div class="movement-header"><span class="movement-num">1</span> 禱告要先開始</div>
+        <div class="movement-header"><span class="movement-num">1</span> 勇氣開始於自信的盡頭</div>
         <ul>
-          <li>受苦、喜樂、疾病，都把我們帶到神面前。</li>
-          <li>禱告不是最後的緊急按鈕，而是教會第一個本能反應。</li>
+          <li>摩西死了，河流是真的，約書亞靠自己並不夠。</li>
+          <li>神沒有叫約書亞相信自己，而是對他說：「我必與你同在。」</li>
         </ul>
       </div>
 
       <div class="movement">
-        <div class="movement-header"><span class="movement-num">2</span> 認罪帶來醫治</div>
+        <div class="movement-header"><span class="movement-num">2</span> 當恐懼想掌控時，勇氣會聽神的話</div>
         <ul>
-          <li>彼此認罪，不是管理自己的形象，而是走進光中。</li>
-          <li>你不是什麼都要對每個人說，但你確實要把一切向某個安全的人說。</li>
+          <li>「剛強壯膽」是連於默想神的話、並且順服祂。</li>
+          <li>恐懼會不停向我們講話，所以神的聲音必須比焦慮更大聲。</li>
         </ul>
       </div>
 
       <div class="movement">
-        <div class="movement-header"><span class="movement-num">3</span> 恩典會追尋走迷的人</div>
+        <div class="movement-header"><span class="movement-num">3</span> 勇氣一起走向安息，而耶穌才是更大的約書亞</div>
         <ul>
-          <li>當人開始漂離，愛會帶著耐心、真理和眼淚向他走去。</li>
-          <li>罪被遮蓋，不是把罪藏起來，而是被羔羊的血遮蓋。</li>
+          <li>神的子民是一起過河；安息不是個人的英雄主義，而是立約中的彼此相愛。</li>
+          <li>約書亞能帶以色列進入土地，只有耶穌能帶罪人進入最終的安息。</li>
         </ul>
       </div>
     </div>
@@ -435,43 +456,43 @@
     <div class="aid-section">
       <div class="aid-section-title">關鍵詞</div>
       <ul class="keyword-list">
-        <li><strong>信心的禱告:</strong> 信靠主自己，不是把把握放在某個特定結果上。</li>
-        <li><strong>用油抹:</strong> 一個看得見的記號，表示關懷，也表示這人屬於神。</li>
-        <li><strong>認罪:</strong> 向一位安全的弟兄或姐妹把罪帶到光中。</li>
-        <li><strong>醫治:</strong> 神藉著禱告、恩典和群體照顧身體與靈魂。</li>
-        <li><strong>以利亞:</strong> 和我們一樣的人；他的禱告有能力，因為神有能力。</li>
-        <li><strong>遮蓋許多的罪:</strong> 不是掩飾罪，而是因代替者而被遮蓋。</li>
+        <li><strong>剛強壯膽:</strong> 這命令的根基不是人的個性，而是神的同在。</li>
+        <li><strong>我必與你同在:</strong> 每一步順服底下的應許。</li>
+        <li><strong>晝夜默想:</strong> 讓神的話比恐懼更深地塑造你的想像。</li>
+        <li><strong>應許的安息:</strong> 神真實的恩賜，也指向比土地更深的安息。</li>
+        <li><strong>更大的約書亞:</strong> 耶穌，帶領祂的百姓穿過審判，進入永遠的安息。</li>
+        <li><strong>立約的愛:</strong> 與神的百姓一起向前，也為神的百姓向前，而不只是為自己。</li>
       </ul>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">錨點句</div>
       <ul class="anchor-list">
-        <li>任何行動的第一步，都應該是禱告。</li>
-        <li>耶穌把祂的痛苦帶到父面前，如今祂也承擔我們。</li>
-        <li>光會摧毀黑暗。</li>
-        <li>禱告的大能，不在於禱告的人多厲害，而在於他所禱告的神多偉大。</li>
-        <li>恩典不把走迷的人當成專案，而是把他當家人去靠近。</li>
+        <li>摩西死了，但神沒有死。</li>
+        <li>聖經裡的勇氣，不是對自己的信心，而是對神的同在與應許的信心。</li>
+        <li>恐懼很大聲，但它不是主。</li>
+        <li>那地是真實的恩賜，但從來不是最終的安息。</li>
+        <li>不要再努力當你自己的約書亞。更大的約書亞已經來了。</li>
       </ul>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">聆聽提示</div>
       <ul class="cue-list">
-        <li>留意雅各提出的三種處境：受苦、喜樂、患病。</li>
-        <li>注意雅各如何把身體、靈魂、罪、禱告和群體連在一起。</li>
-        <li>聽聽這段經文如何把我們從私人的基督徒生活帶進彼此分享的醫治。</li>
-        <li>留心「遮蓋許多的罪」背後逾越節的圖畫。</li>
+        <li>留意神的同在如何一再重複：「我必與你同在……我必不離開你，也不撇棄你。」</li>
+        <li>注意講道如何把自信和信心放在對比中。</li>
+        <li>聽聽恐懼在日常生活中如何像假講員一樣對我們說話。</li>
+        <li>留意約書亞如何指向耶穌，以及比土地更深的安息。</li>
       </ul>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">應用聚焦</div>
       <ul class="apply-list">
-        <li>如果你正在受苦，就禱告，也請人和你一起禱告。</li>
-        <li>如果你在隱藏罪，這週找一位安全的人說出來。</li>
-        <li>如果你生病了，要尋求合宜的照顧，也讓教會為你禱告。</li>
-        <li>如果有人在漂離，不要遠遠議論，要溫柔地主動靠近他。</li>
+        <li>找出一件你一直問「我夠不夠」的事，並用神的應許來回應它。</li>
+        <li>先打開聖經，再打開手機裡那個焦慮循環。</li>
+        <li>即使你看不見整條路，也走出下一步順服。</li>
+        <li>勇敢而有愛地去靠近別人，不要只保護自己的舒適。</li>
       </ul>
     </div>
   </div>
@@ -481,38 +502,38 @@
   <div class="listening-aid">
     <div class="big-idea">
       <div class="big-idea-label">GAGASAN BESAR</div>
-      <div class="big-idea-text">Anugerah membentuk komunitas yang dipulihkan: kita berdoa lebih dulu, membawa dosa ke dalam terang, dan mendekati mereka yang mulai menjauh.</div>
+      <div class="big-idea-text">Umat Allah bergerak menuju perhentian yang dijanjikan, bukan karena mereka kuat, tetapi karena Allah menyertai mereka.</div>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">Firman</div>
-      <div class="scripture-ref">Yakobus 5:13–20</div>
+      <div class="scripture-ref">Yosua 1:1&ndash;9</div>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">Alur Khotbah</div>
 
       <div class="movement">
-        <div class="movement-header"><span class="movement-num">1</span> Doa menjadi langkah pertama</div>
+        <div class="movement-header"><span class="movement-num">1</span> Keberanian dimulai saat rasa percaya diri berakhir</div>
         <ul>
-          <li>Penderitaan, sukacita, dan sakit semuanya mendorong kita datang kepada Allah.</li>
-          <li>Doa bukan tombol darurat terakhir; doa adalah respons pertama gereja.</li>
+          <li>Musa sudah mati, sungai itu nyata, dan Yosua tidak cukup kuat jika sendirian.</li>
+          <li>Allah tidak menyuruh Yosua percaya pada dirinya sendiri; Allah berkata, “Aku akan menyertai engkau.”</li>
         </ul>
       </div>
 
       <div class="movement">
-        <div class="movement-header"><span class="movement-num">2</span> Pengakuan membawa pemulihan</div>
+        <div class="movement-header"><span class="movement-num">2</span> Saat takut ingin menguasai, keberanian mendengarkan firman Allah</div>
         <ul>
-          <li>Akuilah dosa satu sama lain, bukan untuk mengatur citra diri, tetapi untuk hidup dalam terang.</li>
-          <li>Kita tidak menceritakan semuanya kepada semua orang, tetapi kita sungguh membawa semuanya kepada seseorang yang aman.</li>
+          <li>“Kuatkan dan teguhkanlah hatimu” terkait dengan merenungkan firman Allah dan menaatinya.</li>
+          <li>Ketakutan terus berkhotbah kepada kita, jadi suara Allah harus lebih keras daripada kecemasan kita.</li>
         </ul>
       </div>
 
       <div class="movement">
-        <div class="movement-header"><span class="movement-num">3</span> Anugerah mengejar yang tersesat</div>
+        <div class="movement-header"><span class="movement-num">3</span> Keberanian bergerak menuju perhentian bersama, dan Yesus adalah Yosua yang lebih besar</div>
         <ul>
-          <li>Saat seseorang mulai menjauh, kasih bergerak mendekat dengan sabar, benar, dan penuh air mata.</li>
-          <li>Dosa yang ditutupi bukan dosa yang disembunyikan, melainkan dosa yang ditutupi oleh darah Anak Domba.</li>
+          <li>Umat Allah menyeberang bersama; perhentian bukan kepahlawanan pribadi, tetapi kasih perjanjian.</li>
+          <li>Yosua dapat membawa Israel masuk ke negeri itu, tetapi hanya Yesus yang dapat membawa orang berdosa ke dalam perhentian terakhir.</li>
         </ul>
       </div>
     </div>
@@ -520,43 +541,43 @@
     <div class="aid-section">
       <div class="aid-section-title">Kata Kunci</div>
       <ul class="keyword-list">
-        <li><strong>Doa iman:</strong> Percaya kepada Tuhan, bukan yakin pada hasil tertentu.</li>
-        <li><strong>Pengurapan dengan minyak:</strong> Tanda yang terlihat bahwa Allah peduli dan orang itu milik-Nya.</li>
-        <li><strong>Pengakuan dosa:</strong> Membawa dosa ke dalam terang bersama saudara yang aman.</li>
-        <li><strong>Pemulihan:</strong> Allah memedulikan tubuh dan jiwa melalui doa, anugerah, dan komunitas.</li>
-        <li><strong>Elia:</strong> Manusia biasa seperti kita; doanya berkuasa karena Allah berkuasa.</li>
-        <li><strong>Menutupi banyak dosa:</strong> Bukan menyembunyikan dosa, tetapi ditutupi oleh pengganti kita.</li>
+        <li><strong>Kuat dan teguh:</strong> Perintah yang berakar pada kehadiran Allah, bukan pada kepribadian manusia.</li>
+        <li><strong>Aku akan menyertai engkau:</strong> Janji di bawah setiap langkah ketaatan.</li>
+        <li><strong>Merenungkan siang dan malam:</strong> Biarkan firman Allah membentuk imajinasimu lebih daripada rasa takut.</li>
+        <li><strong>Perhentian yang dijanjikan:</strong> Pemberian nyata dari Allah yang menunjuk kepada sesuatu yang lebih dalam daripada negeri itu.</li>
+        <li><strong>Yosua yang lebih besar:</strong> Yesus, yang memimpin umat-Nya melewati penghakiman menuju perhentian yang kekal.</li>
+        <li><strong>Kasih perjanjian:</strong> Maju bersama dan demi umat Allah, bukan hanya untuk diri sendiri.</li>
       </ul>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">Kalimat Pengikat</div>
       <ul class="anchor-list">
-        <li>Langkah pertama dari setiap langkah adalah doa.</li>
-        <li>Yesus membawa penderitaan-Nya kepada Bapa, dan sekarang Dia menanggung kita.</li>
-        <li>Terang menghancurkan kegelapan.</li>
-        <li>Kuasa doa bukan ada pada orang yang kelihatan hebat, tetapi pada Allah yang mereka datangi.</li>
-        <li>Anugerah tidak memperlakukan orang yang menjauh seperti proyek; anugerah mendekati mereka sebagai keluarga.</li>
+        <li>Musa sudah mati, tetapi Allah tidak mati.</li>
+        <li>Keberanian alkitabiah bukan kepercayaan pada diri sendiri; itu adalah kepercayaan pada kehadiran dan janji Allah.</li>
+        <li>Ketakutan itu keras, tetapi ia bukan Tuhan.</li>
+        <li>Negeri itu adalah pemberian yang nyata, tetapi bukan perhentian terakhir.</li>
+        <li>Berhentilah mencoba menjadi Yosuamu sendiri. Yosua yang lebih besar sudah datang.</li>
       </ul>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">Petunjuk Mendengar</div>
       <ul class="cue-list">
-        <li>Perhatikan tiga keadaan yang disebut Yakobus: menderita, bersukacita, dan sakit.</li>
-        <li>Lihat bagaimana Yakobus menghubungkan tubuh, jiwa, dosa, doa, dan komunitas.</li>
-        <li>Dengarkan perubahan dari kekristenan yang serba pribadi menuju pemulihan bersama.</li>
-        <li>Tangkap gambaran Paskah di balik frasa &#x27;menutupi banyak dosa.&#x27;</li>
+        <li>Perhatikan betapa sering kehadiran Allah diulang: “Aku akan menyertai engkau... Aku tidak akan membiarkan engkau... Aku tidak akan meninggalkan engkau.”</li>
+        <li>Lihat bagaimana khotbah ini membandingkan rasa percaya diri dengan iman.</li>
+        <li>Dengarkan bagaimana ketakutan bertindak seperti pengkhotbah palsu dalam hidup sehari-hari.</li>
+        <li>Dengar bagaimana Yosua menunjuk kepada Yesus dan kepada perhentian yang lebih dalam daripada negeri itu sendiri.</li>
       </ul>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">Fokus Penerapan</div>
       <ul class="apply-list">
-        <li>Jika kamu sedang menderita, berdoalah dan minta seseorang berdoa bersamamu.</li>
-        <li>Jika kamu sedang menyembunyikan dosa, ceritakan minggu ini kepada satu orang yang aman.</li>
-        <li>Jika kamu sakit, carilah pertolongan yang bijak dan biarkan gereja mendoakanmu.</li>
-        <li>Jika seseorang mulai menjauh, datangilah dia dengan lembut daripada membicarakannya dari jauh.</li>
+        <li>Sebutkan satu tempat di mana kamu terus bertanya, “Apakah aku cukup?” lalu jawab dengan janji Allah.</li>
+        <li>Bukalah Kitab Suci sebelum membuka lingkaran kecemasan di ponselmu.</li>
+        <li>Ambil langkah ketaatan berikutnya, meskipun kamu tidak menguasai seluruh jalan.</li>
+        <li>Datanglah kepada orang lain dengan berani dan penuh kasih, bukan hanya melindungi kenyamananmu sendiri.</li>
       </ul>
     </div>
   </div>
@@ -566,38 +587,38 @@
   <div class="listening-aid">
     <div class="big-idea">
       <div class="big-idea-label">핵심 요점</div>
-      <div class="big-idea-text">은혜는 치유하는 공동체를 만듭니다. 우리는 먼저 기도하고, 죄를 빛 가운데로 가져오며, 멀어지는 사람에게 사랑으로 다가갑니다.</div>
+      <div class="big-idea-text">하나님의 백성은 자신이 강해서가 아니라 하나님이 함께하시기 때문에 약속된 안식으로 나아갑니다.</div>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">본문</div>
-      <div class="scripture-ref">야고보서 5:13–20</div>
+      <div class="scripture-ref">여호수아 1:1&ndash;9</div>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">설교 흐름</div>
 
       <div class="movement">
-        <div class="movement-header"><span class="movement-num">1</span> 기도가 먼저입니다</div>
+        <div class="movement-header"><span class="movement-num">1</span> 용기는 자기 확신이 끝나는 곳에서 시작됩니다</div>
         <ul>
-          <li>고난, 기쁨, 질병은 모두 우리를 하나님께로 이끕니다.</li>
-          <li>기도는 마지막 비상 버튼이 아니라 교회의 첫 반응입니다.</li>
+          <li>모세는 죽었고, 강은 실제이며, 여호수아는 혼자서 충분하지 않습니다.</li>
+          <li>하나님은 여호수아에게 자신을 믿으라고 하지 않으시고 “내가 너와 함께하겠다”라고 말씀하십니다.</li>
         </ul>
       </div>
 
       <div class="movement">
-        <div class="movement-header"><span class="movement-num">2</span> 고백은 치유를 가져옵니다</div>
+        <div class="movement-header"><span class="movement-num">2</span> 두려움이 통제하려 할 때 용기는 하나님의 말씀을 듣습니다</div>
         <ul>
-          <li>서로 죄를 고백하는 것은 이미지를 관리하기 위해서가 아니라 빛 가운데 걷기 위해서입니다.</li>
-          <li>모든 것을 모든 사람에게 말할 필요는 없지만, 모든 것을 안전한 한 사람에게는 가져가야 합니다.</li>
+          <li>“강하고 담대하라”는 말씀은 하나님의 말씀을 묵상하고 순종하는 것과 연결되어 있습니다.</li>
+          <li>두려움은 끊임없이 우리에게 설교하므로 하나님의 음성이 우리의 불안보다 더 크게 들려야 합니다.</li>
         </ul>
       </div>
 
       <div class="movement">
-        <div class="movement-header"><span class="movement-num">3</span> 은혜는 방황하는 사람을 찾아갑니다</div>
+        <div class="movement-header"><span class="movement-num">3</span> 용기는 함께 안식으로 나아가며, 예수님은 더 크신 여호수아이십니다</div>
         <ul>
-          <li>누군가 멀어질 때 사랑은 인내와 진리와 눈물로 그 사람에게 다가갑니다.</li>
-          <li>죄가 덮인다는 것은 숨겨진다는 뜻이 아니라 어린양의 피로 덮인다는 뜻입니다.</li>
+          <li>하나님의 백성은 함께 건너갑니다. 안식은 개인 영웅주의가 아니라 언약의 사랑입니다.</li>
+          <li>여호수아는 이스라엘을 땅으로 이끌 수 있지만, 오직 예수님만 죄인을 최종 안식으로 이끄실 수 있습니다.</li>
         </ul>
       </div>
     </div>
@@ -605,43 +626,43 @@
     <div class="aid-section">
       <div class="aid-section-title">핵심 단어</div>
       <ul class="keyword-list">
-        <li><strong>믿음의 기도:</strong> 특정 결과를 확신하는 것이 아니라 주님을 신뢰하는 기도입니다.</li>
-        <li><strong>기름 부음:</strong> 하나님의 돌보심과 그 사람이 하나님께 속했다는 것을 보여 주는 눈에 보이는 표지입니다.</li>
-        <li><strong>죄 고백:</strong> 안전한 형제자매와 함께 죄를 빛 가운데로 가져오는 것입니다.</li>
-        <li><strong>치유:</strong> 하나님께서 기도와 은혜와 공동체를 통해 몸과 영혼을 돌보시는 것입니다.</li>
-        <li><strong>엘리야:</strong> 우리와 같은 사람이며, 그의 기도에 힘이 있었던 것은 하나님이 능하셨기 때문입니다.</li>
-        <li><strong>허다한 죄를 덮다:</strong> 죄를 감추는 것이 아니라 대신 희생되신 분으로 말미암아 덮이는 것입니다.</li>
+        <li><strong>강하고 담대하라:</strong> 인간의 성격이 아니라 하나님의 임재에 뿌리를 둔 명령입니다.</li>
+        <li><strong>내가 너와 함께하겠다:</strong> 순종의 모든 걸음 아래 놓인 약속입니다.</li>
+        <li><strong>주야로 묵상하라:</strong> 두려움보다 하나님의 말씀이 당신의 상상을 더 깊이 형성하게 하라는 뜻입니다.</li>
+        <li><strong>약속된 안식:</strong> 하나님이 주시는 실제 선물이지만 그 땅보다 더 깊은 안식을 가리킵니다.</li>
+        <li><strong>더 크신 여호수아:</strong> 예수님은 자기 백성을 심판을 지나 영원한 안식으로 이끄십니다.</li>
+        <li><strong>언약의 사랑:</strong> 자신만을 위해서가 아니라 하나님의 백성과 함께, 또 그들을 위해 앞으로 나아가는 것입니다.</li>
       </ul>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">붙잡을 문장</div>
       <ul class="anchor-list">
-        <li>모든 움직임의 첫걸음은 기도입니다.</li>
-        <li>예수님은 자신의 고난을 아버지께 가져가셨고, 이제 우리를 품으십니다.</li>
-        <li>빛은 어둠을 무너뜨립니다.</li>
-        <li>기도의 능력은 대단한 사람에게 있는 것이 아니라 그들이 부르짖는 위대하신 하나님께 있습니다.</li>
-        <li>은혜는 방황하는 사람을 프로젝트처럼 다루지 않고 가족처럼 다가갑니다.</li>
+        <li>모세는 죽었지만 하나님은 죽지 않으셨습니다.</li>
+        <li>성경적 용기는 자기 자신에 대한 확신이 아니라 하나님의 임재와 약속에 대한 확신입니다.</li>
+        <li>두려움은 시끄럽지만 주님은 아닙니다.</li>
+        <li>그 땅은 실제 선물이었지만 결코 최종 안식은 아니었습니다.</li>
+        <li>자기 자신의 여호수아가 되려는 일을 멈추십시오. 더 크신 여호수아가 이미 오셨습니다.</li>
       </ul>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">듣기 포인트</div>
       <ul class="cue-list">
-        <li>야고보가 말하는 세 가지 상황, 곧 고난, 기쁨, 질병을 주목해 보십시오.</li>
-        <li>몸과 영혼과 죄와 기도와 공동체가 어떻게 함께 묶이는지 보십시오.</li>
-        <li>개인적인 신앙에서 함께 누리는 치유로 옮겨 가는 흐름을 들으십시오.</li>
-        <li>&#x27;허다한 죄를 덮는다&#x27;는 표현 뒤에 있는 유월절 그림을 떠올려 보십시오.</li>
+        <li>하나님의 임재가 얼마나 자주 반복되는지 주목하십시오. “내가 너와 함께하겠다... 내가 너를 떠나지 않겠다... 내가 너를 버리지 않겠다.”</li>
+        <li>이 설교가 자기 확신과 믿음을 어떻게 대비시키는지 보십시오.</li>
+        <li>두려움이 일상 속에서 거짓 설교자처럼 어떻게 말하는지 들으십시오.</li>
+        <li>여호수아가 어떻게 예수님과 그 땅보다 더 깊은 안식을 가리키는지 들으십시오.</li>
       </ul>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">적용 초점</div>
       <ul class="apply-list">
-        <li>고난 중에 있다면 기도하고, 누군가에게 함께 기도해 달라고 요청하십시오.</li>
-        <li>숨기고 있는 죄가 있다면 이번 주에 안전한 한 사람에게 말하십시오.</li>
-        <li>아프다면 지혜로운 돌봄을 받고, 교회가 당신을 위해 기도하게 하십시오.</li>
-        <li>누군가가 멀어지고 있다면 멀리서 말하지 말고 부드럽게 다가가십시오.</li>
+        <li>계속 “내가 충분한가?”라고 묻는 한 영역을 떠올리고, 그 자리에 하나님의 약속으로 대답하십시오.</li>
+        <li>휴대폰의 불안 루프를 열기 전에 먼저 성경을 여십시오.</li>
+        <li>길 전체를 통제하지 못해도 다음 순종의 걸음을 내디디십시오.</li>
+        <li>자기 편안함만 지키지 말고 용기와 사랑으로 다른 사람에게 다가가십시오.</li>
       </ul>
     </div>
   </div>
@@ -650,39 +671,39 @@
 <div id="content-tl" class="lang-content">
   <div class="listening-aid">
     <div class="big-idea">
-      <div class="big-idea-label">MALAKING IDEYA</div>
-      <div class="big-idea-text">Ang biyaya ang bumubuo ng komunidad na nagpapagaling: una tayong nananalangin, dinadala ang kasalanan sa liwanag, at nilalapitan ang mga unti-unting lumalayo.</div>
+      <div class="big-idea-label">PANGUNAHING DIWA</div>
+      <div class="big-idea-text">Ang bayan ng Diyos ay kumikilos patungo sa ipinangakong kapahingahan, hindi dahil malakas sila, kundi dahil kasama nila ang Diyos.</div>
     </div>
 
     <div class="aid-section">
       <div class="aid-section-title">Kasulatan</div>
-      <div class="scripture-ref">Santiago 5:13–20</div>
+      <div class="scripture-ref">Josue 1:1&ndash;9</div>
     </div>
 
     <div class="aid-section">
-      <div class="aid-section-title">Daloy ng Pangangaral</div>
+      <div class="aid-section-title">Daloy ng Sermon</div>
 
       <div class="movement">
-        <div class="movement-header"><span class="movement-num">1</span> Panalangin ang unang hakbang</div>
+        <div class="movement-header"><span class="movement-num">1</span> Nagsisimula ang tapang kapag nagtatapos ang tiwala sa sarili</div>
         <ul>
-          <li>Ang pagdurusa, kagalakan, at pagkakasakit ay dapat magtulak sa atin papunta sa Diyos.</li>
-          <li>Ang panalangin ay hindi huling emergency button; ito ang unang likas na tugon ng iglesya.</li>
+          <li>Patay na si Moises, totoo ang ilog, at hindi sapat si Josue sa sarili niya.</li>
+          <li>Hindi sinabi ng Diyos kay Josue na maniwala sa sarili niya; sinabi Niya, “Ako ang sasaiyo.”</li>
         </ul>
       </div>
 
       <div class="movement">
-        <div class="movement-header"><span class="movement-num">2</span> Ang pag-amin ay nagdadala ng paggaling</div>
+        <div class="movement-header"><span class="movement-num">2</span> Kapag gustong mangibabaw ng takot, ang tapang ay nakikinig sa salita ng Diyos</div>
         <ul>
-          <li>Magpahayag ng kasalanan sa isa&#x27;t isa, hindi para ayusin ang imahe mo kundi para lumakad sa liwanag.</li>
-          <li>Hindi mo kailangang sabihin ang lahat sa lahat, pero dapat mong dalhin ang lahat sa isang ligtas na tao.</li>
+          <li>Ang “magpakatatag at magpakatapang” ay kaugnay ng pagbubulay sa salita ng Diyos at pagsunod dito.</li>
+          <li>Paulit-ulit tayong kinakausap ng takot, kaya kailangang maging mas malakas ang tinig ng Diyos kaysa sa ating pag-aalala.</li>
         </ul>
       </div>
 
       <div class="movement">
-        <div class="movement-header"><span class="movement-num">3</span> Hinahabol ng biyaya ang naliligaw</div>
+        <div class="movement-header"><span class="movement-num">3</span> Ang tapang ay lumalakad tungo sa kapahingahan nang magkakasama, at si Jesus ang dakilang Josue</div>
         <ul>
-          <li>Kapag may lumilihis, ang pag-ibig ay lumalapit nang may tiyaga, katotohanan, at luha.</li>
-          <li>Ang kasalanang natatakpan ay hindi kasalanang itinatago; ito ay kasalanang natatakpan ng dugo ng Kordero.</li>
+          <li>Sabay-sabay tumatawid ang bayan ng Diyos; ang kapahingahan ay hindi pribadong kabayanihan kundi pag-ibig ng tipan.</li>
+          <li>Maaaring maipasok ni Josue ang Israel sa lupain, ngunit si Jesus lamang ang makapagdadala sa mga makasalanan sa ganap na kapahingahan.</li>
         </ul>
       </div>
     </div>
@@ -690,175 +711,137 @@
     <div class="aid-section">
       <div class="aid-section-title">Mahahalagang Salita</div>
       <ul class="keyword-list">
-        <li><strong>Panalangin ng pananampalataya:</strong> Pagtitiwala sa Panginoon, hindi kumpiyansa sa isang tiyak na resulta.</li>
-        <li><strong>Pagpapahid ng langis:</strong> Nakikitang tanda ng malasakit at pag-aari ng Diyos.</li>
-        <li><strong>Pag-amin ng kasalanan:</strong> Pagdadala ng kasalanan sa liwanag kasama ang ligtas na kapatid.</li>
-        <li><strong>Paggaling:</strong> Pag-aalaga ng Diyos sa katawan at kaluluwa sa pamamagitan ng panalangin, biyaya, at komunidad.</li>
-        <li><strong>Elias:</strong> Taong tulad natin; mahalaga ang panalangin niya dahil makapangyarihan ang Diyos.</li>
-        <li><strong>Matakpan ang maraming kasalanan:</strong> Hindi pagtatago ng kasalanan kundi pagtatakip ng kahalili natin.</li>
+        <li><strong>Magpakatatag at magpakatapang:</strong> Utos na nakaugat sa presensya ng Diyos, hindi sa personalidad ng tao.</li>
+        <li><strong>Ako ang sasaiyo:</strong> Ang pangako sa ilalim ng bawat hakbang ng pagsunod.</li>
+        <li><strong>Magbulay araw at gabi:</strong> Hayaang hubugin ng salita ng Diyos ang isip mo nang higit kaysa sa takot.</li>
+        <li><strong>Ipinangakong kapahingahan:</strong> Tunay na kaloob ng Diyos na tumuturo sa mas malalim pa kaysa sa lupain.</li>
+        <li><strong>Ang dakilang Josue:</strong> Si Jesus, na umaakay sa Kanyang bayan sa pamamagitan ng paghatol tungo sa walang hanggang kapahingahan.</li>
+        <li><strong>Pag-ibig ng tipan:</strong> Sumulong kasama at para sa bayan ng Diyos, hindi lang para sa sarili.</li>
       </ul>
     </div>
 
     <div class="aid-section">
-      <div class="aid-section-title">Mga Pangungusap na Dapat Hawakan</div>
+      <div class="aid-section-title">Mga Pangungusap na Dapat Tandaan</div>
       <ul class="anchor-list">
-        <li>Ang unang galaw sa bawat galaw ay panalangin.</li>
-        <li>Dinala ni Jesus ang Kanyang pagdurusa sa Ama, at ngayon Siya ang may dala sa atin.</li>
-        <li>Sinisira ng liwanag ang kadiliman.</li>
-        <li>Ang kapangyarihan ng panalangin ay wala sa kahanga-hangang tao kundi sa kahanga-hangang Diyos na pinapanalanginan niya.</li>
-        <li>Hindi tinatrato ng biyaya ang naliligaw na parang proyekto; nilalapitan sila nito bilang pamilya.</li>
+        <li>Patay na si Moises, pero hindi patay ang Diyos.</li>
+        <li>Ang maka-Bibliyang tapang ay hindi pagtitiwala sa sarili kundi pagtitiwala sa presensya at pangako ng Diyos.</li>
+        <li>Malakas ang takot, pero hindi ito ang Panginoon.</li>
+        <li>Tunay na regalo ang lupain, pero hindi iyon ang huling kapahingahan.</li>
+        <li>Tigilan mong subukang ikaw ang maging sarili mong Josue. Dumating na ang dakilang Josue.</li>
       </ul>
     </div>
 
     <div class="aid-section">
-      <div class="aid-section-title">Mga Gabay sa Pakikinig</div>
+      <div class="aid-section-title">Mga Hudyat sa Pakikinig</div>
       <ul class="cue-list">
-        <li>Pansinin ang tatlong sitwasyong binanggit ni Santiago: pagdurusa, kasiyahan, at pagkakasakit.</li>
-        <li>Tingnan kung paano pinagdurugtong ni Santiago ang katawan, kaluluwa, kasalanan, panalangin, at komunidad.</li>
-        <li>Pakinggan ang paglipat mula sa pribadong Kristiyanismo tungo sa sama-samang paggaling.</li>
-        <li>Damhin ang larawan ng Paskuwa sa likod ng &#x27;matakpan ang maraming kasalanan.&#x27;</li>
+        <li>Pansinin kung gaano kadalas inuulit ang presensya ng Diyos: “Ako ay sasaiyo... hindi kita iiwan... hindi kita pababayaan.”</li>
+        <li>Tingnan kung paano inihahambing ng sermon ang tiwala sa sarili at pananampalataya.</li>
+        <li>Pakinggan kung paano kumikilos ang takot na parang huwad na mangangaral sa pang-araw-araw na buhay.</li>
+        <li>Dinggin kung paano itinuturo ni Josue si Jesus at ang mas malalim na kapahingahan kaysa sa lupain.</li>
       </ul>
     </div>
 
     <div class="aid-section">
-      <div class="aid-section-title">Pokús sa Paglalapat</div>
+      <div class="aid-section-title">Pokús ng Pagsasabuhay</div>
       <ul class="apply-list">
-        <li>Kung ikaw ay nagdurusa, manalangin at humingi sa iba na manalangin kasama mo.</li>
-        <li>Kung may itinatago kang kasalanan, sabihin ito ngayong linggo sa isang ligtas na tao.</li>
-        <li>Kung ikaw ay may sakit, magpatingin nang may karunungan at hayaang ipanalangin ka ng iglesya.</li>
-        <li>Kung may isang taong lumalayo, lapitan siya nang mahinahon kaysa pag-usapan siya mula sa malayo.</li>
+        <li>Pangalanan ang isang lugar kung saan palagi mong tinatanong, “Sapat ba ako?” at sagutin iyon sa pamamagitan ng pangako ng Diyos.</li>
+        <li>Buksan muna ang Kasulatan bago buksan ang paikot-ikot na pag-aalala sa iyong telepono.</li>
+        <li>Gawin ang susunod na hakbang ng pagsunod kahit hindi mo kontrolado ang buong daan.</li>
+        <li>Lapitan ang ibang tao nang may tapang at pag-ibig sa halip na protektahan lang ang sarili mong ginhawa.</li>
       </ul>
     </div>
   </div>
 </div>
 
+<div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet(event)">
+  <div class="sheet" onclick="event.stopPropagation()">
+    <div class="sheet-top">
+      <div class="sheet-title">Choose Language</div>
+      <button class="sheet-close" onclick="closeSheet()">&times;</button>
+    </div>
+    <div class="sheet-copy">Select your preferred sermon listening aid language.</div>
 
-<div class="sheet-overlay" id="sheetOverlay" onclick="handleOverlayClick(event)">
-  <div class="sheet" id="sheetPanel">
-    <div class="sheet-handle"></div>
-    <div class="sheet-title">Choose Your Language</div>
     <button class="lang-option" id="opt-en" onclick="setLang('en')">
-      <span class="lang-flag">🇬🇧</span>
-      <div><div class="lang-name">English</div></div>
-      <span class="lang-check" id="check-en">&#10003;</span>
+      <div class="lang-main">
+        <div class="lang-flag">🇺🇸</div>
+        <div><div class="lang-name">English</div><div class="lang-native">English</div></div>
+      </div><div class="lang-check">✓</div>
     </button>
     <button class="lang-option" id="opt-zh" onclick="setLang('zh')">
-      <span class="lang-flag">🇹🇼</span>
-      <div><div class="lang-name">Traditional Chinese</div><div class="lang-native">繁體中文</div></div>
-      <span class="lang-check" id="check-zh" style="display:none">&#10003;</span>
+      <div class="lang-main">
+        <div class="lang-flag">🇹🇼</div>
+        <div><div class="lang-name">Traditional Chinese</div><div class="lang-native">繁體中文</div></div>
+      </div><div class="lang-check">✓</div>
     </button>
     <button class="lang-option" id="opt-id" onclick="setLang('id')">
-      <span class="lang-flag">🇮🇩</span>
-      <div><div class="lang-name">Bahasa Indonesia</div></div>
-      <span class="lang-check" id="check-id" style="display:none">&#10003;</span>
+      <div class="lang-main">
+        <div class="lang-flag">🇮🇩</div>
+        <div><div class="lang-name">Bahasa Indonesia</div><div class="lang-native">Bahasa Indonesia</div></div>
+      </div><div class="lang-check">✓</div>
     </button>
     <button class="lang-option" id="opt-ko" onclick="setLang('ko')">
-      <span class="lang-flag">🇰🇷</span>
-      <div><div class="lang-name">Korean</div><div class="lang-native">한국어</div></div>
-      <span class="lang-check" id="check-ko" style="display:none">&#10003;</span>
+      <div class="lang-main">
+        <div class="lang-flag">🇰🇷</div>
+        <div><div class="lang-name">Korean</div><div class="lang-native">한국어</div></div>
+      </div><div class="lang-check">✓</div>
     </button>
     <button class="lang-option" id="opt-tl" onclick="setLang('tl')">
-      <span class="lang-flag">🇵🇭</span>
-      <div><div class="lang-name">Filipino</div><div class="lang-native">Filipino / Tagalog</div></div>
-      <span class="lang-check" id="check-tl" style="display:none">&#10003;</span>
+      <div class="lang-main">
+        <div class="lang-flag">🇵🇭</div>
+        <div><div class="lang-name">Filipino</div><div class="lang-native">Filipino / Tagalog</div></div>
+      </div><div class="lang-check">✓</div>
     </button>
 
-    <hr class="sheet-divider" />
-
-    <div class="request-section">
-      <button class="request-toggle" onclick="toggleRequestForm()">+ Request Another Language</button>
-      <div class="request-form" id="requestForm">
-        <form id="langRequestForm" onsubmit="submitRequest(event)" style="margin-top:16px">
-          <input type="hidden" name="access_key" value="3fc0c694-adc2-4cda-8191-c4f6993a9a55">
-          <input type="hidden" name="subject" value="TIF Sermon Language Request — James Week 11 (Listening Aid)">
-          <div class="form-row">
-            <label for="reqLang">Requested Language</label>
-            <select name="language" id="reqLang" required>
-              <option value="">Select a language&hellip;</option>
-              <option>Tagalog / Filipino</option><option>Japanese / 日本語</option>
-              <option>Spanish / Español</option><option>French / Français</option>
-              <option>German / Deutsch</option><option>Portuguese / Português</option>
-              <option>Thai / ภาษาไทย</option><option>Vietnamese / Tiếng Việt</option>
-              <option>Hindi / हिन्दी</option><option>Burmese / မြန်မာ</option>
-              <option>Swahili</option><option>Arabic / العربية</option><option>Dutch / Nederlands</option>
-              <option>Russian / Русский</option><option>Ukrainian / Українська</option><option>Polish / Polski</option>
-              <option>Romanian / Română</option><option>Czech / Čeština</option><option>Hungarian / Magyar</option><option>Other</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label for="reqName">Full Name</label>
-            <input type="text" name="name" id="reqName" placeholder="Your name" required>
-          </div>
-          <div class="form-row">
-            <label for="reqStatus">Status at TIF</label>
-            <input type="text" name="status" id="reqStatus" placeholder="e.g. Member, Regular Attendee, Visitor" required>
-          </div>
-          <div class="form-row">
-            <label for="reqEmail">Email</label>
-            <input type="email" name="email" id="reqEmail" placeholder="your@email.com" required>
-          </div>
-          <button type="submit" class="form-submit">Send Request</button>
-          <div class="form-success" id="formSuccess">&#10003; Request sent! Todd will be in touch soon.</div>
-        </form>
-      </div>
+    <div class="request-box">
+      <h3>Need another language?</h3>
+      <p>Tell us which language would help you follow the sermon more clearly.</p>
+      <a href="https://forms.gle/mfcEuqfFVFMPr6rL8" target="_blank" rel="noopener">Request a language</a>
     </div>
   </div>
 </div>
 
 <footer class="footer">
   <div class="footer-brand">Taichung International Fellowship</div>
-  <div>Listening Aid &middot; James Week 11 &middot; June 7, 2026</div>
+  <div>Listening Aid &middot; Joshua Week 1 &middot; June 7, 2026</div>
   <div style="margin-top:8px"><a href="archive.html">&#8592; Sermon Archive</a> &middot; <a href="https://taichunginternationalfellowship.org" target="_blank">TIF Website</a></div>
 </footer>
 
 <script>
-  const LANGS = {
-    'en': { label: 'English', flag: '🇬🇧' },
-    'zh': { label: '繁體中文', flag: '🇹🇼' },
-    'id': { label: 'Bahasa Indonesia', flag: '🇮🇩' },
-    'ko': { label: '한국어', flag: '🇰🇷' },
-    'tl': { label: 'Filipino / Tagalog', flag: '🇵🇭' }
+  let currentLang = localStorage.getItem('tif-listening-aid-lang') || 'en';
+  const langInfo = {
+    'en': { label: 'English', flag: '🇺🇸', title: 'Courage for the Promised Rest', scripture: 'Joshua 1:1–9' },
+    'zh': { label: '繁體中文', flag: '🇹🇼', title: '應許安息的勇氣', scripture: '約書亞記 1:1–9' },
+    'id': { label: 'Bahasa Indonesia', flag: '🇮🇩', title: 'Keberanian untuk Perhentian yang Dijanjikan', scripture: 'Yosua 1:1–9' },
+    'ko': { label: '한국어', flag: '🇰🇷', title: '약속된 안식을 향한 용기', scripture: '여호수아 1:1–9' },
+    'tl': { label: 'Filipino / Tagalog', flag: '🇵🇭', title: 'Tapang para sa Ipinangakong Kapahingahan', scripture: 'Josue 1:1–9' }
   };
 
-  let currentLang = 'en';
-  try { currentLang = localStorage.getItem('tif-lang') || 'en'; } catch(e) {}
-
   function setLang(code) {
-    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
-    const el = document.getElementById('content-' + code);
-    if (el) el.classList.add('active');
-
-    const lang = LANGS[code] || LANGS['en'];
-    document.getElementById('currentLangLabel').textContent = lang.flag + ' ' + lang.label;
-
-    Object.keys(LANGS).forEach(k => {
-      const chk = document.getElementById('check-' + k);
-      const opt = document.getElementById('opt-' + k);
-      if (chk) chk.style.display = (k === code) ? '' : 'none';
-      if (opt) { if (k === code) opt.classList.add('selected'); else opt.classList.remove('selected'); }
-    });
-
     currentLang = code;
-    try { localStorage.setItem('tif-lang', code); } catch(e) {}
+    localStorage.setItem('tif-listening-aid-lang', code);
+
+    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+    document.getElementById('content-' + code).classList.add('active');
+
+    document.querySelectorAll('.lang-option').forEach(el => el.classList.remove('active'));
+    document.getElementById('opt-' + code).classList.add('active');
+
+    const info = langInfo[code];
+    document.getElementById('currentLangLabel').textContent = info.label;
+    document.querySelector('.hero h1').textContent = info.title;
+    document.querySelector('.hero-scripture').textContent = info.scripture;
+    document.documentElement.lang = code;
     closeSheet();
   }
 
-  function openSheet() { document.getElementById('sheetOverlay').classList.add('open'); }
-  function closeSheet() { document.getElementById('sheetOverlay').classList.remove('open'); }
-  function handleOverlayClick(e) { if (e.target === document.getElementById('sheetOverlay')) closeSheet(); }
-  function toggleRequestForm() { document.getElementById('requestForm').classList.toggle('open'); }
+  function openSheet() {
+    document.getElementById('sheetOverlay').classList.add('open');
+  }
 
-  async function submitRequest(e) {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
-      if (res.ok) {
-        form.style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-      }
-    } catch(err) { alert('There was an error. Please try again.'); }
+  function closeSheet(event) {
+    if (!event || event.target === document.getElementById('sheetOverlay')) {
+      document.getElementById('sheetOverlay').classList.remove('open');
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function() { setLang(currentLang); });
