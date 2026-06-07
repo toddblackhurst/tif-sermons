@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="tif-week-slug" content="james-week-10">
+  <meta name="tif-page-type" content="listening-aid">
+  <title>Hold On | TIF Listening Aid</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Asul:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dark: #1b2327;
+      --extra-dark: #121b20;
+      --accent: #27b7d8;
+      --accent-dim: rgba(39,183,216,0.15);
+      --body-text: #333333;
+      --white: #ffffff;
+      --off-white: #f0f0f0;
+      --bg-light: #f7fbfc;
+      --muted: #7a9aaa;
+      --border: rgba(39,183,216,0.25);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Asap', Arial, sans-serif; color: var(--body-text); background: var(--white); line-height: 1.75; }
+    .header {
+      background: var(--extra-dark);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      gap: 12px;
+    }
+    .header-left { display: flex; align-items: center; gap: 14px; }
+    .header-brand { font-family: 'Asul', serif; color: var(--off-white); font-size: 1rem; font-weight: 700; text-decoration: none; letter-spacing: 0.02em; }
+    .header-brand span { color: var(--accent); }
+    .nav-archive {
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s;
+    }
+    .nav-archive:hover { color: var(--accent); }
+    .header-right { display: flex; align-items: center; gap: 10px; }
+    .lang-btn {
+      background: rgba(39,183,216,0.12);
+      border: 1px solid var(--border);
+      color: var(--off-white);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      font-family: 'Asap', sans-serif;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .lang-btn:hover { background: rgba(39,183,216,0.22); }
+    .hero {
+      background: var(--dark);
+      color: var(--off-white);
+      padding: 52px 24px 44px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent-dim);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 20px;
+      padding: 4px 14px;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-family: 'Asul', serif;
+      font-size: clamp(1.7rem, 5vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      color: var(--white);
+    }
+    .hero-scripture {
+      font-size: 1.05rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .hero-meta { font-size: 0.82rem; color: var(--muted); }
+    .hero-divider {
+      width: 48px; height: 3px;
+      background: var(--accent);
+      margin: 20px auto 0;
+      border-radius: 2px;
+    }
+    .lang-content { display: none; }
+    .lang-content.active { display: block; }
+    .listening-aid {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+    }
+    .aid-section { margin-bottom: 36px; }
+    .aid-section-title {
+      font-family: 'Asul', serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .big-idea {
+      background: var(--dark);
+      color: var(--off-white);
+      border-radius: 10px;
+      padding: 22px 24px;
+      margin-bottom: 36px;
+    }
+    .big-idea-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .big-idea-text {
+      font-family: 'Asul', serif;
+      font-size: 1.1rem;
+      line-height: 1.55;
+      color: var(--white);
+    }
+    .scripture-ref {
+      background: var(--bg-light);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      font-size: 0.95rem;
+    }
+    .movement { margin-bottom: 24px; }
+    .movement-header {
+      font-family: 'Asul', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .movement-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 24px; height: 24px;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .movement ul { list-style: none; padding-left: 34px; }
+    .movement ul li {
+      position: relative;
+      padding-left: 16px;
+      margin-bottom: 5px;
+      font-size: 0.93rem;
+      line-height: 1.6;
+    }
+    .movement ul li::before { content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    .keyword-list, .anchor-list, .cue-list, .apply-list { padding: 0; list-style: none; }
+    .keyword-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 0.93rem;
+      line-height: 1.55;
+    }
+    .keyword-list li:last-child { border-bottom: none; }
+    .keyword-list li strong { color: var(--dark); }
+    .anchor-list li {
+      border-left: 4px solid var(--accent);
+      padding: 10px 16px;
+      margin-bottom: 12px;
+      font-style: italic;
+      font-size: 0.97rem;
+      color: var(--dark);
+      background: var(--accent-dim);
+      border-radius: 0 6px 6px 0;
+      line-height: 1.55;
+    }
+    .cue-list li {
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding: 6px 0 6px 24px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .cue-list li::before { content: '👁'; font-style: normal; position: absolute; left: 0; font-size: 0.8rem; }
+    .apply-list li {
+      background: var(--bg-light);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      font-size: 0.93rem;
+      line-height: 1.6;
+      border: 1px solid #e0eef2;
+    }
+    .sheet-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      align-items: flex-end;
+    }
+    .sheet-overlay.open { display: flex; }
+    .sheet {
+      background: var(--white);
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      border-radius: 16px 16px 0 0;
+      padding: 20px 0 32px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .sheet-handle { width: 40px; height: 4px; background: #ccc; border-radius: 2px; margin: 0 auto 16px; }
+    .sheet-title { font-family: 'Asul', serif; font-size: 1rem; font-weight: 700; text-align: center; color: var(--dark); margin-bottom: 16px; padding: 0 24px; }
+    .lang-option {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 24px; cursor: pointer;
+      transition: background 0.15s;
+      border: none; background: none; width: 100%; text-align: left;
+    }
+    .lang-option:hover { background: var(--bg-light); }
+    .lang-option.selected { background: var(--accent-dim); }
+    .lang-flag { font-size: 1.4rem; line-height: 1; }
+    .lang-name { font-size: 0.95rem; color: var(--dark); font-weight: 500; }
+    .lang-native { font-size: 0.8rem; color: var(--muted); }
+    .lang-check { margin-left: auto; color: var(--accent); font-size: 1.1rem; }
+    .sheet-divider { border: none; border-top: 1px solid #eee; margin: 12px 0; }
+    .request-section { padding: 0 24px; }
+    .request-toggle {
+      background: none; border: 1px solid var(--border); border-radius: 20px;
+      padding: 8px 18px; color: var(--accent); font-size: 0.83rem; cursor: pointer;
+      font-family: 'Asap', sans-serif; display: block; margin: 0 auto;
+    }
+    .request-toggle:hover { background: var(--accent-dim); }
+    .request-form { display: none; margin-top: 16px; }
+    .request-form.open { display: block; }
+    .form-row { margin-bottom: 12px; }
+    .form-row label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
+    .form-row input, .form-row select {
+      width: 100%; border: 1px solid #ddd; border-radius: 6px;
+      padding: 9px 12px; font-size: 0.9rem; font-family: 'Asap', sans-serif;
+      color: var(--dark); background: var(--white); outline: none;
+    }
+    .form-row input:focus, .form-row select:focus { border-color: var(--accent); }
+    .form-submit {
+      width: 100%; background: var(--accent); color: var(--white);
+      border: none; border-radius: 8px; padding: 11px;
+      font-size: 0.93rem; font-weight: 600; font-family: 'Asap', sans-serif; cursor: pointer;
+    }
+    .form-submit:hover { opacity: 0.88; }
+    .form-success { display: none; text-align: center; color: var(--accent); font-weight: 600; padding: 12px 0; font-size: 0.93rem; }
+    .footer {
+      background: var(--extra-dark); color: var(--muted);
+      text-align: center; padding: 28px 24px; font-size: 0.8rem;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .footer-brand { font-family: 'Asul', serif; color: var(--off-white); font-size: 0.95rem; margin-bottom: 6px; }
+    @media (max-width: 500px) {
+      .header { padding: 12px 16px; }
+      .listening-aid { padding: 28px 16px 48px; }
+      .hero { padding: 36px 16px 32px; }
+    }
+  </style>
+</head>
+<body>
+<header class="header">
+  <div class="header-left">
+    <a href="#" class="header-brand">TIF <span>Sermons</span></a>
+    <a href="../archive.html" class="nav-archive">&#8592; Sermon Archive</a>
+  </div>
+  <div class="header-right">
+    <button class="lang-btn" onclick="openSheet()">🌐 <span id="currentLangLabel">English</span></button>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-badge">Listening Aid &middot; James Series &middot; Week 10</div>
+  <h1>Hold On</h1>
+  <div class="hero-scripture">James 5:7&ndash;12</div>
+  <div class="hero-meta">May 31, 2026 &middot; Taichung International Fellowship</div>
+  <div class="hero-divider"></div>
+</section>
+<div id="content-en" class="lang-content active">
+  <div class="listening-aid">
+    <div class="big-idea"><div class="big-idea-label">BIG IDEA</div><div class="big-idea-text">Holding on is not about willpower. It is about knowing what is coming, and who is bringing it.</div></div>
+    <div class="aid-section"><div class="aid-section-title">Scripture</div><div class="scripture-ref">James 5:7&ndash;12</div></div>
+    <div class="aid-section"><div class="aid-section-title">Sermon Flow</div>
+      <div class="movement"><div class="movement-header"><span class="movement-num">1</span>The farmer: what patience really is</div><ul><li>Patience is not passive. It is active endurance and self-restraint.</li><li>Do what God has given you to do, and leave what only God can do with him.</li></ul></div>
+      <div class="movement"><div class="movement-header"><span class="movement-num">2</span>The Judge at the door: why you can hold on</div><ul><li>Strengthen your hearts: the Lord's coming is near.</li><li>When justice feels delayed, we are tempted to take God's place and turn on each other.</li></ul></div>
+      <div class="movement"><div class="movement-header"><span class="movement-num">3</span>Job and integrity: endurance that stays clean</div><ul><li>Endure like the prophets and Job, holding on to God's compassion and mercy.</li><li>Let your yes be yes and your no be no, because the Judge is real.</li></ul></div>
+    </div>
+    <div class="aid-section"><div class="aid-section-title">Key Words</div><ul class="keyword-list"><li><strong>Patience:</strong> Active endurance that does your part without trying to play God.</li><li><strong>Strengthen your hearts:</strong> Reinforce hope when it feels like nothing is changing.</li><li><strong>The Judge at the door:</strong> God's near coming makes wrongs answerable.</li><li><strong>Grumbling:</strong> How impatience often leaks out, especially toward people near you.</li><li><strong>Endurance:</strong> Holding on to God through suffering, like Job.</li><li><strong>Yes/No integrity:</strong> Clean words without escape hatches.</li></ul></div>
+    <div class="aid-section"><div class="aid-section-title">Anchor Statements</div><ul class="anchor-list"><li>Holding on is not about willpower; it is about hope anchored in what is coming.</li><li>Patience is doing what you are responsible to do and leaving what God is responsible to do with him.</li><li>When justice is delayed, we are tempted to take God's seat as judge.</li><li>The Judge at the door is either terror or comfort, depending on Jesus.</li><li>Jesus endured the cross; his verdict over those who belong to him is grace.</li></ul></div>
+    <div class="aid-section"><div class="aid-section-title">Listening Cues</div><ul class="cue-list"><li>Watch the contrast: grasping landowners last week and the waiting farmer this week.</li><li>Notice how near language reshapes the present: the coming is near and the Judge is at the door.</li><li>Listen for how impatience shows up in words: grumbling, complaining, oath loopholes.</li><li>Ask where you need to strengthen your heart instead of seizing control.</li></ul></div>
+    <div class="aid-section"><div class="aid-section-title">Application Focus</div><ul class="apply-list"><li>Name one pressure or injustice where you are tempted to retaliate, and entrust it to God.</li><li>Replace grumbling with one concrete step: prayer, a humble conversation, or quiet endurance.</li><li>Keep doing the faithful work in front of you while you wait for what only God can bring.</li><li>Practice clean words this week: no manipulation, no half-promises. Let your yes be yes.</li></ul></div>
+  </div>
+</div>
+<div id="content-zh" class="lang-content">
+  <div class="listening-aid">
+    <div class="big-idea"><div class="big-idea-label">重點</div><div class="big-idea-text">撐住不是靠意志力；是因為你知道將要來的是什麼，也知道是誰帶來這一切。</div></div>
+    <div class="aid-section"><div class="aid-section-title">經文</div><div class="scripture-ref">雅各書 5:7&ndash;12</div></div>
+    <div class="aid-section"><div class="aid-section-title">講道流程</div>
+      <div class="movement"><div class="movement-header"><span class="movement-num">1</span>農夫：忍耐到底是什麼</div><ul><li>忍耐不是消極等待，而是積極持守與克制自己。</li><li>做神交給你該做的事，把只有神能做的交給祂。</li></ul></div>
+      <div class="movement"><div class="movement-header"><span class="movement-num">2</span>門口的審判官：為何你能撐住</div><ul><li>堅固你們的心，因為主的來臨近了。</li><li>當公義似乎延遲，我們很容易想坐上神的位置，也容易把怒氣發在彼此身上。</li></ul></div>
+      <div class="movement"><div class="movement-header"><span class="movement-num">3</span>約伯與誠實：潔淨的忍耐</div><ul><li>像先知與約伯一樣忍耐，緊抓神的憐憫與慈悲。</li><li>是就說是，不是就說不是，因為審判官是真實的。</li></ul></div>
+    </div>
+    <div class="aid-section"><div class="aid-section-title">關鍵詞</div><ul class="keyword-list"><li><strong>忍耐：</strong>積極持守，做你該做的，不扮演神。</li><li><strong>堅固你們的心：</strong>當看不見改變時，仍然加強盼望。</li><li><strong>門口的審判官：</strong>主快要來，所有不義都要交帳。</li><li><strong>抱怨：</strong>不耐煩常常透過言語漏出來，特別是對身邊的人。</li><li><strong>忍受：</strong>在苦難中仍不放手，像約伯一樣。</li><li><strong>是與不是的誠實：</strong>乾淨的話語，沒有漏洞。</li></ul></div>
+    <div class="aid-section"><div class="aid-section-title">錨點句</div><ul class="anchor-list"><li>撐住不是靠意志力，而是盼望扎根在將要來臨的事實上。</li><li>忍耐是做你該負責的，把神該負責的交給祂。</li><li>當公義延遲，我們就想坐上神的位置當審判官。</li><li>門口的審判官，對有些人是恐懼；對在耶穌裡的人卻是安慰。</li><li>耶穌忍受十字架；屬祂的人最終領受的是恩典的判決。</li></ul></div>
+    <div class="aid-section"><div class="aid-section-title">聆聽提示</div><ul class="cue-list"><li>注意對比：上週是抓取的地主，這週是等待的農夫。</li><li>留意「近了」的語言如何改變現在：主快來了，審判官站在門口。</li><li>聽聽不耐煩如何表現在話語上：抱怨、埋怨、起誓的漏洞。</li><li>問自己：我在哪裡需要堅固心志，而不是急著掌控？</li></ul></div>
+    <div class="aid-section"><div class="aid-section-title">應用焦點</div><ul class="apply-list"><li>指出一個讓你想報復的壓力或不公，交託給神。</li><li>用一個具體行動取代抱怨：禱告、謙卑對話，或安靜持守。</li><li>在等待中繼續做眼前忠心的事，相信結果在神手裡。</li><li>操練乾淨的話語：不操控，不半承諾。是就說是。</li></ul></div>
+  </div>
+</div>
+<div id="content-id" class="lang-content">
+  <div class="listening-aid">
+    <div class="big-idea"><div class="big-idea-label">Gagasan Besar</div><div class="big-idea-text">Bertahan bukan soal kemauan keras. Ini soal tahu apa yang akan datang dan siapa yang membawanya.</div></div>
+    <div class="aid-section"><div class="aid-section-title">Ayat</div><div class="scripture-ref">Yakobus 5:7&ndash;12</div></div>
+    <div class="aid-section"><div class="aid-section-title">Alur Khotbah</div>
+      <div class="movement"><div class="movement-header"><span class="movement-num">1</span>Petani: seperti apa kesabaran itu</div><ul><li>Kesabaran bukan pasif. Itu ketekunan aktif dan penguasaan diri.</li><li>Lakukan bagianmu, dan serahkan bagian yang hanya Allah bisa lakukan kepada-Nya.</li></ul></div>
+      <div class="movement"><div class="movement-header"><span class="movement-num">2</span>Hakim di depan pintu: mengapa kamu bisa bertahan</div><ul><li>Kuatkan hatimu: kedatangan Tuhan sudah dekat.</li><li>Saat keadilan terasa tertunda, kita tergoda mengambil tempat Allah dan melampiaskannya pada sesama.</li></ul></div>
+      <div class="movement"><div class="movement-header"><span class="movement-num">3</span>Ayub dan integritas: ketekunan yang tetap bersih</div><ul><li>Bertahanlah seperti para nabi dan Ayub, sambil memegang belas kasih dan kemurahan Allah.</li><li>Biarkan ya menjadi ya dan tidak menjadi tidak, karena Sang Hakim itu nyata.</li></ul></div>
+    </div>
+    <div class="aid-section"><div class="aid-section-title">Kata Kunci</div><ul class="keyword-list"><li><strong>Kesabaran:</strong> Ketekunan aktif yang melakukan bagianmu tanpa bermain jadi Allah.</li><li><strong>Kuatkan hati:</strong> Menguatkan pengharapan saat rasanya tidak ada yang berubah.</li><li><strong>Hakim di depan pintu:</strong> Tuhan yang segera datang membuat ketidakadilan harus bertanggung jawab.</li><li><strong>Gerutu:</strong> Cara ketidaksabaran sering bocor, terutama kepada orang dekat.</li><li><strong>Ketekunan:</strong> Bertahan bersama Allah di tengah penderitaan, seperti Ayub.</li><li><strong>Integritas ya/tidak:</strong> Kata-kata yang bersih tanpa jalan keluar.</li></ul></div>
+    <div class="aid-section"><div class="aid-section-title">Kalimat Pegangan</div><ul class="anchor-list"><li>Bertahan bukan soal kemauan keras; ini pengharapan yang tertambat pada apa yang akan datang.</li><li>Kesabaran adalah melakukan tanggung jawabmu dan menyerahkan tanggung jawab Allah kepada-Nya.</li><li>Saat keadilan tertunda, kita tergoda duduk di kursi Allah sebagai hakim.</li><li>Hakim di depan pintu bisa menjadi ketakutan atau penghiburan, semuanya bergantung pada Yesus.</li><li>Yesus menanggung salib; vonis-Nya atas mereka yang milik-Nya adalah anugerah.</li></ul></div>
+    <div class="aid-section"><div class="aid-section-title">Petunjuk Mendengar</div><ul class="cue-list"><li>Lihat kontrasnya: orang yang merampas minggu lalu dan petani yang menunggu minggu ini.</li><li>Perhatikan bahasa dekat: kedatangan Tuhan sudah dekat, Hakim sudah di depan pintu.</li><li>Dengarkan bagaimana ketidaksabaran keluar lewat kata-kata: gerutu, keluhan, dan sumpah yang punya celah.</li><li>Tanya: di mana aku perlu menguatkan hati, bukan merebut kendali?</li></ul></div>
+    <div class="aid-section"><div class="aid-section-title">Fokus Penerapan</div><ul class="apply-list"><li>Sebutkan satu tekanan atau ketidakadilan yang membuatmu ingin membalas, lalu percayakan itu kepada Allah.</li><li>Ganti gerutu dengan satu langkah nyata: doa, percakapan yang rendah hati, atau ketekunan yang tenang.</li><li>Terus lakukan pekerjaan setia di depanmu sambil menunggu apa yang hanya Allah bisa bawa.</li><li>Latih kata-kata yang bersih minggu ini: tanpa manipulasi, tanpa janji setengah hati. Ya itu ya.</li></ul></div>
+  </div>
+</div>
+<div id="content-ko" class="lang-content">
+  <div class="listening-aid">
+    <div class="big-idea"><div class="big-idea-label">핵심</div><div class="big-idea-text">버틴다는 것은 의지력의 문제가 아닙니다. 무엇이 오고 있는지, 그리고 누가 그것을 가져오시는지 아는 것입니다.</div></div>
+    <div class="aid-section"><div class="aid-section-title">본문</div><div class="scripture-ref">야고보서 5:7&ndash;12</div></div>
+    <div class="aid-section"><div class="aid-section-title">설교 흐름</div>
+      <div class="movement"><div class="movement-header"><span class="movement-num">1</span>농부: 인내가 무엇인가</div><ul><li>인내는 수동적인 기다림이 아니라 적극적인 견딤과 절제입니다.</li><li>하나님이 맡기신 일을 하고, 하나님만 하실 수 있는 일은 하나님께 맡기십시오.</li></ul></div>
+      <div class="movement"><div class="movement-header"><span class="movement-num">2</span>문 앞에 서 계신 재판장: 왜 버틸 수 있는가</div><ul><li>마음을 굳게 하십시오. 주의 오심이 가깝습니다.</li><li>정의가 지연될 때 우리는 하나님의 자리를 차지하고 서로에게 화풀이하고 싶어집니다.</li></ul></div>
+      <div class="movement"><div class="movement-header"><span class="movement-num">3</span>욥과 정직: 깨끗하게 견디는 인내</div><ul><li>선지자들과 욥처럼 견디며 하나님의 긍휼과 자비를 붙드십시오.</li><li>예는 예, 아니오는 아니오가 되게 하십시오. 재판장은 실제로 계십니다.</li></ul></div>
+    </div>
+    <div class="aid-section"><div class="aid-section-title">핵심 단어</div><ul class="keyword-list"><li><strong>인내:</strong> 하나님을 대신하려 하지 않으면서 맡은 일을 하는 적극적인 견딤.</li><li><strong>마음을 굳게 하라:</strong> 아무것도 바뀌지 않는 것 같을 때 소망을 강화하라.</li><li><strong>문 앞의 재판장:</strong> 가까운 주의 오심은 모든 불의를 책임지게 한다.</li><li><strong>원망:</strong> 조급함이 말로 새어 나오는 방식, 특히 가까운 사람에게.</li><li><strong>견딤:</strong> 고난 속에서도 하나님을 붙드는 것, 욥처럼.</li><li><strong>예/아니오의 정직:</strong> 빠져나갈 구멍 없는 깨끗한 말.</li></ul></div>
+    <div class="aid-section"><div class="aid-section-title">붙잡을 문장</div><ul class="anchor-list"><li>버틴다는 것은 의지력이 아니라, 오고 있는 것을 붙드는 소망입니다.</li><li>인내는 내가 할 일을 하고 하나님이 하실 일은 하나님께 맡기는 것입니다.</li><li>정의가 늦어질 때 우리는 하나님의 자리에 앉고 싶어집니다.</li><li>문 앞의 재판장은 예수 안에 있느냐에 따라 두려움이기도 하고 위로이기도 합니다.</li><li>예수님이 십자가를 견디셨고, 그분께 속한 자에게 내려진 판결은 은혜입니다.</li></ul></div>
+    <div class="aid-section"><div class="aid-section-title">듣기 포인트</div><ul class="cue-list"><li>대비를 보십시오. 지난주의 빼앗는 자들과 이번 주의 기다리는 농부입니다.</li><li>가깝다는 언어를 주목하십시오. 주의 오심이 가깝고 재판장이 문 앞에 서 계십니다.</li><li>조급함이 말로 어떻게 드러나는지 들으십시오. 원망, 불평, 맹세의 꼼수입니다.</li><li>질문하십시오. 어디에서 통제를 쥐려 하기보다 마음을 굳게 해야 합니까?</li></ul></div>
+    <div class="aid-section"><div class="aid-section-title">적용</div><ul class="apply-list"><li>보복하고 싶은 압박이나 불의를 하나 떠올리고 하나님께 맡기십시오.</li><li>원망 대신 한 가지 실제적 행동을 하십시오. 기도, 겸손한 대화, 또는 조용한 견딤입니다.</li><li>하나님만 주실 수 있는 결과를 기다리며 눈앞의 충성된 일을 계속하십시오.</li><li>이번 주 말의 정직을 연습하십시오. 조작 없이, 반쯤의 약속 없이, 예는 예가 되게 하십시오.</li></ul></div>
+  </div>
+</div>
+<div id="content-tl" class="lang-content">
+  <div class="listening-aid">
+    <div class="big-idea"><div class="big-idea-label">Pangunahing Ideya</div><div class="big-idea-text">Ang kumapit ay hindi lang tungkol sa lakas ng loob. Ito ay tungkol sa pag-alam kung ano ang darating at kung sino ang magdadala nito.</div></div>
+    <div class="aid-section"><div class="aid-section-title">Kasulatan</div><div class="scripture-ref">Santiago 5:7&ndash;12</div></div>
+    <div class="aid-section"><div class="aid-section-title">Daloy ng Sermon</div>
+      <div class="movement"><div class="movement-header"><span class="movement-num">1</span>Ang magsasaka: ano talaga ang pagtitiis</div><ul><li>Ang pagtitiis ay hindi pasibo. Ito ay aktibong pagtitiyaga at pagpipigil sa sarili.</li><li>Gawin ang bahagi mo at ipaubaya sa Diyos ang kaya lang Niyang gawin.</li></ul></div>
+      <div class="movement"><div class="movement-header"><span class="movement-num">2</span>Ang Hukom sa may pinto: bakit ka makakakapit</div><ul><li>Patatagin ang inyong mga puso: malapit na ang pagdating ng Panginoon.</li><li>Kapag tila naantala ang hustisya, natutukso tayong kunin ang puwesto ng Diyos at bumaling laban sa isa't isa.</li></ul></div>
+      <div class="movement"><div class="movement-header"><span class="movement-num">3</span>Si Job at integridad: pagtitiis na nananatiling malinis</div><ul><li>Magtiis tulad ng mga propeta at ni Job, na kumakapit sa habag at awa ng Diyos.</li><li>Hayaan ang oo ay oo at ang hindi ay hindi, dahil totoo ang Hukom.</li></ul></div>
+    </div>
+    <div class="aid-section"><div class="aid-section-title">Mahahalagang Salita</div><ul class="keyword-list"><li><strong>Pagtitiis:</strong> Aktibong pagtitiyaga na ginagawa ang bahagi mo nang hindi ginagampanan ang Diyos.</li><li><strong>Patatagin ang puso:</strong> Palakasin ang pag-asa kapag pakiramdam mo walang nagbabago.</li><li><strong>Ang Hukom sa may pinto:</strong> Ang malapit na pagdating ng Diyos ay magpapapanagot sa mali.</li><li><strong>Pagbubulung-bulungan:</strong> Paraan kung paano lumalabas ang pagkainip, lalo na sa malalapit sa atin.</li><li><strong>Pagtitiis ni Job:</strong> Pagkapit sa Diyos sa gitna ng hirap.</li><li><strong>Integridad ng oo/hindi:</strong> Malinis na salita na walang lusot.</li></ul></div>
+    <div class="aid-section"><div class="aid-section-title">Mga Pahayag na Panghawakan</div><ul class="anchor-list"><li>Ang pagkakapit ay hindi lang lakas ng loob; ito ay pag-asang nakatali sa darating.</li><li>Ang pagtitiis ay paggawa ng responsibilidad mo at pag-iiwan sa Diyos ng responsibilidad Niya.</li><li>Kapag naantala ang hustisya, natutukso tayong kunin ang puwesto ng Diyos bilang hukom.</li><li>Ang Hukom sa may pinto ay maaaring takot o aliw, depende kay Jesus.</li><li>Si Jesus ang nagtiis sa krus; ang hatol Niya sa Kanyang mga tao ay biyaya.</li></ul></div>
+    <div class="aid-section"><div class="aid-section-title">Mga Gabay sa Pakikinig</div><ul class="cue-list"><li>Tingnan ang kontrast: ang mga nang-aagaw noong nakaraang linggo at ang magsasakang naghihintay ngayong linggo.</li><li>Pansinin ang salitang malapit: malapit na ang pagdating ng Panginoon at ang Hukom ay nasa may pinto.</li><li>Pakinggan kung paano lumalabas ang pagkainip sa salita: reklamo, pagbubulung-bulungan, at mga lusot.</li><li>Tanungin: saan ko kailangang patatagin ang puso ko sa halip na agawin ang kontrol?</li></ul></div>
+    <div class="aid-section"><div class="aid-section-title">Paglalapat</div><ul class="apply-list"><li>Pangalanan ang isang pressure o kawalang-katarungan na gusto mong gantihan at ipaubaya ito sa Diyos.</li><li>Palitan ang reklamo ng isang konkretong hakbang: panalangin, mapagpakumbabang usapan, o tahimik na pagtitiyaga.</li><li>Magpatuloy sa tapat na gawain habang hinihintay ang kaya lang dalhin ng Diyos.</li><li>Sanayin ang malinis na salita ngayong linggo: walang manipulasyon, walang kalahating pangako. Ang oo ay oo.</li></ul></div>
+  </div>
+</div>
+<div class="sheet-overlay" id="sheetOverlay" onclick="handleOverlayClick(event)">
+  <div class="sheet" id="sheetPanel">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">Choose Your Language</div>
+    <button class="lang-option" id="opt-en" onclick="setLang('en')"><span class="lang-flag">🇬🇧</span><div><div class="lang-name">English</div></div><span class="lang-check" id="check-en">✓</span></button>
+    <button class="lang-option" id="opt-zh" onclick="setLang('zh')"><span class="lang-flag">🇹🇼</span><div><div class="lang-name">Traditional Chinese</div><div class="lang-native">繁體中文</div></div><span class="lang-check" id="check-zh" style="display:none">✓</span></button>
+    <button class="lang-option" id="opt-id" onclick="setLang('id')"><span class="lang-flag">🇮🇩</span><div><div class="lang-name">Bahasa Indonesia</div></div><span class="lang-check" id="check-id" style="display:none">✓</span></button>
+    <button class="lang-option" id="opt-ko" onclick="setLang('ko')"><span class="lang-flag">🇰🇷</span><div><div class="lang-name">Korean</div><div class="lang-native">한국어</div></div><span class="lang-check" id="check-ko" style="display:none">✓</span></button>
+    <button class="lang-option" id="opt-tl" onclick="setLang('tl')"><span class="lang-flag">🇵🇭</span><div><div class="lang-name">Filipino</div><div class="lang-native">Filipino / Tagalog</div></div><span class="lang-check" id="check-tl" style="display:none">✓</span></button>
+    <hr class="sheet-divider" />
+    <div class="request-section">
+      <button class="request-toggle" onclick="toggleRequestForm()">+ Request Another Language</button>
+      <div class="request-form" id="requestForm">
+        <form id="langRequestForm" onsubmit="submitRequest(event)" style="margin-top:16px">
+          <input type="hidden" name="access_key" value="3fc0c694-adc2-4cda-8191-c4f6993a9a55">
+          <input type="hidden" name="subject" value="TIF Sermon Language Request — James Week 10 (Listening Aid)">
+          <div class="form-row"><label for="reqLang">Requested Language</label><select name="language" id="reqLang" required><option value="">Select a language…</option><option>Japanese / 日本語</option><option>Spanish / Español</option><option>French / Français</option><option>German / Deutsch</option><option>Portuguese / Português</option><option>Thai / ภาษาไทย</option><option>Vietnamese / Tiếng Việt</option><option>Hindi / हिन्दी</option><option>Burmese / မြန်မာ</option><option>Swahili</option><option>Arabic / العربية</option><option>Dutch / Nederlands</option><option>Russian / Русский</option><option>Ukrainian / Українська</option><option>Polish / Polski</option><option>Romanian / Română</option><option>Czech / Čeština</option><option>Hungarian / Magyar</option><option>Other</option></select></div>
+          <div class="form-row"><label for="reqName">Full Name</label><input type="text" name="name" id="reqName" placeholder="Your name" required></div>
+          <div class="form-row"><label for="reqStatus">Status at TIF</label><input type="text" name="status" id="reqStatus" placeholder="e.g. Member, Regular Attendee, Visitor" required></div>
+          <div class="form-row"><label for="reqEmail">Email</label><input type="email" name="email" id="reqEmail" placeholder="your@email.com" required></div>
+          <button type="submit" class="form-submit">Send Request</button>
+          <div class="form-success" id="formSuccess">✓ Request sent! Todd will be in touch soon.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-brand">Taichung International Fellowship</div>
+  <div>Listening Aid &middot; James Week 10 &middot; May 31, 2026</div>
+  <div style="margin-top:8px"><a href="../archive.html">&#8592; Sermon Archive</a> &middot; <a href="https://taichunginternationalfellowship.org" target="_blank">TIF Website</a></div>
+</footer>
+<script>
+  const LANGS = {
+    en: { label: 'English', flag: '🇬🇧' },
+    zh: { label: '繁體中文', flag: '🇹🇼' },
+    id: { label: 'Bahasa Indonesia', flag: '🇮🇩' },
+    ko: { label: '한국어', flag: '🇰🇷' },
+    tl: { label: 'Filipino / Tagalog', flag: '🇵🇭' }
+  };
+  let currentLang = 'en';
+  try { currentLang = localStorage.getItem('tif-lang') || 'en'; } catch (e) {}
+  function setLang(code) {
+    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+    const el = document.getElementById('content-' + code);
+    if (el) el.classList.add('active');
+    const lang = LANGS[code] || LANGS.en;
+    document.getElementById('currentLangLabel').textContent = lang.flag + ' ' + lang.label;
+    Object.keys(LANGS).forEach(k => {
+      const chk = document.getElementById('check-' + k);
+      const opt = document.getElementById('opt-' + k);
+      if (chk) chk.style.display = k === code ? '' : 'none';
+      if (opt) opt.classList.toggle('selected', k === code);
+    });
+    currentLang = code;
+    try { localStorage.setItem('tif-lang', code); } catch (e) {}
+    closeSheet();
+  }
+  function openSheet() { document.getElementById('sheetOverlay').classList.add('open'); }
+  function closeSheet() { document.getElementById('sheetOverlay').classList.remove('open'); }
+  function handleOverlayClick(e) { if (e.target === document.getElementById('sheetOverlay')) closeSheet(); }
+  function toggleRequestForm() { document.getElementById('requestForm').classList.toggle('open'); }
+  async function submitRequest(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      }
+    } catch (err) {
+      alert('There was an error. Please try again.');
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function () { setLang(currentLang); });
+</script>
+</body>
+</html>
