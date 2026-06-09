@@ -1,0 +1,6 @@
+Republish trigger for GitHub Pages stale deploy check.
+Target sermon: Courage for the Promised Rest
+Scripture: Joshua 1:1-9
+Series: Joshua Week 1
+Triggered: 2026-06-09 Asia/Taipei
+Reason: main branch contains Joshua Week 1, but public Pages URL was still serving James Week 11 during verification.
