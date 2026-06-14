@@ -1,993 +1,632 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="tif-week-slug" content="joshua-week-1">
-  <meta name="tif-page-type" content="full-manuscript">
-  <title>Courage for the Promised Rest | TIF Full Sermon Manuscript</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Asul:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --dark: #1b2327;
-      --extra-dark: #121b20;
-      --accent: #27b7d8;
-      --accent-dim: rgba(39,183,216,0.15);
-      --body-text: #333333;
-      --white: #ffffff;
-      --off-white: #f0f0f0;
-      --bg-light: #f7fbfc;
-      --muted: #7a9aaa;
-      --border: rgba(39,183,216,0.25);
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Asap', Arial, sans-serif; color: var(--body-text); background: var(--white); line-height: 1.75; }
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta name="tif-week-slug" content="joshua-week-2">
+          <meta name="tif-page-type" content="listening-aid">
+          <title>The Outsider Who Came Home | TIF Listening Aid</title>
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Asul:wght@400;700&display=swap" rel="stylesheet">
+          <style>
+            :root {
+              --dark: #1b2327;
+              --extra-dark: #121b20;
+              --accent: #27b7d8;
+              --accent-dim: rgba(39,183,216,0.15);
+              --body-text: #333333;
+              --white: #ffffff;
+              --off-white: #f0f0f0;
+              --bg-light: #f7fbfc;
+              --muted: #7a9aaa;
+              --border: rgba(39,183,216,0.25);
+            }
+            *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+            html { scroll-behavior: smooth; }
+            body { font-family: 'Asap', Arial, sans-serif; color: var(--body-text); background: var(--white); line-height: 1.75; }
+            .header {
+              background: var(--extra-dark);
+              padding: 16px 24px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              position: sticky;
+              top: 0;
+              z-index: 100;
+              gap: 12px;
+            }
+            .header-left { display: flex; align-items: center; gap: 14px; }
+            .header-brand { font-family: 'Asul', serif; color: var(--off-white); font-size: 1rem; font-weight: 700; text-decoration: none; letter-spacing: 0.02em; }
+            .header-brand span { color: var(--accent); }
+            .nav-archive {
+              color: var(--muted);
+              font-size: 0.82rem;
+              text-decoration: none;
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              transition: color 0.2s;
+            }
+            .nav-archive:hover { color: var(--accent); }
+            .header-right { display: flex; align-items: center; gap: 10px; }
+            .lang-btn {
+              background: rgba(39,183,216,0.12);
+              border: 1px solid var(--border);
+              color: var(--off-white);
+              border-radius: 20px;
+              padding: 6px 14px;
+              font-size: 0.82rem;
+              font-family: 'Asap', sans-serif;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              gap: 6px;
+              transition: background 0.2s;
+            }
+            .lang-btn:hover { background: rgba(39,183,216,0.22); }
+            .hero {
+              background: var(--dark);
+              color: var(--off-white);
+              padding: 52px 24px 44px;
+              text-align: center;
+            }
+            .hero-badge {
+              display: inline-block;
+              background: var(--accent-dim);
+              border: 1px solid var(--border);
+              color: var(--accent);
+              font-size: 0.72rem;
+              font-weight: 600;
+              letter-spacing: 0.1em;
+              text-transform: uppercase;
+              border-radius: 20px;
+              padding: 4px 14px;
+              margin-bottom: 18px;
+            }
+            .hero h1 {
+              font-family: 'Asul', serif;
+              font-size: clamp(1.7rem, 5vw, 2.6rem);
+              font-weight: 700;
+              line-height: 1.2;
+              margin-bottom: 14px;
+              color: var(--white);
+            }
+            .hero-scripture {
+              font-size: 1.05rem;
+              color: var(--accent);
+              font-weight: 600;
+              margin-bottom: 8px;
+            }
+            .hero-meta { font-size: 0.82rem; color: var(--muted); }
+            .hero-divider { width: 48px; height: 3px; background: var(--accent); margin: 20px auto 0; border-radius: 2px; }
+            .lang-content { display: none; }
+            .lang-content.active { display: block; }
+            .listening-aid { max-width: 760px; margin: 0 auto; padding: 40px 24px 60px; }
+            .aid-section { margin-bottom: 36px; }
+            .aid-section-title {
+              font-family: 'Asul', serif;
+              font-size: 0.72rem;
+              font-weight: 700;
+              letter-spacing: 0.12em;
+              text-transform: uppercase;
+              color: var(--accent);
+              margin-bottom: 12px;
+              padding-bottom: 8px;
+              border-bottom: 1px solid var(--border);
+            }
+            .big-idea {
+              background: var(--dark);
+              color: var(--off-white);
+              border-radius: 10px;
+              padding: 22px 24px;
+              margin-bottom: 36px;
+            }
+            .big-idea-label {
+              font-size: 0.68rem;
+              font-weight: 700;
+              letter-spacing: 0.12em;
+              text-transform: uppercase;
+              color: var(--accent);
+              margin-bottom: 8px;
+            }
+            .big-idea-text {
+              font-family: 'Asul', serif;
+              font-size: 1.1rem;
+              line-height: 1.55;
+              color: var(--white);
+            }
+            .scripture-ref {
+              background: var(--bg-light);
+              border-left: 4px solid var(--accent);
+              border-radius: 0 8px 8px 0;
+              padding: 14px 18px;
+              font-size: 0.95rem;
+            }
+            .movement { margin-bottom: 24px; }
+            .movement-header {
+              font-family: 'Asul', serif;
+              font-size: 1rem;
+              font-weight: 700;
+              color: var(--dark);
+              margin-bottom: 8px;
+              display: flex;
+              align-items: flex-start;
+              gap: 10px;
+            }
+            .movement-num {
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              min-width: 24px; height: 24px;
+              background: var(--accent);
+              color: var(--white);
+              font-size: 0.72rem;
+              font-weight: 700;
+              border-radius: 50%;
+              flex-shrink: 0;
+              margin-top: 2px;
+            }
+            .movement ul { list-style: none; padding-left: 34px; }
+            .movement ul li {
+              position: relative;
+              padding-left: 16px;
+              margin-bottom: 5px;
+              font-size: 0.93rem;
+              line-height: 1.6;
+            }
+            .movement ul li::before { content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+            .keyword-list, .anchor-list, .cue-list, .apply-list { padding: 0; list-style: none; }
+            .keyword-list li {
+              padding: 10px 0;
+              border-bottom: 1px solid #eee;
+              font-size: 0.93rem;
+              line-height: 1.55;
+            }
+            .keyword-list li:last-child { border-bottom: none; }
+            .keyword-list li strong { color: var(--dark); }
+            .anchor-list li {
+              border-left: 4px solid var(--accent);
+              padding: 10px 16px;
+              margin-bottom: 12px;
+              font-style: italic;
+              font-size: 0.97rem;
+              color: var(--dark);
+              background: var(--accent-dim);
+              border-radius: 0 6px 6px 0;
+              line-height: 1.55;
+            }
+            .cue-list li {
+              font-style: italic;
+              color: var(--muted);
+              font-size: 0.88rem;
+              padding: 6px 0 6px 24px;
+              position: relative;
+              line-height: 1.5;
+            }
+            .cue-list li::before { content: '👁'; font-style: normal; position: absolute; left: 0; font-size: 0.8rem; }
+            .apply-list li {
+              background: var(--bg-light);
+              border-radius: 8px;
+              padding: 12px 16px;
+              margin-bottom: 10px;
+              font-size: 0.93rem;
+              line-height: 1.6;
+              border: 1px solid #e0eef2;
+            }
+            .sheet-overlay {
+              display: none;
+              position: fixed;
+              inset: 0;
+              background: rgba(0,0,0,0.5);
+              z-index: 200;
+              align-items: flex-end;
+            }
+            .sheet-overlay.open { display: flex; }
+            .sheet {
+              background: var(--white);
+              width: 100%;
+              max-width: 520px;
+              margin: 0 auto;
+              border-radius: 16px 16px 0 0;
+              padding: 20px 0 32px;
+              max-height: 90vh;
+              overflow-y: auto;
+            }
+            .sheet-handle { width: 40px; height: 4px; background: #ccc; border-radius: 2px; margin: 0 auto 16px; }
+            .sheet-title { font-family: 'Asul', serif; font-size: 1rem; font-weight: 700; text-align: center; color: var(--dark); margin-bottom: 16px; padding: 0 24px; }
+            .lang-option {
+              display: flex; align-items: center; gap: 14px;
+              padding: 14px 24px; cursor: pointer;
+              transition: background 0.15s;
+              border: none; background: none; width: 100%; text-align: left;
+            }
+            .lang-option:hover { background: var(--bg-light); }
+            .lang-option.selected { background: var(--accent-dim); }
+            .lang-flag { font-size: 1.4rem; line-height: 1; }
+            .lang-name { font-size: 0.95rem; color: var(--dark); font-weight: 500; }
+            .lang-native { font-size: 0.8rem; color: var(--muted); }
+            .lang-check { margin-left: auto; color: var(--accent); font-size: 1.1rem; }
+            .sheet-divider { border: none; border-top: 1px solid #eee; margin: 12px 0; }
+            .request-section { padding: 0 24px; }
+            .request-toggle {
+              background: none; border: 1px solid var(--border); border-radius: 20px;
+              padding: 8px 18px; color: var(--accent); font-size: 0.83rem; cursor: pointer;
+              font-family: 'Asap', sans-serif; display: block; margin: 0 auto;
+            }
+            .request-toggle:hover { background: var(--accent-dim); }
+            .request-form { display: none; margin-top: 16px; }
+            .request-form.open { display: block; }
+            .form-row { margin-bottom: 12px; }
+            .form-row label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
+            .form-row input, .form-row select {
+              width: 100%; border: 1px solid #ddd; border-radius: 6px;
+              padding: 9px 12px; font-size: 0.9rem; font-family: 'Asap', sans-serif;
+              color: var(--dark); background: var(--white); outline: none;
+            }
+            .form-row input:focus, .form-row select:focus { border-color: var(--accent); }
+            .form-submit {
+              width: 100%; background: var(--accent); color: var(--white);
+              border: none; border-radius: 8px; padding: 11px;
+              font-size: 0.93rem; font-weight: 600; font-family: 'Asap', sans-serif; cursor: pointer;
+            }
+            .form-submit:hover { opacity: 0.88; }
+            .form-success { display: none; text-align: center; color: var(--accent); font-weight: 600; padding: 12px 0; font-size: 0.93rem; }
+            .footer {
+              background: var(--extra-dark); color: var(--muted);
+              text-align: center; padding: 28px 24px; font-size: 0.8rem;
+            }
+            .footer a { color: var(--accent); text-decoration: none; }
+            .footer a:hover { text-decoration: underline; }
+            .footer-brand { font-family: 'Asul', serif; color: var(--off-white); font-size: 0.95rem; margin-bottom: 6px; }
+            @media (max-width: 500px) {
+              .header { padding: 12px 16px; }
+              .listening-aid { padding: 28px 16px 48px; }
+              .hero { padding: 36px 16px 32px; }
+            }
+          </style>
+        </head>
+        <body>
+        <header class="header">
+          <div class="header-left">
+            <a href="index.html" class="header-brand">TIF <span>Sermons</span></a>
+            <a href="archive.html" class="nav-archive">&#8592; Sermon Archive</a>
+          </div>
+          <div class="header-right">
+            <button class="lang-btn" onclick="openSheet()">
+              🌐 <span id="currentLangLabel">English</span>
+            </button>
+          </div>
+        </header>
 
-    /* ── HEADER ── */
-    .header {
-      background: var(--extra-dark);
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      gap: 12px;
-    }
-    .header-left { display: flex; align-items: center; gap: 14px; }
-    .header-brand { font-family: 'Asul', serif; color: var(--off-white); font-size: 1rem; font-weight: 700; text-decoration: none; letter-spacing: 0.02em; }
-    .header-brand span { color: var(--accent); }
-    .nav-archive {
-      color: var(--muted);
-      font-size: 0.82rem;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      transition: color 0.2s;
-    }
-    .nav-archive:hover { color: var(--accent); }
-    .header-right { display: flex; align-items: center; gap: 10px; }
-    .lang-btn {
-      background: rgba(39,183,216,0.12);
-      border: 1px solid var(--border);
-      color: var(--off-white);
-      border-radius: 20px;
-      padding: 6px 14px;
-      font-size: 0.82rem;
-      font-family: 'Asap', sans-serif;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: background 0.2s;
-    }
-    .lang-btn:hover { background: rgba(39,183,216,0.22); }
+        <section class="hero">
+          <div class="hero-badge">Listening Aid · Joshua Series · Week 2</div>
+          <h1>The Outsider Who Came Home</h1>
+          <div class="hero-scripture">Joshua 2</div>
+          <div class="hero-meta">June 14, 2026 &middot; Taichung International Fellowship</div>
+          <div class="hero-divider"></div>
+        </section>
 
-    /* ── HERO ── */
-    .hero {
-      background: var(--dark);
-      color: var(--off-white);
-      padding: 52px 24px 44px;
-      text-align: center;
-    }
-    .hero-badge {
-      display: inline-block;
-      background: var(--accent-dim);
-      border: 1px solid var(--border);
-      color: var(--accent);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-radius: 20px;
-      padding: 4px 14px;
-      margin-bottom: 18px;
-    }
-    .hero h1 {
-      font-family: 'Asul', serif;
-      font-size: clamp(1.7rem, 5vw, 2.6rem);
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 14px;
-      color: var(--white);
-    }
-    .hero-scripture {
-      font-size: 1.05rem;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .hero-meta { font-size: 0.82rem; color: var(--muted); }
-    .hero-divider {
-      width: 48px; height: 3px;
-      background: var(--accent);
-      margin: 20px auto 0;
-      border-radius: 2px;
-    }
+        <div id="content-en" class="lang-content active">
+    <div class="listening-aid">
+      <div class="big-idea">
+        <div class="big-idea-label">BIG IDEA</div>
+        <div class="big-idea-text">God's judgment is real, but his mercy welcomes the outsider who takes refuge in him.</div>
+      </div>
 
-    /* ── CONTENT ── */
+      <div class="aid-section">
+        <div class="aid-section-title">Scripture</div>
+        <div class="scripture-ref">Joshua 2</div>
+      </div>
 
-    /* ── MANUSCRIPT ── */
-    .manuscript {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 42px 24px 64px;
-      font-size: 1.05rem;
-      line-height: 1.85;
-    }
-    .manuscript-ref {
-      font-family: 'Asul', serif;
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 1.05rem;
-      margin-bottom: 18px;
-      letter-spacing: 0.02em;
-    }
-    .manuscript p { margin: 0 0 14px; }
+      <div class="aid-section">
+        <div class="aid-section-title">Sermon Flow</div>
 
-    .lang-content { display: none; }
-    .lang-content.active { display: block; }
-
-    .listening-aid {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 40px 24px 60px;
-    }
-
-    .aid-section { margin-bottom: 36px; }
-    .aid-section-title {
-      font-family: 'Asul', serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .big-idea {
-      background: var(--dark);
-      color: var(--off-white);
-      border-radius: 10px;
-      padding: 22px 24px;
-      margin-bottom: 36px;
-    }
-    .big-idea-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-    .big-idea-text {
-      font-family: 'Asul', serif;
-      font-size: 1.1rem;
-      line-height: 1.55;
-      color: var(--white);
-    }
-
-    .scripture-ref {
-      background: var(--bg-light);
-      border-left: 4px solid var(--accent);
-      border-radius: 0 8px 8px 0;
-      padding: 14px 18px;
-      font-size: 0.95rem;
-    }
-
-    .movement { margin-bottom: 24px; }
-    .movement-header {
-      font-family: 'Asul', serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 8px;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-    .movement-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 24px; height: 24px;
-      background: var(--accent);
-      color: var(--white);
-      font-size: 0.72rem;
-      font-weight: 700;
-      border-radius: 50%;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .movement ul { list-style: none; padding-left: 34px; }
-    .movement ul li {
-      position: relative;
-      padding-left: 16px;
-      margin-bottom: 5px;
-      font-size: 0.93rem;
-      line-height: 1.6;
-    }
-    .movement ul li::before { content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
-
-    .keyword-list { padding: 0; list-style: none; }
-    .keyword-list li {
-      padding: 10px 0;
-      border-bottom: 1px solid #eee;
-      font-size: 0.93rem;
-      line-height: 1.55;
-    }
-    .keyword-list li:last-child { border-bottom: none; }
-    .keyword-list li strong { color: var(--dark); }
-
-    .anchor-list { padding: 0; list-style: none; }
-    .anchor-list li {
-      border-left: 4px solid var(--accent);
-      padding: 10px 16px;
-      margin-bottom: 12px;
-      font-style: italic;
-      font-size: 0.97rem;
-      color: var(--dark);
-      background: var(--accent-dim);
-      border-radius: 0 6px 6px 0;
-      line-height: 1.55;
-    }
-
-    .cue-list { padding: 0; list-style: none; }
-    .cue-list li {
-      font-style: italic;
-      color: var(--muted);
-      font-size: 0.88rem;
-      padding: 6px 0 6px 24px;
-      position: relative;
-      line-height: 1.5;
-    }
-    .cue-list li::before { content: '👁'; font-style: normal; position: absolute; left: 0; font-size: 0.8rem; }
-
-    .apply-list { padding: 0; list-style: none; }
-    .apply-list li {
-      background: var(--bg-light);
-      border-radius: 8px;
-      padding: 12px 16px;
-      margin-bottom: 10px;
-      font-size: 0.93rem;
-      line-height: 1.6;
-      border: 1px solid #e0eef2;
-    }
-
-    /* ── LANGUAGE SHEET ── */
-    .sheet-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 200;
-      align-items: flex-end;
-    }
-    .sheet-overlay.open { display: flex; }
-    .sheet {
-      background: var(--white);
-      width: 100%;
-      max-width: 520px;
-      margin: 0 auto;
-      border-radius: 16px 16px 0 0;
-      padding: 20px 0 32px;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-    .sheet-handle { width: 40px; height: 4px; background: #ccc; border-radius: 2px; margin: 0 auto 16px; }
-    .sheet-title { font-family: 'Asul', serif; font-size: 1rem; font-weight: 700; text-align: center; color: var(--dark); margin-bottom: 16px; padding: 0 24px; }
-    .lang-option {
-      display: flex; align-items: center; gap: 14px;
-      padding: 14px 24px; cursor: pointer;
-      transition: background 0.15s;
-      border: none; background: none; width: 100%; text-align: left;
-    }
-    .lang-option:hover { background: var(--bg-light); }
-    .lang-option.selected { background: var(--accent-dim); }
-    .lang-flag { font-size: 1.4rem; line-height: 1; }
-    .lang-name { font-size: 0.95rem; color: var(--dark); font-weight: 500; }
-    .lang-native { font-size: 0.8rem; color: var(--muted); }
-    .lang-check { margin-left: auto; color: var(--accent); font-size: 1.1rem; }
-    .sheet-divider { border: none; border-top: 1px solid #eee; margin: 12px 0; }
-
-    .request-section { padding: 0 24px; }
-    .request-toggle {
-      background: none; border: 1px solid var(--border); border-radius: 20px;
-      padding: 8px 18px; color: var(--accent); font-size: 0.83rem; cursor: pointer;
-      font-family: 'Asap', sans-serif; display: block; margin: 0 auto;
-    }
-    .request-toggle:hover { background: var(--accent-dim); }
-    .request-form { display: none; margin-top: 16px; }
-    .request-form.open { display: block; }
-    .form-row { margin-bottom: 12px; }
-    .form-row label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
-    .form-row input, .form-row select {
-      width: 100%; border: 1px solid #ddd; border-radius: 6px;
-      padding: 9px 12px; font-size: 0.9rem; font-family: 'Asap', sans-serif;
-      color: var(--dark); background: var(--white); outline: none;
-    }
-    .form-row input:focus, .form-row select:focus { border-color: var(--accent); }
-    .form-submit {
-      width: 100%; background: var(--accent); color: var(--white);
-      border: none; border-radius: 8px; padding: 11px;
-      font-size: 0.93rem; font-weight: 600; font-family: 'Asap', sans-serif; cursor: pointer;
-    }
-    .form-submit:hover { opacity: 0.88; }
-    .form-success { display: none; text-align: center; color: var(--accent); font-weight: 600; padding: 12px 0; font-size: 0.93rem; }
-
-    /* ── FOOTER ── */
-    .footer {
-      background: var(--extra-dark); color: var(--muted);
-      text-align: center; padding: 28px 24px; font-size: 0.8rem;
-    }
-    .footer a { color: var(--accent); text-decoration: none; }
-    .footer a:hover { text-decoration: underline; }
-    .footer-brand { font-family: 'Asul', serif; color: var(--off-white); font-size: 0.95rem; margin-bottom: 6px; }
-
-    @media (max-width: 500px) {
-      .header { padding: 12px 16px; }
-      .listening-aid { padding: 28px 16px 48px; }
-      .hero { padding: 36px 16px 32px; }
-    }
-  </style>
-</head>
-<body>
-
-<header class="header">
-  <div class="header-left">
-    <a href="index.html" class="header-brand">TIF <span>Sermons</span></a>
-    <a href="archive.html" class="nav-archive">&#8592; Sermon Archive</a>
-  </div>
-  <div class="header-right">
-    <button class="lang-btn" onclick="openSheet()">
-      🌐 <span id="currentLangLabel">English</span>
-    </button>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="hero-badge">Full Manuscript &middot; Joshua Series &middot; Week 1</div>
-  <h1>Courage for the Promised Rest</h1>
-  <div class="hero-scripture">Joshua 1:1&ndash;9</div>
-  <div class="hero-meta">June 7, 2026 &middot; Taichung International Fellowship</div>
-  <div class="hero-divider"></div>
-</section>
-
-
-<!-- EN -->
-<div id="content-en" class="lang-content active">
-  <div class="manuscript">
-    <div class="manuscript-kicker">Joshua 1</div>
-    <div class="manuscript-spacer"></div>
-    <p>Joshua begins with Israel gathered on the edge of the land.</p>
-    <p>They are standing on the border of the promise. Behind them is Egypt, slavery, the Red Sea, manna in the wilderness, years of graves in the desert, and a whole generation that did not enter because of unbelief. In front of them is the land God promised to Abraham, Isaac, and Jacob. But it is not empty.</p>
-    <p>There are cities. There are kings. There are armies. There are walls. And maybe at this moment, most importantly, at the very beginning of the book, there is grief.</p>
-    <p>Moses is dead.</p>
-    <p>After the death of Moses the LORD&#x27;s servant, the LORD spoke to Joshua son of Nun, Moses&#x27;s assistant.</p>
-    <p>Moses is dead.</p>
-    <p>Moses was not a minor figure in Israel&#x27;s life. Moses was the rod God used to strike Pharaoh and set the Hebrews free. The people witness the greatest miracles in recorded history done through Moses hand. It was Moses who stretched his staff out and split the sea. It was Moses who received the law. It was Moses who met with God on the mountain. It was Moses who interceded when Israel sinned.</p>
-    <p>And now Moses is dead, the wilderness is behind them, the land is ahead of them, and Joshua has been chosen to lead the people into the land God had promised them.</p>
-    <p>That is where God says, be strong and courageous.</p>
-    <p>This is one of those Bible phrases that has become familiar enough that we can stop feeling how strange it is. We put it on posters. We put it on mugs. We put it on graduation cards. We use it as a way to say, try hard, be brave, believe in yourself, go do the thing.</p>
-    <p>But that is not what Joshua 1 is doing.</p>
-    <p>God does not come to Joshua and say, Joshua, you have everything inside of you. God does not say, Joshua, you are finally ready because you are naturally courageous.</p>
-    <p>The courage in Joshua 1 is not confidence in Joshua. It is confidence in the presence and promise of God.</p>
-    <p>Let&#x27;s read the passage for today. This is Joshua 1:1-9.</p>
-    <div class="scripture-block">1 After the death of Moses the Lord’s servant, the Lord spoke to Joshua son of Nun, Moses’s assistant: 2 “Moses my servant is dead. Now you and all the people prepare to cross over the Jordan to the land I am giving the Israelites.</div>
-    <div class="scripture-block">3 I have given you every place where the sole of your foot treads, just as I promised Moses. 4 Your territory will be from the wilderness and Lebanon to the great river, the Euphrates River—all the land of the Hittites—and west to the Mediterranean Sea. 5 No one will be able to stand against you as long as you live. I will be with you, just as I was with Moses. I will not leave you or abandon you.</div>
-    <div class="scripture-block">6 “Be strong and courageous, for you will distribute the land I swore to their ancestors to give them as an inheritance. 7 Above all, be strong and very courageous to observe carefully the whole instruction my servant Moses commanded you. Do not turn from it to the right or the left, so that you will have success wherever you go.</div>
-    <div class="scripture-block">8 This book of instruction must not depart from your mouth; you are to meditate on it day and night so that you may carefully observe everything written in it. For then you will prosper and succeed in whatever you do. 9 Haven’t I commanded you: be strong and courageous? Do not be afraid or discouraged, for the Lord your God is with you wherever you go.”</div>
-    <p>The message of Joshua is really simple and yet so profound. God is with you.</p>
-    <p>Joshua is a book about promise, land, judgement, mercy. It’s about victory, failure, inheritance, covenant, and worship.</p>
-    <p>But if we read it only as a book about how to be brave and take territory, we will miss the gospel.</p>
-    <p>Joshua is not mainly about courageous people doing great things for God.</p>
-    <p>Joshua is about a faithful God doing great things for His people they could never do for themselves.</p>
-    <p>The first thing we see is that courage begins where self-confidence ends.</p>
-    <p>God says to Joshua, Moses my servant is dead. Now you and all this people prepare to cross over the Jordan to the land I am giving the Israelites.</p>
-    <p>That is a heavy sentence. Moses is dead. Now go.</p>
-    <p>God does not pretend the loss is small. He does not say, don&#x27;t think about Moses. He does not say, get over it quickly. He names the death. Moses my servant is dead.</p>
-    <p>But God also does not allow Joshua to make Moses&#x27;s death the end of God&#x27;s promise.</p>
-    <p>Moses is dead, but I’m very much alive and we’re not finished. Moses’ work is done, but my work is not. Moses cannot go with you, but I can and I will.</p>
-    <p>That is the foundation of Joshua&#x27;s courage. Not that Joshua is Moses 2.0. Not that Joshua has the same personality, the same gifts, the same history, the same authority. The foundation is that the God who was with Moses will be with Joshua.</p>
-    <p>As I was with Moses, so I will be with you. I will not leave you or abandon you.</p>
-    <p>There is the promise that makes courage possible.</p>
-    <p>One of the greatest fears Crista and I have dealt with over the years is worrying about that phone call that our children have been hurt or injured or something worse. Many of you have experienced something similar because you are separated from family or friends.</p>
-    <p>We got that call one night. Ashlyn had been in a car wreck. We were 7,000 miles and at least 24 hours away from being able to be there. But you know who was there even before we knew about it. He was - Actually, He did not leave or forsake us or our daughter.</p>
-    <p>Across the street from the wreck was a group of fireman out filling their truck with gas - and within a few seconds they were there taking care of her.</p>
-    <p>Biblical courage is not the absence of fear. It is not pretending there aren’t frightening things in the world.</p>
-    <p>Biblical courage is when your trust in God’s presence becomes more real than the thing that frightens you.</p>
-    <p>Maybe that’s the one thing you need to hear today.</p>
-    <p>God is with you.</p>
-    <p>Because if the only comfort you have is your own strength or ability, eventually you will meet something stronger than you are.</p>
-    <p>And some of you already have.</p>
-    <p>God gives Joshua and us something better.</p>
-    <p>I will be with you.</p>
-    <p>That is the difference between self-confidence and faith.</p>
-    <p>Self-confidence says, I can handle this because I have what it takes.</p>
-    <p>Faith says, I have who it takes to deal with whatever comes my way. Those are not the same thing.</p>
-    <p>Self-confidence has to keep protecting the image that it is strong. Faith can admit weakness because the foundation is not the self. Self-confidence is threatened by failure. Faith can repent and get back up because God is still faithful. Self-confidence has to control outcomes. Faith can take the next obedient step without seeing the whole road.</p>
-    <p>I will be with you. I will not leave you. I will not abandon you.</p>
-    <p>The second thing we see is that courage submits to God&#x27;s word when fear wants control.</p>
-    <p>After God promises his presence, he tells Joshua to be careful to do according to all the instruction Moses commanded him. Do not turn from it to the right or the left. This book of instruction must not depart from your mouth. Meditate on it day and night, so that you may carefully observe everything written in it.</p>
-    <p>Again, this can be misunderstood.</p>
-    <p>Some people read this and hear a formula for success. Read the Bible enough, obey carefully enough, and your life will work out the way you want. You will have the career, the marriage, the children, the ministry, the health, the future. If you just keep the rules, you can make the promise work.</p>
-    <p>But Joshua is not being given a technique for controlling God. This is a relationship. Listening to someone, thinking about them, obeying them. That is relational language.</p>
-    <p>Fear says, protect yourself. Take control. Prepare for every possible disaster. Fear says, if you are not impressive, you will be forgotten.</p>
-    <p>Fear says, if you fail here, it will define you.</p>
-    <p>You can have a relationship with fear in a similar way to the relationship God is asking you to have. You listen to every voice but God. We meditate on anxiety. We meditate on worst-case scenarios. We meditate on what people might think. We meditate on the future we are afraid of. We take the fear into our mouths. We talk about it. We repeat it. We rehearse it. We let it shape our imagination.</p>
-    <p>God tells Joshua, do not let that become the voice that governs you.</p>
-    <p>Let the word of God be in your mouth. Meditate on it day and night.</p>
-    <p>Here’s why this is so important. You can’t prepare for every situation. And honestly, you’re going to meet situations that you are incapable of handling.</p>
-    <p>The people Joshua is going to lead into the promised land are going to face situations where human strategy is not enough. They will stand before a flooded river. They will march around a fortified city. They will face sin inside their own camp. They will be tempted by the nations around them. They will have moments when the visible situation says one thing and the promise of God says another.</p>
-    <p>If they are not shaped by God&#x27;s word, fear will interpret everything for them.</p>
-    <p>The same is true for us.</p>
-    <p>Your life is being interpreted by something.</p>
-    <p>When your plans change, something tells you what that means.</p>
-    <p>When someone criticizes you, something tells you what that means.</p>
-    <p>When money feels tight, something tells you what that means.</p>
-    <p>When your family is disappointed, something tells you what that means.</p>
-    <p>When you are lonely, delayed, overlooked, exhausted, or uncertain, something preaches to you.</p>
-    <p>The question is not whether you are being discipled. The question is what is discipling you.</p>
-    <p>God calls Joshua to be governed by his word because courage is not just emotional energy. Courage is truth-shaped obedience.</p>
-    <p>Be careful to do according to all the instruction.</p>
-    <p>The courage God is calling Joshua to have is not, I feel brave, so I will do whatever seems bold. Biblical courage is not the same as personality strength. Some people are naturally bold and still  disobedient. Some people are quiet and trembling and yet courageous because they obey God when it costs them.</p>
-    <p>That will not make obedience easy. Sometimes it will make obedience costly. But it will make obedience possible, because courage grows where the word of God becomes more authoritative than the fear of man.</p>
-    <p>The third thing we see is that courage is for others.</p>
-    <p>After God speaks to Joshua, Joshua speaks to the officers, and then he speaks to the tribes of Reuben, Gad, and the half tribe of Manasseh. Those tribes already had their inheritance on the east side of the Jordan. In one sense, they already had their place. But Joshua says, your wives, dependents, and livestock can remain here, while your best soldiers cross over ahead of your brothers and help them until the LORD gives them rest as he has given you.</p>
-    <p>That is important.</p>
-    <p>Courage in Joshua 1 is not private heroism. It is covenant faithfulness. It is people who have received mercy helping their brothers and sisters enter what God has promised.</p>
-    <p>What that means for us is that some of us are in a steadier season. Some of us are in a more settled place. Some of us have received help, stability, healing, discipleship, or spiritual rest in ways others around us have not yet experienced. Joshua 1 says do not turn that rest inward. Do not settle down with your gift and forget the brothers and sisters still crossing.</p>
-    <p>The strong and courageous life is not the isolated life. It is the life that says, God has been faithful to me, so I can move toward others instead of protecting my comfort.</p>
-    <p>It’s not fair to say that we are more sinful today than at the beginning. But sin has found ways to express itself in each generation that are increasingly perverse and destructive.</p>
-    <p>In this generation, one of the destructive influences of sin has been to convince us that we are better off alone. You don’t need anyone. You are fine by yourself.</p>
-    <p>We know deep down that isn’t true. But because we don’t listen to God’s word, we don’t have a relationship with him and we’ve been meditating on fear - we now live the most isolated lives and many people even dread being in community with others.</p>
-    <p>Let me remind you that our future is communal. Community. If you end up in heaven, you will not live a private life all to yourself. You will be in the closest community you have ever experienced.</p>
-    <p>That was the beauty of the promised land. The people were going to live in community with each other. Living out all of the one another commands that God had given them.</p>
-    <p>That is how you receive the rest that God has for us. In relationship with him and with his children.</p>
-    <p>That’s why even the best experiences of these things here leave us longing.  That is not just Israel&#x27;s story. It is ours.</p>
-    <p>Many of us have some version of the rest we are trying to get into.</p>
-    <p>If I can just get the job, then I will rest. If I can just get married, then I will rest. If I can just get out of this season, then I will rest. If I can just get my family to approve, then I will rest. If I can just get enough savings, then I will rest. If I can just get healthy, get settled, get known, get respected, get the degree, get the visa, get the answer, get the children through school, get the church stable, then I will rest.</p>
-    <p>Some of those are good desires. The land was a good gift. We do not have to pretend good things are bad in order to say they are not ultimate.</p>
-    <p>But the Bible keeps telling us that the good gift cannot do what only God can do.</p>
-    <p>None of these things can save you. They are the gifts of salvation. The gifts of the savior.</p>
-    <p>Let me tell you about Joshua&#x27;s Hebrew name, Yehoshua, means the LORD saves. It is the same name that comes into English as Jesus. That does not mean Joshua is Jesus. It means Joshua is a signpost.</p>
-    <p>The LORD saves.</p>
-    <p>Joshua is the appointed leader who brings God&#x27;s people into the promised land. But the whole Bible teaches us to look for a greater Joshua and to long for the real promised land, to be in God’s presence.</p>
-    <p>There is only one who can do that. His name is Jesus. The greater Joshua.</p>
-    <p>Joshua hears, I will be with you. Jesus is God with us.</p>
-    <p>Joshua leads the people through the Jordan into the land. Jesus goes down into death and judgment and comes out the other side, so his people can pass through into life.</p>
-    <p>Jesus obeyed where we disobey. Jesus trusted where Israel grumbled. Jesus walked into the battle we could not win. Jesus faced the judgment our sin deserved. Jesus was cut off outside the city, not because he lacked courage, but because his courage was love.</p>
-    <p>And when he rose from the dead, he did not simply give us inspiration to try harder. He gave us himself.</p>
-    <p>That means Christian courage is belonging to the One who has already gone ahead of us. You have dark places ahead of you in life. Jesus has already gone into the darkest darkness and returned victorious. You feel judged and condemned. Jesus received the judgment you deserved to receive and paid the penalty in full. You long for a rest that really satisfies. Jesus has gone ahead to prepare a place where you will be ultimately satisfied.</p>
-    <p>The Lord says, meditate on my word. Let my promises be in your mouth. Let my truth be in your imagination. Let my covenant faithfulness become more solid to you than the anxiety that feels so convincing at midnight.</p>
-    <p>This is not a call to become a Bible-reading machine so God will reward you with success. This is an invitation to live under the voice of the God who is already committed to you in Christ.</p>
-    <p>And for some of us, this passage is an invitation to stop trying to conquer our way into rest.</p>
-    <p>You may not think of your life as conquest, but many of us are trying to win rest by achievement.</p>
-    <p>If I can master this project, then rest.</p>
-    <p>If I can overcome this weakness, then rest.</p>
-    <p>If I can manage people&#x27;s opinions, then rest.</p>
-    <p>Or something else. But there will always be another battle.</p>
-    <p>So if you are here tonight and you are not a Christian, that is the invitation. Not to become a stronger person first. Not to clean yourself up enough to cross the river. Not to prove that you are courageous enough for God.</p>
-    <p>The invitation is to come to Jesus, the greater Joshua, who went ahead of sinners into death and came out in resurrection life. He does not offer you a self-improvement plan. He offers you himself. Forgiveness. Reconciliation with God. A rest deeper than circumstances.</p>
-    <p>And if you are a Christian, the invitation is not less needed.</p>
-    <p>Come to Jesus. Not, I can do this. Not, I have this under control. Not, I am the kind of person who can handle it.</p>
-    <p>But Christ has done this. Christ has this under control. Christ has gone ahead of me. Christ will never leave me.</p>
-  </div>
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">1</span> Faith begins when Rahab hears and changes sides</div>
+  <ul><li>Rahab hears what the Lord has done and stops trusting Jericho.</li><li>Faith is not a polished resume; it is taking refuge in the true God.</li></ul>
 </div>
 
-<!-- ZH -->
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">2</span> Mercy matters because judgment is real</div>
+  <ul><li>Jericho is under judgment, so refuge is urgent, not optional.</li><li>Rahab proves God's mercy is not tribal favoritism; outsiders can be welcomed.</li></ul>
+</div>
+
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">3</span> The scarlet cord is a promise to trust before the walls fall</div>
+  <ul><li>Rahab hangs the sign of rescue before she sees the outcome.</li><li>Faith ties itself to God's word of rescue before visible proof arrives.</li></ul>
+</div>
+
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">4</span> Jesus brings outsiders home</div>
+  <ul><li>Jesus becomes the condemned outsider so outsiders can belong to God's family.</li><li>Grace does not only spare shameful people; it gives them a new name and a future.</li></ul>
+</div>
+
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">Key Words</div>
+        <ul class="keyword-list"><li><strong>Outsider:</strong> Someone marked by shame, distance, or not belonging.</li><li><strong>Refuge:</strong> Running under God's promise instead of hiding in false safety.</li><li><strong>Judgment:</strong> God's holy opposition to evil; mercy only makes sense if this is real.</li><li><strong>Allegiance:</strong> Rahab's faith changes sides from Jericho's king to Israel's God.</li><li><strong>Scarlet cord:</strong> A visible sign attached to a promise of rescue.</li><li><strong>Home:</strong> Grace does more than spare; it brings people into God's family.</li></ul>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">Anchor Statements</div>
+        <ul class="anchor-list"><li>Faith takes God seriously enough to take refuge in him.</li><li>The issue is not bloodline. The issue is refuge.</li><li>Grace is not God saying, 'It does not matter.' Grace is God making a way of refuge.</li><li>Jesus became the outsider so outsiders can come home.</li></ul>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">Listening Cues</div>
+        <ul class="cue-list"><li>Notice how often Rahab's faith begins with hearing.</li><li>Watch how the sermon connects Jericho's fear and Rahab's belief.</li><li>Listen for the difference between respectability and refuge.</li><li>Hear how Rahab's house becomes a shelter under judgment.</li></ul>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">Application Focus</div>
+        <ul class="apply-list"><li>If you feel disqualified by your story, come to Christ with empty hands.</li><li>If you are a Christian, ask whether grace has made you more welcoming to outsiders.</li><li>Name one place where faith must change your allegiance this week.</li><li>Tie the cord in the window: act on God's promise before you can see the result.</li></ul>
+      </div>
+    </div>
+  </div>
+
 <div id="content-zh" class="lang-content">
-  <div class="manuscript">
-    <div class="manuscript-kicker">約書亞記 1</div>
-    <div class="manuscript-spacer"></div>
-    <p>約書亞一開始，以色列人聚集在這片土地的邊緣。</p>
-    <p>他們正站在應許的邊界。他們身後是埃及、奴隸制、紅海、曠野中的嗎哪、沙漠中多年的墳墓，以及因不信而沒有進入的整個世代。他們面前是神應許給亞伯拉罕、以撒和雅各的土地。但它並不空。</p>
-    <p>有城市。有國王。有軍隊。有牆壁。也許此時此刻，最重要的是，在這本書的一開始，就有悲傷。</p>
-    <p>摩西死了。</p>
-    <p>耶和華僕人摩西死後，耶和華對摩西的助手、嫩的兒子約書亞說話。</p>
-    <p>摩西死了。</p>
-    <p>摩西在以色列人的生命中並不是一個小人物。摩西是上帝用來打擊法老王並釋放希伯來人的杖。人們見證了摩西親手創造的歷史上最偉大的奇蹟。摩西伸出手杖，劈開了海。摩西接受了律法。摩西在山上遇見了神。當以色列人犯罪時，摩西為我們代求。</p>
-    <p>現在摩西死了，曠野在他們身後，土地在他們前面，約書亞被選來帶領百姓進入上帝應許他們的土地。</p>
-    <p>這就是神所說的，要剛強、勇敢。</p>
-    <p>這是聖經中的短語之一，我們已經足夠熟悉，以至於我們不再覺得它有多奇怪。我們把它放在海報上。我們把它放在杯子上。我們把它寫在畢業卡上。我們用它來表達：努力、勇敢、相信自己、去做事。</p>
-    <p>但這不是約書亞記第一章所做的事。</p>
-    <p>神不會對約書亞說，約書亞，你裡面擁有一切。神並沒有說，約書亞，你終於準備好了，因為你天生就有勇氣。</p>
-    <p>約書亞記第一章中的勇氣並不是對約書亞的信心。這是對神的同在和應許的信心。</p>
-    <p>我們來讀今天的經文。這是約書亞記 1:1-9。</p>
-    <div class="scripture-block">1 耶和華的僕人摩西死後，耶和華對摩西的助手、嫩的兒子約書亞說： 2 我的僕人摩西死了。現在你和眾民要準備約旦河，到我賜給以色列人的地去。</div>
-    <div class="scripture-block">3 我已將你們腳掌所踏之處的一切地方賜給你們，正如我向摩西所應許的那樣。 4 你的境界是從曠野和黎巴嫩直到大河幼發拉底河，就是赫人的全地，西到地中海。 5 只要你還活著，就沒有人能與你為敵。我會和你在一起，就像我和摩西在一起一樣。我不會離開你，也不會拋棄你。</div>
-    <div class="scripture-block">6 「你們要剛強、勇敢，因為你們要把我向他們祖先起誓應許給他們為業的土地分給你們。7 最重要的是，你們要堅強、勇敢，謹守我僕人摩西所吩咐你們的一切誡命。不可偏向左右，這樣，無論你們往哪裡去，都會順利。</div>
-    <div class="scripture-block">8 這訓詔書不可離開你的口；你們要晝夜沉思，以便仔細觀察其中所寫的一切。因為那時你無論做什麼都會繁榮並成功。 9 我不是吩咐你要剛強勇敢嗎？不要害怕，也不要灰心，因為無論你往哪裡去，耶和華你的神必與你同在。 」</div>
-    <p>約書亞的訊息非常簡單，但又如此深刻。神與你同在。</p>
-    <p>約書亞記是一本關於應許、土地、審判、憐憫的書。它是關於得勝、失敗、繼承、聖約和敬拜。</p>
-    <p>但如果我們只把它當作一本關於如何勇敢和佔領領土的書來讀，我們就會錯過福音。</p>
-    <p>約書亞主要講的並不是勇敢的人為神做偉大的事。</p>
-    <p>約書亞講述的是一位信實的神為祂的子民做了他們自己永遠無法做到的偉大事。</p>
-    <p>我們首先看到的是，勇氣始於自信的終結。</p>
-    <p>神對約書亞說：我的僕人摩西死了。現在你和所有這些人民準備過約旦河，前往我賜給以色列人的土地。</p>
-    <p>這是一個沉重的句子。摩西死了。現在走吧。</p>
-    <p>上帝不會假裝損失很小。他沒有說，不要想摩西。他沒有說，快點克服它。他命名了死亡。我的僕人摩西死了。</p>
-    <p>但神也不允許約書亞以摩西的死作為神應許的終結。</p>
-    <p>摩西死了，但我還活著，我們的故事還沒結束。摩西的工作已經完成，但我的工作還沒有。摩西不能和你一起去，但我可以而且我會的。</p>
-    <p>這是約書亞勇氣的基礎。並不是說約書亞是摩西2.0。並不是說約書亞有同樣的個性、同樣的恩賜、同樣的歷史、同樣的權柄。根基是與摩西同在的神也將與約書亞同在。</p>
-    <p>正如我與摩西同在一樣，我也會與你們同在。我不會離開你，也不會拋棄你。</p>
-    <p>有一個承諾使勇氣成為可能。</p>
-    <p>多年來，我和克里斯塔遇到的最大的恐懼之一就是擔心我們的孩子受傷或發生更嚴重的事情的電話。你們中的許多人都經歷過類似的事情，因為你們與家人或朋友分開。</p>
-    <p>有一天晚上我們接到了那通電話。阿什琳遭遇車禍。我們距離 7,000 英里，至少還有 24 小時才能到達那裡。但你知道在我們知道之前誰就在那裡。事實上，祂並沒有離開或拋棄我們或我們的女兒。</p>
-    <p>在事故現場對面的街道上，一群消防員正在為卡車加氣，幾秒鐘之內他們就趕到了現場並救了她。</p>
-    <p>符合聖經的勇氣並不是沒有恐懼。這並不是假裝世界上沒有什麼可怕的事。</p>
-    <p>符合聖經的勇氣是指你對神的同在的信任變得比讓你害怕的事情更真實。</p>
-    <p>也許這是你今天需要聽到的一件事。</p>
-    <p>神與你同在。</p>
-    <p>因為如果你唯一的安慰就是你自己的力量或能力，最終你會遇到比你更強大的人。</p>
-    <p>你們中的一些人已經有了。</p>
-    <p>神給了約書亞和我們更好的東西。</p>
-    <p>我會和你在一起。</p>
-    <p>這就是自信和信仰的差別。</p>
-    <p>自信地說，我能處理好這件事，因為我有能力。</p>
-    <p>信仰說，我有能力應付遇到的任何事。這些不是同一件事。</p>
-    <p>自信必須不斷保護自己強大的形象。信心可以承認軟弱，因為基礎不是己。自信心受到失敗的威脅。信心可以悔改並重新站起來，因為神仍然是信實的。自信必須控制結果。信心可以在看不到整條路的情況下順從地邁出下一步。</p>
-    <p>我會和你在一起。我不會離開你。我不會拋棄你。</p>
-    <p>我們看到的第二件事是，當恐懼想要控制時，勇氣就會服從上帝的話語。</p>
-    <p>神應許他會臨在之後，他告訴約書亞要小心遵行摩西吩咐他的所有指示。不要從它向右或向左轉向。這本教導書不可離開你的口。晝夜默想，以便仔細觀察其中所寫的一切。</p>
-    <p>同樣，這可能會被誤解。</p>
-    <p>有些人讀到這篇文章並聽到了成功的公式。讀足夠多的聖經，足夠仔細地服從，你的生活就會按照你想要的方式發展。你將擁有事業、婚姻、孩子、事工、健康、未來。只要遵守規則，就能兌現承諾。</p>
-    <p>但約書亞並沒有被賦予控制上帝的技巧。這是一種關係。傾聽某人，思考他們，服從他們。這就是關係語言。</p>
-    <p>恐懼說，保護自己。控制住。為每一種可能發生的災難做好準備。恐懼說，如果你不令人印象深刻，你就會被遺忘。</p>
-    <p>恐懼說，如果你在這裡失敗，它就會定義你。</p>
-    <p>你可以以與神要求你建立的關係類似的方式與恐懼建立關係。你聆聽一切聲音，除了上帝。我們冥想焦慮。我們思考最壞的情況。我們思考人們的想法。我們沉思我們所害怕的未來。我們把恐懼含在嘴裡。我們談論它。我們重複一遍。我們排練一下。我們讓它塑造我們的想像。</p>
-    <p>神告訴約書亞，不要讓這成為統治你的聲音。</p>
-    <p>讓神的話常在你口中。日夜冥想它。</p>
-    <p>這就是為什麼這麼重要。您無法為每種情況做好準備。老實說，你會遇到你無法處理的情況。</p>
-    <p>約書亞要帶領人民進入應許之地，他們將面臨人類策略不夠的情況。他們將站在一條被洪水淹沒的河流前。他們將繞著一座堅固的城市前進。他們將在自己的陣營中面對罪惡。他們會受到周圍國家的試探。他們會有這樣的時刻，可見的情況說明了一件事，而神的應許卻說明了另一件事。</p>
-    <p>如果他們沒有受到神的話語的塑造，恐懼就會為他們解釋一切。</p>
-    <p>我們也是如此。</p>
-    <p>你的生活正在被某些東西詮釋。</p>
-    <p>當你的計劃改變時，有些東西會告訴你這意味著什麼。</p>
-    <p>當有人批評你時，有些事情會告訴你這代表什麼。</p>
-    <p>當資金緊張時，有些東西會告訴你這意味著什麼。</p>
-    <p>當你的家人感到失望時，有些事情會告訴你這意味著什麼。</p>
-    <p>當你孤單、拖延、被忽視、疲憊或不確定時，某些東西會向你傳道。</p>
-    <p>問題不在於你是否受到門徒訓練。問題是什麼在訓練你。</p>
-    <p>上帝呼召約書亞遵守祂的話語，因為勇氣不只是情感能量。勇氣是真實的服從。</p>
-    <p>請小心按照所有說明進行操作。</p>
-    <p>上帝呼召約書亞擁有的勇氣並不是，我感到勇敢，所以我會做任何看起來大膽的事。符合聖經的勇氣與人格力量不同。有些人天生膽大，卻依然不聽話。有些人安靜、戰栗，但又勇敢，因為他們在付出代價時服從上帝。</p>
-    <p>這不會讓服從變得容易。有時，服從會讓付出代價。但這會使服從成為可能，因為當神的話語變得比對人的恐懼更有權威時，勇氣就會增長。</p>
-    <p>我們看到的第三件事是勇氣是屬於別人的。</p>
-    <p>神對約書亞說話之後，約書亞對軍官說話，然後他對流便支派、迦得支派和瑪拿西半支派說話。這些部落已經在約旦河東岸擁有了自己的遺產。從某種意義上說，他們已經佔據了自己的位置。但約書亞說，你的妻子、眷屬和牲畜可以留在這裡，而你最好的士兵則在你兄弟前面過去幫助他們，直到耶和華使他們得安息，就像他給你帶來的安息一樣。</p>
-    <p>這很重要。</p>
-    <p>約書亞記第一章中的勇氣並不是個人英雄主義。這是盟約的忠誠。是那些蒙憐憫的人幫助他們的弟兄姊妹進入神所應許的。</p>
-    <p>這對我們來說意味著我們中的一些人正處於一個更穩定的季節。我們中的一些人生活在一個更安定的地方。我們中的一些人以我們周圍其他人尚未經歷過的方式獲得了幫助、穩定、治癒、門徒訓練或精神安息。約書亞記第一章說，不要把安息轉向內心。不要拿著你的禮物安定下來，而忘記了仍在渡過的兄弟姊妹。</p>
-    <p>堅強勇敢的生活不是孤立的生活。生命在說，神對我一直是信實的，所以我可以走向別人，而不是保護自己的舒適。</p>
-    <p>說我們今天比起初更有罪是不公平的。但罪在每一代人中都找到了表現自己的方式，而且越來越反常和破壞性。</p>
-    <p>在這一代中，罪的破壞性影響之一就是讓我們相信，我們獨自生活會更好。你不需要任何人。你一個人就很好。</p>
-    <p>我們內心深處知道這不是真的。但因為我們不聽神的話，我們與神沒有關係，我們一直默想恐懼，我們現在過著最孤立的生活，很多人甚至害怕與他人交往。</p>
-    <p>讓我提醒您，我們的未來是共同的。社區。如果你最終進入天堂，你將不會過著完全屬於自己的私人生活。您將置身於您所經歷過的最親密的社區。</p>
-    <p>這就是應許之地的美。人們將彼此生活在社區中。實踐上帝賜給他們的所有彼此命令。</p>
-    <p>這就是你如何獲得神為我們預備的安息。與他和他的孩子的關係。</p>
-    <p>這就是為什麼即使是這裡最好的體驗也會讓我們心生嚮往。  這不僅僅是以色列的故事。這是我們的。</p>
-    <p>我們中的許多人對我們正在嘗試進入的其餘部分都有一些版本。</p>
-    <p>如果我能得到這份工作，那麼我就會休息。如果我能結婚，那我就休息了。如果我能走出這個賽季，那麼我就會休息。如果能得到家人的認可，我就休息了。如果我能存到足夠的積蓄，那我就休息了。如果我能變得健康、安定下來、出名、受到尊重、獲得學位、獲得簽證、得到答案、讓孩子們完成學業、讓教會穩定，那麼我就會休息。</p>
-    <p>其中一些是良好的願望。土地是一份很好的禮物。我們不必為了說它們不是終極的而假裝好東西是壞的。</p>
-    <p>但聖經不斷告訴我們，好的恩賜不能做只有神才能做的事。</p>
-    <p>這些事情都無法拯救你。它們是救恩的禮物。救世主的禮物。</p>
-    <p>讓我告訴你約書亞的希伯來名字，Yehoshua，意思是耶和華拯救。這個名字在英文中與耶穌同名。這並不意味著約書亞就是耶穌。這意味著約書亞是一個路標。</p>
-    <p>耶和華拯救。</p>
-    <p>約書亞是被任命的領袖，帶領上帝的子民進入應許之地。但整本聖經都教導我們尋找更偉大的約書亞，渴望真正的應許之地，來到神的面前。</p>
-    <p>只有一個人能做到這一點。他的名字是耶穌。更偉大的約書亞。</p>
-    <p>約書亞聽見了，我會和你在一起。耶穌是與我們同在的神。</p>
-    <p>約書亞帶領百姓渡過約旦河進入那地。耶穌進入死亡和審判，然後從另一邊出來，好讓祂的子民進入生命。</p>
-    <p>耶穌服從了我們不服從的地方。耶穌相信以色列人的抱怨。耶穌走進了我們無法贏的戰鬥。耶穌面對我們的罪應得的審判。耶穌被隔絕在城外，不是因為他缺乏勇氣，而是因為他的勇氣就是愛。</p>
-    <p>當祂從死裡復活時，祂不僅僅激勵我們更加努力。他把自己給了我們。</p>
-    <p>這意味著基督徒的勇氣是屬於已經走在我們前面的那一位。生活中你面前還有黑暗的地方。耶穌已經進入最黑暗的黑暗並凱旋而歸。你感到被評斷和譴責。耶穌接受了你應得的審判，並全額支付了刑罰。你渴望真正令人滿意的休息。耶穌已經為你預備了一個讓你最終滿意的地方。</p>
-    <p>主說，要默想我的話。讓我的承諾在你嘴裡。讓我的真實存在於你的想像中。讓我對聖約的忠誠對你來說比午夜時令人信服的焦慮更加堅定。</p>
-    <p>這並不是號召你成為一個讀聖經的機器，這樣上帝就會以成功來獎賞你。這是一個邀請，讓你活在上帝的聲音之下，上帝已經在基督裡委身於你。</p>
-    <p>對我們中的一些人來說，這段經文是在邀請我們停止試圖征服安息的道路。</p>
-    <p>你可能不認為你的生活是征服，但我們中的許多人都試圖透過成就來贏得休息。</p>
-    <p>如果我能掌握這個項目，那就休息吧。</p>
-    <p>如果我能克服這個弱點，那就休息吧。</p>
-    <p>如果我能管理人們的意見，那就休息吧。</p>
-    <p>或其他什麼。但總會有另一場戰鬥。</p>
-    <p>所以，如果你今晚在這裡並且你不是基督徒，這就是邀請。不是先成為一個更強的人。不把自己收拾得夠乾淨才能過河。不是為了證明你對上帝有足夠的勇氣。</p>
-    <p>邀請是來到耶穌面前，更偉大的約書亞，他先於罪人進入死亡，並在復活的生命中出來。他不會為你提供自我完善計劃。祂親自向你提供。饒恕。與神和好。比環境更深的休息。</p>
-    <p>如果你是基督徒，那麼邀請函也同樣是必要的。</p>
-    <p>來到耶穌面前。不，我可以做到這一點。不，我已經控制住了。不，我是那種能應付的人。</p>
-    <p>但是，基督已經做到了這一點。基督已經控制了這一切。基督已走在我前面。基督永遠不會離開我。</p>
-  </div>
+    <div class="listening-aid">
+      <div class="big-idea">
+        <div class="big-idea-label">重點</div>
+        <div class="big-idea-text">神的審判是真實的，但祂的憐憫歡迎一切投靠祂的外人。</div>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">經文</div>
+        <div class="scripture-ref">約書亞記 2 章</div>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">講道流程</div>
+
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">1</span> 信心從喇合聽見並轉換陣營開始</div>
+  <ul><li>喇合聽見耶和華所做的事，就不再把耶利哥當成她的安全感。</li><li>信心不是漂亮的宗教履歷，而是認真看待真神，並且投靠祂。</li></ul>
 </div>
 
-<!-- ID -->
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">2</span> 因為審判是真實的，所以憐憫才顯得寶貴</div>
+  <ul><li>耶利哥正處在審判之下，所以避難不是可有可無，而是迫切需要。</li><li>喇合證明神的憐憫不是偏袒自己人；外人也能被接納。</li></ul>
+</div>
+
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">3</span> 朱紅線是在城牆倒下之前先相信的應許</div>
+  <ul><li>喇合在還看不見結果之前，就先掛上得救的記號。</li><li>信心是在看見證據之前，先把自己綁在神拯救的話語上。</li></ul>
+</div>
+
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">4</span> 耶穌把外人帶回家</div>
+  <ul><li>耶穌成為被定罪的外人，好叫外人能進入神的家。</li><li>恩典不只是放過有羞恥的人，更給他們新的名字與新的未來。</li></ul>
+</div>
+
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">關鍵詞</div>
+        <ul class="keyword-list"><li><strong>外人:</strong> 被羞恥、距離感或不屬於標記的人。</li><li><strong>投靠:</strong> 躲在神的應許之下，而不是躲進虛假的安全感。</li><li><strong>審判:</strong> 神對邪惡聖潔的反對；若沒有審判，憐憫就失去重量。</li><li><strong>歸向:</strong> 喇合的信心讓她從耶利哥王那邊轉向以色列的神。</li><li><strong>朱紅線:</strong> 與拯救應許連在一起的可見記號。</li><li><strong>家:</strong> 恩典不只饒恕，還把人帶進神的家。</li></ul>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">錨點句</div>
+        <ul class="anchor-list"><li>信心就是認真到願意投靠神。</li><li>問題不在血統，問題在你投靠誰。</li><li>恩典不是神說『沒關係』，而是神開了一條避難的路。</li><li>耶穌成了外人，好叫外人能回家。</li></ul>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">聆聽提示</div>
+        <ul class="cue-list"><li>留意喇合的信心是怎樣從『聽見』開始的。</li><li>注意講道如何把耶利哥的恐懼和喇合的相信放在一起。</li><li>聽出『體面』與『投靠』之間的差別。</li><li>留意喇合的家如何成為審判中的避難所。</li></ul>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">應用聚焦</div>
+        <ul class="apply-list"><li>如果你因自己的故事感到不配，就空手來到基督面前。</li><li>如果你是基督徒，問問自己：恩典有沒有讓你更歡迎外人？</li><li>指出本週有哪一件事需要你的信心真正轉換陣營。</li><li>把線掛在窗上：在還看不見結果前，先順服神的應許。</li></ul>
+      </div>
+    </div>
+  </div>
+
 <div id="content-id" class="lang-content">
-  <div class="manuscript">
-    <div class="manuscript-kicker">Yosua 1</div>
-    <div class="manuscript-spacer"></div>
-    <p>Yosua memulai dengan Israel berkumpul di pinggir negeri.</p>
-    <p>Mereka berdiri di perbatasan janji. Di belakang mereka ada Mesir, perbudakan, Laut Merah, manna di padang gurun, tahun-tahun kuburan di padang gurun, dan seluruh generasi yang tidak masuk karena ketidakpercayaan. Di depan mereka adalah tanah yang dijanjikan Tuhan kepada Abraham, Ishak, dan Yakub. Tapi itu tidak kosong.</p>
-    <p>Ada kota-kota. Ada raja. Ada tentara. Ada tembok. Dan mungkin saat ini, yang terpenting, di awal buku, ada kesedihan.</p>
-    <p>Musa sudah mati.</p>
-    <p>Setelah kematian Musa, hamba TUHAN, TUHAN berbicara kepada Yosua bin Nun, pembantu Musa.</p>
-    <p>Musa sudah mati.</p>
-    <p>Musa bukanlah sosok kecil dalam kehidupan Israel. Musa adalah tongkat yang digunakan Tuhan untuk memukul Firaun dan membebaskan orang Ibrani. Orang-orang menyaksikan mukjizat terbesar dalam sejarah yang dilakukan melalui tangan Musa. Musalah yang mengulurkan tongkatnya dan membelah laut. Musalah yang menerima hukum itu. Musalah yang bertemu dengan Tuhan di gunung. Musalah yang menjadi perantara ketika Israel berdosa.</p>
-    <p>Dan sekarang Musa sudah mati, padang gurun sudah di belakang mereka, tanah sudah di depan mereka, dan Yosua telah dipilih untuk memimpin bangsa itu ke tanah yang telah dijanjikan Tuhan kepada mereka.</p>
-    <p>Di situlah firman Tuhan, jadilah kuat dan berani.</p>
-    <p>Ini adalah salah satu ungkapan Alkitab yang sudah cukup familiar sehingga kita tidak lagi merasa betapa anehnya hal itu. Kami menaruhnya di poster. Kami menaruhnya di mug. Kami menaruhnya di kartu kelulusan. Kami menggunakannya sebagai cara untuk mengatakan, berusaha keras, berani, percaya pada diri sendiri, lakukan sesuatu.</p>
-    <p>Namun bukan itu yang dilakukan Yosua 1.</p>
-    <p>Tuhan tidak datang kepada Yosua dan berkata, Yosua, kamu mempunyai segalanya di dalam dirimu. Tuhan tidak berkata, Yosua, kamu akhirnya siap karena kamu secara alami berani.</p>
-    <p>Keberanian dalam Yosua 1 bukanlah keyakinan dalam Yosua. Itu adalah keyakinan akan kehadiran dan janji Tuhan.</p>
-    <p>Mari kita membaca bacaan untuk hari ini. Ini adalah Yosua 1:1-9.</p>
-    <div class="scripture-block">1 Setelah hamba TUHAN Musa meninggal, TUHAN berfirman kepada Yosua anak Nun, pembantu Musa: 2 &quot;Musa, hamba-Ku sudah mati. Sekarang engkau dan seluruh bangsa bersiap-siap untuk menyeberangi Sungai Yordan menuju tanah yang akan Kuberikan kepada orang Israel.</div>
-    <div class="scripture-block">3 Aku telah memberikan kepadamu setiap tempat yang dipijak oleh telapak kakimu, seperti yang telah Aku janjikan kepada Musa. 4 Wilayahmu terbentang dari padang gurun dan Libanon sampai ke sungai besar, Sungai Efrat, seluruh tanah orang Het, dan sebelah barat sampai ke Laut Tengah. 5Tidak ada seorang pun yang dapat melawan kamu selama kamu masih hidup. Aku akan bersamamu, sama seperti aku bersama Musa. Aku tidak akan meninggalkanmu atau menelantarkanmu.</div>
-    <div class="scripture-block">6 &quot;Jadilah kuat dan berani, karena kamu akan membagikan tanah yang Aku bersumpah kepada nenek moyang mereka untuk diberikan kepada mereka sebagai warisan. 7 Yang terpenting, kuatkan dan beranilah untuk menaati dengan cermat seluruh perintah yang diperintahkan kepadamu, hamba-Ku Musa. Jangan menyimpang darinya ke kanan atau ke kiri, agar kamu sukses kemanapun kamu pergi.</div>
-    <div class="scripture-block">8 Buku petunjuk ini tidak boleh keluar dari mulutmu; engkau harus merenungkannya siang dan malam agar engkau dapat mengamati dengan cermat semua yang tertulis di dalamnya. Karena dengan demikian kamu akan makmur dan berhasil dalam apa pun yang kamu lakukan. 9 Bukankah aku sudah memerintahkanmu: jadilah kuat dan berani? Jangan takut atau putus asa, karena Tuhan, Allahmu, menyertai kamu kemanapun kamu pergi.”</div>
-    <p>Pesan Yosua sungguh sederhana namun begitu mendalam. Tuhan bersamamu.</p>
-    <p>Yosua adalah buku tentang janji, tanah, penghakiman, belas kasihan. Ini tentang kemenangan, kegagalan, warisan, perjanjian, dan penyembahan.</p>
-    <p>Namun jika kita membacanya hanya sebagai sebuah buku tentang bagaimana menjadi berani dan mengambil wilayah, kita akan kehilangan Injil.</p>
-    <p>Yosua bukan hanya tentang orang-orang pemberani yang melakukan hal-hal besar bagi Tuhan.</p>
-    <p>Yosua bercerita tentang Tuhan yang setia yang melakukan hal-hal besar bagi umat-Nya yang tidak dapat mereka lakukan sendiri.</p>
-    <p>Hal pertama yang kita lihat adalah keberanian dimulai ketika kepercayaan diri berakhir.</p>
-    <p>Tuhan berkata kepada Yosua, Musa, hambaku, sudah mati. Sekarang kamu dan seluruh bangsa ini bersiap-siap untuk menyeberangi Sungai Yordan menuju tanah yang akan Kuberikan kepada bangsa Israel.</p>
-    <p>Itu adalah kalimat yang berat. Musa sudah mati. Sekarang pergilah.</p>
-    <p>Tuhan tidak menganggap kerugiannya kecil. Dia tidak mengatakan, jangan berpikir tentang Musa. Dia tidak mengatakan, cepatlah selesaikan masalah ini. Dia menyebutkan kematiannya. Musa, hambaku, sudah mati.</p>
-    <p>Namun Tuhan juga tidak mengizinkan Yosua menjadikan kematian Musa sebagai akhir dari janji Tuhan.</p>
-    <p>Musa sudah mati, tapi saya masih hidup dan kita belum selesai. Pekerjaan Musa sudah selesai, tetapi pekerjaanku belum. Musa tidak bisa pergi bersamamu, tapi aku bisa dan aku akan melakukannya.</p>
-    <p>Itulah landasan keberanian Yosua. Bukan berarti Yosua adalah Musa 2.0. Bukan berarti Yosua mempunyai kepribadian yang sama, karunia yang sama, sejarah yang sama, otoritas yang sama. Landasannya adalah Tuhan yang bersama Musa akan menyertai Yosua.</p>
-    <p>Sebagaimana aku bersama Musa, demikian pula aku akan bersamamu. Aku tidak akan meninggalkanmu atau menelantarkanmu.</p>
-    <p>Ada janji yang membuat keberanian menjadi mungkin.</p>
-    <p>Salah satu ketakutan terbesar yang saya dan Crista hadapi selama bertahun-tahun adalah kekhawatiran tentang panggilan telepon bahwa anak-anak kami terluka atau terluka atau sesuatu yang lebih buruk. Banyak dari Anda yang pernah mengalami hal serupa karena terpisah dari keluarga atau teman.</p>
-    <p>Kami mendapat telepon itu suatu malam. Ashlyn mengalami kecelakaan mobil. Kami berada 7.000 mil dan setidaknya 24 jam lagi untuk bisa sampai di sana. Tapi Anda tahu siapa yang ada di sana bahkan sebelum kita mengetahuinya. Dia - Sebenarnya, Dia tidak meninggalkan atau menelantarkan kami atau putri kami.</p>
-    <p>Di seberang jalan dari bangkai kapal ada sekelompok petugas pemadam kebakaran yang sedang mengisi truk mereka dengan bensin - dan dalam beberapa detik mereka sudah berada di sana untuk merawatnya.</p>
-    <p>Keberanian yang alkitabiah bukanlah tidak adanya rasa takut. Hal ini tidak berarti bahwa tidak ada hal yang menakutkan di dunia ini.</p>
-    <p>Keberanian yang alkitabiah adalah ketika kepercayaan Anda pada hadirat Tuhan menjadi lebih nyata dibandingkan hal-hal yang membuat Anda takut.</p>
-    <p>Mungkin itulah satu hal yang perlu Anda dengar hari ini.</p>
-    <p>Tuhan bersamamu.</p>
-    <p>Sebab jika satu-satunya kenyamanan yang kamu punya hanyalah kekuatan atau kemampuanmu sendiri, pada akhirnya kamu akan bertemu dengan sesuatu yang lebih kuat dari dirimu.</p>
-    <p>Dan beberapa dari Anda sudah memilikinya.</p>
-    <p>Tuhan memberi Yosua dan kita sesuatu yang lebih baik.</p>
-    <p>aku akan bersamamu.</p>
-    <p>Itulah perbedaan antara percaya diri dan iman.</p>
-    <p>Kepercayaan diri mengatakan, saya bisa mengatasi ini karena saya mempunyai apa yang diperlukan.</p>
-    <p>Iman berkata, aku mempunyai orang yang mampu menghadapi apa pun yang menghadangku. Itu bukanlah hal yang sama.</p>
-    <p>Rasa percaya diri harus tetap menjaga image bahwa dirinya kuat. Iman bisa mengakui kelemahan karena landasannya bukanlah diri sendiri. Kepercayaan diri terancam oleh kegagalan. Iman bisa bertobat dan bangkit kembali karena Tuhan masih setia. Kepercayaan diri harus mengendalikan hasil. Iman dapat mengambil langkah patuh berikutnya tanpa melihat keseluruhan jalannya.</p>
-    <p>aku akan bersamamu. Aku tidak akan meninggalkanmu. Aku tidak akan meninggalkanmu.</p>
-    <p>Hal kedua yang kita lihat adalah keberanian tunduk pada firman Tuhan ketika rasa takut ingin dikendalikan.</p>
-    <p>Setelah Tuhan menjanjikan kehadirannya, Dia menyuruh Yosua untuk berhati-hati dalam melakukan semua instruksi yang diperintahkan Musa kepadanya. Jangan berpaling darinya ke kanan atau ke kiri. Buku instruksi ini tidak boleh keluar dari mulut Anda. Renungkanlah siang dan malam, agar kamu dapat mengamati dengan cermat segala sesuatu yang tertulis di dalamnya.</p>
-    <p>Sekali lagi, hal ini dapat disalahpahami.</p>
-    <p>Beberapa orang membaca ini dan mendengar formula sukses. Bacalah Alkitab dengan cukup, patuhi dengan cermat, dan hidup Anda akan berjalan sesuai keinginan Anda. Anda akan mempunyai karir, pernikahan, anak-anak, pelayanan, kesehatan, masa depan. Jika Anda hanya menaati aturan, Anda bisa mewujudkan janji itu.</p>
-    <p>Namun Yosua tidak diberikan teknik untuk mengendalikan Tuhan. Ini adalah sebuah hubungan. Mendengarkan seseorang, memikirkannya, menaatinya. Itu adalah bahasa relasional.</p>
-    <p>Ketakutan berkata, lindungi dirimu sendiri. Mengontrol. Bersiaplah untuk setiap kemungkinan bencana. Ketakutan mengatakan, jika Anda tidak mengesankan, Anda akan dilupakan.</p>
-    <p>Ketakutan mengatakan, jika Anda gagal di sini, itu akan menentukan Anda.</p>
-    <p>Anda dapat menjalin hubungan dengan rasa takut dengan cara yang mirip dengan hubungan yang Tuhan minta untuk Anda miliki. Anda mendengarkan setiap suara kecuali Tuhan. Kami bermeditasi tentang kecemasan. Kami merenungkan skenario terburuk. Kami merenungkan apa yang mungkin dipikirkan orang. Kita merenungkan masa depan yang kita takuti. Kami memasukkan rasa takut ke dalam mulut kami. Kami membicarakannya. Kami mengulanginya. Kami melatihnya. Kita membiarkannya membentuk imajinasi kita.</p>
-    <p>Tuhan berkata kepada Yosua, jangan biarkan hal itu menjadi suara yang mengaturmu.</p>
-    <p>Biarkan firman Tuhan ada di mulut Anda. Renungkanlah hal itu siang dan malam.</p>
-    <p>Inilah mengapa hal ini sangat penting. Anda tidak dapat mempersiapkan diri untuk setiap situasi. Dan sejujurnya, Anda akan menghadapi situasi yang tidak mampu Anda tangani.</p>
-    <p>Orang-orang yang akan dipimpin Yosua menuju tanah perjanjian akan menghadapi situasi di mana strategi manusia saja tidak cukup. Mereka akan berdiri di depan sungai yang banjir. Mereka akan berbaris mengelilingi kota berbenteng. Mereka akan menghadapi dosa di dalam kamp mereka sendiri. Mereka akan tergoda oleh negara-negara di sekitar mereka. Mereka akan mengalami saat-saat ketika situasi yang terlihat mengatakan satu hal dan janji Tuhan mengatakan hal lain.</p>
-    <p>Jika mereka tidak dibentuk oleh firman Tuhan, rasa takut akan menafsirkan segalanya bagi mereka.</p>
-    <p>Hal yang sama juga berlaku bagi kita.</p>
-    <p>Hidup Anda sedang ditafsirkan oleh sesuatu.</p>
-    <p>Ketika rencana Anda berubah, ada sesuatu yang memberi tahu Anda apa maksudnya.</p>
-    <p>Saat seseorang mengkritik Anda, ada sesuatu yang memberi tahu Anda apa maksudnya.</p>
-    <p>Ketika uang terasa terbatas, ada sesuatu yang memberi tahu Anda apa artinya itu.</p>
-    <p>Saat keluarga Anda kecewa, ada sesuatu yang memberi tahu Anda apa maksudnya.</p>
-    <p>Ketika Anda kesepian, tertunda, diabaikan, kelelahan, atau tidak yakin, ada sesuatu yang memberitakan kepada Anda.</p>
-    <p>Pertanyaannya bukanlah apakah Anda sedang dimuridkan. Pertanyaannya adalah apa yang memuridkan Anda.</p>
-    <p>Tuhan memanggil Yosua untuk diperintah oleh perkataannya karena keberanian bukan sekedar energi emosional. Keberanian adalah ketaatan yang berbentuk kebenaran.</p>
-    <p>Berhati-hatilah untuk melakukan sesuai dengan semua instruksi.</p>
-    <p>Keberanian yang Tuhan panggil untuk dimiliki oleh Yosua bukanlah, saya merasa berani, jadi saya akan melakukan apa pun yang tampak berani. Keberanian alkitabiah tidak sama dengan kekuatan kepribadian. Beberapa orang secara alami berani dan masih tidak patuh. Ada orang yang pendiam dan gemetar namun tetap berani karena mereka menaati Tuhan meskipun mereka harus menanggung akibatnya.</p>
-    <p>Hal itu tidak akan membuat ketaatan menjadi mudah. Terkadang hal ini membuat kepatuhan menjadi mahal. Namun hal ini akan membuat ketaatan menjadi mungkin, karena keberanian tumbuh ketika firman Tuhan menjadi lebih berotoritas dibandingkan rasa takut terhadap manusia.</p>
-    <p>Hal ketiga yang kita lihat adalah keberanian itu untuk orang lain.</p>
-    <p>Setelah Tuhan berbicara kepada Yosua, Yosua berbicara kepada para perwira, dan kemudian dia berbicara kepada suku Ruben, Gad, dan setengah suku Manasye. Suku-suku itu sudah mempunyai tanah pusaka di sebelah timur sungai Yordan. Di satu sisi, mereka sudah mendapatkan tempatnya. Namun Yosua berkata, istri-istrimu, tanggunganmu, dan ternakmu boleh tetap tinggal di sini, sementara prajurit terbaikmu menyeberang mendahului saudara-saudaramu dan bantulah mereka sampai TUHAN memberi mereka istirahat seperti yang telah Dia berikan kepadamu.</p>
-    <p>Itu penting.</p>
-    <p>Keberanian dalam Yosua 1 bukanlah kepahlawanan pribadi. Itu adalah kesetiaan perjanjian. Adalah orang-orang yang telah menerima belas kasihan, membantu saudara-saudari mereka memasuki apa yang telah dijanjikan Tuhan.</p>
-    <p>Artinya bagi kami adalah bahwa sebagian dari kami berada dalam musim yang lebih stabil. Beberapa dari kita berada di tempat yang lebih menetap. Beberapa dari kita telah menerima bantuan, stabilitas, penyembuhan, pemuridan, atau ketenangan rohani yang belum dialami oleh orang lain di sekitar kita. Yosua 1 mengatakan jangan menaruh peristirahatan itu ke dalam hati. Jangan berpuas diri dengan pemberianmu dan melupakan saudara-saudari yang masih menyeberang.</p>
-    <p>Kehidupan yang kuat dan berani bukanlah kehidupan yang terisolasi. Hiduplah yang mengatakan, Tuhan telah setia padaku, sehingga aku bisa bergerak ke arah orang lain alih-alih menjaga kenyamananku.</p>
-    <p>Tidaklah adil untuk mengatakan bahwa kita saat ini lebih berdosa dibandingkan pada awalnya. Namun dosa telah menemukan cara untuk mengekspresikan dirinya di setiap generasi yang semakin jahat dan merusak.</p>
-    <p>Pada generasi ini, salah satu pengaruh dosa yang merusak adalah meyakinkan kita bahwa kita lebih baik hidup sendirian. Anda tidak membutuhkan siapa pun. Kamu baik-baik saja sendirian.</p>
-    <p>Kami tahu jauh di lubuk hati bahwa hal itu tidak benar. Namun karena kita tidak mendengarkan firman Tuhan, kita tidak memiliki hubungan dengan-Nya dan kita terus-menerus merenungkan rasa takut - kita sekarang menjalani kehidupan yang paling terisolasi dan banyak orang bahkan takut berada dalam komunitas dengan orang lain.</p>
-    <p>Izinkan saya mengingatkan Anda bahwa masa depan kita bersifat komunal. Masyarakat. Jika Anda berakhir di surga, Anda tidak akan menjalani kehidupan pribadi sendirian. Anda akan berada di komunitas terdekat yang pernah Anda alami.</p>
-    <p>Itulah indahnya tanah perjanjian. Orang-orang akan hidup dalam komunitas satu sama lain. Menghidupi semua perintah yang diberikan Tuhan kepada mereka.</p>
-    <p>Begitulah cara Anda menerima istirahat yang Tuhan sediakan untuk kita. Dalam hubungannya dengan dia dan dengan anak-anaknya.</p>
-    <p>Itu sebabnya bahkan pengalaman terbaik dari hal-hal ini di sini membuat kita rindu.  Itu bukan hanya kisah Israel. Ini milik kita.</p>
-    <p>Banyak dari kita memiliki beberapa versi yang ingin kita bahas.</p>
-    <p>Jika saya bisa mendapatkan pekerjaan itu, maka saya akan beristirahat. Jika saya bisa menikah saja, maka saya akan istirahat. Jika saya bisa keluar dari musim ini, maka saya akan beristirahat. Jika aku bisa mendapatkan persetujuan keluargaku, maka aku akan beristirahat. Jika saya bisa mendapatkan cukup tabungan, maka saya akan beristirahat. Jika saya bisa menjadi sehat, menetap, dikenal, dihormati, mendapatkan gelar, mendapatkan visa, mendapatkan jawaban, menyekolahkan anak-anak, mendapatkan kandang gereja, maka saya akan beristirahat.</p>
-    <p>Beberapa di antaranya adalah keinginan baik. Tanah itu adalah hadiah yang bagus. Kita tidak perlu berpura-pura bahwa hal-hal baik itu buruk untuk mengatakan bahwa hal-hal tersebut bukanlah hal yang utama.</p>
-    <p>Namun Alkitab terus mengatakan kepada kita bahwa pemberian yang baik tidak dapat melakukan apa yang hanya dapat dilakukan oleh Allah.</p>
-    <p>Tak satu pun dari hal-hal ini yang dapat menyelamatkan Anda. Itu adalah anugerah keselamatan. Karunia penyelamat.</p>
-    <p>Izinkan saya memberi tahu Anda tentang nama Ibrani Yosua, Yehoshua, yang artinya TUHAN yang menyelamatkan. Itu adalah nama yang sama yang masuk ke dalam bahasa Inggris seperti Yesus. Itu tidak berarti Yosua adalah Yesus. Artinya Yosua adalah penunjuk arah.</p>
-    <p>TUHAN menyelamatkan.</p>
-    <p>Yosua adalah pemimpin yang ditunjuk yang membawa umat Tuhan ke tanah perjanjian. Namun seluruh Alkitab mengajarkan kita untuk mencari Yosua yang lebih hebat dan merindukan tanah perjanjian yang sebenarnya, untuk berada di hadirat Tuhan.</p>
-    <p>Hanya ada satu yang bisa melakukan itu. Namanya adalah Yesus. Yosua yang lebih hebat.</p>
-    <p>Yosua mendengar, Aku akan menyertaimu. Yesus adalah Allah yang menyertai kita.</p>
-    <p>Yosua memimpin bangsa itu melalui sungai Yordan menuju ke negeri itu. Yesus turun ke dalam kematian dan penghakiman dan keluar dari sisi lain, sehingga umat-Nya dapat melewati kehidupan.</p>
-    <p>Yesus taat ketika kita tidak taat. Yesus percaya pada saat Israel bersungut-sungut. Yesus memasuki peperangan yang tidak dapat kita menangkan. Yesus menghadapi penghakiman yang pantas diterima karena dosa kita. Yesus diasingkan di luar kota, bukan karena Ia kurang berani, namun karena keberanian-Nya adalah kasih.</p>
-    <p>Dan ketika Dia bangkit dari kematian, Dia tidak sekadar memberi kita inspirasi untuk berusaha lebih keras. Dia memberi kita dirinya sendiri.</p>
-    <p>Artinya keberanian Kristiani adalah milik Dia yang telah mendahului kita. Anda memiliki tempat-tempat gelap di depan Anda dalam hidup. Yesus telah masuk ke dalam kegelapan yang paling gelap dan kembali dengan kemenangan. Anda merasa dihakimi dan dikutuk. Yesus menerima penghakiman yang pantas Anda terima dan membayar hukumannya secara penuh. Anda mendambakan istirahat yang benar-benar memuaskan. Yesus telah mempersiapkan tempat di mana Anda pada akhirnya akan merasa puas.</p>
-    <p>Tuhan berkata, renungkanlah kata-kataku. Biarkan janji-janjiku ada di mulutmu. Biarkan kebenaran saya ada dalam imajinasi Anda. Biarlah kesetiaan perjanjianKu menjadi lebih kokoh bagimu daripada kegelisahan yang terasa begitu meyakinkan di tengah malam.</p>
-    <p>Ini bukanlah panggilan untuk menjadi mesin pembaca Alkitab agar Tuhan membalas Anda dengan kesuksesan. Ini adalah sebuah undangan untuk hidup di bawah suara Allah yang sudah berkomitmen kepada Anda di dalam Kristus.</p>
-    <p>Dan bagi sebagian dari kita, bagian ini adalah sebuah ajakan untuk berhenti mencoba menaklukkan jalan kita menuju perhentian.</p>
-    <p>Anda mungkin tidak menganggap hidup Anda sebagai sebuah penaklukan, namun banyak di antara kita yang berusaha mendapatkan istirahat dengan meraih prestasi.</p>
-    <p>Jika saya bisa menguasai proyek ini, istirahatlah.</p>
-    <p>Jika saya bisa mengatasi kelemahan ini, maka istirahatlah.</p>
-    <p>Jika saya bisa mengatur pendapat orang, maka istirahatlah.</p>
-    <p>Atau sesuatu yang lain. Namun akan selalu ada pertempuran lain.</p>
-    <p>Jadi jika Anda berada di sini malam ini dan Anda bukan seorang Kristen, itulah undangannya. Bukan untuk menjadi orang yang lebih kuat dulu. Tidak cukup membersihkan diri untuk menyeberangi sungai. Bukan untuk membuktikan bahwa kamu cukup berani dihadapan Tuhan.</p>
-    <p>Undangannya adalah untuk datang kepada Yesus, Yosua yang lebih agung, yang mendahului orang-orang berdosa menuju kematian dan keluar dalam hidup kebangkitan. Dia tidak menawarkan Anda rencana pengembangan diri. Dia menawarkanmu dirinya sendiri. Pengampunan. Rekonsiliasi dengan Tuhan. Istirahat lebih dalam dari keadaan.</p>
-    <p>Dan jika Anda seorang Kristen, undangan tersebut juga diperlukan.</p>
-    <p>Datanglah kepada Yesus. Tidak, aku bisa melakukan ini. Tidak, saya sudah mengendalikannya. Tidak, saya tipe orang yang bisa mengatasinya.</p>
-    <p>Namun, Kristus telah melakukan hal ini. Kristus mengendalikan hal ini. Kristus telah mendahuluiku. Kristus tidak akan pernah meninggalkanku.</p>
-  </div>
+    <div class="listening-aid">
+      <div class="big-idea">
+        <div class="big-idea-label">GAGASAN BESAR</div>
+        <div class="big-idea-text">Penghakiman Allah itu nyata, tetapi belas kasihan-Nya menyambut orang luar yang berlindung kepada-Nya.</div>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">Firman</div>
+        <div class="scripture-ref">Yosua 2</div>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">Alur Khotbah</div>
+
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">1</span> Iman dimulai ketika Rahab mendengar lalu berpindah pihak</div>
+  <ul><li>Rahab mendengar apa yang Tuhan sudah lakukan lalu berhenti berharap pada Yerikho.</li><li>Iman bukan riwayat rohani yang rapi; iman adalah berlindung pada Allah yang benar.</li></ul>
 </div>
 
-<!-- KO -->
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">2</span> Belas kasihan hanya terasa penting kalau penghakiman itu nyata</div>
+  <ul><li>Yerikho sedang menuju penghakiman, jadi perlindungan itu mendesak, bukan tambahan.</li><li>Rahab membuktikan bahwa belas kasihan Allah bukan pilih kasih suku; orang luar pun bisa diterima.</li></ul>
+</div>
+
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">3</span> Tali kirmizi adalah janji yang dipercaya sebelum tembok runtuh</div>
+  <ul><li>Rahab menggantung tanda keselamatan sebelum ia melihat hasilnya.</li><li>Iman mengikat dirinya pada janji Allah lebih dulu, sebelum bukti kelihatan.</li></ul>
+</div>
+
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">4</span> Yesus membawa orang luar pulang</div>
+  <ul><li>Yesus menjadi orang luar yang dihukum supaya orang luar bisa masuk keluarga Allah.</li><li>Anugerah tidak hanya meluputkan orang yang malu; anugerah memberi nama baru dan masa depan.</li></ul>
+</div>
+
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">Kata Kunci</div>
+        <ul class="keyword-list"><li><strong>Orang luar:</strong> Orang yang ditandai rasa malu, jarak, atau tidak merasa termasuk.</li><li><strong>Berlindung:</strong> Masuk ke bawah janji Allah, bukan sembunyi di rasa aman palsu.</li><li><strong>Penghakiman:</strong> Perlawanan kudus Allah terhadap kejahatan; belas kasihan berarti karena ini nyata.</li><li><strong>Kesetiaan:</strong> Iman Rahab memindahkan loyalitasnya dari raja Yerikho kepada Allah Israel.</li><li><strong>Tali kirmizi:</strong> Tanda yang terlihat dan melekat pada janji penyelamatan.</li><li><strong>Rumah:</strong> Anugerah lebih dari sekadar meluputkan; anugerah membawa orang masuk keluarga Allah.</li></ul>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">Kalimat Pengikat</div>
+        <ul class="anchor-list"><li>Iman memandang Allah cukup serius sampai mau berlindung kepada-Nya.</li><li>Persoalannya bukan garis keturunan. Persoalannya adalah perlindungan.</li><li>Anugerah bukan Allah berkata, 'Itu tidak masalah.' Anugerah adalah Allah membuka jalan perlindungan.</li><li>Yesus menjadi orang luar supaya orang luar bisa pulang.</li></ul>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">Petunjuk Mendengar</div>
+        <ul class="cue-list"><li>Perhatikan bagaimana iman Rahab dimulai dari apa yang ia dengar.</li><li>Lihat hubungan antara ketakutan Yerikho dan iman Rahab.</li><li>Dengarkan bedanya hidup terhormat dan hidup berlindung.</li><li>Perhatikan bagaimana rumah Rahab menjadi tempat aman di tengah penghakiman.</li></ul>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">Fokus Penerapan</div>
+        <ul class="apply-list"><li>Kalau kamu merasa tidak layak karena kisah hidupmu, datanglah kepada Kristus dengan tangan kosong.</li><li>Kalau kamu orang percaya, tanyakan apakah anugerah sudah membuatmu lebih terbuka bagi orang luar.</li><li>Sebutkan satu area minggu ini di mana iman harus mengubah loyalitasmu.</li><li>Gantung tali itu di jendela: taati janji Allah sebelum hasilnya terlihat.</li></ul>
+      </div>
+    </div>
+  </div>
+
 <div id="content-ko" class="lang-content">
-  <div class="manuscript">
-    <div class="manuscript-kicker">여호수아 1</div>
-    <div class="manuscript-spacer"></div>
-    <p>여호수아는 이스라엘이 땅 가장자리에 모이는 것으로 시작합니다.</p>
-    <p>그들은 약속의 경계에 서 있습니다. 그 뒤에는 애굽, 종살이, 홍해, 광야의 만나, 사막의 무덤의 세월, 불신으로 인해 들어가지 못한 모든 세대가 있습니다. 그들 앞에는 하나님께서 아브라함과 이삭과 야곱에게 약속하신 땅이 있습니다. 그러나 그것은 비어 있지 않습니다.</p>
-    <p>도시가 있습니다. 왕이 있습니다. 군대가 있습니다. 벽이 있습니다. 그리고 아마도 이 순간, 가장 중요한 것은 책의 시작 부분에 슬픔이 있다는 것입니다.</p>
-    <p>모세는 죽었습니다.</p>
-    <p>여호와의 종 모세가 죽은 후에 여호와께서 모세의 수종자 눈의 아들 여호수아에게 말씀하시니라</p>
-    <p>모세는 죽었습니다.</p>
-    <p>모세는 이스라엘의 삶에서 작은 인물이 아니었습니다. 모세는 하나님께서 바로를 치고 히브리인들을 해방시키기 위해 사용하신 지팡이였습니다. 사람들은 모세의 손을 통해 행해진 역사상 가장 위대한 기적을 목격했습니다. 지팡이를 뻗어 바다를 가르는 사람은 바로 모세였습니다. 율법을 받은 사람은 모세였습니다. 산에서 하나님을 만난 사람은 바로 모세였습니다. 이스라엘이 죄를 지었을 때 중재한 사람이 바로 모세였습니다.</p>
-    <p>이제 모세는 죽었고, 그들 뒤에는 광야가 있고, 그들 앞에는 땅이 있으며, 여호수아는 하나님이 그들에게 약속하신 땅으로 백성을 인도하도록 선택되었습니다.</p>
-    <p>그러기에 하나님께서는 강하고 담대하라 말씀하십니다.</p>
-    <p>이것은 우리가 그것이 얼마나 이상하다는 느낌을 멈출 수 있을 만큼 익숙해진 성경 구절 중 하나입니다. 우리는 그것을 포스터에 붙였습니다. 우리는 그것을 머그잔에 담았습니다. 우리는 그것을 졸업 카드에 넣었습니다. 우리는 이 말을 열심히 노력하고, 용기를 갖고, 자신을 믿고, 가서 일을 하라는 뜻으로 사용합니다.</p>
-    <p>그러나 여호수아 1장은 그렇게 하지 않습니다.</p>
-    <p>하나님은 여호수아에게 오셔서 여호수아야, 네 안에 모든 것이 다 들어있다고 말씀하시지 않습니다. 하나님께서는 여호수아야, 네가 타고난 용기가 있기 때문에 마침내 준비가 되었다고 말씀하지 않으신다.</p>
-    <p>여호수아 1장의 용기는 여호수아에 대한 확신이 아닙니다. 하나님의 임재와 약속에 대한 확신입니다.</p>
-    <p>오늘 본문을 읽어보겠습니다. 여호수아 1장 1-9절입니다.</p>
-    <div class="scripture-block">1 여호와의 종 모세가 죽은 후에 여호와께서 모세의 수종자 눈의 아들 여호수아에게 일러 가라사대 2 내 종 모세가 죽었으니 이제 너와 모든 백성은 요단을 건너 내가 이스라엘 자손에게 주는 땅으로 갈 준비를 하라.</div>
-    <div class="scripture-block">3 내가 모세에게 말한 대로 너희 발바닥으로 밟는 모든 곳을 너희에게 주었노라 4 너희의 영토는 광야와 레바논에서부터 큰 강 유프라테스 강과 헷 족속의 온 땅과 서쪽에서 지중해까지라. 5 당신이 살아 있는 동안 아무도 당신을 대적할 수 없을 것입니다. 내가 모세와 함께 있었던 것 같이 너와 함께 있을 것이다. 나는 당신을 떠나지 않을 것이며, 버리지 않을 것입니다.</div>
-    <div class="scripture-block">6 강하고 담대하라 내가 그들의 조상에게 맹세하여 그들에게 기업으로 주리라 한 땅을 너는 차지하리라 7 무엇보다도 강하고 담대하여 내 종 모세가 네게 명령한 모든 것을 지켜 그것을 우로나 좌로나 치우치지 말라 그리하면 어디로 가든지 형통하리라</div>
-    <div class="scripture-block">8 이 율법책을 네 입에서 떠나지 말게 하라. 너는 그것을 주야로 묵상하여 그 안에 기록된 것을 다 지켜 행하라. 그러면 네가 하는 일마다 형통하고 성공할 것이다. 9 내가 네게 명령하지 아니하였느냐 강하고 담대하라 하였느냐 두려워하지 말며 낙심하지 말라 네가 어디로 가든지 네 하나님 여호와가 너와 함께 하느니라 하시니라”</div>
-    <p>여호수아의 메시지는 정말 단순하면서도 심오합니다. 하나님은 당신과 함께 계십니다.</p>
-    <p>여호수아서는 약속, 땅, 심판, 자비에 관한 책입니다. 승리, 실패, 유업, 언약, 예배에 관한 것입니다.</p>
-    <p>그러나 우리가 어떻게 용기를 갖고 영토를 차지할 것인가에 관한 책으로만 읽는다면 우리는 복음을 놓치게 될 것입니다.</p>
-    <p>여호수아는 주로 하나님을 위해 위대한 일을 하는 용감한 사람들에 관한 것이 아닙니다.</p>
-    <p>여호수아는 자신의 백성이 스스로는 결코 할 수 없는 위대한 일을 행하시는 신실하신 하나님에 관한 책입니다.</p>
-    <p>우리가 가장 먼저 보는 것은 자신감이 끝나는 곳에서 용기가 시작된다는 것입니다.</p>
-    <p>하나님이 여호수아에게 이르시되 내 종 모세가 죽었느니라. 이제 당신과 이 모든 백성은 내가 이스라엘 자손에게 주는 땅으로 요단을 건너갈 준비를 하고 있습니다.</p>
-    <p>무거운 문장이군요. 모세는 죽었습니다. 이제 가세요.</p>
-    <p>하나님은 손실이 작은 척하지 않으십니다. 그는 모세에 대해 생각하지 말라고 말하지 않았습니다. 그는 빨리 극복하라고 말하지 않습니다. 그는 죽음의 이름을 지었습니다. 내 종 모세가 죽었느니라.</p>
-    <p>그러나 하나님께서는 또한 여호수아가 모세의 죽음을 하나님의 약속의 끝으로 만드는 것을 허락하지 않으셨습니다.</p>
-    <p>모세는 죽었으나 나는 살아 있고 아직 끝나지 않았습니다. 모세의 일은 이루어졌으나 나의 일은 끝나지 아니하였느니라. 모세는 당신과 함께 갈 수 없지만 나는 갈 수 있고 갈 것입니다.</p>
-    <p>이것이 여호수아의 용기의 기초입니다. 여호수아가 모세 2.0인 것은 아닙니다. 여호수아가 동일한 성격, 동일한 은사, 동일한 역사, 동일한 권위를 갖고 있다는 것은 아닙니다. 그 근거는 모세와 함께하신 하나님이 여호수아와 함께 하신다는 것입니다.</p>
-    <p>내가 모세와 함께 있었던 것 같이 너와 함께 있을 것이다. 나는 당신을 떠나지 않을 것이며, 버리지 않을 것입니다.</p>
-    <p>용기를 가능하게 하는 약속이 있습니다.</p>
-    <p>Crista와 내가 수년에 걸쳐 처리해 온 가장 큰 두려움 중 하나는 우리 아이들이 상처를 입었거나 다쳤거나 더 나쁜 일이 있다는 전화 통화에 대해 걱정하는 것입니다. 가족이나 친구와 헤어져 비슷한 일을 경험하신 분들이 많으실 겁니다.</p>
-    <p>어느날 밤에 우리는 그 전화를 받았습니다. Ashlyn은 자동차 사고를 당했습니다. 우리는 7,000마일 떨어져 있었고 그곳에 갈 수 있으려면 최소한 24시간이 남았습니다. 하지만 우리가 알기도 전에 거기에 누가 있었는지 당신은 알고 있습니다. 그분은 - 사실, 그분은 우리나 우리 딸을 떠나거나 버리지 않으셨습니다.</p>
-    <p>난파선의 길 건너편에는 한 무리의 소방관이 트럭에 휘발유를 채우고 있었고 몇 초도 채 지나지 않아 그들은 그녀를 돌보고 있었습니다.</p>
-    <p>성경적 용기는 두려움이 없는 것이 아닙니다. 세상에 무서운 일이 없다고 말하는 것이 아닙니다.</p>
-    <p>성경적 용기는 당신을 두렵게 하는 것보다 하나님의 임재에 대한 당신의 신뢰가 더 현실화될 때입니다.</p>
-    <p>어쩌면 오늘 당신이 들어야 할 단 하나의 말일 수도 있습니다.</p>
-    <p>하나님은 당신과 함께 계십니다.</p>
-    <p>왜냐하면 당신이 가진 유일한 위안이 당신 자신의 힘이나 능력이라면 결국 당신보다 더 강한 것을 만나게 될 것이기 때문입니다.</p>
-    <p>그리고 여러분 중 일부는 이미 가지고 있습니다.</p>
-    <p>하나님께서는 여호수아와 우리에게 더 좋은 것을 주십니다.</p>
-    <p>나는 당신과 함께 할 것입니다.</p>
-    <p>이것이 바로 자신감과 믿음의 차이입니다.</p>
-    <p>자신감은 나에게 필요한 것이 있기 때문에 이 일을 처리할 수 있다고 말합니다.</p>
-    <p>믿음은 나에게 다가오는 모든 일을 처리할 사람이 있다고 말합니다. 그것들은 같은 것이 아닙니다.</p>
-    <p>자신감은 자신이 강하다는 이미지를 계속해서 지켜야 한다. 믿음은 기초가 자기가 아니기 때문에 약함을 인정할 수 있습니다. 실패는 자신감을 위협합니다. 믿음은 하나님이 여전히 신실하시기 때문에 회개하고 다시 일어날 수 있습니다. 자신감이 결과를 통제해야 합니다. 믿음은 전체 길을 보지 않고도 순종적인 다음 단계를 밟을 수 있습니다.</p>
-    <p>나는 당신과 함께 할 것입니다. 나는 당신을 떠나지 않을 것입니다. 나는 당신을 버리지 않을 것입니다.</p>
-    <p>두 번째로 우리가 보는 것은 두려움이 통제를 원할 때 용기가 하나님의 말씀에 복종한다는 것입니다.</p>
-    <p>하나님은 자신의 임재를 약속하신 후 여호수아에게 모세가 그에게 명령한 모든 것을 삼가 행하라고 말씀하셨습니다. 그것을 떠나 오른쪽으로나 왼쪽으로나 치우치지 마십시오. 이 교훈의 책을 네 입에서 떠나지 말게 하라. 그것을 주야로 묵상하여 그 안에 기록된 것을 다 지켜 행하라.</p>
-    <p>이번에도 오해를 받을 수 있습니다.</p>
-    <p>어떤 사람들은 이 글을 읽고 성공의 공식을 듣습니다. 성경을 충분히 읽고, 충분히 주의 깊게 순종하면, 당신의 삶은 당신이 원하는 대로 이루어질 것입니다. 당신은 직업, 결혼, 자녀, 사역, 건강, 미래를 갖게 될 것입니다. 규칙만 지키면 약속을 이행할 수 있습니다.</p>
-    <p>그러나 여호수아에게는 하나님을 조종하는 기술이 주어지지 않았습니다. 이것은 관계입니다. 누군가의 말을 듣고, 생각하고, 순종하는 것입니다. 그것은 관계형 언어입니다.</p>
-    <p>두려움은 자신을 보호하라고 말합니다. 통제하세요. 일어날 수 있는 모든 재난에 대비하세요. 두려움은 당신이 인상적이지 않으면 잊혀질 것이라고 말합니다.</p>
-    <p>두려움은 당신이 여기서 실패하면 그것이 당신을 정의할 것이라고 말합니다.</p>
-    <p>하나님께서 당신에게 요구하시는 관계와 비슷한 방식으로 당신은 두려움과의 관계를 가질 수 있습니다. 당신은 하나님 외에 모든 음성을 듣습니다. 우리는 불안에 대해 묵상합니다. 우리는 최악의 시나리오를 묵상합니다. 우리는 사람들이 어떻게 생각할지 묵상합니다. 우리는 두려워하는 미래에 대해 묵상합니다. 우리는 두려움을 입에 담습니다. 우리는 그것에 대해 이야기합니다. 우리는 그것을 반복합니다. 우리는 그것을 리허설합니다. 우리는 그것이 우리의 상상력을 형성하도록 놔둡니다.</p>
-    <p>하나님께서는 여호수아에게 그것이 당신을 다스리는 목소리가 되지 않도록 하라고 말씀하십니다.</p>
-    <p>하나님의 말씀을 입에 두라. 밤낮으로 묵상하십시오.</p>
-    <p>이것이 왜 그렇게 중요한지입니다. 모든 상황에 대비할 수는 없습니다. 그리고 솔직히 말해서, 당신은 감당할 수 없는 상황을 만나게 될 것입니다.</p>
-    <p>여호수아가 약속의 땅으로 인도할 사람들은 인간의 전략으로는 충분하지 않은 상황에 직면하게 될 것입니다. 그들은 범람하는 강 앞에 서게 될 것이다. 그들은 요새화된 도시 주위를 행진할 것이다. 그들은 자신들의 진영 안에서 죄에 직면하게 될 것입니다. 그들은 주변 나라들로부터 유혹을 받을 것입니다. 그들은 눈에 보이는 상황이 한 가지를 말하고 하나님의 약속이 다른 것을 말하는 순간을 갖게 될 것입니다.</p>
-    <p>그들이 하나님의 말씀으로 형성되지 않는다면, 두려움이 그들에게 모든 것을 해석할 것입니다.</p>
-    <p>우리도 마찬가지입니다.</p>
-    <p>당신의 삶은 무언가에 의해 해석되고 있습니다.</p>
-    <p>계획이 변경되면 그것이 무엇을 의미하는지 알려줍니다.</p>
-    <p>누군가가 당신을 비판할 때, 무엇인가가 그것이 무엇을 의미하는지 말해줍니다.</p>
-    <p>돈이 부족하다고 느낄 때, 그것이 무엇을 의미하는지 알려 주는 것이 있습니다.</p>
-    <p>가족이 실망했을 때 그것이 무엇을 의미하는지 뭔가를 통해 알 수 있습니다.</p>
-    <p>당신이 외로울 때, 지체할 때, 무시당할 때, 지칠 때, 불확실할 때 뭔가가 당신에게 설교합니다.</p>
-    <p>문제는 당신이 제자를 받고 있는지 여부가 아닙니다. 문제는 무엇이 당신을 제자화하는가 하는 것입니다.</p>
-    <p>하나님은 여호수아에게 그분의 말씀에 따라 다스려지도록 부르셨습니다. 왜냐하면 용기는 단순히 감정적인 에너지가 아니기 때문입니다. 용기는 진실을 바탕으로 한 순종입니다.</p>
-    <p>모든 지시에 따라 주의하여 행하십시오.</p>
-    <p>하나님께서 여호수아에게 요구하시는 용기는 용기가 있어서 담대해 보이는 것은 무엇이든 할 것입니다. 성경적 용기는 성격의 힘과 동일하지 않습니다. 어떤 사람들은 선천적으로 담대하면서도 여전히 불순종합니다. 어떤 사람들은 대가를 치르더라도 하나님께 순종하기 때문에 조용하고 떨리면서도 용기가 있습니다.</p>
-    <p>그렇다고 순종하기가 쉽지는 않을 것입니다. 때로는 순종하는 것이 큰 대가를 치르게 만들 수도 있습니다. 그러나 그것은 순종을 가능하게 할 것입니다. 왜냐하면 하나님의 말씀이 사람에 대한 두려움보다 더 권위가 있는 곳에서 용기가 자라기 때문입니다.</p>
-    <p>세 번째로 우리가 보는 것은 용기는 다른 사람들을 위한 것이라는 것입니다.</p>
-    <p>하나님께서 여호수아에게 말씀하신 후에 여호수아는 관리들에게 말하고, 이어서 르우벤 지파, 갓 지파, 므낫세 반 지파에게 말합니다. 그 지파들은 이미 요단강 동편에서 기업을 얻었습니다. 어떤 의미에서 그들은 이미 자리를 잡았습니다. 그러나 여호수아는 너희의 아내와 가족과 가축은 여기에 남고 너희의 용사들은 너희 형제들보다 앞서 건너가서 여호와께서 너희에게 안식을 주실 때까지 그들을 도우라고 말하였다.</p>
-    <p>그것은 중요합니다.</p>
-    <p>여호수아 1장의 용기는 개인적인 영웅주의가 아닙니다. 그것은 언약의 신실함이다. 하나님께서 약속하신 땅에 형제자매들이 들어갈 수 있도록 긍휼하심을 받은 사람들입니다.</p>
-    <p>이것이 우리에게 의미하는 바는 우리 중 일부는 안정적인 시즌을 보내고 있다는 것입니다. 우리 중 일부는 좀 더 안정된 곳에 있습니다. 우리 중 일부는 주변 사람들이 아직 경험하지 못한 방식으로 도움, 안정, 치유, 제자도 또는 영적인 안식을 받았습니다. 여호수아 1장은 그 안식을 안으로 돌리지 말라고 말합니다. 당신이 받은 선물에 안주하지 말고, 아직도 건너가는 형제자매들을 잊지 마십시오.</p>
-    <p>강하고 용기 있는 삶은 고립된 삶이 아니다. 하나님께서 나에게 신실하셨기에 내가 나의 안위를 지키기보다 다른 사람을 향해 나아갈 수 있다고 말하는 삶입니다.</p>
-    <p>오늘날 우리가 처음보다 죄가 더 많다고 말하는 것은 불공평합니다. 그러나 죄는 점점 더 사악하고 파괴적인 각 세대에서 자신을 표현하는 방법을 찾아냈습니다.</p>
-    <p>이 세대에서 죄의 파괴적인 영향 중 하나는 우리가 혼자 있는 것이 더 낫다는 확신을 갖게 하는 것이었습니다. 누구도 필요하지 않습니다. 당신은 혼자서도 괜찮습니다.</p>
-    <p>우리는 그것이 사실이 아니라는 것을 깊이 알고 있습니다. 그러나 우리는 하나님의 말씀을 듣지 않기 때문에 그분과의 관계가 없으며 두려움에 대해 묵상해 왔습니다. 이제 우리는 가장 고립된 삶을 살고 있으며 많은 사람들은 심지어 다른 사람들과 공동체를 이루는 것을 두려워합니다.</p>
-    <p>우리의 미래는 공동이라는 점을 상기시켜 드리겠습니다. 지역 사회. 만약 당신이 천국에 가게 된다면, 당신은 혼자서 사적인 삶을 살지 않을 것입니다. 당신은 당신이 경험한 가장 가까운 커뮤니티에 있게 될 것입니다.</p>
-    <p>그것이 약속의 땅의 아름다움이었습니다. 사람들은 서로 공동체를 이루며 살게 되었습니다. 하나님께서 그들에게 주신 모든 계명을 서로 지키며 살아가십시오.</p>
-    <p>이것이 바로 하나님께서 우리를 위해 예비하신 안식을 받는 방법입니다. 그와 그의 자녀들과의 관계에서.</p>
-    <p>그렇기 때문에 이곳에서의 최고의 경험조차도 우리에게 그리움을 남깁니다.  이는 이스라엘만의 이야기가 아닙니다. 그것은 우리 것이다.</p>
-    <p>우리 중 많은 사람들이 우리가 들어가려고 노력하는 나머지 버전을 가지고 있습니다.</p>
-    <p>일자리만 구할 수 있다면 쉬겠습니다. 결혼만 하면 쉴게요. 이번 시즌만 벗어나면 쉴 것이다. 가족들의 동의만 얻으면 쉬겠습니다. 충분히 저축할 수 있다면 쉬겠습니다. 내가 건강해지고, 정착하고, 알려지고, 존경받고, 학위를 받고, 비자를 받고, 답을 얻고, 아이들을 학교에 보내고, 교회를 안정시킬 수만 있다면 나는 쉴 것입니다.</p>
-    <p>그 중 일부는 좋은 욕망입니다. 땅은 좋은 선물이었습니다. 우리는 좋은 것이 궁극적이지 않다고 말하기 위해 나쁜 척할 필요가 없습니다.</p>
-    <p>그러나 성경은 하나님만이 하실 수 있는 일을 좋은 은사가 할 수 없다고 계속해서 말씀하고 있습니다.</p>
-    <p>이 중 어느 것도 당신을 구할 수 없습니다. 그것은 구원의 선물입니다. 구세주의 선물.</p>
-    <p>여호수아의 히브리 이름 예호슈아는 여호와께서 구원하신다는 뜻입니다. 예수(Jesus)와 같은 이름이 영어로 나옵니다. 그렇다고 여호수아가 예수라는 뜻은 아닙니다. 여호수아는 이정표라는 뜻입니다.</p>
-    <p>여호와께서 구원하시느니라</p>
-    <p>여호수아는 하나님의 백성을 약속의 땅으로 인도하는 임명된 지도자입니다. 그러나 성경 전체는 우리에게 더 큰 여호수아를 찾고 하나님의 임재 안에 있는 진짜 약속의 땅을 사모하라고 가르칩니다.</p>
-    <p>그것을 할 수 있는 사람은 오직 한 사람뿐입니다. 그의 이름은 예수입니다. 더 큰 조슈아.</p>
-    <p>여호수아는 내가 너와 함께 있겠다는 말을 들었다. 예수님은 우리와 함께 계시는 하나님이십니다.</p>
-    <p>여호수아는 백성들을 이끌고 요단강을 건너 그 땅으로 들어갑니다. 예수께서는 사망과 심판 속으로 내려가셨다가 저편으로 나오시어 자기 백성이 생명 안으로 들어갈 수 있게 하셨습니다.</p>
-    <p>예수님은 우리가 불순종하는 곳에 순종하셨습니다. 예수님은 이스라엘이 원망하는 곳을 신뢰하셨습니다. 예수님은 우리가 이길 수 없는 전쟁에 참여하셨습니다. 예수님은 우리의 죄가 마땅히 받아야 할 심판을 받으셨습니다. 예수님께서 성 밖에서 죽임을 당하신 것은 용기가 부족해서가 아니라 그분의 용기가 사랑이었기 때문입니다.</p>
-    <p>그리고 그분이 죽음에서 부활하셨을 때, 그분은 단순히 우리에게 더 열심히 노력하도록 영감을 주신 것이 아닙니다. 그분은 우리에게 자신을 주셨습니다.</p>
-    <p>이는 그리스도인의 용기가 이미 우리보다 앞서 가신 분에게 속해 있음을 의미합니다. 인생에서 당신 앞에는 어두운 곳이 있습니다. 예수님은 이미 가장 어두운 어둠 속으로 들어가 승리하시고 돌아오셨습니다. 당신은 판단되고 정죄되었다고 느낍니다. 예수님께서는 여러분이 마땅히 받아야 할 심판을 받으시고 그 형벌을 다 치르셨습니다. 당신은 정말 만족스러운 휴식을 원합니다. 예수님은 당신이 궁극적으로 만족할 처소를 예비하러 가셨습니다.</p>
-    <p>주님은 내 말을 묵상하라고 말씀하십니다. 나의 약속을 네 입에 두라. 나의 진실이 당신의 상상 속에 있게 해주세요. 나의 언약의 신실함이 한밤중에 그토록 확실하게 느껴지는 불안보다 당신에게 더욱 견고해지게 하십시오.</p>
-    <p>이것은 하나님께서 당신에게 성공으로 보상해 주시기 위해 성경을 읽는 기계가 되라는 부르심이 아닙니다. 이것은 그리스도 안에서 이미 당신에게 위임된 하나님의 음성 아래 살도록 초대하는 것입니다.</p>
-    <p>그리고 우리 중 일부에게 이 구절은 안식에 이르는 길을 정복하려는 노력을 멈추라는 초대입니다.</p>
-    <p>당신은 자신의 삶을 정복이라고 생각하지 않을 수도 있지만, 우리 중 많은 사람들은 성취를 통해 안식을 얻으려고 노력하고 있습니다.</p>
-    <p>이 프로젝트를 마스터할 수 있다면 쉬세요.</p>
-    <p>이 약점을 극복할 수 있다면 쉬어라.</p>
-    <p>사람들의 의견을 관리할 수 있다면 쉬세요.</p>
-    <p>아니면 다른 것. 그러나 항상 또 다른 전투가 있을 것입니다.</p>
-    <p>그러므로 오늘 밤 여기에 오셨는데 그리스도인이 아니시라면, 그것이 바로 초대입니다. 먼저 강한 사람이 되기 위해서가 아니다. 강을 건너갈 만큼 자신을 깨끗하게 하지 말라. 당신이 하나님을 위해 충분히 용기가 있다는 것을 증명하기 위한 것이 아닙니다.</p>
-    <p>초대는 죄인보다 먼저 죽음에 들어가셨다가 부활의 생명으로 나오신 더 큰 여호수아이신 예수님께로 나오라는 것입니다. 그는 당신에게 자기 개선 계획을 제안하지 않습니다. 그는 당신에게 자신을 제안합니다. 용서. 하나님과의 화해. 상황보다 더 깊은 휴식.</p>
-    <p>그리고 당신이 그리스도인이라면 초대가 꼭 필요합니다.</p>
-    <p>예수님께 오세요. 아니, 난 할 수 있어. 아니요, 제가 통제하고 있습니다. 아니, 나는 그것을 감당할 수 있는 사람이다.</p>
-    <p>그러나 그리스도께서 이 일을 하셨습니다. 그리스도께서는 이것을 통제하고 계십니다. 그리스도께서 나보다 앞서 가셨습니다. 그리스도께서는 결코 나를 떠나지 않으실 것입니다.</p>
-  </div>
+    <div class="listening-aid">
+      <div class="big-idea">
+        <div class="big-idea-label">핵심 요점</div>
+        <div class="big-idea-text">하나님의 심판은 실제이지만, 그분의 자비는 그분께 피하는 이방인을 받아들입니다.</div>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">본문</div>
+        <div class="scripture-ref">여호수아 2장</div>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">설교 흐름</div>
+
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">1</span> 믿음은 라합이 듣고 편을 바꾸는 데서 시작됩니다</div>
+  <ul><li>라합은 주님이 하신 일을 듣고 더 이상 여리고를 안전으로 붙들지 않습니다.</li><li>믿음은 잘 정리된 종교 이력이 아니라 참되신 하나님께 피하는 것입니다.</li></ul>
 </div>
 
-<!-- TL -->
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">2</span> 심판이 실제이기 때문에 자비가 절실합니다</div>
+  <ul><li>여리고는 심판 아래 있으므로 피난은 선택 사항이 아니라 긴급한 필요입니다.</li><li>라합은 하나님의 자비가 자기편만 위한 것이 아니라는 것을 보여 줍니다. 이방인도 받아들여질 수 있습니다.</li></ul>
+</div>
+
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">3</span> 주홍 줄은 성벽이 무너지기 전에 믿는 약속입니다</div>
+  <ul><li>라합은 결과를 보기 전에 구원의 표를 창문에 답니다.</li><li>믿음은 눈에 보이는 증거보다 먼저 하나님의 구원 약속에 자신을 묶습니다.</li></ul>
+</div>
+
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">4</span> 예수님은 이방인을 집으로 데려오십니다</div>
+  <ul><li>예수님은 정죄받는 이방인이 되셔서 이방인이 하나님의 가족이 되게 하십니다.</li><li>은혜는 수치스러운 사람을 그냥 살려 두는 데서 그치지 않고 새 이름과 미래를 줍니다.</li></ul>
+</div>
+
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">핵심 단어</div>
+        <ul class="keyword-list"><li><strong>이방인:</strong> 수치와 거리감, 소속 없음으로 표시된 사람.</li><li><strong>피난:</strong> 거짓 안전이 아니라 하나님의 약속 아래로 숨는 것.</li><li><strong>심판:</strong> 악에 대한 하나님의 거룩한 반대; 이것이 실제이기에 자비가 귀합니다.</li><li><strong>충성:</strong> 라합의 믿음은 여리고 왕에게서 이스라엘의 하나님께로 충성을 옮깁니다.</li><li><strong>주홍 줄:</strong> 구원의 약속에 연결된 눈에 보이는 표지.</li><li><strong>집:</strong> 은혜는 단지 살려 두지 않고 하나님의 가족 안으로 데려옵니다.</li></ul>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">붙잡을 문장</div>
+        <ul class="anchor-list"><li>믿음은 하나님을 진지하게 받아들여 그분께 피하는 것입니다.</li><li>문제는 혈통이 아니라 어디에 피하느냐입니다.</li><li>은혜는 '괜찮다'고 말하는 것이 아니라 피할 길을 여시는 것입니다.</li><li>예수님은 이방인이 되셔서 이방인이 집에 돌아오게 하셨습니다.</li></ul>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">듣기 포인트</div>
+        <ul class="cue-list"><li>라합의 믿음이 '들음'에서 시작되는 것을 주목하십시오.</li><li>여리고의 두려움과 라합의 믿음이 어떻게 대비되는지 보십시오.</li><li>체면과 피난의 차이를 들으십시오.</li><li>라합의 집이 심판 가운데 어떻게 피난처가 되는지 보십시오.</li></ul>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">적용 초점</div>
+        <ul class="apply-list"><li>자신의 이야기 때문에 자격 없다고 느껴진다면 빈손으로 그리스도께 나오십시오.</li><li>그리스도인이라면 은혜가 여러분을 더 환대하는 사람으로 만들었는지 물어보십시오.</li><li>이번 주 믿음이 실제로 편을 바꾸어야 하는 한 지점을 적어 보십시오.</li><li>창문에 줄을 다십시오. 결과가 보이기 전에 하나님의 약속에 순종하십시오.</li></ul>
+      </div>
+    </div>
+  </div>
+
 <div id="content-tl" class="lang-content">
-  <div class="manuscript">
-    <div class="manuscript-kicker">Josue 1</div>
-    <div class="manuscript-spacer"></div>
-    <p>Nagsisimula ang Josue sa pagtitipon ng Israel sa hangganan ng lupain.</p>
-    <p>Nakatayo sila sa hangganan ng pangako. Sa likuran nila ay ang Ehipto, pagkaalipin, ang Dagat na Pula, ang manna sa ilang, ang mga taon ng libingan sa disyerto, at isang buong henerasyon na hindi pumasok dahil sa kawalan ng pananampalataya. Nasa harap nila ang lupaing ipinangako ng Diyos kina Abraham, Isaac, at Jacob. Ngunit hindi ito walang laman.</p>
-    <p>May mga lungsod. May mga hari. May mga hukbo. May mga pader. At marahil sa sandaling ito, ang pinakamahalaga, sa pinakadulo simula ng libro, may kalungkutan.</p>
-    <p>Si Moses ay patay na.</p>
-    <p>Pagkamatay ni Moises na lingkod ng Panginoon, nagsalita ang Panginoon kay Josue na anak ni Nun, na katulong ni Moises.</p>
-    <p>Si Moses ay patay na.</p>
-    <p>Si Moses ay hindi isang maliit na tao sa buhay ng Israel. Si Moises ang tungkod na ginamit ng Diyos para hampasin si Paraon at pinalaya ang mga Hebreo. Nasaksihan ng mga tao ang pinakadakilang mga himala sa naitala na kasaysayan na ginawa sa pamamagitan ng kamay ni Moises. Si Moises ang nag-unat ng kanyang tungkod at nahati ang dagat. Si Moises ang tumanggap ng kautusan. Si Moises ang nakipagpulong sa Diyos sa bundok. Si Moises ang namagitan nang magkasala ang Israel.</p>
-    <p>At ngayon si Moises ay patay na, ang ilang ay nasa likuran nila, ang lupain ay nasa unahan nila, at si Josue ay pinili upang pamunuan ang mga tao sa lupaing ipinangako sa kanila ng Diyos.</p>
-    <p>Diyan ang sabi ng Diyos, maging malakas at matapang.</p>
-    <p>Isa ito sa mga parirala sa Bibliya na naging pamilyar na kaya hindi na natin maramdaman kung gaano ito kakaiba. Inilalagay namin ito sa mga poster. Inilagay namin ito sa mga mug. Inilagay namin ito sa mga graduation card. Ginagamit namin ito bilang isang paraan upang sabihin, subukang mabuti, maging matapang, maniwala sa iyong sarili, gawin ang bagay.</p>
-    <p>Ngunit hindi iyon ang ginagawa ng Josue 1.</p>
-    <p>Ang Diyos ay hindi lumapit kay Josue at sasabihin, Josue, nasa iyo ang lahat sa loob mo. Hindi sinasabi ng Diyos, Josue, handa ka na sa wakas dahil likas kang matapang.</p>
-    <p>Ang tapang sa Josue 1 ay hindi pagtitiwala kay Josue. Ito ay pagtitiwala sa presensya at pangako ng Diyos.</p>
-    <p>Basahin natin ang talata para sa araw na ito. Ito ang Josue 1:1-9.</p>
-    <div class="scripture-block">1 Pagkamatay ni Moises na lingkod ng Panginoon, sinabi ng Panginoon kay Josue na anak ni Nun, na katulong ni Moises: 2 “Si Moises na aking lingkod ay patay na, ikaw at ang buong bayan ay maghanda na tumawid sa Jordan patungo sa lupaing ibibigay ko sa mga anak ni Israel.</div>
-    <div class="scripture-block">3 Ibinigay ko sa inyo ang bawat lugar na tinutuparan ng talampakan ng inyong paa, gaya ng ipinangako ko kay Moises. 4 Ang inyong teritoryo ay mula sa ilang at Lebanon hanggang sa malaking ilog, ang Ilog Eufrates—ang buong lupain ng mga Hitteo—at sa kanluran hanggang sa Dagat Mediteraneo. 5 Walang sinumang makakalaban sa iyo habang ikaw ay nabubuhay. Ako ay sasaiyo, kung paanong ako ay sumama kay Moises. Hindi kita iiwan o pababayaan.</div>
-    <div class="scripture-block">6 “Magpakatatag ka at magpakalakas ka ng loob, dahil ibabahagi mo ang lupaing ipinangako ko sa kanilang mga ninuno na ibibigay sa kanila bilang mana. 7 Higit sa lahat, magpakalakas ka at magpakalakas-loob na sundin ang buong utos na iniutos sa iyo ng aking lingkod na si Moises.</div>
-    <div class="scripture-block">8 Ang aklat ng pagtuturong ito ay hindi dapat humiwalay sa iyong bibig; pagbubulay-bulayin mo ito araw at gabi upang mapagmasdan mong mabuti ang lahat ng nakasulat dito. Para sa gayon ikaw ay uunlad at magtatagumpay sa anumang iyong gagawin. 9 Hindi ba&#x27;t iniutos ko sa iyo: magpakalakas ka at magpakatapang? Huwag kang matakot o masiraan ng loob, sapagkat ang Panginoon mong Diyos ay kasama mo saan ka man pumunta.”</div>
-    <p>Ang mensahe ni Josue ay talagang simple ngunit napakalalim. Kasama mo ang Diyos.</p>
-    <p>Si Josue ay isang aklat tungkol sa pangako, lupain, paghatol, awa. Ito ay tungkol sa tagumpay, kabiguan, mana, tipan, at pagsamba.</p>
-    <p>Ngunit kung babasahin lamang natin ito bilang isang libro tungkol sa kung paano maging matapang at sakupin ang teritoryo, makaligtaan natin ang ebanghelyo.</p>
-    <p>Si Josue ay hindi pangunahing tungkol sa mga taong matapang na gumagawa ng mga dakilang bagay para sa Diyos.</p>
-    <p>Si Josue ay tungkol sa isang tapat na Diyos na gumagawa ng mga dakilang bagay para sa Kanyang mga tao na hindi nila magagawa para sa kanilang sarili.</p>
-    <p>Ang unang bagay na nakikita natin ay ang lakas ng loob ay nagsisimula kung saan nagtatapos ang tiwala sa sarili.</p>
-    <p>Sinabi ng Diyos kay Josue, Si Moises na aking lingkod ay patay na. Ngayon ikaw at ang buong bayang ito ay maghanda upang tumawid sa Jordan patungo sa lupaing ibibigay ko sa mga Israelita.</p>
-    <p>Iyon ay isang mabigat na pangungusap. Si Moses ay patay na. Ngayon pumunta ka.</p>
-    <p>Hindi nagpapanggap ang Diyos na maliit ang kawalan. Hindi niya sinasabi, huwag isipin si Moses. Hindi niya sinasabi, get over it dali. Pinangalanan niya ang kamatayan. Si Moises na aking lingkod ay patay na.</p>
-    <p>Ngunit hindi rin pinahintulutan ng Diyos si Josue na gawin ang kamatayan ni Moises na wakas ng pangako ng Diyos.</p>
-    <p>Patay na si Moses, pero buhay na buhay ako at hindi pa tayo tapos. Ang gawain ni Moises ay tapos na, ngunit ang aking gawain ay hindi. Hindi makakasama si Moises sa iyo, ngunit kaya ko at gagawin ko.</p>
-    <p>Iyan ang pundasyon ng katapangan ni Josue. Hindi na si Josue ay Moses 2.0. Hindi dahil si Josue ay may parehong personalidad, parehong mga kaloob, parehong kasaysayan, parehong awtoridad. Ang pundasyon ay ang Diyos na kasama ni Moises ay makakasama ni Josue.</p>
-    <p>Kung paanong kasama ko si Moises, gayundin ako sa iyo. Hindi kita iiwan o pababayaan.</p>
-    <p>May pangako na ginagawang posible ang lakas ng loob.</p>
-    <p>Isa sa mga pinakakinatatakutan namin ni Crista sa paglipas ng mga taon ay ang pag-aalala tungkol sa tawag sa telepono na ang aming mga anak ay nasaktan o nasugatan o mas malala pa. Marami sa inyo ang nakaranas ng katulad dahil hiwalay kayo sa pamilya o mga kaibigan.</p>
-    <p>Natanggap namin ang tawag na iyon isang gabi. Si Ashlyn ay nasa isang car wreck. Kami ay 7,000 milya at hindi bababa sa 24 na oras ang layo upang makarating doon. Ngunit alam mo kung sino ang nandoon bago pa man natin alam ang tungkol dito. Siya ay - Sa totoo lang, hindi Niya tayo iniwan o pinabayaan o ang ating anak na babae.</p>
-    <p>Sa kabilang kalye mula sa pagkawasak ay isang grupo ng bumbero ang pinupuno ng gas ang kanilang trak - at sa loob ng ilang segundo ay naroon na sila at inaalagaan siya.</p>
-    <p>Ang katapangan sa Bibliya ay hindi ang kawalan ng takot. Hindi ito pagpapanggap na walang mga nakakatakot na bagay sa mundo.</p>
-    <p>Ang katapangan sa Bibliya ay kapag ang iyong pagtitiwala sa presensya ng Diyos ay nagiging mas totoo kaysa sa bagay na nakakatakot sa iyo.</p>
-    <p>Marahil iyon ang isang bagay na kailangan mong marinig ngayon.</p>
-    <p>Kasama mo ang Diyos.</p>
-    <p>Dahil kung ang tanging kaginhawaan na mayroon ka ay ang iyong sariling lakas o kakayahan, sa huli ay makakatagpo ka ng isang bagay na mas malakas kaysa sa iyo.</p>
-    <p>At ang ilan sa inyo ay mayroon na.</p>
-    <p>Ang Diyos ay nagbibigay kay Josue at sa atin ng isang bagay na mas mabuti.</p>
-    <p>sasamahan kita.</p>
-    <p>Iyan ang pagkakaiba sa pagitan ng tiwala sa sarili at pananampalataya.</p>
-    <p>Sabi ng self-confidence, I can handle this because I have what it takes.</p>
-    <p>Sabi ni Faith, I have who it takes to deal with whatever comes my way. Hindi pareho ang mga iyon.</p>
-    <p>Ang tiwala sa sarili ay kailangang panatilihing protektahan ang imahe na ito ay malakas. Ang pananampalataya ay maaaring umamin ng kahinaan dahil ang pundasyon ay hindi ang sarili. Ang tiwala sa sarili ay nanganganib sa pagkabigo. Ang pananampalataya ay maaaring magsisi at makabangon muli dahil ang Diyos ay tapat pa rin. Kailangang kontrolin ng tiwala sa sarili ang mga resulta. Magagawa ng pananampalataya ang susunod na masunuring hakbang nang hindi nakikita ang buong daan.</p>
-    <p>sasamahan kita. hindi kita iiwan. hindi kita pababayaan.</p>
-    <p>Ang pangalawang bagay na nakikita natin ay ang tapang ay nagpapasakop sa salita ng Diyos kapag ang takot ay nagnanais na kontrolin.</p>
-    <p>Matapos ipangako ng Diyos ang kanyang presensya, sinabihan niya si Josue na mag-ingat na gawin ang lahat ng tagubilin na iniutos sa kanya ni Moises. Huwag lumiko mula rito sa kanan o kaliwa. Ang aklat ng pagtuturong ito ay hindi dapat humiwalay sa iyong bibig. Pagnilayan mo ito araw at gabi, upang maingat mong sundin ang lahat ng nakasulat dito.</p>
-    <p>Muli, ito ay maaaring hindi maunawaan.</p>
-    <p>Ang ilang mga tao ay nagbabasa nito at nakarinig ng isang pormula para sa tagumpay. Magbasa ng Bibliya nang sapat, sumunod nang mabuti, at ang iyong buhay ay gagana sa paraang gusto mo. Magkakaroon ka ng karera, ang kasal, ang mga anak, ang ministeryo, ang kalusugan, ang hinaharap. Kung susundin mo lang ang mga patakaran, magagawa mo ang pangako.</p>
-    <p>Ngunit si Josue ay hindi binibigyan ng pamamaraan para kontrolin ang Diyos. Ito ay isang relasyon. Pakikinig sa isang tao, pag-iisip tungkol sa kanya, at pagsunod sa kanya. Iyan ay wika ng relasyon.</p>
-    <p>Sabi ng takot, protektahan ang iyong sarili. Kontrolin mo. Maghanda sa bawat posibleng sakuna. Sabi ng takot, kung hindi ka kahanga-hanga, malilimutan ka.</p>
-    <p>Sabi ng takot, kapag nabigo ka rito, ito ang magdedefine sa iyo.</p>
-    <p>Maaari kang magkaroon ng relasyon na may takot sa katulad na paraan sa relasyon na hinihiling sa iyo ng Diyos na magkaroon. Nakikinig ka sa bawat boses maliban sa Diyos. Nagmumuni-muni kami sa pagkabalisa. Nagbubulay-bulay kami sa mga pinakamasamang sitwasyon. Pinag-iisipan natin kung ano ang maaaring isipin ng mga tao. Pinagnilayan natin ang kinabukasan na kinatatakutan natin. Inilalagay namin ang takot sa aming mga bibig. Pinag-uusapan natin ito. Inuulit namin ito. Ini-rehearse namin ito. Hinayaan natin itong hubugin ang ating imahinasyon.</p>
-    <p>Sinabi ng Diyos kay Josue, huwag mong hayaang maging boses iyon na namamahala sa iyo.</p>
-    <p>Hayaan ang salita ng Diyos sa iyong bibig. Pagnilayan ito araw at gabi.</p>
-    <p>Narito kung bakit ito ay napakahalaga. Hindi ka maaaring maghanda para sa bawat sitwasyon. At sa totoo lang, makakatagpo ka ng mga sitwasyon na hindi mo kayang hawakan.</p>
-    <p>Ang mga taong pamumunuan ni Josue sa lupang pangako ay haharap sa mga sitwasyon kung saan hindi sapat ang diskarte ng tao. Tatayo sila sa harap ng baha na ilog. Maglalakad sila sa paligid ng isang nakukutaang lungsod. Haharapin nila ang kasalanan sa loob ng sarili nilang kampo. Tutukso sila ng mga bansang nakapaligid sa kanila. Magkakaroon sila ng mga sandali kapag ang nakikitang sitwasyon ay nagsasabi ng isang bagay at ang pangako ng Diyos ay nagsasabi ng isa pa.</p>
-    <p>Kung hindi sila hinubog ng salita ng Diyos, ang takot ang magpapakahulugan sa lahat para sa kanila.</p>
-    <p>Ganoon din sa atin.</p>
-    <p>Ang iyong buhay ay binibigyang kahulugan ng isang bagay.</p>
-    <p>Kapag nagbago ang iyong mga plano, may magsasabi sa iyo kung ano ang ibig sabihin nito.</p>
-    <p>Kapag may pumuna sa iyo, may nagsasabi sa iyo kung ano ang ibig sabihin nito.</p>
-    <p>Kapag nahihirapan ang pera, may nagsasabi sa iyo kung ano ang ibig sabihin nito.</p>
-    <p>Kapag nabigo ang iyong pamilya, may nagsasabi sa iyo kung ano ang ibig sabihin nito.</p>
-    <p>Kapag ikaw ay nag-iisa, naantala, hindi napapansin, napagod, o hindi sigurado, may nangangaral sa iyo.</p>
-    <p>Ang tanong ay hindi kung ikaw ay tinuturuan. Ang tanong ay kung ano ang nagdidisiplina sa iyo.</p>
-    <p>Tinawag ng Diyos si Joshua na pamahalaan ng kanyang salita dahil ang lakas ng loob ay hindi lamang emosyonal na enerhiya. Ang katapangan ay pagsunod sa hugis ng katotohanan.</p>
-    <p>Mag-ingat na gawin ayon sa lahat ng tagubilin.</p>
-    <p>Ang lakas ng loob na tinatawag ng Diyos kay Josue ay hindi, pakiramdam ko matapang ako, kaya gagawin ko ang anumang tila matapang. Ang katapangan sa Bibliya ay hindi katulad ng lakas ng personalidad. Ang ilang mga tao ay likas na matapang at masuwayin pa rin. Ang ilang mga tao ay tahimik at nanginginig ngunit malakas ang loob dahil sila ay sumusunod sa Diyos kapag ito ay nagkakahalaga sa kanila.</p>
-    <p>Hindi niyan gagawing madali ang pagsunod. Kung minsan ay magiging magastos ang pagsunod. Ngunit gagawin nitong posible ang pagsunod, dahil lumalago ang lakas ng loob kung saan ang salita ng Diyos ay nagiging mas makapangyarihan kaysa sa takot sa tao.</p>
-    <p>Ang pangatlong bagay na nakikita natin ay ang katapangan ay para sa iba.</p>
-    <p>Pagkatapos magsalita ang Diyos kay Josue, nagsalita si Josue sa mga pinuno, at pagkatapos ay nagsalita siya sa mga lipi ni Ruben, Gad, at kalahati ng lipi ni Manases. Ang mga tribong iyon ay nagkaroon na ng kanilang mana sa silangang bahagi ng Jordan. Sa isang kahulugan, mayroon na silang lugar. Ngunit sinabi ni Joshua, ang iyong mga asawa, mga dependent, at mga alagang hayop ay maaaring manatili dito, habang ang iyong pinakamahuhusay na kawal ay tatawid sa harap ng iyong mga kapatid at tulungan sila hanggang sa bigyan sila ng Panginoon ng kapahingahan gaya ng ibinigay niya sa iyo.</p>
-    <p>Iyon ay mahalaga.</p>
-    <p>Ang katapangan sa Josue 1 ay hindi pribadong kabayanihan. Ito ay katapatan sa tipan. Ito ay mga taong nakatanggap ng awa sa pagtulong sa kanilang mga kapatid na makapasok sa ipinangako ng Diyos.</p>
-    <p>Ang ibig sabihin nito para sa atin ay ang ilan sa atin ay nasa isang matatag na panahon. Ang ilan sa amin ay nasa mas ayos na lugar. Ang ilan sa atin ay nakatanggap ng tulong, katatagan, pagpapagaling, pagiging disipulo, o espirituwal na pahinga sa mga paraan na hindi pa nararanasan ng iba sa ating paligid. Sinasabi sa Josue 1 na huwag ibalik ang kapahingahang iyon sa loob. Huwag magpakatatag sa iyong regalo at kalimutan ang mga kapatid na tumatawid pa rin.</p>
-    <p>Ang malakas at matapang na buhay ay hindi ang nakahiwalay na buhay. Ang buhay ang nagsasabing, Ang Diyos ay naging tapat sa akin, kaya maaari akong lumipat patungo sa iba sa halip na protektahan ang aking kaginhawaan.</p>
-    <p>Hindi makatarungang sabihin na tayo ay mas makasalanan ngayon kaysa sa simula. Ngunit ang kasalanan ay nakahanap ng mga paraan upang ipahayag ang sarili sa bawat henerasyon na lalong nagiging masama at mapanira.</p>
-    <p>Sa henerasyong ito, isa sa mga mapanirang impluwensya ng kasalanan ay ang kumbinsihin tayo na mas mabuting mag-isa tayo. Hindi mo kailangan ng sinuman. Ayos ka sa iyong sarili.</p>
-    <p>Alam namin sa kaibuturan na hindi iyon totoo. Ngunit dahil hindi tayo nakikinig sa salita ng Diyos, wala tayong kaugnayan sa kanya at pinagbubulay-bulay natin ang takot - namumuhay tayo ngayon sa pinakahiwalay na mga buhay at natatakot pa nga ang maraming tao na makasama ang iba.</p>
-    <p>Paalalahanan ko kayo na ang ating kinabukasan ay komunal. Komunidad. Kung mapupunta ka sa langit, hindi ka mabubuhay ng isang pribadong buhay para sa iyong sarili. Ikaw ay nasa pinakamalapit na komunidad na iyong naranasan.</p>
-    <p>Iyan ang kagandahan ng lupang pangako. Ang mga tao ay mamumuhay sa pamayanan sa isa&#x27;t isa. Isinasabuhay ang lahat ng utos ng isa&#x27;t isa na ibinigay sa kanila ng Diyos.</p>
-    <p>Ganyan mo tinatanggap ang natitirang bahagi na mayroon ang Diyos para sa atin. Sa relasyon sa kanya at sa kanyang mga anak.</p>
-    <p>Kaya naman kahit na ang pinakamagagandang karanasan ng mga bagay na ito dito ay nag-iiwan sa atin ng pananabik.  Iyan ay hindi lamang kuwento ng Israel. Ito ay atin.</p>
-    <p>Marami sa atin ang may ilang bersyon ng iba na sinusubukan nating pasukin.</p>
-    <p>Kung makukuha ko lang ang trabaho, magpapahinga na ako. Kung pwede lang magpakasal, magpapahinga na ako. Kung makakalabas lang ako sa season na ito, magpapahinga na ako. Kung mapapayag ko lang ang pamilya ko, magpapahinga na ako. Kung may sapat lang akong ipon, magpapahinga na ako. Kung pwede lang maging malusog, magpakaayos, makilala, respetuhin, makakuha ng degree, makakuha ng visa, makakuha ng sagot, maipasa ang mga bata sa pag-aaral, magpakatatag ng simbahan, pagkatapos ay magpapahinga ako.</p>
-    <p>Ang ilan sa mga iyon ay mabubuting hangarin. Ang lupa ay isang magandang regalo. Hindi natin kailangang magpanggap na ang mabubuting bagay ay masama para masabi na hindi ito panghuli.</p>
-    <p>Ngunit ang Bibliya ay patuloy na nagsasabi sa atin na ang mabuting kaloob ay hindi makakagawa ng kung ano ang tanging magagawa ng Diyos.</p>
-    <p>Wala sa mga bagay na ito ang makapagliligtas sa iyo. Sila ang mga kaloob ng kaligtasan. Ang mga kaloob ng tagapagligtas.</p>
-    <p>Hayaan mong sabihin ko sa iyo ang tungkol sa Hebreong pangalan ni Josue, Yehoshua, na nangangahulugang ang Panginoon ang nagliligtas. Ito rin ang pangalang naging Jesus sa Ingles. Hindi ibig sabihin na si Josue ay si Hesus. Ibig sabihin, si Josue ay isang palatandaan lamang.</p>
-    <p>Ang Panginoon ay nagliligtas.</p>
-    <p>Si Josue ang itinalagang pinuno na nagdadala sa bayan ng Diyos sa lupang pangako. Ngunit itinuturo ng buong Biblia na hanapin natin ang mas dakilang Josue at hangarin ang tunay na lupang pangako: ang makasama ang Diyos.</p>
-    <p>Isa lang ang makakagawa niyan. Ang kanyang pangalan ay Jesus. Ang dakilang Josue.</p>
-    <p>Narinig ni Josue, Sasamahan kita. Si Hesus ang Diyos na kasama natin.</p>
-    <p>Pinangunahan ni Josue ang mga tao sa Jordan patungo sa lupain. Si Jesus ay bumaba sa kamatayan at paghuhukom at lumabas sa kabilang panig, upang makatawid ang kanyang bayan tungo sa buhay.</p>
-    <p>Si Jesus ay sumunod kung saan tayo sumuway. Nagtiwala si Jesus kung saan nagreklamo ang Israel. Lumakad si Jesus sa labanang hindi natin mapanalunan. Hinarap ni Hesus ang paghatol na nararapat sa ating kasalanan. Si Jesus ay pinutol sa labas ng lungsod, hindi dahil siya ay walang lakas ng loob, ngunit dahil ang kanyang katapangan ay pag-ibig.</p>
-    <p>At nang siya ay bumangon mula sa mga patay, hindi lang niya tayo binigyan ng inspirasyon para magsikap pa. Siya mismo ang nagbigay sa amin.</p>
-    <p>Ibig sabihin, ang Kristiyanong tapang ay pag-aari ng Isa na nauna na sa atin. Mayroon kang mga madilim na lugar sa unahan mo sa buhay. Si Jesus ay napunta na sa pinakamadilim na kadiliman at nagbalik na matagumpay. Pakiramdam mo ay hinuhusgahan at kinondena ka. Tinanggap ni Hesus ang hatol na nararapat mong tanggapin at binayaran ng buo ang parusa. Naghahangad ka ng pahinga na talagang nakakabusog. Si Jesus ay nauna upang maghanda ng isang lugar kung saan ikaw ay lubos na masisiyahan.</p>
-    <p>Sabi ng Panginoon, pagnilayan ang aking salita. Hayaan ang aking mga pangako sa iyong bibig. Hayaan ang aking katotohanan sa iyong imahinasyon. Hayaan ang aking katapatan sa tipan na maging mas matatag sa iyo kaysa sa pagkabalisa na nakakumbinsi sa hatinggabi.</p>
-    <p>Ito ay hindi isang panawagan na maging isang makinang nagbabasa ng Bibliya upang gantimpalaan ka ng Diyos ng tagumpay. Ito ay isang paanyaya na mamuhay sa ilalim ng tinig ng Diyos na nakatalaga na sa iyo kay Kristo.</p>
-    <p>At para sa ilan sa atin, ang talatang ito ay isang paanyaya na huminto sa pagsisikap na lupigin ang ating daan patungo sa kapahingahan.</p>
-    <p>Maaaring hindi mo iniisip ang iyong buhay bilang pananakop, ngunit marami sa atin ang nagsisikap na manalo ng pahinga sa pamamagitan ng tagumpay.</p>
-    <p>Kung maaari kong master ang proyektong ito, pagkatapos ay magpahinga.</p>
-    <p>Kung kaya kong malampasan ang kahinaang ito, magpahinga ka na.</p>
-    <p>Kung kaya kong pamahalaan ang mga opinyon ng mga tao, pagkatapos ay magpahinga.</p>
-    <p>O iba pa. Ngunit palaging magkakaroon ng isa pang labanan.</p>
-    <p>Kaya kung narito ka ngayong gabi at hindi ka Kristiyano, iyon ang imbitasyon. Huwag munang maging mas malakas na tao. Hindi upang linisin ang iyong sarili nang sapat upang tumawid sa ilog. Hindi para patunayan na malakas ang loob mo para sa Diyos.</p>
-    <p>Ang paanyaya ay lumapit kay Hesus, ang dakilang Josue, na nauna sa mga makasalanan tungo sa kamatayan at lumabas sa buhay na muling pagkabuhay. Hindi siya nag-aalok sa iyo ng plano sa pagpapabuti ng sarili. Siya mismo ang nag-aalok sa iyo. Pagpapatawad. Pakikipagkasundo sa Diyos. Isang pahinga na mas malalim kaysa sa mga pangyayari.</p>
-    <p>At kung ikaw ay isang Kristiyano, ang imbitasyon ay hindi gaanong kailangan.</p>
-    <p>Lumapit kay Hesus. Hindi, kaya ko ito. Hindi, kontrolado ko ito. Hindi, ako yung tipo ng tao na kakayanin.</p>
-    <p>Ngunit, ginawa na ito ni Kristo. Nasa ilalim ito ni Kristo. Nauna na sa akin si Kristo. Hindi ako iiwan ni Kristo.</p>
-  </div>
+    <div class="listening-aid">
+      <div class="big-idea">
+        <div class="big-idea-label">MALAKING IDEYA</div>
+        <div class="big-idea-text">Totoo ang paghatol ng Diyos, ngunit tinatanggap ng Kanyang awa ang tagalabas na kumakalinga sa Kanya.</div>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">Kasulatan</div>
+        <div class="scripture-ref">Josue 2</div>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">Daloy ng Pangangaral</div>
+
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">1</span> Nagsisimula ang pananampalataya nang marinig ni Rahab at pumili siya ng panig</div>
+  <ul><li>Narinig ni Rahab ang ginawa ng Panginoon at tumigil sa pagtitiwala sa Jerico.</li><li>Ang pananampalataya ay hindi maayos na relihiyosong rekord; ito ay pagkakanlong sa tunay na Diyos.</li></ul>
 </div>
 
-<!-- LANGUAGE SHEET -->
-<div class="sheet-overlay" id="sheetOverlay" onclick="handleOverlayClick(event)">
-  <div class="sheet" id="sheetPanel">
-    <div class="sheet-handle"></div>
-    <div class="sheet-title">Choose Your Language</div>
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">2</span> May bigat ang awa dahil totoo ang paghatol</div>
+  <ul><li>Nasa ilalim ng paghatol ang Jerico, kaya ang kanlungan ay madalian at hindi dagdag lang.</li><li>Pinatutunayan ni Rahab na ang awa ng Diyos ay hindi para lang sa sariling grupo; pati tagalabas ay maaaring tanggapin.</li></ul>
+</div>
+
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">3</span> Ang pulang tali ay pangakong pinaniniwalaan bago bumagsak ang pader</div>
+  <ul><li>Isinabit ni Rahab ang tanda ng pagliligtas bago pa niya makita ang resulta.</li><li>Itinatali ng pananampalataya ang sarili sa salita ng pagliligtas ng Diyos bago pa dumating ang nakikitang patunay.</li></ul>
+</div>
+
+<div class="movement">
+  <div class="movement-header"><span class="movement-num">4</span> Iniuuwi ni Jesus ang mga tagalabas</div>
+  <ul><li>Si Jesus ang naging hinatulang tagalabas upang ang mga tagalabas ay mapasama sa pamilya ng Diyos.</li><li>Hindi lang pinaliligtas ng biyaya ang taong may kahihiyan; binibigyan din siya nito ng bagong pangalan at hinaharap.</li></ul>
+</div>
+
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">Mahahalagang Salita</div>
+        <ul class="keyword-list"><li><strong>Tagalabas:</strong> Taong may tanda ng kahihiyan, layo, o pakiramdam na hindi kabilang.</li><li><strong>Kanlungan:</strong> Pagtakbo sa ilalim ng pangako ng Diyos sa halip na magtago sa huwad na seguridad.</li><li><strong>Paghatol:</strong> Banal na pagtutol ng Diyos sa kasamaan; kaya mahalaga ang awa dahil ito ay totoo.</li><li><strong>Katapatan:</strong> Binago ng pananampalataya ni Rahab ang katapatan niya mula sa hari ng Jerico tungo sa Diyos ng Israel.</li><li><strong>Pulang tali:</strong> Nakikitang tandang nakakabit sa pangako ng pagliligtas.</li><li><strong>Tahanan:</strong> Ang biyaya ay higit sa pagligtas; iniuuwi nito ang tao sa pamilya ng Diyos.</li></ul>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">Mga Pangungusap na Dapat Hawakan</div>
+        <ul class="anchor-list"><li>Sineseryoso ng pananampalataya ang Diyos hanggang sa doon ito kumakapit.</li><li>Hindi dugo ang isyu. Kanlungan ang isyu.</li><li>Ang biyaya ay hindi pagsasabing 'hindi mahalaga'; ang biyaya ay pagbubukas ng daan ng kanlungan.</li><li>Naging tagalabas si Jesus upang makauwi ang mga tagalabas.</li></ul>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">Mga Gabay sa Pakikinig</div>
+        <ul class="cue-list"><li>Pansinin kung paanong nagsisimula sa pakikinig ang pananampalataya ni Rahab.</li><li>Tingnan ang ugnayan ng takot ng Jerico at paniniwala ni Rahab.</li><li>Pakinggan ang kaibahan ng pagiging kagalang-galang at ng paghahanap ng kanlungan.</li><li>Tingnan kung paano naging silungan ang bahay ni Rahab sa gitna ng paghatol.</li></ul>
+      </div>
+
+      <div class="aid-section">
+        <div class="aid-section-title">Pokús sa Paglalapat</div>
+        <ul class="apply-list"><li>Kung pakiramdam mo ay hindi ka kwalipikado dahil sa kuwento mo, lumapit ka kay Cristo nang walang maipagmamalaki.</li><li>Kung Kristiyano ka, itanong kung ginawa ka bang mas mapagpatuloy ng biyaya sa mga tagalabas.</li><li>Banggitin ang isang bahagi ngayong linggo kung saan kailangang baguhin ng pananampalataya ang katapatan mo.</li><li>Isabit ang tali sa bintana: kumilos sa pangako ng Diyos bago mo makita ang resulta.</li></ul>
+      </div>
+    </div>
+  </div>
+
+        <div class="sheet-overlay" id="sheetOverlay" onclick="handleOverlayClick(event)">
+          <div class="sheet" id="sheetPanel">
+            <div class="sheet-handle"></div>
+            <div class="sheet-title">Choose Your Language</div>
+
     <button class="lang-option" id="opt-en" onclick="setLang('en')">
-      <span class="lang-flag">&#127468;&#127463;</span>
+      <span class="lang-flag">🇬🇧</span>
       <div><div class="lang-name">English</div></div>
       <span class="lang-check" id="check-en">&#10003;</span>
     </button>
+
     <button class="lang-option" id="opt-zh" onclick="setLang('zh')">
-      <span class="lang-flag">&#127481;&#127484;</span>
+      <span class="lang-flag">🇹🇼</span>
       <div><div class="lang-name">Traditional Chinese</div><div class="lang-native">繁體中文</div></div>
       <span class="lang-check" id="check-zh" style="display:none">&#10003;</span>
     </button>
+
     <button class="lang-option" id="opt-id" onclick="setLang('id')">
-      <span class="lang-flag">&#127470;&#127465;</span>
+      <span class="lang-flag">🇮🇩</span>
       <div><div class="lang-name">Bahasa Indonesia</div></div>
       <span class="lang-check" id="check-id" style="display:none">&#10003;</span>
     </button>
+
     <button class="lang-option" id="opt-ko" onclick="setLang('ko')">
-      <span class="lang-flag">&#127472;&#127479;</span>
+      <span class="lang-flag">🇰🇷</span>
       <div><div class="lang-name">Korean</div><div class="lang-native">한국어</div></div>
       <span class="lang-check" id="check-ko" style="display:none">&#10003;</span>
     </button>
@@ -997,106 +636,110 @@
       <div><div class="lang-name">Filipino</div><div class="lang-native">Filipino / Tagalog</div></div>
       <span class="lang-check" id="check-tl" style="display:none">&#10003;</span>
     </button>
-    <hr class="sheet-divider">
-    <div class="request-section">
-      <button class="request-toggle" onclick="toggleRequestForm()">+ Request Another Language</button>
-      <div class="request-form" id="requestForm">
-        <form id="langRequestForm" onsubmit="submitRequest(event)" style="margin-top:16px">
-          <input type="hidden" name="access_key" value="3fc0c694-adc2-4cda-8191-c4f6993a9a55">
-          <input type="hidden" name="subject" value="TIF Sermon Language Request — Joshua Week 1 (Full Manuscript)">
-          <div class="form-row">
-            <label for="reqLang">Requested Language</label>
-            <select name="language" id="reqLang" required>
-              <option value="">Select a language&hellip;</option>
-              <option>Tagalog / Filipino</option><option>Japanese / 日本語</option>
-              <option>Spanish / Español</option><option>French / Français</option>
-              <option>German / Deutsch</option><option>Portuguese / Português</option>
-              <option>Thai / ภาษาไทย</option><option>Vietnamese / Tiếng Việt</option>
-              <option>Hindi / हिन्दी</option><option>Burmese / မြန်မာ</option>
-              <option>Swahili</option><option>Arabic / العربية</option>
-              <option>Dutch / Nederlands</option><option>Russian / Русский</option>
-              <option>Ukrainian / Українська</option><option>Polish / Polski</option>
-              <option>Romanian / Română</option><option>Czech / Čeština</option>
-              <option>Hungarian / Magyar</option><option>Other</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label for="reqName">Full Name</label>
-            <input type="text" name="name" id="reqName" placeholder="Your name" required>
-          </div>
-          <div class="form-row">
-            <label for="reqStatus">Status at TIF</label>
-            <input type="text" name="status" id="reqStatus" placeholder="e.g. Member, Regular Attendee, Visitor" required>
-          </div>
-          <div class="form-row">
-            <label for="reqEmail">Email</label>
-            <input type="email" name="email" id="reqEmail" placeholder="your@email.com" required>
-          </div>
-          <button type="submit" class="form-submit">Send Request</button>
-          <div class="form-success" id="formSuccess">&#10003; Request sent! Todd will be in touch soon.</div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
-<footer class="footer">
-  <div class="footer-brand">Taichung International Fellowship</div>
-  <div>Full Manuscript &middot; Joshua Week 1 &middot; June 7, 2026</div>
-  <div style="margin-top:8px"><a href="archive.html">&#8592; Sermon Archive</a> &middot; <a href="https://taichunginternationalfellowship.org" target="_blank">TIF Website</a></div>
-</footer>
+            <hr class="sheet-divider">
+            <div class="request-section">
+              <button class="request-toggle" onclick="toggleRequestForm()">+ Request Another Language</button>
+              <div class="request-form" id="requestForm">
+                <form id="langRequestForm" onsubmit="submitRequest(event)" style="margin-top:16px">
+                  <input type="hidden" name="access_key" value="3fc0c694-adc2-4cda-8191-c4f6993a9a55">
+                  <input type="hidden" name="subject" value="TIF Sermon Language Request — Joshua Week 2 (Listening Aid)">
+                  <div class="form-row">
+                    <label for="reqLang">Requested Language</label>
+                    <select name="language" id="reqLang" required>
+                      <option value="">Select a language&hellip;</option>
+                      <option>Tagalog / Filipino</option><option>Japanese / 日本語</option>
+                      <option>Spanish / Español</option><option>French / Français</option>
+                      <option>German / Deutsch</option><option>Portuguese / Português</option>
+                      <option>Thai / ภาษาไทย</option><option>Vietnamese / Tiếng Việt</option>
+                      <option>Hindi / हिन्दी</option><option>Burmese / မြန်မာ</option>
+                      <option>Swahili</option><option>Arabic / العربية</option><option>Dutch / Nederlands</option>
+                      <option>Russian / Русский</option><option>Ukrainian / Українська</option><option>Polish / Polski</option>
+                      <option>Romanian / Română</option><option>Czech / Čeština</option><option>Hungarian / Magyar</option><option>Other</option>
+                    </select>
+                  </div>
+                  <div class="form-row">
+                    <label for="reqName">Full Name</label>
+                    <input type="text" name="name" id="reqName" placeholder="Your name" required>
+                  </div>
+                  <div class="form-row">
+                    <label for="reqStatus">Status at TIF</label>
+                    <input type="text" name="status" id="reqStatus" placeholder="e.g. Member, Regular Attendee, Visitor" required>
+                  </div>
+                  <div class="form-row">
+                    <label for="reqEmail">Email</label>
+                    <input type="email" name="email" id="reqEmail" placeholder="your@email.com" required>
+                  </div>
+                  <button type="submit" class="form-submit">Send Request</button>
+                  <div class="form-success" id="formSuccess">&#10003; Request sent! Todd will be in touch soon.</div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<script>
-  const LANGS = {
-    'tl': { label: 'Filipino / Tagalog', flag: '🇵🇭' },
-    'en': { label: 'English', flag: '🇬🇧' },
+        <footer class="footer">
+          <div class="footer-brand">Taichung International Fellowship</div>
+          <div>Listening Aid &middot; Joshua Week 2 &middot; June 14, 2026</div>
+          <div style="margin-top:8px"><a href="archive.html">&#8592; Sermon Archive</a> &middot; <a href="https://taichunginternationalfellowship.org" target="_blank">TIF Website</a></div>
+        </footer>
+
+        <script>
+          const LANGS = {
+            'en': { label: 'English', flag: '🇬🇧' },
     'zh': { label: '繁體中文', flag: '🇹🇼' },
     'id': { label: 'Bahasa Indonesia', flag: '🇮🇩' },
-    'ko': { label: '한국어', flag: '🇰🇷' }
-  };
+    'ko': { label: '한국어', flag: '🇰🇷' },
+    'tl': { label: 'Filipino / Tagalog', flag: '🇵🇭' }
+          };
 
-  let currentLang = 'en';
-  try { currentLang = localStorage.getItem('tif-lang') || 'en'; } catch(e) {}
+          let currentLang = 'en';
+          try { currentLang = localStorage.getItem('tif-lang') || 'en'; } catch (e) {}
 
-  function setLang(code) {
-    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
-    const el = document.getElementById('content-' + code);
-    if (el) el.classList.add('active');
+          function setLang(code) {
+            document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+            const el = document.getElementById('content-' + code);
+            if (el) el.classList.add('active');
 
-    const lang = LANGS[code] || LANGS['en'];
-    document.getElementById('currentLangLabel').textContent = lang.flag + ' ' + lang.label;
+            const lang = LANGS[code] || LANGS['en'];
+            document.getElementById('currentLangLabel').textContent = lang.flag + ' ' + lang.label;
 
-    Object.keys(LANGS).forEach(k => {
-      const chk = document.getElementById('check-' + k);
-      const opt = document.getElementById('opt-' + k);
-      if (chk) chk.style.display = (k === code) ? '' : 'none';
-      if (opt) { if (k === code) opt.classList.add('selected'); else opt.classList.remove('selected'); }
-    });
+            Object.keys(LANGS).forEach(k => {
+              const chk = document.getElementById('check-' + k);
+              const opt = document.getElementById('opt-' + k);
+              if (chk) chk.style.display = (k === code) ? '' : 'none';
+              if (opt) {
+                if (k === code) opt.classList.add('selected');
+                else opt.classList.remove('selected');
+              }
+            });
 
-    currentLang = code;
-    try { localStorage.setItem('tif-lang', code); } catch(e) {}
-    closeSheet();
-  }
+            currentLang = code;
+            try { localStorage.setItem('tif-lang', code); } catch (e) {}
+            closeSheet();
+          }
 
-  function openSheet() { document.getElementById('sheetOverlay').classList.add('open'); }
-  function closeSheet() { document.getElementById('sheetOverlay').classList.remove('open'); }
-  function handleOverlayClick(e) { if (e.target === document.getElementById('sheetOverlay')) closeSheet(); }
-  function toggleRequestForm() { document.getElementById('requestForm').classList.toggle('open'); }
+          function openSheet() { document.getElementById('sheetOverlay').classList.add('open'); }
+          function closeSheet() { document.getElementById('sheetOverlay').classList.remove('open'); }
+          function handleOverlayClick(e) { if (e.target === document.getElementById('sheetOverlay')) closeSheet(); }
+          function toggleRequestForm() { document.getElementById('requestForm').classList.toggle('open'); }
 
-  async function submitRequest(e) {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
-      if (res.ok) {
-        form.style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-      }
-    } catch(err) { alert('There was an error. Please try again.'); }
-  }
+          async function submitRequest(e) {
+            e.preventDefault();
+            const form = e.target;
+            const data = new FormData(form);
+            try {
+              const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+              if (res.ok) {
+                form.style.display = 'none';
+                document.getElementById('formSuccess').style.display = 'block';
+              }
+            } catch (err) {
+              alert('There was an error. Please try again.');
+            }
+          }
 
-  document.addEventListener('DOMContentLoaded', function() { setLang(currentLang); });
-</script>
-</body>
-</html>
+          document.addEventListener('DOMContentLoaded', function () { setLang(currentLang); });
+        </script>
+        </body>
+        </html>
